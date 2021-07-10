@@ -1,0 +1,142 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd,todonotes}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Tor}{\operatorname{Tor}}
+
+\begin{document}
+\title{Homework 6 - 290B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Source Consulted: We refer to Prof. Lin's lecture notes, Miller's notes and Hatcher's book. \\
+\textbf{Problem 1:} Let's first prove two facts.\\
+\textbf{Fact 1:} If $M,N$ are abelian groups, then $\Hom(N\oplus M,\Z)\cong \Hom(N,\Z)\oplus \Hom(M,\Z)$. 
+\textbf{Proof of Fact 1:} Consider the abelian group homomorphism 
+\[\phi: \\Hom(N\oplus M, \Z)\to \Hom(N,\Z)\oplus \Hom(M,\Z)\]
+\[f\mapsto(f|_N,f|_M)\]
+The map is well-defined since the restriction of group homomorphism to some subgroup is still a group homomorphism. This is a group homomorphism since 
+\[\phi(f+g)=\Big((f+g)|_N,(f+g)|_M\Big)=(f|_N,f|_M)+(g|_N,g|_M)=\phi(f)+\phi(g)\]
+Also, we have 
+\[\varphi:\Hom(N,\Z)\oplus \Hom(M,\Z)\to \Hom(N\oplus M, \Z)\]
+\[(f_1,f_2)\mapsto f(x,y)=f_1(x)+f_2(y)\]
+Notice that $f$ is a group homomorphism since 
+\[f(x_1+x_2,y_1+y_2)=f_1(x_1+x_2)+f_2(y_1+y_2)=f_1(x_1)+f_2(y_1)+f_1(x_2)+f_2(y_2)=f(x_1,y_1)+f(x_2,y_2)\]
+And $\varphi$ is a group homomorphism since 
+\begin{align*}
+    \varphi(f_1+g_1,f_2+g_2)(x,y)&=(f_1+g_1)(x)+(f_2+g_2)(y)\\&=f_1(x)+g_1(x)+f_2(y)+g_2(y)\\&=f(x,y)+g(x,y)\\&=\varphi(f_1,f_2)+\varphi(g_1,g_2)
+\end{align*}
+And we have 
+\[\varphi\circ \phi(f)=\varphi(f|_N,f|_M)=f\]
+\[\phi\circ \varphi(f_1,f_2)=\phi(f)=(f|_N,f|_M)=(f_1,f_2)\]
+So we have $\phi$ is an isomorphism. \\
+\textbf{Cor:} If $M,N$ are abelian groups, then $\Ext(M\oplus N,\Z)\cong \Ext(M,\Z)\oplus \Ext(N,\Z)$. \\
+\textbf{Proof: }Since if $0\to F_1\xrightarrow[]{f} F_0\to M\to 0$ is a free resolution for $M$ and $0\to E_1\xrightarrow[]{g} E_0\to N$ is a free resolution for $N$, then $0\to F_1\oplus E_1\xrightarrow[]{(f,g)}
+F_0\oplus E_0\to M\oplus N\to 0$ is a free resolution for $M\oplus N$. Then we take $\Hom(-,\Z)$ and get
+\[0\to \Hom(F_0\oplus E_0,\Z)\xrightarrow[]{\alpha} \Hom(F_1\oplus E_1,\Z)\to 0\]
+Then we just need to compute the image of $\alpha$, but we know $\alpha$ is just precomposite by $(f,g)$. By Fact 1, we know $\alpha$ induces a group homomorphism $\alpha'$ such that $Im(\alpha)=Im(\alpha')$. Then we can just compute the homology of the following sequence.
+\[0\to \Hom(F_0,\Z)\oplus\Hom(E_0,\Z)\xrightarrow[]{\alpha'}\Hom(F_1,\Z)\oplus\Hom(E_1,\Z)\to 0\]
+So we have $\alpha'$ is the map that precomposites by $f$ at the first coordinate and precomposite by $g$ at the second coordinate. So $Im(\alpha')$ is just the direct sum of the images of induced maps of $\Hom(F_0,\Z)\to \Hom(F_1,\Z)$ and $\Hom(E_0,\Z)\to \Hom(E_1,\Z)$. So we have 
+\begin{align*}
+    H^1(\Hom(F_1\oplus E_1,\Z))&\cong \Hom(F_1\oplus E_1,\Z)/Im(\alpha)\\
+    &\cong\Hom(F_1,\Z)\oplus\Hom(E_1,\Z)/ Im(\alpha')\\
+    &\cong\Hom(F_1,\Z)/Im(f_\ast)\oplus\Hom(E_1,\Z)/ Im(g_\ast)\\
+    &\cong \Ext(M,\Z)\oplus \Ext(N,\Z) 
+\end{align*}
+Now, we are ready to prove problem 1.\\
+By the cohomology version of UCT, we have a short exact sequence that splits
+\[0\to \Ext(H_{n-1}(X;\Z),\Z)\to H^n(X;\Z)\to \Hom(H_n(X;\Z),\Z)\to 0\]
+Now, we claim that $\Hom$ part is isomorphic to the free part of nth homology and $\Ext$ part is isomorphic to the torsion part of $(n-1)$th homology. Since $H_n(X;\Z)$ is finitely generated for all $n$, we can apply the classification theorem of finitely generated modules over PID. Suppose $H_n(X:\Z)\cong \Z^{r_n}\oplus Tors(H_n(X;Z))$ and $H_{n-1}(X;\Z)\cong \Z^{r_{n-1}}\oplus Tors(H_{n-1}(X;\Z))$.
+Notice that if $f\in \Hom(Tors(H_n(X;\Z)),\Z)$, for any $x\in Tors(H_n(X;\Z))$, there is some $0\neq n\in\Z$ such that $nx=0$. So we have 
+\[nf(x)=f(nx)=f(0)=0\]
+This implies $f(x)=0$ for all $x$ since $\Z$ is a domain and $n\neq 0$. So we have $f\equiv 0$. Now, by fact 1, we have
+\[\Hom(H_n(X;\Z),\Z)\cong \Hom(\Z^{r_n},\Z)\oplus \Hom(Tors(H_n(X;\Z)),\Z)\cong \oplus_{n=1}^{r_n}\Hom(\Z,\Z)\cong \Z^{r_n}\]
+So we have $\Hom(H_n(X;\Z),\Z)\cong H_n(X;\Z)/Tors(H_n(X;\Z))$.\\
+For $\Ext$, we want to write down the torsion part of $H_{n-1}(X;\Z)$ more explicitly. Suppose $Tors(H_{n-1}(X;\Z))\cong \Z/(p_1^{\alpha_1})\oplus \cdots \Z/(p_k^{\alpha_k})$, where $p_i^{\alpha_i}$ are the elementary divisors of $H_{n-1}(X;\Z)$. Now, by the corollary, we have 
+\begin{align*}
+    \Ext(H_{n-1}(X;\Z),\Z)&\cong\Ext(\Z^{r_{n-1}},\Z)\oplus\Ext(Tors(H_{n-1}(X;\Z)),\Z)\\
+    &\cong\oplus \Ext(\Z/(p_i^{\alpha_i}),\Z)\\
+    &\cong \oplus \Z/(p_i^{\alpha_i})\\
+    &\cong Tors(H_{n-1}(X;\Z))  
+\end{align*}
+So we have 
+\[H^n(X;\Z)\cong Tors(H_{n-1}(X;\Z))\oplus H_n(X;\Z)/Tors(H_n(X;\Z))\]
+\qed\\
+\textbf{Problem 2:} First, we compute the homology and cohomology group. By last homework, we know 
+\[\tilde{H}_k(X;\Z)=\begin{cases}
+    \Z/m\Z & \text{ if }k=n\\
+    0 & \text{ else}
+\end{cases}\]
+Also, we know 
+\[\tilde{H}_k(S^{n+1};\Z)=\begin{cases}
+    \Z & \text{ if }k=n+1\\
+    0 & \text{ else}
+\end{cases}\]
+So the induced map on reduced homology is trivial since the nonzero terms show up in different dimensions. \\
+For the cohomology, we use the result from problem 1 and get 
+\[H^k(X;\Z)=\begin{cases}
+    \Z/m\Z &\text{ if } k=n+1\\
+    \Z &\text{ if }k=0\\
+    0 &\text{ else}
+\end{cases}\]
+\[H^k(S^{n+1};\Z)=\begin{cases}
+    \Z &\text{ if } k=n+1,0\\
+    0 &\text{ else}
+\end{cases}\]
+Now, we can consider the CW-pair ($X,S^{n}$), then we have a long exact sequence of cohomology.
+\[\cdots\to H^{n+1}(X,S^n;\Z)\xrightarrow[]{f_\ast}H^{n+1}(X;\Z)\xrightarrow[]{i_\ast} H^{n+1}(S^n;\Z)\to \cdots\]
+where $i:S^n\to X$ is the inclusion map and the map $f:(X,\emptyset)\to (X,S^n)$. Since $H^{n+1}(S^n;\Z)=0$, so we have $i_\ast$ is trivial and $f_\ast$ is surjective and nontrivial if $m\neq 1$. Now, consider the composition $q\circ f:(X,\emptyset)\to (X,S^n)\to (X/S^n,\ast)$, where $q$ is quotient map. Then we know $q$ induces isomorphism since $(X,S^n)$ is a CW-pair. Hence, $q\circ f$ induces surjective map from $H^{n+1}(X;\Z)$ to $H^{n+1}(S^{n+1};\Z)$. \\
+Now, by the naturality of UCT, we have the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+        0 \arrow[r]& 0\arrow[d] \arrow[r] & \Z \arrow[d,"(q\circ f)_\ast"]\arrow[r,"\cong"]&\Z\arrow[r]\arrow[d]&0\\
+        0 \arrow[r] & \Z/m\Z  \arrow[r,"\cong"] & \Z/m\Z\arrow[r,"\alpha"] &0\arrow[r]           & 0
+    \end{tikzcd}
+\end{center}
+So if we go along the right square, then we first send $1$ to $1$ by the horizontal arrow, then send $1$ to 0 by the vertical arrow. Since the sequence splits, then we should be able to go backwards along the inverse of $\alpha$. So we will send $0$ to $0$. If the split is natural, then this should agree with $(q\circ f)_\ast(1)$, but we know $(q\circ f)_\ast$ is nontrivial. Hence, we have $(q\circ f)_\ast(1)\neq 0$. So the split is not natural.\\
+For all $k$, the nontrivial term of $\tilde{H}^k(X;\Z)$ and $\tilde{H}^k(S^n;\Z)$ show up in different dimension. So the inclusion map induces trivial cohomology. Now, by the long exact sequence of homology, we have 
+\[\cdots \to H_n(S^n;\Z)\xrightarrow[]{i_\ast} H_n(X;\Z)\to H_n(X,S^n;\Z)\to \cdots \]
+Since $H_n(X,S^n;\Z )\cong H_n(X/S^n;\Z)=H_n(S^{n+1};\Z)=0$, the map induced by inclusion is surjective. Hence, it is nontrivial since $H_n(X;\Z)=\Z/m\Z\neq 0$. 
+\qed\\
+\textbf{Problem 3:} Since the cohomology ring of $\C P^{2n}$ is $\Z[\alpha]/(\alpha^{2n+1})$, and any homotopy equivalence $f$ induces isomorphism on cohomology ring, which fixed the 0th dimension, then we just need to determined the value of $\alpha$ to understand the induced map. Also, notice that $\alpha$ is the generator of $H^2(\C P;\Z)\cong \Z$. And the automorphisms of $\Z$ has two possibilities. One is the identity map, the other one sends $\alpha$ to $-\alpha$. 
+If $f^\ast(\alpha)=\alpha$, then $f$ is the identity map. We are done. If not, then $f^{\ast}(\alpha)=-\alpha$. If we look at the $4n$th cohomology, it is generated by $\alpha^{2n}$. So we have 
+\[f^\ast(\alpha^{2n})=f^\ast(\alpha)^{2n}=(-1)^{2n}\alpha^{2n}=\alpha^{2n}\]
+So $f$ induces identity map on $H^{4n}(\C P^n;\Z)$.
+\\\qed\\
+\textbf{Problem 4:} Suppose there is a n-contractible cover $U_1,\cdots,U_n$ towards contradiction. Then we consider the long exact sequence of relative homology, for $m>0$. we have 
+\[H^m(U_i;\Z)=0\to H^{m+1}(\C P^n,U_i;\Z)\to H^{m+1}(\C P^n;\Z)\to H^{m+1}(U_i;\Z)=0\]
+By exactness, we have $H_{m+1}(\C P^n,U_i;\Z)\cong H^{m+1}(\C P^n;\Z)$. Now, by the naturality and cup product, for any $m_i>0$ and $m=m_1+m_2+\cdots+m_n$, we have 
+\begin{center}
+    \begin{tikzcd}
+        \prod_{i=1}^n H^{m_i}(\C P^n,U_i;\Z)\arrow[d,"\cong"]\arrow[r,"\smile "]&H^{m}(\C P^n,\cup_{i=1}^nU_i;\Z)=0\arrow[d]\\
+        \prod_{i=1}^nH^{m_i}(\C P^n;\Z) \arrow[r,"f"] & H^{m}(\C P^n;\Z)  
+    \end{tikzcd}
+\end{center}
+So $f$ is a trivial map. But if we let $m_i=2$ for all $1\leq i\leq n$, then we have 
+\begin{center}
+    \begin{tikzcd}
+        \prod_{i=1}^n H^{2}(\C P^n,U_i;\Z)\arrow[d,"\cong"]\arrow[r,"\smile "]&0\arrow[d]\\
+        \prod_{i=1}^nH^{2}(\C P^n;\Z) \arrow[r,"f"] & H^{2n}(\C P^n;\Z)  
+    \end{tikzcd}
+\end{center}
+But if we identity the cohomology ring as $\Z[\alpha]/(\alpha^{n+1})$, then $\alpha$ is a generator of $H^2(\C P^n;\Z)$ and the cup product gives the algebra multiplication (ring multiplication). Therefore, we have 
+\[\alpha^n=\alpha\smile\alpha\smile\cdots\smile\alpha=0\]
+It contradicts with the ring structure of $\Z[\alpha]/(\alpha^{n+1})$.
+\\\qed\\
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\ord}{\text{ord}}
+
+\begin{document}
+\title{Homework 3 - 104A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:} We will use Euclid's Proof. Since $k$ is a field, we know $k[x]$ is a PID. Hence, prime element is equivalent to irreducible element. Also, we can do factorization since every PID is a UFD. Suppose there are only finitely many monic irreducible polynomials $p_1(x),p_2(x),\cdots, p_n(x)$ in $k[x]$ towards contradiction. Then consider $f(x)=p_1(x)p_2(x)\cdots p_n(x)+1$. We have $x$ is a monic irreducible polynomial in $k[x]$ and none of irreducible polynomial is constant because nonzero constant polynomial is a unit in $k$. If $x$ is the only irreducible polynomial, then we have $f(x)=x+1$ is also irreducible since it is linear. It contradicts. So there are at least 2 irreducible polynomials in $k[x]$. So we have $\deg f(x)\geq 1+\deg p_i(x)>p_i(x)$. So $f(x)\neq p_i(x)$ for all $i$ and $f(x)$ is a monic polynomial. So $f$ is not irreducible by assumption. \\
+Next, we consider the unique factorization of $f$ by irreducibles. We are actually able to consider monic irreducibles since if $f(x)=q_1(x)^{\alpha_1}\cdots q_r(x)^{\alpha_r}$ is a factorization of $f(x)$, and we suppose the leading coefficent of $q_i(x)$ is $a_i$, then we have $1=a_1a_2\cdots a_n$. So all of them are unit, if we replace $q_i(x)$ by $a_i^{-1}q_i(x)$, we get a factorization of monic irreducibles. Notice that since $f(x)=p_1(x)p_2(x) \cdots p_n(x) +1$, we have $p_i(x)\nmid f(x)$ for all $i.$ So $f$ is not divisible by any monic irreducibles. Hence, the factorization of $f(x)$ has zero power (i.e. $\alpha_i=0$ for all $i$). But this implies $f(x)=1$, it contradicts. So $f(x)$ is irreducible and $k[x]$ has infinitely many monic irreducibles. So there are infinitely many irreducibles in $k[x]$.\\\qed\\
+\textbf{Problem 2:} First, we show this set is a ring. Denote this set by $S$. Notice that if $\ord_{p_i}a\geq \ord_{p_i}b\neq 0$, then we have
+\[\frac{a}{b}=\frac{\frac{a}{p_i^{\ord_{p_i}b}}}{\frac{b}{p_i^{\ord_{p_i}b}}}\]
+Now, we have $\ord_{p_i} \frac{a}{p_i^{\ord_{p_i}b}}\geq \ord_{p_i}\frac{b}{p_i^{\ord_{p_i}b}}=0$. Hence, for any $r\in S$, we can write it in the form of $r=\frac{a}{b}$, where $\ord_{p_i}b=0$ for all $i$. Since $\Q$ is a field, so we just need to prove $S\subseteq \Q$ is a subgroup respect to addition and $S$ is a submoniod with respect to multiplication. For any $\frac{a_1}{b_1},\frac{a_2}{b_2}\in S$, we have 
+\[\frac{a_1}{b_1}-\frac{a_2}{b_2}=\frac{a_1b_2-a_2b_1}{b_1b_2}\]
+Since $\ord_{p_i} b_1b_2=\ord_{p_i}b_1+\ord_{p_i}b_2=0+0=0$, and $\ord$ is a nonnegative function, we have $\ord_{p_i}(a_1b_2-a_2b_1)\geq 0$. Hence, $\frac{a_1}{b_1}-\frac{a_2}{b_2}\in S$. So $S$ is a subgroup w.r.t. addition. Similarly, we have 
+\[\frac{a_1}{b_1}\frac{a_2}{b_2}=\frac{a_1a_2}{b_1b_2}\in S\]
+And we have $1=\frac{1}{1}\in S$. So $S$ is a subring of $\Q$; hence, it is a ring. Next, we want to show $p_i$'s are the only primes in $S$. First, notice that $\Z\subseteq S$ since $\ord_{p_i}1=0$ for all $i$ and for any $n\in\Z$, we have $n=\frac{n}{1}\in S$. Suppose $\frac{p}{q}\in S$ is a prime. Since $\ord_{p_i}q=0$ for all $i$, we have $\frac{1}{q}\in S$. So $q$ is a unit in $S$. So we have $\frac{p}{q}\cdot q=p$ is a prime in $S$. Therefore, $p$ must be a prime element in $\Z$. If $p=\pm p_i$ for some $1\leq i\leq t$, then we are done. If not, then $p$ is a prime integer that different from $p_i$ for all $i$. However, if this is the case, we have $\ord_{p_i}=0$ for all $i$. Hence, $\frac{1}{p}\in S$. So $p$ is a unit. So it cannot be prime in $S$. It contradicts.
+\\\qed\\
+\textbf{Problem 3:} Let's follow the hint. If $\{p_1,\cdots, p_s\}$ are all the primes, then we take $n=p_1p_2\cdots p_s$. And we use the formula in proposition 2.2.5,
+\[\phi(n)=n(1-\frac{1}{p_1})\cdots (1-\frac{1}{p_s})=(p_1-1)\cdots (p_s-1)\]
+Since $2,3$ are primes, we have $s>2$. And if we denote $p_i$ in the usual order of integers, then we have $p_1=2,p_2=3$. So we have $p_2-1=2\mid \phi(n)$. So $\phi(n)\geq 2$. Now, suppose $1<a\leq n$ and $\gcd(a,n)=1$. If we consider the factorization of $a$, then we have 
+\[a=q_1^{\alpha_1}\cdots q_k^{\alpha_k}\]
+for some $q_i$ are primes. But since $\{p_1,\cdots,p_s\}$ are all the primes, $q_i=p_j$ for some $1\leq j\leq s$. Since $a,n$ are coprime, and $p_j\mid n$, we must have $\alpha_i=0$ for all $i$. However, this implies that $a=1$. It contradicts. So there are infinitely many primes.
+\\\qed\\
+\textbf{Problem 4:} Suppose $p$ is an odd prime. If we have $p\mid a^{2^m}+1$, then we have 
+\[a^{2^m}\equiv -1\pmod p\]
+Since $n>m$, we have 
+\[a^{2^n}=a^{2^m\cdot 2^{n-m}}\equiv (-1)^{2^{n-m}}=((-1)^2)^{2^{n-m-1}}=1\pmod p\]
+So we have $a^{2^n}-1\equiv 0\pmod p$. Since $p$ is an odd prime, we have $p>2$, so we have 
+\[a^{2^n}-1+2=a^{2^n}+1\equiv 0+2=2\pmod p\]
+So we have $p\nmid a^{2^n}+1$. So $\gcd(a^{2^n}+1,a^{2^m}+1)\leq 2$.
+If $a$ is even, then we have $a^{2^n}+1$ is odd. So $\gcd(a^{2^n}+1,a^{2^m}+1)=1$.\\
+If $a$ is odd, then we have $a^{2^n}+1,a^{2^m}+1$ are even. So $\gcd(a^{2^n}+1,a^{2^m}+1)=2$.\\\qed\\
+\textbf{Problem 5:} Let $a=2$. Then we consider the following sequence of numbers
+\[2^{2^0}+1,2^{2^1}+1,2^{2^2}+1,\cdots\]
+Notice that this is a infinite sequence. By problem 4, we showed that $2^{2^m}+1$ and $2^{2^n}+1$ are coprime if $n\neq m$ since $2$ is even. If we look at their prime factorization, then we will have distinct primes for each $2^{2^n}+1$. So we have a surjective function from the set of primes to $\{2^{2^n}+1\mid n\in \N\}$. So the set of primes contain infinitely many elements.
+\\\qed\\
+\textbf{Problem 10:} Suppose $a,b\in\Z$ such that $\gcd(a,b)=1$. Then we have 
+\[g(a)g(b)=(\sum_{d_1\mid a}f(d_1))(\sum_{d_2\mid b}f(d_2))=\sum_{d_1\mid a,d_2\mid b}f(d_1)f(d_2)\]
+Since $a,b$ are coprime, so $d_1,d_2$ are coprime for all $d_1\mid a$ and $d_2\mid b$. Since $f$ is a multiplicative function, we have 
+\[g(a)g(b)=\sum_{d_1\mid a,d_2\mid b}f(d_1d_2)\]
+By the unique factorization of integers and $\gcd(a,b)=1$, we know any divisor $d\mid ab$ has the form of $d=d_1d_2$, where $d_1\mid a$ and $d_2\mid b$. So we can rewrite the sum as 
+\[g(a)g(b)=\sum_{d\mid ab}f(d)=g(ab)\]
+So $g$ is also a multiplicative function.
+\\\qed\\
+\textbf{Problem 11:} Let's first prove $\mu(d)$ is a multiplicative function. Suppose $a,b$ are relative prime. If either $a$ or $b$ is not square free, then $ab$ is not square free. So we have \[\mu(a)\mu(b)=0=\mu(ab)\]
+If both $a$ and $b$ are square free, and we have $a=p_1\cdots p_s$ and $b=q_1\cdot q_t$. Then we have $ab=p_1\cdots p_sq_1\cdots q_t$. 
+\[\mu(ab)=(-1)^{s+t}=(-1)^s(-1)^t=\mu(a)\mu(b)\]
+So $\mu$ is multiplicative. Hence, given any $a,b$ coprime, we have 
+\[\frac{\mu(a)}{a}\frac{\mu(b)}{b}=\frac{\mu(ab)}{ab}\]
+Then by problem 10, we have $g(n)=\sum_{d\mid n}\mu(d)/d$ is multiplicative. Let $f(n)=ng(n)$. Then, we have 
+\[f(a)f(b)=abg(a)g(b)=abg(ab)\]
+is multiplicative if $a,b$ are coprime. Since the value multiplicative function can be given as product of prime powers, where the prime power is determined by the unique factorization. So to show $\phi=f$, we just need to show they agree on all prime powers. Now, given $p$ is a prime, we have 
+\[\phi(p^k)=p^{k}(1-\frac{1}{p} )=p^{k}-p^{k-1}\]
+Also, we have 
+\[f(p^k)=p^k(\sum_{i=0}^k\mu(p^i)/p^i)=p^k(1+(-1)/p)=p^k-p^{k-1}=\phi(p^k)\]
+So we have $\phi=f$.
+\\\qed\\
+\textbf{Problem 14:} Suppose $a,b$ are coprimes. For any divisor $d_1\mid a$ and $d_2\mid b$, we have $a/d_1,b/d_2$ are coprime. So we have
+\[\mu(a/d_1)f(d_1)\mu(b/d_2)f(d_2)=\mu(\frac{ab}{d_1d_2})f(d_1d_2)\]
+So $\mu(n/d) f(n)$ is a multiplicative function. Then by problem 10, we have $h(n)=\sum_{d\mid n}\mu(n/d)f(d)$ is a multiplicative function.
+\\\qed\\
+\textbf{Problem 15:}
+Since $v(n)=(a_1+1)\cdots (a_k+1)$ if $n=p_1^{a_1}\cdots p_k^{a_k}$, we have $v(n)$ is a multiplicative function because if $m=q_1^{b_1}\cdots q_s^{b_s}$ is coprime with $n$, then $v(mn)=(a_1+1)\cdots (a_k+1)(b_1+1)\cdots(b_s+1)=v(n)v(m).$ Then by problem 14, we know $\sum_{d\mid n}\mu(n/d)v(d)$ is a multiplicative function. To show it is a constant function with value 1, we just need to verify the value of all prime powers. \\
+Suppose $p$ is a prime and $k\geq 0$, we have 
+\[\sum_{d\mid p^k}\mu(p^k/d)v(d)=\mu(p^k/p^{k-1})v(p^{k-1})+\mu(p^k/p^k)v(p^k)=-k+(k+1)=1\]
+So we have $\sum_{d\mid n}\mu(n/d)v(d)=1$ for all $n$. \\
+Similarly, we have $\sigma(n)$ is a multiplicative function. We will use the same $m,n$ as above. So we have 
+\[\sigma(mn)=(\frac{p_1^{a_1+1}}{p_1-1})\cdots (\frac{p_k^{a_k+1}}{p_k-1})(\frac{q_1^{b_1+1}}{q_1-1})\cdots (\frac{q_s^{b_s+1}}{q_s-1})=\sigma(n)\sigma(m)\]
+So $\sum_{d\mid n}\mu(n/d )\sigma(d)$ is a multiplicative function. Suppose $p$ is prime and $k\geq 0$, we have 
+\[\sum_{d\mid p^k}\mu(p^k/d)\sigma(d)=-\sigma(p^{k-1})+\sigma(p^k)=-\frac{p^k-1}{p-1}+\frac{p^{k+1}-1}{p-1}=\frac{p^{k+1}-p^k}{p-1}=p^k\]
+So $\sum_{d\mid n}\mu(n/d)\sigma(d)$ is the identity function. Hence, we have $\sum_{d\mid n}\mu(n/d)\sigma(d)=n$ for all $n$.
+\\\qed\\
+\textbf{Problem 27:} By proposition 2.2.1, we have if $n\in \Z$, then $n=ab^2$ where $a$ is square free. So we have 
+\[\sum\frac{1}{n}\leq (\sum\ '\frac{1}{n})(\sum\frac{1}{n^2})\]
+Since $\sum\frac{1}{n}$ diverges, the right hand side also diverges. But we know $\sum\frac{1}{n^2}$ converges, so we must have $\sum\ '\frac{1}{n}$ diverges.\\
+Since square free integer are the product of some collection of distinct primes, we have 
+\[\sum\ '\frac{1}{n}=\prod(1+\frac{1}{p})\]
+where $p$ is prime.
+So $\prod(1+\frac{1}{p})$ diverges. Since $e^x>1+x$, we have $e^{1/p}>1+1/p$. So we have 
+\[\prod_{p<N}(1+\frac{1}{p})<\prod_{p<N} e^{\frac{1}{p}}=e^{\sum_{p<N}\frac{1}{p}}\]
+Since $\prod(1+\frac{1}{p})$ diverges, so we have $e^{\sum_{p<N}\frac{1}{p}}\rightarrow \infty$ as $N\rightarrow \infty$. Hence, we have $\sum_{p<N}\frac{1}{p}\rightarrow \infty$ as $N\rightarrow\infty$.
+\\\qed\\
+\end{document}

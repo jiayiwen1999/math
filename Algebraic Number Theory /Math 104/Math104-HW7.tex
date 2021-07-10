@@ -1,0 +1,169 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\ord}{\mathrm{ord}}
+
+\begin{document}
+\title{Homework 7 - 104A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Notation: We will use $[a]_n$ to denote the congruence class of $a$ in $\Z/n\Z$. The subscript $n$ is omitted if the ring $\Z/n\Z$ is clear by the context.\\
+\textbf{Problem 1:} For $(\frac{5}{7})$, we consider the remainder set of $\{5,10,15\}$ divided by $7$, then we have $\{-2,3,1\}$. Then by Gauss's lemma, we have 
+\[(\frac{5}{7})=(-1)^1=-1\]
+For $(\frac{3}{11})$, we consider the remainder set of $\{3,6,9,12,15\}$ divided by $11$, then we have $\{3,-5,-2,1,4\}$. Then by Gauss's lemma, we have 
+\[(\frac{3}{11})=(-1)^2=1\]
+For $(\frac{6}{13})$, we consider the remainder set of $\{6,12,18,24,30,36\}$ divided by $13$, then we have $\{6,-1,5,-2,4,-3\}$. Then by Gauss's lemma, we have 
+\[(\frac{6}{13})=(-1)^3=-1\]
+For $(\frac{-1}{p})$, we consider the remainder set of $\{-1,-2,-3,\cdots, -\frac{(p-1)}{2}\}$ divided by $p$, then this set is already the set of least remainder. Then by Gauss's lemma, we have 
+\[(\frac{-1}{p})=(-1)^{\frac{p-1}{2}}=\begin{cases}
+    1 &\text{ if }p\equiv 1\pmod 4\\
+    -1 &\text{ if }p\equiv 3\pmod 4
+\end{cases}\]
+\qed\\
+\textbf{Problem 2:} Note that $x^2\equiv a \pmod p$ has a solution if and only if $a$ is a quadratic residue. By definition, then we have $(\frac{a}{p})=1$. Hence, we have $1+(\frac{a}{p})=2$. Also, we know if $x_0$ is a solution,then $-x_0$ is another solution since $(-x_0)^2=x_0^2\equiv a\pmod p$. By the lecture, we know the equation $x^2\equiv a\pmod p$ has at most 2 solution in $(\Z/p\Z)^\times $. So we have find all solutions.\\
+On the other hand, if $x^2\equiv a\pmod p$ has no solution if and only if $a$ is not a quadratic residue. By definition, we have $1+(\frac{a}{p})=1-1=0$. The proof completes.
+\\\qed\\
+\textbf{Problem 3:} If $b^2-4ac$ is a quadratic residue, then we should have 2 roots. Now, we claim $\frac{-b\pm \sqrt{b^2-4ac}}{2a}$ are the roots of $ax^2+bx+c\equiv 0\pmod p$. Notice that, it makes perfect sense to "divide by" $a$ since $p\nmid a$ implies $a$ has an inverse in $(\Z/p\Z)^\times$. It is not hard to verify these are actually roots of the equation by some simple calculation (comparing the quadratic formula learned in middle school). These are all roots since $\Z/p\Z$ is a field implies $\Z/p\Z[x]$ is a PID, which implies it is a UFD. Hence, we can factor $ax^2+bx+c$ uniquely in $\Z/p\Z[x]$, which is the same as factoring $x^2+\frac{b}{a}x+\frac{c}{a}$ since $a$ is a unit. Let's denote the roots as $x_1,x_2$, then we have $x^2+\frac{b}{a}x+\frac{c}{a}=(x-x_1)(x-x_2)$. So it is impossible to have a third root by the uniqueness of factorization in UFD.\\
+Conversely, if $b^2-4ac$ is not a quadratic residue, we have 2 cases.\\
+First case: $p=2$. Then we have $b=0$. Then we $(\frac{b^2-4ac}{2})=0$. So we are suppose to find one root. Then if $c=0$, we have $x^2\equiv 0\pmod 2$, which has one root $x\equiv 0\pmod 2$. If $c=1$, then we have $x^2+1\equiv 0\pmod 2$, then we have $x\equiv 1\pmod 2$ is a solution.\\
+Second Case: $p>2$. We multiply the equation by $4a$ on both side, which doesn't change the result since $p\nmid 4a$, is a unit. 
+\[4a(ax^2+bx+c)=4a^2x^2+4abx+b^2-b^2+4ac=(2ax+b)^2-(b^2-4ac)\equiv 0\pmod p\]
+So having no solution for the equation $ax^2+bx+c\equiv 0\pmod p$ is the same as having no solution for $(2ax+b)^2\equiv b^2-4ac\pmod p$. By the assumption, this is true since $b^2-4ac$ is not a quadratic residue mod $p$. The proof completes.
+\\\qed\\
+\textbf{Problem 4:} We shall suppose $p>2$ since if $p=2$, then we have $(\frac{1}{2})=1\neq 0$. Notice that if we can show there are same number of quadratic residues and non quadratic residues, then we are done since $(\frac{a}{p})$ indicates whether $a$ is a quadratic residue or not. Since we know $a$ is a quadratic residue if and only if $a^{\frac{p-1}{2}}\equiv 1 \pmod p$. But notice that in the cyclic group $(\Z/p\Z)^\times$, there are only $\frac{p-1}{2}$ elements in the subgroup $\{x\in(\Z/p\Z)^\times \mid x^\frac{p-1}{2}=1\}$. Hence, we have $\frac{p-1}{2}$ element's in $(\Z/p\Z)^\times$ that is not a quadratic residue. So we have same number of 1's and $-1$'s in the summand. So we have 
+\[\sum_{a=1}^{p-1}(\frac{a}{p})=0\]
+\qed\\
+\textbf{Problem 9:} Since $k\equiv k-p\pmod p$, if we multiply over all even 
+$k$, then we have 
+\[2\cdot 4\cdot 6\cdots (p-1)\equiv (2-p)\cdots(p-1-p)\equiv (-1)^{\frac{p-1}{2}}1\cdot 3\cdots(p-2)\pmod p\]
+since there are exactly $\frac{p-1}{2}$ even number between $1$ and $p-1$. Now, if we multiply both side by all odd number, then on the left we get $(p-1)!$. By Wilson's theorem, we have 
+\[-1\equiv (-1)^\frac{p-1}{2}1^2\cdot 3^2\cdots (p-1)^2\pmod p\]
+Hence, we have 
+\[1^2\cdot 3^2\cdots (p-1)^2\equiv (-1)^{\frac{p-1}{2}+1}\equiv (-1)^{\frac{p+1}{2}}\pmod p\]
+\qed\\
+\textbf{Problem 10:} Notice that $(2m)^2\equiv (2m-p)^2\equiv (p-2m)^2\pmod p$. So there is a bijection between $\{2^2,4^2,\cdots,(p-1)^2\}$ and $\{1^2,3^2,\cdots, (p-2)^2\}$. So the product of all quadratic residue is the same as the product of all possible squares. By the bijection, we can either take product over all odd squares or all even squares. Hence, we have 
+\[\prod_{i=1}^{p-1/2}r_i\equiv 1^2\cdot 3^2\cdots (p-1)^2\equiv (-1)^{\frac{p+1}{2}}=\begin{cases}
+    1 & \text{ if }p\equiv 3\pmod 4\\ 
+    -1 & \text{ if }p\equiv 1\pmod 4 
+\end{cases}\]
+\qed\\
+\textbf{Problem 12:} Notice that if $p\mid x^2+1$, then we have 
+\[x^2+1\equiv 0\pmod p \implies x^2\equiv -1\pmod p\]
+So $-1$ is a quadratic residue mod $p$. Notice that we have $(\frac{-1}{p})=(-1)^{\frac{p-1}{2}}$. Hence, we have $-1$ is a quadratic residue if and only if $p\equiv 1\pmod 4$. \\
+Similarly, we have 
+\[x^2-2\equiv 0\pmod p \implies x^2\equiv 2\pmod p\]
+And we know $(\frac{2}{p})=(-1)^{\frac{p^2-1}{8}}=1$ if and only if $p\equiv 1, 7\pmod 8$.
+\qed\\
+\textbf{Problem 14:} Since $|(\Z/p\Z)^\times |=p-1\equiv 0\pmod 3$, by cauchy theorem, there exists $a\in (\Z/p\Z)^\times$ such that $\ord(a)=3$. Now, we want to show $a+a^{-1}=-1$. First observation is that 
+\[(a+a^{-1})^2=a^2+2+a^{-2}=a^{-1}+a+2\]
+\[((a+a^{-1})+1)((a+a^{-1})-2)=0\]
+Since we are working in a field, we have 
+\[a+a^{-1}=-1 \text{ or } a+a^{-1}=2\]
+If $a+a^{-1}=2$, then we have 
+\[1=a^3=(2-a^{-1})^3=8-4a^{-1}+2a^{-2}-a^{-3}=8-6a^{-1}+2(a^{-1}+a)-1=11-6a^{-1}\]
+So we have $3a^{-1}=5$ (cancellation by 2 since $p>2$). But if we raise both side to the third power, we have $27\equiv 125 \pmod p$. But this implies $p\mid 98$. Since $p>2$, we have $p=7$. Then we have $2^3\equiv 8\equiv 1\pmod 7$. Hence, we have $a+a^{-1}=2+2^2=6\equiv -1\pmod 7$. It contradicts. So we must have $a+a^{-1}\equiv -1\pmod p$. Then we have 
+\[(2a+1)^2=4a^2+4a+1=4(a^{-1}+a)+1=-4+1=-3\]
+So $-3$ is a quadratic residue mod p. Hence, we have $(\frac{-3}{p})=1$.
+\qed\\
+\textbf{Problem 16:} Use the quadratic reciprocity, we have 
+\[(\frac{7}{p})=(-1)^{(\frac{7-1}{2})(\frac{p-1}{2})}(\frac{p}{7})=(-1)^{(p-1)/2}(\frac{p}{7})\]
+To find all prime quadratic residue mod 7, we can just find $p$ such that the right hand side is equal to 1. Now, we look at the residue system mod $7$ and notice that $5^2=25\equiv 4\pmod 7$. So we have
+\[(\frac{1}{7})=1,(\frac{2}{7})=1,(\frac{4}{7})=1,(\frac{3}{7})=-1,(\frac{5}{7})=-1,(\frac{6}{7})=-1\]
+Now, it turns out to solve system of linear congruences. The solvability and uniqueness of the solution is given by Chinese Remainder Theorem.\\
+System 1: 
+\[p\equiv 1 \pmod 7, p\equiv 1\pmod 4\implies p\equiv 1\mod 28\]
+System 2: 
+\[p\equiv 2 \pmod 7, p\equiv 1\pmod 4\implies p\equiv 9\mod 28\]
+System 3: 
+\[p\equiv 3 \pmod 7, p\equiv -1\pmod 4\implies p\equiv 3\mod 28\]
+System 4: 
+\[p\equiv 4 \pmod 7, p\equiv 1\pmod 4\implies p\equiv 25\mod 28\]
+System 5: 
+\[p\equiv 5 \pmod 7, p\equiv -1\pmod 4\implies p\equiv 19\mod 28\]
+System 6: 
+\[p\equiv 6 \pmod 7, p\equiv -1\pmod 4\implies p\equiv 27\mod 28\]
+So they are primes satisfies $1,3,9,19,25,$ or $ 27\pmod {28}$.
+\\Now, for $15$, we do the similarly thing. We have 
+\[(\frac{15}{p})=(\frac{3}{p})(\frac{5}{p})\]
+So we want to find the p such that both 3 and 5 are quadratic residues or both of them are not. If they are, then we have 
+\[(\frac{3}{p})=(-1)^\frac{p-1}{2}(\frac{p}{3})=1\]
+Since $(\frac{1}{3})=1$ and $(\frac{2}{3})=-1$, we have 
+\[p\equiv 1\pmod 3, p\equiv 1\pmod 4\implies p\equiv1\pmod {12}\]
+\[p\equiv 2\pmod 3, p\equiv -1\pmod 4\implies p\equiv11\pmod {12}\]
+Also, we have 
+\[(\frac{5}{p})=(-1)^{\frac{(5-1)(p-1)}{4}}(\frac{p}{5})=(\frac{p}{5})=1\]
+So we have $p\equiv 1 \pmod 5$ or $p\equiv 4\pmod 5$.
+Then putting these together, we have four possibilities
+\[p\equiv 1\pmod 5,p\equiv 1\pmod{12}\implies p\equiv 1\pmod {60}\]
+\[p\equiv 1\pmod 5,p\equiv 11\pmod{12}\implies p\equiv 11\pmod {60}\]
+\[p\equiv 4\pmod 5,p\equiv 1\pmod{12}\implies p\equiv 49\pmod {60}\]
+\[p\equiv 4\pmod 5,p\equiv 11\pmod{12}\implies p\equiv 59\pmod {60}\]
+If both of them are not quadratic residues, then we have 
+\[p\equiv 1\pmod 3, p\equiv -1\pmod 4\implies p\equiv 7\pmod {12}\]
+\[p\equiv 2\pmod 3, p\equiv 1\pmod 4\implies p\equiv 5\pmod {12}\]
+and we have $p\equiv 2 \pmod 5$ or $p\equiv 3\pmod 5$. Then putting them together, we have another 4 possibilities
+\[p\equiv 2\pmod 5,p\equiv 7\pmod{12}\implies p\equiv 7\pmod {60}\]
+\[p\equiv 2\pmod 5,p\equiv 5\pmod{12}\implies p\equiv 17\pmod {60}\]
+\[p\equiv 3\pmod 5,p\equiv 7\pmod{12}\implies p\equiv 43\pmod {60}\]
+\[p\equiv 3\pmod 5,p\equiv 5\pmod{12}\implies p\equiv 53\pmod {60}\]
+So they are primes satisfies 1,7,11,17,43,49,59, or 53 mod 60.
+\qed\\
+\textbf{Problem 18:} Since $D$ is squarefree and odd, we can assume that $D=p_1\cdots p_k$, where $p_i$ are pairwise distinct odd primes. Since $p_1$ is an odd prime, $p_1>2$ and there is $\frac{p-1}{2}>0$ quadratic residues mod $p_1$. Suppose $c$ is a quadratic residue mod $p_1$, then we solve the system 
+\[b\equiv c\pmod {p_1},b\equiv 1\pmod {p_2},b\equiv 1\pmod {p_3},\cdots, b\equiv 1\pmod {p_k}\]
+The system has unique solution mod $D$ by Chinese Remainder Theorem. Now, by the defintion of Jacobi symbol, we have 
+\[(\frac{b}{D})=\prod_{i=1}^k(\frac{b}{p_i})=-1\]
+since $(\frac{1}{p_i})=1$ for all prime $p_i$.
+\qed\\
+\textbf{Problem 19:} We will give a bijection proof. By Chinese Remainder Theorem, we have 
+\[(\Z/D\Z)^\times \xrightarrow[\cong]{\varphi}  (\Z/p_1\Z)^\times \times  \cdots \times (\Z/p_k\Z)^\times \]
+Then if we want to sum over all element in $(\Z/D\Z)^\times$ is the same as summing elements in $\prod (\Z/p_i\Z)^\times$. Notice that we have a bijection between quadratic residues and non quadratic residues in $(\Z/p_1\Z)^\times$. Let's denote it as 
+\[f:\{\text{quadratic residues in }(\Z/p_1\Z)^\times \}\leftrightarrow\{\text{non quadratic residues in }(\Z/p_1\Z)^\times \}\]
+Then we can extends this map by 
+\[f':\{a\in (\Z/D\Z)^\times | (a/D)=1 \}\leftrightarrow\{a\in (\Z/D\Z)^\times\mid (a/D)=-1  \}\]
+\[a=\varphi^{-1}(a_1,a_2,\cdots,a_k)\leftrightarrow \varphi(f(a_1),a_2,\cdots,a_k)\]
+Then we have $1=(a/D)=\prod_{i=1}^k(a_i/p_i)=(a_1/_1)(\prod_{i=2}^k(a_i/p_i))=-f(a_1/p_1)(\prod_{i=2}^k(a_i/p_i))=-(f'(a)/D)$. So we have a bijection that reverse the sign. If we sum up all the elements in the reduced residue system, then they cancel each other pairwise and we get 
+\[\sum(a/D)=0\]
+In other words, there are exactly half of them has value 1 and half of them has value -1.
+\qed\\
+\textbf{Problem 20:} If $(D/p)=1$, then we have 
+\[1=(D/p)=\prod(p_i/p)=\prod (-1)^{\frac{(p-1)(p_i-1)}{4}}(p/p_i)=\prod(p/p_i)=(p/D)\]
+Notice that $\frac{p-1}{4}$ is an integer since $p\equiv 1\pmod 4$. So we have $p\equiv a_i$ for some $1\leq i\leq \phi(D)/2$.\\
+Conversely, if $p\equiv a_i$ for some $1\leq i\leq \phi(D)/2$, then $(p/D)=1$. So we have $p\nmid D$. Also, we have 
+\[(D/p)=\prod(p_i/p)=\prod(-1)^{\frac{(p-1)(p_i-1)}{4}}(p/p_i)=\prod(-1)^(p/p_i)=(p/D)=(a_i/D)=1\]
+So $D$ is a quadratic residue mod $p$.
+\qed\\
+\textbf{Problem 22:} Notice that $113\equiv 997\equiv 1\pmod 4$, so we have 
+\[(113/997)=(997/113)=(93/113)=(3/113)(31/113)=(113/3)(113/31)=(2/3)(20/31)\]
+Notice that the only quadratic residue mod 3 is 1 and we have $31\equiv 7\pmod 8$.
+So we have 
+\[(113/997)=((2/3)(20/31)=-(2/31)(2/31)(5/31)=-(31/5)=-(1/5)=-1\]
+Similarly, we have $761\equiv 1\pmod 4$.
+\[(215/761)=(5/761)(43/761)=(761/5)(761/43)=(1/5)(30/43)=(5/43)(3/43)(2/43)\]
+Since $43\equiv 3\pmod 8$, we have 
+\[(215/761)=(5/43)(3/43)(2/43)=-(43/5)(-1)^{\frac{(2)(42)}{4}}(43/3)=(3/5)(1/3)=-1\]
+Similarly, we have $1093\equiv 1\pmod 4$ and $1093\equiv 5\pmod 8$
+\[(514/1093)=(2/1093)(257/1093)=-(1093/257)=-(65/257)=-(13/257)(5/257)\]
+Since $13\equiv 5\equiv 1\pmod 4$, we have 
+\[(514/1093)=-(257/13)(257/5)=-(10/13)(2/5)=(2/13)(5/13)=-(13/5)=-(3/5)=1\]
+Similarly, we have $401\equiv 757\equiv 1\pmod 4$ and $401\equiv 1\pmod 8$. So we have 
+\[(401/757)=(757/401)=(356/401)=(2/401)(2/401)(89/401)=(401/89)=(45/89)\]
+Since $89\equiv1\pmod 4$, we have 
+\[(401/757)=(3/89)(3/89)(5/89)=(89/3)(89/3)(89/5)=(2/3)(2/3)(4/5)=(-1)^2=1\]
+\qed\\
+\end{document}

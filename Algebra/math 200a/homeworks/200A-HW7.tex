@@ -1,0 +1,179 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework7 - 200A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\indent For the notation of function composition, we follow with the one in the text book. For example, $f \circ g$ means do $f$ first then do $g$. For the identity element of a group, we will use either the notation $e$ or $1$ or $1_G$. And $o(g)$ denote the order of $g$. Also, whenever "disjoint" is mentioned, it means pairwise disjoint. Thank Daniel and Wei for the help in problem 4.\\
+\textbf{Problem 1:}\\
+(a): Since $G$ is finite and $P$ is a Sylow $p-$subgroup of $G$, we can assume $|G| =p^kq$ and $|P|= p^k$ where $gcd(q,p)=1$. Then since $P\leq N_G(P)\leq H\leq G$, we have $p^k\mid |H|$. Hence, $|H|=p^kl$ for some $l\mid q$ because $|H|\mid |G|$. So by definition, we have $P$ is a Sylow $p-$subgroup of $H$. Then we have $N_G(P)\geq N_H(P)$ because $H\leq G$. But notice that we assume $N_G(P)\leq H$. So, for any $g\in N_G(P)$, we have $g\in H$ and $P^g=P$. This is equivalent to say $g\in N_H(P)$. So we have $N_H(P)\leq N_G(P)$. Hence, $N_G(P)=N_H(P)$. If we denote $n_p$ as the number of Sylow $p-$subgroups of $G$ and $m_p$ as the Sylow $p-$subgroup of $H$, then we have $m_p\equiv n_p\equiv 1\pmod{p}$, $m_p=|H:N_H(P)|$, and $n_p=|G:N_G(P)|$ by Sylow's Theorem. So we have 
+\[1\equiv |G:N_G(P)|=|G:H||H:N_G(P)|=|G:H||H:N_H(P)|\equiv |G:H| \pmod{p}\]
+This completes the proof of part a.\\
+(b): If $p$ is the largest prime that divides $|G|$, then we consider is a Sylow $p-$subgroup $P$ of $G$. We assume $N_G(P)\neq G$ towards contradiction. Then there exists some maximal subgroup $H$ of $G$ such that $N_G(P)\leq H\leq G$. Now, we can use part a. We have $|G:H|\equiv 1\pmod{p}$. This is a contradiction. Because we assume any maximal subgroup $H$ of $G$ has prime index, and $p$ is the largest prime dividing the order of $G$, we have $|G:H|=q\neq 1$ for some prime $q< p$. So $N_G(P)=G$ and $P\normal G$.\\
+(c): We prove this by induction.\\
+Base case: If $|G|=p_1^{k_1}$, then $G$ is solvable because $G$ is a finite $p$-group.\\
+Induction Hypothesis: Supoose $|G|=p_1^{k_1}\dots p_n^{k_n}$ is solvable, where $p_1<p_2<\dots<p_n$ are distinct prime numbers. Then consider $|G|=p_1^{k_1}\dots p_{n+1}^{k_{n+1}}$, where $p_1<p_2<\dots<p_{n+1}$. Then we have $|P|=p_{n+1}^{k_{n+1}}$ is a normal Sylow $p_{n+1}$-subgroup of $G$. Then we have $P$ is solvable because finite $p-$group is solvable. And $G/P$ is solvable because $|G/P|=p_1^{k_1}\dots p_n^{k_n}$ and by the induction hypothesis. So $G$ is solvable. Hence, any finite group $G$, whose maximal subgroups are prime index, is solvable.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 2:} Consider the normalizer $N_G(H)$. Then we have $N_G(P)\leq H\leq N_G(H)\leq G$. Then we have $P$ is a Sylow $p-$subgroup of $H$ and $N_G(P)=N_{N_G(H)}(P)$ by part a of problem 1. Notice that $H\normal N_G(H)$ by the definition of the normalizer. So we have $N_{N_G(H)}(P)H=N_G(H)$ by Frattini's Argument. Since $N_G(P)=N_{N_G(H)}(P)\leq H$, we have 
+\[N_G(H)=N_{N_G(H)}(P)H=H\]
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:}\\
+(a):($\Rightarrow$) Since $G$ is a finite group, we have $G$ is nilpotent is equivalent to $G$ is the direct product of finitely many $p$-groups. So we can assume 
+\[G\cong P_1\times P_2\times \dots\times P_n\]
+where $P_i$ is a group with $p_i$-power order and $p_i$'s are distinct prime numbers. So we can assume $a=(a_1,a_2,\dots,a_n)$ and $b=(b_1,b_2,\dots,b_n)$. Then the order of $a$ is just the least common multiple of the order of $a_i$'s. Since $a_i\in P_i$, we have $o(a_i)=1$ or some power of $p_i$. Since $p_i$'s are distinct prime numbers, $o(a)=\Pi_{i=1}^n o(a_i)$. Similarly, we have $o(b)=\Pi_{i=1}^n o(b_i)$. So if $gcd(o(a),o(b))=1$, then for any $1\leq i\leq n$, we have either $a_i=1$ or $b_i=1$ because $a_i\neq 1$ implies $p_i\mid o(a)$ and same for $b_i$. Suppose $A:=\{i\mid a_i\neq 1\}$, and let $(ab)_i$ denote the $i$-th coordinate of $ab$, then we have 
+\[(ab)_i=\begin{cases}
+    a_i\cdot 1=a_i \text{ if } i\in A\\
+    1\cdot b_i=b_i \text{ if } i\notin A
+\end{cases}\]
+Similarly, we have 
+\[(ba)_i=\begin{cases}
+    1\cdot a_i=a_i \text{ if } i\in A\\
+    b_i\cdot 1=b_i \text{ if } i\notin A
+\end{cases}\]
+So we have $(ab)_i=(ba)_i$ for all $1\leq i\leq n$. Hence, $ab=ba$.\\
+($\Leftarrow$) We want to prove that all Sylow subgroups of $G$ are normal subgroup in $G$. Suppose $|G|=p_1^{k_1}p_2^{k_2}\dots p_n^{k_n}$ and $P_i$ is a Sylow $p_i$-subgroup of $G$. Next, we want to show $N_G(P_i)=G$ for all $i$. Fix $i$, then we have $P_i\leq N_G(P_i)$. For any $j\neq i$, $a\in P_j$ has order $1$ or some power of $p_j$. Hence, for any $b\in P_i$, we have $gcd(o(a),o(b))=1$ because $p_j\nmid o(b)$. So $a$ and $b$ commutes. Hence, we have $b^a=b$ for any $b\in P_i$. So we have $P_i^a=P_i$ for any $a\in P_j$. Hence, $P_j\leq N_G(P_i)$ for any $j\neq i$. But notice that for any $i\neq j$, we have $P_i\cap P_j=1$ because any nontrivial element in $P_i$ has an order of some multiple of $p_i$ and none of the element in $P_j$ has order divisible by $p_i$. So we have $P_1P_2\dots P_n\subseteq N_G(P_i)$ and 
+\[|P_1P_2\dots P_n|=\frac{|P_1||P_2|\dots|P_n|}{1}=p_1^{k_1}p_2^{k_2}\dots p_n^{k_n}\]
+So we have the subset $H$ generated by $P_1P_2\dots P_n$ has order 
+\[p_1^{k_1}p_2^{k_2}\dots p_n^{k_n}=|P_1P_2\dots P_n|\leq |H|\leq |G|=p_1^{k_1}p_2^{k_2}\dots p_n^{k_n}\]
+So we have $H=G$. And, we have $G=H\leq N_G(P_i)$ because $P_1P_2\dots P_n\subseteq N_G(P_i)$. So $N_G(P_i)=G$. Hence, $P_i$ is a normal subgroup of $G$. Because the proof is the same for any $i$, we know every Sylow subgroup of $G$ is normal. Hence, $G$ is nilpotent because $G$ is finite.\\
+(b): The proof follows from part a. If $D_{2n}$ is nilpotent, then we can consider the following presentation of $D^{2n}$
+\[D_{2n}\cong\langle r,s\mid s^2=r^n=1, srs=r^{-1}\rangle \]
+We suppose $n$ is not a power of 2 towards contradiction. Then there exists some odd prime $p\mid n$. Let $g=r^{\frac{n}{p}}$, then we have $o(g)=p$. And part a says $gs=sg$ because $o(s)=2$ is coprime to $p$. And the presentation tells us 
+\[sgs=sr^{\frac{n}{p}}s=(srs)^{\frac{n}{p}}=r^{-\frac{n}{p}}=g^{-1}\]
+But this is a contradiction because $g\neq g^{-1}$ since $o(g)\neq 2$. So $n$ must be a power of 2.\\
+Conversely, if $n$ is a power of 2, then $D_{2n}$ is a finite $p$-group. Hence, $D_{2n}$ is nilpotent.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:}\\
+(a): Since $P$ is a finite $p$-group, then we know $P$ is a nilpotent group. And we know maximal subgroups of a nilpotent group are normal. So every maximal subgroup $M$ of $P$ is normal in $P$. Also, we have $P/M$ doesn't have nontrivial proper subgroups by the 3rd isomorphism theorem and the fact that $M$ is maximal. Hence, $P/M$ is simple. But if we look at the cardinality of $P/M$, it is a nontrivial finite $p-$group. Hence, $P/M\cong \Z/p\Z$. So every maximal subgroup of $P$ has same cardinality. But this implies $P$ has finitely many maximal subgroups. The argument doesn't need the group structure. Because to have $n$ distinct sets with $m$ elements, we need at least $m+n-1$ elements in total. So if $n$ is unbounded, then the least amount of total elements we need is unbounded, but this contradicts to the finiteness assumption on the cardinality of $P$. Now, we can use the hint.\\
+Suppose $P$ has $n$ distinct maximal subgroups $M_1,M_2,\dots,M_n$, then we can consider as homomorphism given by the canonical map as the following
+\[\phi:P\to P/M_1\times \dots P/M_n \]
+\[\phi(p)=(M_1p,M_2p,\dots,M_np)\]
+And $\phi$ is well-defined because at each coordinate, we have a well-defined mapping. $\phi$ is a homomorphism because 
+\begin{align*}
+    \phi(gh)&=(M_1gh,M_2gh,\dots,M_ngh)\\
+    &=  (M_1g,M_2g,\dots,M_ng)(M_1h,M_2h,\dots,M_nh)\\
+    &=\phi(g)\phi(h)
+\end{align*}
+Also, notice that $P/M_1\times \dots P/M_n\cong (\Z/p\Z)^n$ is an elementary abelian group. So by the first isomorphism theorem, we have $P/ker\phi=\phi(P)\leq (\Z/p\Z)^n$ is an elementary abelian group. And the kernel is exactly the intersection of all maximal subgroups of $P$, which is the definition of Frattini subgroup $\Phi(P)$.\\
+(b): Suppose $P/N\cong \Pi_{i=1}^k \Z/p\Z$, where $\Pi$ denotes the direct product. Then we can consider the Frattini subgroup of $P/N$. Notice that any subgroup of $P/N$ is direct product of $s$ copies of $\Z/p\Z$ where $0\leq s\leq k$. Hence, the maximal subgroup of $P/N$ is in the form of $\Pi_{i\neq j}\Z/p\Z$ where $1\leq j\leq k$ is a fixed number. Hence, $\Phi(P/N)=1$ is the trivial group because the intersection of all maximal subgroups of $P/N$ is trivial. And notice that by the 3rd-isomorphism theorem, each of maximal subgroups is corresponding to some maximal subgroup in $P$ that contains $N$. Let's call these maximal subgroups $M_1,\dots, M_k$. Then we have 
+\[1=\Phi(P/N)=\cap_{i=1}^k (M_i/N)\]
+Then there exist a homomorphism 
+\[\varphi:\cap_{i=1}^k M_i\to \cap_{i=1}^k (M_i/N)\]
+\[\varphi(g)=Ng\]
+The map is well-defined because if $g\in \cap_{i=1}^k M_i$, then $g\in M_i$ for all $1\leq i \leq k$. So $Ng\in M_i/N$ for all $i$. Hence, $Ng\in \cap_{i=1}^k (M_i/N)$. Also, we know $\cap_{i=1}^k (M_i/N)=\Phi(P/N)=1$. So $\varphi$ must be surjective. Then by the first isomorphism theorem, we have $\cap_{i=1}^k M_i/ker\varphi\cong \cap_{i=1}^k (M_i/N)$ and the kernel is exactly $N$. So we have $\cap_{i=1}^k M_i/N=1$. Hence, we have $$N=\cap_{i=1}^k M_i\subseteq \cap_{i=1}^n M_i=\Phi(P)$$
+Hence, any normal subgroup that factor $P$ into an elementary abelian group contains the Frattini subgroup of $P$. So the Frattini subgroup is the smallest subgroup that factor a p-group into an elementary abelian group.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:}\\
+(a): If $f(x)=\sum_{n=0}^\infty a_nx^n$ is a unit, then there exists some formal power series $g(x)=\sum_{n=0}b_nx^n$ such that $f(x)g(x)=1$. By the multiplication rule, we have 
+\[f(x)g(x)=\sum_{n=0}^\infty(\sum_{i=0}^n a_ib_{n-i})x^n=1\]
+So this implies $\sum_{i=0}^n a_nb_{n-i}=0$ for all $n\geq 1$ and $a_0b_0=1$. Hence, $a_0$ is a unit in $R$.\\
+Conversely, if $a_0$ is a unit in $R$, then we can construct the formal power series $g(x) $ by finding the coefficient inductively.\\
+For $n=0$, we have $b_0=a_0^{-1}$ because $a_0$ is a unit. For $n\geq 1$, we have 
+\[b_n=-a_0^{-1}\sum_{i=1}^na_ib_{n-i}=-b_0\sum_{i=1}^na_ib_{n-i}\]
+By the construction, we have for all $n\geq 1$,
+\[\sum_{i=0}^n a_ib_{n-i}=a_0b_n+\sum_{i=1}^na_ib_{n-i}=-a_0b_0\sum_{i=1}^na_ib_{n-i}+\sum_{i=1}^na_ib_{n-i}=0\]
+Hence, $f(x)g(x)=1$.\\
+(b): We first show $I$ is an ideal. For any $f(x),g(x)\in I$ (we follow same the notation that we used in part a), we denote $[x^i]f(x)$ to be the coefficient of $x^i$ in $f(x)$. Then $$[x^0]\big(f(x)-g(x)\big)=[x^0]f(x)-[x^0]g(x)=a_0-b_0=0$$
+So $f(x)-g(x)\in I$. So $I$ is a subgroup of $R[[x]]$ with respect to addition. For any $f(x)\in I$ and $g(x)\in R[[x]]$, we have 
+\[[x_0]\big(f(x)g(x)\big)=a_0b_0=0b_0=0\]
+So $f(x)g(x)\in I$. Hence, $I$ is an ideal.\\
+Next, we want to show $R[[x]]/I$ is a field. Consider the following ring homomorphism.
+\[\varphi:R[[x]]\to R\]
+\[\varphi(f)=a_0\]
+It is surjective because $\varphi(a_0)=a_0$ for any $a_0\in R$. And $\varphi$ is a ring homomorphism because for any $f,g\in R[[x]]$, we have  
+$$\varphi(f+g)=a_0+b_0=\varphi(f)+\varphi(g)$$
+$$\varphi(fg)=a_0b_0=\varphi(f)\varphi(g)$$
+$$\varphi(1)=1$$
+And the kernel of $\varphi$ is exactly all formal power series with constant term equals to 0, which is the definition of $I$. So we have $R[[x]]/I\cong R$ is a field. Hence, $I$ is a maximal ideal of $R[[x]]$.\\
+To prove the uniqueness, we suppose $M$ is a maximal ideal of $R[[x]]$. Since $M$ is proper, then $M$ doesn't contain any unit in the formal power series ring. By part a, we know for any $f\in M$, $f$ is not a unit implies the constant term of $f$ is not a unit. But $R$ is a field, hence the only non unit element in $R$ is 0. Therefore, the constant term of $f$ is $0$. Hence, $f\in I$. So $M\subseteq I$. But $M$ is maximal. Therefore, we have $M=I$. Otherwise, we will have $M\subsetneq I\subsetneq R[[x]]$, which contradicts to the assumption that $M$ is maximal. So $I$ is the unique maximal ideal of $R[[x]]$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:} If $D$ is a division ring, then we suppose $I$ is a nontrivial left ideal. Then there exists some element $s\in I$ such that $s\neq 0$. Since $D$ is a division ring, there exists some $s^{-1}\in D$. So we have 
+\[1=s^{-1}s\in I\]
+But this implies $D\subseteq I$ because for any $d\in D$, we have $d=d\cdot 1\in I$. Hence, we have $I=D$. So the only left ideal of $D$ is $0$ and $D$.\\
+Conversely, if $D$ has only two left ideal. For any $d\in D\setminus\{0\}$, we consider the left ideal $(d)$ generated by $d$. It is obvious that $(d)\neq 0$ because $d\neq 0$. Hence, $(d)=D$. Then we have $1\in (d)$. So there exists some element $r\in D$ such that $rd=1$. But this is the same as saying $d$ is a unit in the ring. And it is true for arbitrary non-zero element in the ring. So $D$ is a division ring by definition.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 7:} Suppose $J\subseteq M_n(R)$ is an ideal. Then we want to show 
+\[I:=\{s\in R\mid s=a_{ij} \text{ for some } A=(a_{ij})\in J\}\]
+So $I$ is the set of entries of matrices in $J$. To prove this is an ideal of $R$, we want to obtain some "simple" matrices in $J$, where all entries but the first are 0.\\
+Suppose $s\in I$, then there exists some matrix $A\in J$ such that $a_{ij}=s$ for some pair of $(i,j)$. Let $B_{mn}=(b_{kl})$ be a $n$ by $n$ matrix such that $b_{kl}=0$ for all $(k,l)\neq (m,n)$ and $b_{kl}=1$ for $(k,l)=(m,n)$. Then we have 
+\[B_{1i}AB_{j1}=\begin{bmatrix}
+    s&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}\in J\tag{1}\]
+It is easy to see because if we multiply $B_{1i}$ on the left, we get the $i$-th row of $A$ in the first row and 0 elsewhere. On the other hand, If we multiply $B_{j1}$ on the right, we get the $j$-th column of $A$ in the first column. Then for any $r\in R$, we have 
+\[\begin{bmatrix}
+    s&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}\begin{bmatrix}
+    r&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}=\begin{bmatrix}
+    sr&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}\in J\tag{2}\]
+Hence, $sr\in I$. Also $I$ is a additive subgroup of $R$ because for any $r,s\in I$, by (1) and (2), we have 
+\[\begin{bmatrix}
+    s&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}+\begin{bmatrix}
+    -r&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}=\begin{bmatrix}
+    s-r&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}\in J\]
+Because $J$ is an additive subgroup of $M_n(R)$.
+So $s-r\in I$. Hence, $I$ is an ideal of $R$. And we have $J\subseteq M_n(I)$ because of the way we define $I$. For $M_n(I)\subseteq J$, we can do this by sum up all matrices. Suppose $A\in M_n(I)$, then by $(1)$, we can obtain a sequence of matrices with the $(1,1)$ is some entry of $A$. (i.e. $\begin{bmatrix}
+    a_{ij}&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}\in J$). Then we can do elementary row/column operations to this matrix and send $a_{ij}$ to the $(i,j)$ entry. By linear algebra, this can be done by multiplying some elementary matrices. And since $J$ is an ideal, the corresponding matrices $\begin{bmatrix}
+    0&0&\dots &0\\
+    0&\ddots\\
+    \vdots&a_{ij}&\dots &0\\
+    0&0&\dots&0\\
+    0&0&\dots&0
+\end{bmatrix}$ is also in $J$. Then if we sum up all matrices, we get $A\in J$ because $J$ is a group with respect to addition. So $J=M_n(I)$.\\
+If $R$ is a division ring and we suppose $J$ is an ideal of $M_n(R)$, then by previous proof, we know there exists some $I\subseteq R$ is an ideal such that $J=M_n(I)$. But from problem 6, we know the only ideals of a division ring are $0$ and $R$. Hence, $J=M_n(0)$ or $J=M_n(R)$. So $M_n(R)$ is a simple ring.\\
+The example is easy. Let's take $R=\R$, the real number, which is a field. Hence, it is a division ring by definition. But for $n\geq 2$, we can consider the matrix
+\[\begin{bmatrix}
+    1&0&\dots &0\\
+    0&\ddots\\
+    \vdots\\
+    0&0&\dots&0
+\end{bmatrix}\]   
+It has determinant 0 if $n\geq 2$. Hence, it is not invertible. Therefore, it is not a unit in $M_n(\R)$. So the matrix ring $M_n(\R)$ is not a division ring.
+\\\phantom{qed}\hfill$\square$\\
+\end{document}

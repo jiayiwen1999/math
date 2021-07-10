@@ -1,0 +1,61 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\df}{\textbf{Definition: }}
+\newcommand{\thm}{\textbf{Theorem }}
+\newcommand{\rmk}{\textbf{Remark: }}
+\newcommand{\lem}{\textbf{Lemma: }}
+\newcommand{\cor}{\textbf{Corollay: }}
+\newcommand{\x}{$x$ }
+\newcommand{\X}{$X$ }
+
+\title{Differential Topology Exercises}
+\begin{document}
+\maketitle
+\section{Cohomology with Forms}
+\df Two closed $p$-forms $\omega$ and $\omega'$ are cohomologous if $\omega-\omega'=d \theta$ for some $(p-1)$-form $\theta$. We write it as $\omega\sim\omega'$. The set of equivalence classes is denoted as $H^p(X)$, the $p$th DeRham cohomology group of $X$. Notice that $H^p(X)$ is a real vector space, with $0$ cohomology class is the collection of exact $p$-forms.\\
+Furthermore, if $f:X \rightarrow Y$ is a smooth map, then we can define the pull back $f^\ast$ of $p$-form on $Y$ to a $p$-form on $X$. Since
+$f^\ast\circ d= d\circ f^\ast$, $f^\ast$ pulls back closed(exact) forms to closed(exact) forms. $f^\ast$ also defines a mapping $f^\#:H^p(X)\rightarrow H^p(Y)$. The mapping is linear since $f^\ast$ is linear.\\
+\indent\textbf{Exercise 1:} If $X\xrightarrow{f}Y\xrightarrow{g}Z$, then $
+    (f\circ g)^\#=f^\#\circ g^\#$.\\
+\indent\textbf{Proof:} Given any equivalence class $\omega\in H^p(Z)$, let $\omega_0\in\Lambda^p[T_z(Z)^\ast]$ be a representative of $\omega$. Then we have
+\[(f\circ g)^\#(\omega)=(f\circ g)^\ast(\omega_0)=f^\ast g^\ast (\omega_0)=f^\#(g^\#(\omega))=f^\#\circ g^\#(\omega)\]
+\\\phantom{qed}\hfill$\square$\\
+\indent \textbf{Exercise 2:} The dimension of $H^0(X)$ equals the number of connected components in $X$.\\
+\indent \textbf{Proof:} 
+Suppose $f$ is a smooth function on $X$. Then if $f$ is closed, we have 
+\[df=\sum \frac{\partial f}{\partial x_i}dx_i=0\]
+Then each partial derivatives of $f$ are zero function on $X$. Hence $f$ is constant on each components of $X$. Conversely, if $f$ is constant on each components of $f$, then the partial derivatives are zero at every point of $X$. Hence, $f$ is a closed form by the formula.\\
+Since there are no exact 0-forms, each equivalence classes of $H^0(X)$ consists of exactly one 0-form. If $X=\cup_{i=1}^n X_i$, where $X_i$ are disjoint conncected manifold, then let $f_i$ be zero on $X$ except $X_i$ and $f_i=1$ on $X_i$. Then $\{f_i\}$ is a basis of $H^0(X)$.
+\\\phantom{qed}\hfill$\square$\\
+\indent \textbf{Exercise 3:} Let $\phi: V\rightarrow U$ be a diffeomorphism of open sets of $\R^k$, and let $\Phi:\R \times V \rightarrow \R \times U$ be the diffeomorphism $\Phi=identity \times \phi$. Prove $\Phi^\ast P\omega = P\Phi^\ast \omega $, where 
+\[\omega = \sum_I f_I(t,x)dt\wedge dx_I+\sum_J g_J(t,x)dx_J\tag{\text{a $p$-form}}\]
+\indent\textbf{Proof: } By direct calculation, we have 
+\begin{align*}
+    \Phi^\ast P\omega&=\Phi^\ast(\sum_I \int_{0}^t f_I(s,x)ds \ dx_I)\\
+    &=\sum_I \int_{0}^{\pi\circ\Phi(t,x)} f_I(\Phi(s,x))ds \ d\Phi_I\\
+    &=\sum_I \int_{0}^t f_I(\Phi(s,x))ds \ d\Phi_I
+\end{align*}
+\begin{align*}
+    P\Phi^\ast\omega&=P (\sum_I f_I(\Phi(t,x))d\Phi_t\wedge d\Phi_I)+\sum_J g_J(\Phi(t,x))d\Phi_J)\\
+    &=\sum_I \int_{0}^{\pi\circ\Phi(t,x)} f_I(\Phi(s,x))ds \ d_{\Phi_I}
+\end{align*}
+\\\phantom{qed}\hfill$\square$\\
+\indent\textbf{Exercise 4:} There exists a unique operator $P$, defined for all manifolds $X$, that transforms $p$-forms on $\R\times X$ into $p-1$-forms on $\R\times X$ and that satisfies the following two requirements: \\
+\begin{enumerate}
+    \item If $\phi : X \rightarrow Y$ is a diffeomorphism, and $\Phi= identity \times \phi$, then $\Phi^\ast \circ P= P \circ \Phi^\ast$.
+    \item If $X$ is an open subsets of $\R^k$, $P$ is as defined above. 
+\end{enumerate}
+\indent\textbf{Proof:} 
+\end{document}

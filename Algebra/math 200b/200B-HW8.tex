@@ -1,0 +1,144 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\Aut}[0]{\operatorname{Aut}}
+\newcommand{\Hom}[0]{\operatorname{Hom}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Gal}[0]{\operatorname{Gal}}
+
+\begin{document}
+\title{Homework 8 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+For the second part of the first problem, we followed part of the hint given by Wei.
+\section*{Problem 1:}
+\noindent\textbf{(a):} Since $f$ has root $\pm\alpha,\pm\beta$, we have $f=(x+\alpha)(x-\alpha)(x-\beta)(x+\beta)$. If $f$ is irreducible over $\Q$, then $f$ doesn't have rational roots and the product any two linear factor is not in $\Q[x]$. So we have 
+\[(x-\alpha)(x+\alpha)=x^2-\alpha^2\notin \Q[x]\]
+Hence, $\alpha^2\not\in \Q$. Also, we have
+\[(x+\alpha)(x+\beta)=x^2+(\alpha+\beta)x+\alpha\beta\notin \Q[x]\]
+So at least one of $\alpha\beta$ or $\alpha+\beta$ is not in $\Q$. But notice that $a=-(\alpha^2+\beta^2)=-(\alpha+\beta)^2+2\alpha\beta\in \Q$. So if $\alpha+\beta\in\Q$, then we have $\alpha\beta\in\Q$. It contradicts. So $\alpha+\beta\notin\Q$. Similarly, we have 
+\[(x+\alpha)(x-\beta)=x^2+(\alpha-\beta)x-\alpha\beta\notin\Q[x]\]
+And $a=-(\alpha-\beta)^2-2\alpha\beta\in\Q$. This forces $\alpha-\beta\notin\Q$ by the same argument.\\
+Conversely,
+If $\alpha^2,\alpha+\beta,\alpha-\beta\notin\Q$, then the last two says $\alpha,\beta$ are not rational (by taking sum and difference). Also, we have
+\[(x-\alpha)(x+\alpha)=x^2-\alpha^2\notin \Q[x]\]
+\[(x+\alpha)(x+\beta)=x^2+(\alpha+\beta)x+\alpha\beta\notin \Q[x]\]
+\[(x+\alpha)(x-\beta)=x^2+(\alpha-\beta)x-\alpha\beta\notin\Q[x]\]
+We suppose $f$ is not irreducible, then $f$ is the product of two degree two polynomials over $\Q$ since it has no rational roots. Hence, one of them must be given by the product of $(x+\alpha)$ and some other linear factor. But we have shown that none of these product is in $\Q[x]$. So $f$ cannot be factor as the product of two degree 2 polynomials over $\Q$. So $f$ is irreducible.\\\qed\\
+\textbf{(b):} Since $f$ is irreducible, we have $minipoly_\Q(\alpha)=f$. Since the Galois group acts transitively on the roots of $f$, so we have $4\mid |G|$ by orbit stabilizer theorem. Since $K$ is the splitting field of $f$ over $\Q$, we have $K=\Q(\alpha,\beta)$. So the automorphism is determined by the image of $\alpha,\beta$. Furthermore, $K/\Q$ is Galois since $\alpha+\beta,\alpha-\beta\notin\Q$ implies that $\alpha\neq \pm\beta$, which means $f$ is a separable polynomial.  \\
+Case (i):\\
+$\implies$: We want to write $G$ explicitly. Let's denote the automorphism in $G$ as 
+$1_K,\sigma_1,\sigma_2,\sigma_1\sigma_2$ since $G\cong \Z_2\times \Z_2$. Since $G$ acts transitively on the roots of $f$ and we have four different roots, so $\sigma_1$ cannot fixes any root of $f$. So does $\sigma_2$. WLOG, we can assume that $\sigma_1(\alpha)=-\alpha$, then we have $\sigma_2(\beta)=-\beta$. Also, we assume $\sigma_2(\alpha)=\beta$, then $\sigma_2(\beta)=\alpha$ since $\sigma_2$ has order 2. Hence, we have $\sigma_1\sigma_2(\alpha)=-\beta$, $\sigma_1\sigma_2(\beta)=-\alpha$.\\
+Now, we want to show $G$ fix $\alpha\beta$. 
+\[\sigma_1(\alpha\beta)=\sigma_1(\alpha)\sigma_1(\beta)=(-\alpha)(-\beta)=\alpha\beta\]
+\[\sigma_2(\alpha\beta)=\sigma_2(\alpha)\sigma_2(\beta)=\beta\alpha=\alpha\beta\]
+\[\sigma_1\sigma_2(\alpha\beta)=\sigma_1\sigma_2(\alpha)\sigma_1\sigma_2(\beta)=(-\beta)(-\alpha)=\alpha\beta\]
+So we have $\alpha\beta\in\Q$.\\
+$\Longleftarrow$: If $\alpha\beta\in \Q$, then we have $\beta=\alpha^{-1}(\alpha\beta)\in\Q(\alpha)$. So we have $[K:\Q]=[\Q(\alpha):\Q]=\deg(f)=4$. Hence, $|G|=4$. There are two groups with order 4 up to isomorphism. Namely, $\Z_4$ and $\Z_2\times \Z_2$. If $G\cong \Z_4$, suppose $\sigma$ is a generator of $G$. Then $\sigma$ doesn't fix $\alpha$. We have 3 possibilities. If $\sigma(\alpha)=-\alpha$, then we have $\sigma^2=1_K$, which has order 2. So $\sigma(\alpha)\neq -\alpha$. If $\sigma(\alpha)=\beta$, then we have 
+\[\alpha\beta=\sigma(\alpha\beta)=\sigma(\alpha)\sigma(\beta)=\beta\sigma(\beta)\]
+Hence, we have $\alpha=\sigma(\beta)$, but this means $\sigma^{-1}=\sigma$. It contradicts. Hence, we must have $\sigma(\alpha)=-\beta$. Similarly, we have 
+\[\sigma(\alpha)\sigma(\beta)=\sigma(\alpha\beta)=\alpha\beta=(-\alpha)\sigma(\alpha)\implies \sigma(\beta)=-\alpha\]
+Then we have $\sigma^2(\alpha)=\sigma(-\beta)=-\sigma(\beta)=-(-\alpha)=\alpha$ implies $\sigma^2=1_K$. It contradicts. So such $\sigma$ doesn't exist. Hence, $G\cong \Z_2\times \Z_2$.\\
+Case (ii):\\
+$\implies$: Since $G\ncong \Z_2\times \Z_2$, we have $\alpha\beta\notin \Q$ by (i). But notice that the constant term of $f$ is $\alpha^2\beta^2$. So we have $[\Q(\alpha\beta):\Q]=2$. Also, we have $[\Q(\alpha^2):\Q]=2$ since $\alpha^2\notin\Q$ and $\alpha^4\in\Q$ because $[\Q(\alpha):\Q]=\deg(f)=4$. But $G\cong \Z_4$ has a unique subgroup of order 2, which implies there is a unique intermediate field with degree 2 by the fundamental theorem of Galois theory. Hence, $\Q(\alpha^2)=\Q(\alpha\beta)$.\\
+$\impliedby:$ If $\alpha\beta\in\Q(\alpha^2)\subseteq \Q(\alpha)$. Hence, we have $\beta\in\Q(\alpha)$. So we have $K=\Q(\alpha)$. Thus we have $|G|=[K:\Q]=4$. But we already know $G\cong \Z_2\times \Z_2$ if and only if $\alpha\beta\in \Q$. If $\alpha\beta\in\Q$, then we have $\Q(\alpha^2)=\Q(\alpha\beta)=\Q$ implies that $\alpha^2\in\Q$. But this contradicts to $\Q(\alpha)$ is a degree 4 extension of $\Q$. So $G\cong \Z_4$.\\
+Case(iii):\\
+$\implies$: If $G\cong D_8$, then $G\ncong \Z_4$. Hence, $\alpha\beta\notin\Q(\alpha^2)$ by case ii.\\
+$\impliedby$: If $\alpha\beta\in \Q(\alpha^2)$, then we know $[K:\Q]>4$. But since $\alpha^2\beta^2\in\Q$, we have $\alpha^2\beta^2\in\Q(\alpha)$. Hence, we have $\beta^2\in\Q(\alpha)$. So we have $[\Q(\alpha,\beta):\Q]=[\Q(\alpha,\beta):\Q(\alpha)][\Q(\alpha):\Q]=2\cdot 4=8$. Since $G$ actions on the four roots of $f$, we have a group homomorphism $\phi:G\to S_4$ given by the group action, where $\ker(\phi)$ contains element in $G$ that fixes all roots of $f$. But notice that $K$ is the splitting field, so any automorphism of $K$ that fixes all roots $f$ will fix $K$. So the kernel of $\phi$ is trivial. So $G$ embeds in $S_4$. Then $G$ is a Sylow 2-subgroup of $S_4$. By Sylow's theorem, we know $S_4$ either has one Sylow 2-subgroup or three Sylow 2-subgroups. We already know $D_8$ is a group of order 8 in $S_4$, which is not normal. So $S_4$ has 3 Sylow 2-subgroup. Also, we know $D_8$ is generated by $(1234),(12)(34)$ or $(1324),(13)(24)$ or $(1243),(12)(34)$. And each of them are conjugate by a transposition. Now if we use the presentation $D_8\cong \langle r,s\mid r^4=s^2=1,\ srs=r^{-1}\rangle$. Let $\sigma$ be a transposition in $S_4$, then we have 
+\[(\sigma^{-1}r\sigma)^4=\sigma{-1}1\sigma=1\]
+\[(\sigma^{-1}s\sigma)^2=\sigma{-1}1\sigma=1\]
+\[(\sigma^{-1}s\sigma)(\sigma^{-1}r\sigma)(\sigma^{-1}s\sigma)=\sigma{-1}srs\sigma=\sigma^{-1}r^{-1}\sigma=\sigma r\sigma^{-1}=(\sigma^{-1}r\sigma)^{-1}\]
+So after the conjugation, we still have the same presentation relation. So $\sigma^{-1}D_8\sigma\cong D_8$. Hence, $G\cong D_8$.
+ \\\qed\\
+\section*{Problem 2:}
+\noindent\textbf{(a):} Since finite field is unique up to isomorphism, we have $\F_{p^n}\cong \F_p[x]/(f)$ since both of them are degree $n$ extension of $\F_p$. Notice that $\F_p[x]/(f)$ is a Galois extension of $\F_p$. Hence, it is separable. Since $f$ is irreducible, all we want to show is $f$ has a root in $\F_p[x]/(f)$. This is true since we can simply let $\alpha=x+(f)$, then $f(\alpha)=f(x)+(f)=0+(f)$. So $f$ splits over $\F_p[x]/(f)$. Now, if $\alpha$ is a root of $f$, then we have $minipoly_{\F_p}(\alpha)=f$. If $\beta$ is another root of $f$, then there exists an automorphism $\sigma\in \Gal(\F_{p^n}/\F_{p})$ such that $\sigma(\alpha)=\beta$. Now, if $\alpha$ is a generator in $S$, then $\sigma(\alpha)$ must also be a generator in $S$ since ring isomorphism takes the multiplicative group to the multiplicative group. So either all roots of $f$ are in $S$ or none of them are in $S$.\\\qed\\
+\textbf{(b):} Consider the ring $(\Z/(p^n-1)\Z,+,\cdot)$. Then we have $p$ is a unit since $\gcd(p,p^n-1)=1$. Also, notice that $p^n\equiv 1\pmod{p^n-1}$. So $p$ has multiplicative order $n$. So we have $n\mid |\Z/(p^n-1)\Z|=\varphi(p^n-1)$.\qed\\
+\textbf{(c):} Notice that there are 16 degree 4 polynomials over $\F_2$. We can write them in the form of $x^4+a_3x^3+a_2x^2+a_1x+a_0$, where $a_i\in\F_2$. If it is irreducible over $\F_2$, then it has no root in $\F_2$. One observation is that $a_0$ must be $1$; otherwise, $0$ will be a root of the polynomial. Also, it must be the sum of odd number of monomials; otherwise, 1 will be a root of the polynomial. So the polynomial looks like $x^4+a_3x^3+a_2x^2+a_1x+1$, where either only one of $\{a_1,a_2,a_3\}$ is 1 or all of them are 1. Now, the other possibility of reducible polynomials is the product of two irreducible degree 2 polynomials. But there is only one degree irreducible over $\F_2$, which is $x^2+x+1$. So we have 
+\[(x^2+x+1)^2=x^4+2x^3+3x^2+2x+1=x^4+x^2+1\]
+So all of the degree 4 irreducibles are 
+\[x^4+x^3+x^2+x+1,\  x^4+x^3+1,\ x^4+x+1 \]
+Let's identify $\F_{16}\cong\F_2[x]/(x^4+x+1) $. To be more clear, we are actually look at the root of 
+\[y^4+y^3+y^2+y+1,\ y^4+y^3+1,\ y^4+y+1\]
+in the polynomial ring $\F_{16}[y]$ in $\F_{16}$. It is obvious that the polynomial $y^4+y+1$ has root $x\in \F_{16}$. Since the multiplicative group has order $15$, then if the order of a unit element is not 1,3,5, then it must be the generator of the multiplicative group. And we have 
+\[x\neq 1,\ x^3\neq 1,\ x^5=x\cdot x^4=x(1+x)=x+x^2\neq 1\]
+So $y^4+y+1$ has root in $S$.\\
+Similarly, we have 
+\begin{align*}
+    (x^3+x+1)^4+(x^3+x+1)^3+1&=(x^3+x^4)^4+  (x^3+x^4)^3+1\\
+    &=x^{12}(1+x)^4+x^9(1+x)^3+1\\
+    &=(x^4)^3(1+x^4)+x^9(1+x)^3+1\\
+    &=(1+x)^3x+x^8x(1+x)^3+1\\
+    &=x(1+x)^3(1+x^8)+1\\
+    &=x(1+x)^3(1+x^4)^2+1\\
+    &=x(1+x)^3x^2+1\\
+    &=x^3+x^5+x^6+x^4+1\\
+    &=x^3+x^5(1+x)+x\\
+    &=x^3+x(1+x)^2+x\\
+    &=x(1+x^2)+x(1+x^2)\\
+    &=0
+\end{align*}
+So $x^3+x+1$ is a root of $y^4+y^3+1$. Also, it is a generator since 
+\[x^3+x+1\neq 1\]
+\begin{align*}
+    (x^3+x+1)^3&=x^9(1+x)^3\\
+    &=x(1+x)^5\\
+    &=x(1+x^4)(1+x)\\
+    &=x^2(1+x)\\
+    &=x^2+x^3\neq 1
+\end{align*} 
+\begin{align*}
+    (x^3+x+1)^5&=x^15(1+x)^5\\
+    &=(1+x)^3x^3x(1+x)\\
+    &=(1+x)^5\\
+    &=(1+x^4)(1+x)\\
+    &=x(1+x)\\
+    &=x+x^2\neq 1
+\end{align*} 
+Also, we have 
+\begin{align*}
+    x^12+x^9+x^6+x^3+1&=(1+x)^3+x(1+x)^2+x^2(1+x)+x^3+1\\
+    &=1+x+x^2+x^3+x+x^3+x^2+x^3+x^3+1\\
+    &=0
+\end{align*}
+So $x^3$ is a root of $y^4+y^3+y^2+y+1$, but notice that 
+\[(x^3)^5=x^{15}=1\]
+So $x^3$ is not a generator.
+So only $y^4+y+1$ and $y^4+y^3+1$ has roots in $S$.\\\qed\\
+\section*{Problem 3:} Since $\Gal(K:\Q)\cong \Z/(p-1)\Z$ is cyclic, it has unique subgroup with order $d\mid (p-1)$. So the intermediate field with degree $d$ is unique up to isomorphism by the fundamental theorem.
+\\\textbf{(a):} For the first part, we can assume $\sigma$ is a generator of the galois group that sends $\zeta$ to $\zeta^j$. Then we have $\langle\sigma^2\rangle$ is the unique subgroup with order $(p-1)/2$ in $G$. So $[Fix(\langle\sigma^2\rangle):\Q]=2$ is the unique intermediate field with degree 2. Now, we just need to show $\Q(\alpha)=Fix(\langle\sigma^2\rangle)$. Since $\sigma^2(\zeta^{i^2})=\sigma(\zeta^{i^2j})=\sigma^{i^2j^2}$. So we have $\sigma^2(\alpha)=\alpha$. Hence, $\Q(\alpha)\subseteq Fix(\langle\sigma^2\rangle)$. So $[\Q(\alpha):\Q]=1$ or $ 2$. But $\alpha$ is not rational. We first rewrite $\alpha=\sum_{i=0}^{p-1}\zeta^{a_i}$, where $a_i\equiv i^2\pmod p$ and $0\leq a_i\leq p-1$. Then we have $g=\sum_{i=0}^{p-1}x^{a_i}-\alpha \in\Q[x]$. And $g(\zeta)=0$ implies that $minipoly_\Q(\alpha)=x^{p-1}+\cdots +x+1\mid g$. Hence, $g$ must have degree $p-1$. But since minipoly is unique, we have $g=f$. But notice that a monomial with degree $k$ shows up in $g$ if and only if $k$ is a square in $\Z/p\Z$. But not all of the element in $\Z/p\Z$ is a square since if the map 
+\[\phi:\Z/p\Z\to\Z/p\Z\]\qed\\
+\[i\mapsto i^2\]
+is surjective. Then it is bijective because it is a map between finite sets. But it is obvious that this map is not injective since $(-i)^2=i^2$. So it cannot be surjective. So $[\Q(\alpha):\Q]\geq 2$. Hence, $[\Q(\alpha):\Q]= 2$\qed\\
+\textbf{(b):} Notice that $\zeta^{-1}=\overline{\zeta}$ since $1=|\zeta|^2=\zeta\overline{\zeta}$. Since $\zeta+\zeta^{-1}=2Re(\zeta)\in\R$, we have $\Q(\zeta+\zeta^{-1})\subseteq \R$. But notice that $\Q(\zeta)$ is not contained in $\R$ since $\zeta\in\C-\R$. Hence, $[\Q(\zeta):\Q(\zeta+\zeta^{-1})]\geq 2$. Now, notice that $(x-\zeta)(x-\zeta^{-1})=x^2-(\zeta+\zeta^{-1})+1\in\Q(\zeta+\zeta^{-1})$ and it has no root in $\Q(\zeta+\zeta^{-1})$. So it is an irreducible polynomial over $\Q(\zeta+\zeta^{-1})$ with $\zeta$ as a root. So it is the minimal polynomial of $\zeta$ over $\Q(\zeta+\zeta^{-1})$. So we have $[\Q(\zeta):\Q(\zeta+\zeta^{-1})]=2$. And we have shown the uniqueness for all intermediate fields before.\\
+\qed\\
+\section*{Problem 4:} Since $f$ has roots $\{\sqrt[p]{2}\zeta^i\mid \zeta=e^{2\pi i/p},\ 0\leq i\leq p-1\}$, so $f$ is separable. Therefore, $K/\Q$ is Galois. Also, we know $K=\Q(\sqrt[p]{2},\sqrt[p]{2}\zeta,\cdots, \sqrt[p]{2}\zeta^{p-1})=\Q(\sqrt[p]{2},\zeta)$. So we have $[\Q(\sqrt[p]{2}):\Q]=p$. Notice that $\Q(\sqrt[p]{2})\subseteq\R$ and we have $\zeta^i\in \C-\R$ for all $1\leq i\leq p-1$. So $[K:\Q]=[K:\Q(\sqrt[p]{2})][\Q(\sqrt[p]{2}):\Q]=(p-1)p$. By Sylow's theorem, we know $\Gal(K/\Q(\zeta))\cong\Z/p\Z\normal G$. Also, we have $\Gal(K/\Q(\sqrt[p]{2}))\cong \Gal(\Q(\zeta)/\Q)\cong (\Z/p\Z)^\times \leq G$. And $\Z/p\Z$ intersects $(\Z/p\Z)^\times$ trivially by looking at the order. So we can write $G$ as the semidirect product of $\Z/p\Z$ and $(\Z/p\Z)^\times$. Now, we write the elements explicitly. 
+\[\sigma_i: \sqrt[p]{2}\mapsto \sqrt[p]{2}\zeta^i ,\ \zeta\mapsto \zeta\]
+\[\tau_i: \sqrt[p]{2}\mapsto \sqrt[p]{2},\ \zeta\mapsto \zeta^i\]
+Then we have $\Gal(K/\Q(\zeta))=\{\sigma_i\mid 0\leq i\leq p-1\}$, $\Gal(K/\Q(\sqrt[p]{2}))=\{\tau_i\mid 1\leq i\leq p-1\}$. For the semidirect product, we want to know how $\sigma_i$ commutes with $\tau_j$. We claim that $\tau_j\circ \sigma_i =(\psi(\tau_j)(\sigma_i))\circ \tau_j$. Notice that $\sigma_1$ generates $\Gal(K/\Q(\zeta))$ since $\sigma_j=(\sigma_1)^j$. And we have $\psi(\tau_j):\sigma_1\mapsto \sigma_j$. So we have $\psi(\tau_j)(\sigma_i)=\psi(\tau_j)(\sigma_1)^i=(\sigma_j)^i=\sigma_{ij}$. So we have $\tau_j\circ (\psi(\tau_j)(\sigma_i))\circ \tau_j=\sigma_{ij}\circ \tau_j$.
+Now, we have 
+\[\sigma_{ij}\circ\tau_j (\sqrt[p]{2})=\sigma_{ij}(\sqrt[p]{2})=\sqrt[p]{2}\zeta^{ij}\]
+\[\sigma_{ij}\circ\tau_j (\zeta)=\zeta^{j}\]
+On the other hand, 
+\[ \tau_j\circ \sigma_i(\sqrt[p]{2})=\tau_j(\sqrt[p]{2}\zeta^i)=\sqrt[p]{2}\zeta^{ij}\]
+\[ \tau_j\circ \sigma_i(\zeta)=\tau_j(\zeta)=\sqrt[p]{2}\zeta^{j}\]
+So we have $\tau_j\circ \sigma_i =(\psi(\tau_j)(\sigma_i))\circ \tau_j$. Hence, we have 
+\[G\cong (\Z/p\Z)^\times \ltimes_\psi\Z/p\Z \]
+\qed
+\end{document}

@@ -1,0 +1,80 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 4 - 290B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Source Consulted: We refer to Prof. Lin's lecture notes, Miller's notes and Hatcher's book. \\
+\textbf{Problem 1:} Since $\Z$ is a PID, by classification theorem of finitely generated modules over PID, we assume $H_n(X;\Z)\cong \Z^{r_n}\oplus (\oplus_{i=1}^{\alpha_n}\Z/p^{\beta_i})\oplus T_n$. where $\beta_i\geq 1$ and $T_n$ denote the torsion part that is not $p$-primary. Then by universal coefficient theorem, we have 
+\[H_n(X;F_p)\cong H_n(X;\Z)\otimes_\Z F_p\oplus Tor(H_{n-1}(X),F_p)\]
+So we have 
+\[H_n(X;\Z)\otimes_\Z F_p\cong (F_p)^{r_n+\alpha_n}\]
+because $\Z\otimes\Z/p\cong \Z/p$ and $\Z/q\otimes \Z/p\cong \Z/\gcd(p,q)$.\\
+If $H_{n-1}(X)$ has $\beta_{n-1}$ elementary divisors and $\alpha_{n-1}$ of them are power of $p$, then we have a free resolution of $H_{n-1}(X)$
+\[0\to \Z^{\beta_{n-1}}\to \Z^{r_{n-1}+\beta_{n-1}}\to0\]
+where the middle map is multiplication by the elementary divisors. So if we tensor the free resolution by $F_p$, then we will get trivial map on the cooridnates that are multiplication by power of $p$ and isomorphism elsewhere. So $\alpha_{n-1}$ copies of $F_p$ is in the kernel of the middle map. 
+\[0\to \Z/p^{\beta_{n-1}}\to \Z/p^{r_{n-1}+\beta_{n-1}}\to0\]
+So we have $Tor(H_{n-1}(X;\Z),F_p)\cong F_p^{\alpha_{n-1}}$.
+So we have $H_n(X;F_p)\cong F_p^{r_n+\alpha_n+\alpha_{n-1}}$. Notice that if $N$ is the highest dimension that $H_N(X;\Z)$ is nontrivial, then $H_{N+1}(X;F_p)\cong F_p^{\alpha_N}$ is the highest nontrivial homology with coefficient mod $p$. Also, we have $\alpha_0=0$ since $H_0(X;\Z)$ is free. And the alternating sum of dimension is 
+\begin{align*}
+    \sum_{i=0}^{N+1}\dim(H_i(X;F_p))&=\sum_{i=0}^{N+1}(-1)^i(r_i+\alpha_i+\alpha_{i-1})\\
+    &=\sum_{i=0}^N(-1)^ir_i+\sum_{i=1}^{N}(-1)^i\alpha_i+\sum_{i=2}^{N+1}(-1)^i\alpha_{i-1}\\
+    &=\sum_{i=0}^N(-1)^ir_i+\sum_{i=1}^{N}(-1)^i\alpha_i+\sum_{i=1}^{N}(-1)^{i+1}\alpha_{i}\\
+    &=\sum_{i=0}^N(-1)^ir_i+\sum_{i=1}^{N}(-1)^i\alpha_i-\sum_{i=1}^{N}(-1)^{i}\alpha_{i}\\
+    &=\sum_{i=0}^N(-1)^ir_i\\
+    &=\chi(X)
+\end{align*}
+\\
+\textbf{Problem 3:}\\
+\textbf{(a):} For fixed $n>0$, and we will prove that $H_n(X;\Z)\cong 0$. Since $\Q$ is a $\Z$-module and $\Z$ is a PID, by universal coefficient theorem, we have 
+\[H_n(X;\Q)\cong H_n(X;\Z)\otimes \Q\oplus Tor(H_{n-1}(X;\Z),\Q)\cong H_n(X;\Z)\otimes \Q \]
+By classification   theorem of finitely generated modules over PID, we assume 
+\[H_n(X;\Z)\cong \Z^r\oplus \Z/n_1\oplus \Z/n_2\oplus \cdots\oplus \Z/n_k\]
+where $n_1\mid n_2\mid \cdots, n_k$. But we have $\Z/n_i\otimes_\Z \Q\cong 0$ since for any $\frac{a}{b}\in \Q$ and $c\in\Z/n_i$, we have 
+\[c\otimes \frac{a}{b}=c\otimes \frac{an_i}{bn_i}=cn_i\otimes \frac{a}{bn_i}=0\otimes\frac{a}{bn_i}=0\]
+So we have $H_n(X;\Z)\otimes_\Z \Q\cong \Q^r$.
+But we know $H_n(X;\Q)=0$. Hence, we must have $r=0$. So $H_n(X;\Z)$ has no free part.
+On the other hand, if $p$ is a prime number, then we have 
+\[H_n(X;\Z/p)\cong H_n(X;\Z)\otimes_\Z \Z/p\oplus Tor(H_{n-1}(X);\Z)\]
+Since $H_n(X;\Z/p)=0$ for all prime number $p$, then we have 
+\[H_n(X;\Z)\otimes_\Z \Z/p=0 \]
+By last homework, we know $\Z/n_i\otimes_\Z \Z/p\cong \Z/\gcd(n_i,p)\neq 0$. So $H_n(X;\Z)$ must be torsion free. In other words, $H_n(X;\Z)$ has no invariant factors $n_i$. Hence, we have $H_n(X;\Z)=0$.
+\\\qed\\
+\textbf{(b):} If $H_n(C_f;\Z)\cong H_n(\ast;\Z)$, then let $A=(0,1]\times Y/\sim$ and $B=(([0,\frac{1}{2})\times Y)\sqcup_f Z)/\sim$. Then we have $C_f=A\cup B$ is a cover of $C_f$. Then $A$ is contractible since $A$ strong deformation retracts to $\{1\}\times Y/\sim$, which is a point. Also, $B$ strong deformation retracts to $((\{0\}\times Y)\sqcup_f Z)/\sim=Z$. And we have $A\cap B=\{0,\frac{1}{2}\}\times Y\simeq Y$. Both deformation retractions are given by linear homotopy over the intervals $(0,1]$ or $[0,\frac{1}{2})$, respectively. So, by the two deformation retracts above, we can factor $f$ as the following  
+\[f:Y\xrightarrow[]{\simeq}A\cap B\xrightarrow[]{i}B\xrightarrow[]{\simeq }Z\]
+Since homotopic equivalence induces isomorphism, if we can show the inclusion map $i$ induces isomorphism, then we are done.
+\\
+It would be better to work with reduced homology. By Mayer Vietories sequence, we have 
+\[\tilde{H}_{n+1}(C_f)\to \tilde{H}_n(A\cap B)\to \tilde{H}_n(A)\oplus \tilde{H}_n(B)\to \tilde{H}_n(C_f)\]
+is an exact sequence. For $n\geq 0$, the sequence is 
+\[0\to \tilde{H}_n(A\cap B)\to 0\oplus \tilde{H}_n(B)\to 0 \]
+So the induced map of inclusion $i:A\cap B\to B$ is an isomorphism on reduced homology. So $i$ induces isomorphism on homology. So $f$ induces isomorphism since homology is a functor.\\
+On the other hand, if $f$ induces isomorphisms, then we know the inclusion map $i:A\cap B\to B$ induces isomorphism. We use the same Mayer Vietories sequence 
+\[\tilde{H}_n(A\cap B)\xrightarrow[]{i_\ast} \tilde{H}_n(B)\xrightarrow[]{\phi} \tilde{H}_n(C_f)\xrightarrow[]{\partial} \tilde{H}_{n-1}(A\cap B)\xrightarrow[]{i_\ast} \tilde{H}_{n-1}(B)\]
+So we have $\ker(\phi)=\tilde{H}_n(B)$ and $Im(\partial)=\ker(i_\ast)=0$. Hence, we have 
+\[\ker\partial=\tilde{H}_n(C_f)=Im(\phi)=0\]
+So we have $H_n(C_f)\cong H_n(\ast)$.\\\
+\textbf{(c):} We use the second part of part b. Since $f$ induces isomorphism on homology with rational coefficient and coefficient mod $p$ for all prime numbers $p$, the induced map by $i_\ast$ are also isomorphisms with these coefficients. So we have Mayer Vietories sequence with coefficients.
+\[\tilde{H}_n(A\cap B;\Q)\xrightarrow[]{i_\ast} \tilde{H}_n(B;\Q)\xrightarrow[]{\phi} \tilde{H}_n(C_f;\Q)\xrightarrow[]{\partial} \tilde{H}_{n-1}(A\cap B;\Q)\xrightarrow[]{i_\ast} \tilde{H}_{n-1}(B;\Q)\]
+\[\tilde{H}_n(A\cap B;\Z/p)\xrightarrow[]{i_\ast} \tilde{H}_n(B;\Z/p)\xrightarrow[]{\phi} \tilde{H}_n(C_f;\Z/p)\xrightarrow[]{\partial} \tilde{H}_{n-1}(A\cap B;\Z/p)\xrightarrow[]{i_\ast} \tilde{H}_{n-1}(B;\Z/p)\]
+So we have $\tilde{H}_n(C_f;\Q)=0$ and $\tilde{H}_n(C_f;\Z/p)=0$ for all $p$. Now, by part a, we know $H_n(C_f;\Z)=0$ for all $n>0$. For $n=0$, we know $H_0(C_f;\Q)\cong \Q$ implies $C_f$ is path connected since zero homology group is free with rank equals to the number of path components. So we have $H_0(C_f;\Z)=\Z$. Hence, we have $H_n(C_f;\Z)\cong H_n(\ast;\Z)$ for all $n$. By part b, we know $f_\ast:H_n(Y;\Z)\to H_n(Z;\Z)$ is an isomorphism.
+\\\qed\\
+\end{document}

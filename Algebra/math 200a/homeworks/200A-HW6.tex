@@ -1,0 +1,124 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework4 - 200A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\indent For the notation of function composition, we follow with the one in the text book. For example, $f \circ g$ means do $f$ first then do $g$. For the identity element of a group, we will use either the notation $e$ or $1$ or $1_G$. And $o(g)$ denote the order of $g$. Also, whenever "disjoint" is mentioned, it means pairwise disjoint.\\
+\textbf{Problem 1:}\\
+(a) Since $D\leq G=H\times K$, then consider the projection map to each coordinate. For convenience, if we are discussing elements in $H$ (or $K$) only, then we will use $h$ (or $k$) rather than $(h,1)$ (or $(1,k)$).
+\[\pi_1:D\to H\]
+\[(h,k)\mapsto h\]
+By the definition, the mapping is well-defined since $G$ is well-defined under direct product, which means every element in $G$ can be uniquely represented by $(h,k)$ for some $h,k$ in $H,K$, respectively. Also, it is a homomorphism because if $(h_1,k_1),(h_2,k_2)\in D$, then
+\[\pi_1(h_1,k_1)\pi_1(h_2,k_2)=h_1h_2=\pi_1(h_1h_2,k_1k_2)\]
+Since $D\cap H=1$, then we have $\pi_1(h,k)=h=1$ if and only if $(h,k)=(1,1)$. Hence, $\pi_1$ is injective. Then by the isomorphism theorem, we have $D\cong \pi_1(D)$. Let $H'= \pi_1(D)\leq H$.
+Similarly, we have an injective homomorphism $\pi_2:D\to K$ by projection. And we let $K'=\pi_2(D)\leq K$.
+Then there is an isomorphism between $H'$ and $K'$ given by $\phi=\pi_1^{-1}\circ \pi_2$ because
+\[H'\xrightarrow[\pi_1^{-1}]{\cong }D\xrightarrow[\pi_2]{\cong }K' \]
+(b) Let's do the easier direction first. If $H'\subseteq Z(H)$ and $K'\subseteq Z(K)$, then for any $(h,k)\in G$ and $(h',k')\in D$, we have $h'\in H'$ and $k'\in K'$. Hence,
+\[(h^{-1},k^{-1})(h',k')(h,k)=(h^{-1}h'h,k^{-1}k'k)=(h'h^{-1}h,k'k^{-1}k)=(h',k')\]
+So $(h^{-1},k^{-1})D(h,k)=D$. Hence, $D\normal G$.\\
+Conversely, if $D\normal G$, then for any $(h,1)\in H\leq G$, we have
+\[(h^{-1},1)D(h,1)=D\]
+For any $(a,b)\in D$, we have $b=\phi(a)$ and $(h^{-1,1})(a,b)(h,1)=(a^h,b)\in D$. Since $\phi$ is an isomorphism, then $a^h=a$ by injectivity. Since it is true for any $h\in H$ implies $a\in Z(H)$. Hence, $H'\subseteq Z(H)$. Similarly, if we choose any $(1,k)\in K\leq G$, then $(1,k^{-1})(a,b)(1,k)=(a,b^k)$. Hence, we will $b^k=b$ for any $b\in K'$ and $k\in K$. Hence, $K'\subseteq Z(K)$. The proof completes.\\
+(c) Since $G=H\times K$ can be viewed as the internal direct product of its subgroup $H,K$, we have $H,K$ are normal subgroups of $G$. Next, we need to show any other subgroup of $G$ are not normal. There are two cases.\\
+Case 1: The subgroup has trivial intersection with both $H$ and $K$. Then from the first two part, we know such subgroup is the graph of some partial isomorphism from $H$ to $K$. Let's call it $D$ like the first two part. Then we know $D$ is normal if and only if $D$ is isomorphic to a subgroup in the center of $H$ and $D$ is also isomorphic to a subgroup in the center of $K$. Because $H,K$ are nonabelian, $Z(H)\neq H$ and $Z(K)\neq K$. Since $H,K$ are simple, they have trivial center since the center of a group is characteristic, which implies normal. Hence, the only possibility of $D$ is trivial.\\
+Case 2: The subgroup has nontrivial intersection with either $H$ or $K$. Let's call it $L\leq G$. WLOG, we assume $L\cap H\neq 1$. Then we want to show $\pi_1(L)$ is a subgroup of $H$, where $\pi_1$ is the projection to the first coordinate. For $h_1,h_2\in \pi_1(L)$, there exists some $(h_1,k_1)\in L$ and $(h_2,k_2)\in L$. Since $L$ is a subgroup, then we have $(h_1,k_1)(h_2,k_2)^{-1}=(h_1,k_1)(h_2^{-1},k_2^{-1})=(h_1h_2^{-1},k_1k_2^{-1})\in L$. Hence, we have $\pi_1(h_1h_2^{-1},k_1k_2^{-1})=h_1h_2^{-1}\in \pi_1(L)$. So $\pi_1(L)$ is subgroup in $H$. Since $L\cap H\neq 1$, then $\pi_1(L)\neq 1$. Since $L$ is a normal subgroup of $G$, then for any $(h,1)\in H\leq G$, we have $L^{(h,1)}= L$. So for any $(a,b)\in L$, we have $(a,b)^{(h,1)}=(a^h,b)\in L$. Hence, we have $a^h\in \pi_1(L)$ for any $h\in H$. Hence, $\pi_1(L)\normal H$. But since $H$ is simple and $\pi_1(L)$ is nontrivial, $\pi_1(L)=H$. So $\pi_1$ a surjective homomorphism from $L$ to $H$(here we think $H$ as a group).\\
+If $L\cap K=1$, then $\pi_1$ is injective. Hence, we have $L\cong H$. But notice that if we regard $H$ as a subgroup of $G$, then there exists an isomorphism $\tau$ from $H$ to $L$ (as subgroup of $G$). Suppose for $(h,k)\in L$ for some $h\neq 1$, then we have $\tau(h,1)=(h,k)$. Then for any $(1,k')\in K$, we have
+\[(h,k^{k'})=(h,k)^{(1,k')}=\tau(h,1)^{(1,k)}=\tau(h,1)=(h,k)\]
+So $k\in Z(K)=1$. Hence, we have $(h,k)=(h,1)$ for any $(h,k)\in L$. Hence, $L=H$ as subgroups of $G$.\\
+If $L\cap K\neq 1$, then by similar argument, we have $\pi_2(L)=K$. Then we have $ker\pi_1=L\cap K$. Since $L\normal G$, we have for any $(1,k)\in K\leq G$, and any $(1,k')\in L\cap K$, $(1,k')^{(1,k)}=(1,k'^k)\in L\cap K$. So $L\cap K\normal K$. Since $K$ is simple, and $L\cap K\neq 1$, we have $L\cap K=K$. By 4th isomorphism theorem, we have $L/K\normal G/K\cong H$ because $K\leq L\leq G$ and $K\normal G$, $L\normal G$. Since $H$ is simple, and $L/K$ is nontrivial because $L\cap H\neq 1$, we have $L/K \cong H$. Hence, we have $G=L$.
+\\\phantom{qed}\hfill$\square$\\
+For the following questions, I will use the notations in problem 2 for semi-direct product. For example, $(k)\theta$ is the image of $k$ under the mapping $\theta$.\\
+\textbf{Problem 2:} \\
+(a) We will follow the hint and try to prove such mapping is an isomorphism. Define
+\[\tau: H\ltimes_\psi K\to H\ltimes_{\psi_2} K\]
+\[(h,k)\mapsto (h,(k)\theta)\]
+The map is well-defined because $id_H$ and $\theta$ are well-defined. Next, we verify it is a homomorphism. For any $(h_1,k_1),(h_2,k_2)\in H\ltimes_\psi K$, we have
+\begin{align*}
+    (h_1,k_1)\tau(h_2,k_2)\tau & =\big(h_1,(k_1\theta)\big)\big(h_2,(k_2)\theta\big)      \\
+                               & = \big(h_1h_2,((k_1)\theta)^{h_2}(k_2)\theta\big)        \\
+                               & = \big(h_1h_2,((k_1)\theta)\psi_2({h_2})(k_2)\theta\big) \\
+                               & = \big(h_1h_2,((k_1)\theta)\psi_2({h_2})(k_2)\theta\big)
+\end{align*}
+But since $\psi_2=\psi\circ \phi_\theta$, we have
+\[\psi_2(h_2)=\phi_\theta(\psi(h_2))=\theta^{-1}\circ \psi(h_2)\circ \theta\]
+So we have
+\[\big((k_1)\theta\big)\psi_2({h_2})=(k_1)(\theta\circ \theta^{-1}\circ \psi(h_2)\circ \theta)=\big((k_1)\psi(h_2)\big)\theta=(k_1^{h_2})\theta\]
+Notice that the last $k_1^{h_2}$ is in the sense of $\psi$. So we have
+\[(h_1,k_1)\tau(h_2,k_2)\tau=\big(h_1h_2,(k_1^{h_2})\theta(k_2)\theta\big)=\big(h_1h_2,(k_1^{h_2}k_2)\theta\big)=(h_1h_2,k_1^{h_2}k_2)\tau\]
+So $\tau$ is a homomorphism. It is not hard to see $\tau$ is bijective. Since $\theta \in Aut(K)$, we have $(h_1,k_1)\tau=(1,1)$ if and only if $h_1=1$ and $k_1\in ker \theta =1$. So it is injective. Conversely, given any $(h,k)\in H\ltimes_{\psi_2}K$, we have $(h,(k)\theta^{-1})\tau=(h,(k)\theta^{-1}\circ \theta)=(h,k)$. So we have $\tau$ is an isomorphism and $H\ltimes_\psi K\cong H\ltimes_{\psi_2} K$.\\
+(b) Similarly, we want to construct an isomorphism explicitly.
+\[\tau: H\ltimes_\psi K\to H\ltimes_{\psi_2} K\]
+\[(h,k)\mapsto \big(\rho^{-1}(h),k\big)\]
+The mapping is well-defined because $\rho$ is well-defined. For any For any $(h_1,k_1),(h_2,k_2)\in H\ltimes_\psi K$, we have
+\begin{align*}
+    (h_1,k_1)\tau(h_2,k_2)\tau & =\big(\rho^{-1}(h_1),k_1)\big(\rho^{-1}(h_2),k_2\big)                       \\
+                               & =\big(\rho^{-1}(h_1h_2),k_1^{\rho^{-1}(h_2)}k_2\big)                        \\
+                               & =\big(\rho^{-1}(h_1h_2),(k_1)\rho\circ \psi\big(\rho^{-1}(h_2)\big)k_2\big) \\
+                               & =\big(\rho^{-1}(h_1h_2),(k_1)\psi(h_2)k_2\big)                              \\
+                               & =(h_1h_2,k_1^{h_2}k_2)\tau
+\end{align*}
+So $\tau$ is a homomorphism. It is injective for the same reason because $ker\rho^{-1}=1$. It is surjective because $(\rho(h),k)\tau=(h,k)$. Hence, we have $\tau$ is an isomorphism and $H\ltimes_\psi K\cong H\ltimes_{\psi_2} K$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:} Let $G$ be a group with order $pq$. Let $Q$ be the Sylow $q-$subgroup of $G$. By Sylow's Theorem, we know $Q\normal G$ because $n_q=1$. Let $P$ be a Sylow $p$-subgroup of $G$. Since both $P$ and $Q$ are cyclic group with prime order, we know $P\cap Q=1$ by lagrange theorem. And we have $PQ=G$ because $|G|=pq=|PQ|$. Then we know $G\cong P\ltimes_\psi Q$ for some $\psi: P\to Aut(Q)$. So we want to classify all $\psi$. If $\psi$ is trivial, then we have $G\cong P\times Q$.\\
+If not, then we want to show all $\phi$ and $\phi'$ can be related by a left composition with some automorphism of $P$ or a right composition with some automorphism of $Q$. To prove this, we want to use a fact that is proved in lecture.\\
+\textbf{Fact 1:} $Aut(\Z/n\Z)\cong U_n$, where $U_n$ is the multiplicative group of the ring $\Z/n\Z$.\\
+Since $Q\cong \Z/q\Z$ is cyclic, then by the fact, we have $Aut(Q)\cong U_q\cong \Z/(q-1)\Z$ since $q$ is prime and we can view $\Z/q\Z$ as a finite field, and the multiplicative group of a finite field is cyclic. Since $P$ is a cylcic group of order $p$, we know $P$ is a simple group. Hence, if $\psi$ is not trivial, then $\psi$ maps $P$ isomorphic to a subgroup of $\Z/(q-1)\Z$. Such map exists since $p\mid q-1$. Notice that there is a unique subgroup of order $p$ in $\big(\Z/(q-1)\Z,+\big)$, and it is generated by $\frac{q-1}{p}$. Also, the homomorphism is determined by the image of the generator of $P$. So we have $p$ choices for all possible homomorphism. But we assume $\psi$ to be nontrivial, then we have $p-1$ choices.\\
+Assume $P=\langle h\rangle$, let $\psi_i$ be the homomorphism such that $\psi_i(h)=\frac{i(q-1)}{p}$ for $1\leq i\leq p-1$. Because $|P|=p$ is prime, then we have $\phi:P\to P$ is nontrivial if and only if $\phi(h)=h^i$, where $1\leq i\leq p-1$. Similarly, we denote $\phi_i$ be the homomorphism that $\phi_i(h)=h^i$. Then we have $\psi_i=\phi_i\circ \psi_1$. Then by problem 2, we know the semidirect product defined by $\psi_i$ is isomorphic to the one defined by $\psi_1$ for all $1\leq p-1$.\\
+Hence, $G\cong P\times Q$ or $G\cong P\ltimes_\psi Q$ where $\psi$ is a nontrivial homomorphism from $P$ to $Aut(Q)$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:} Since $|G|=20=2^2*5$, we know $G$ has a normal Sylow 5-subgroup by Sylow's theorem. Let $Q$ be a Sylow 4-subgroup of $G$. Since $gcd(5,4)=1$, we know $G\cong Q\ltimes \Z/5\Z$. Similar to last problem, we want to understand all homomorphism from $Q$ to $\Z/5\Z$. In order to start the discussion, we need to understand the structure of $Q$ first. Then we have 2 cases, which is either $\Z/4\Z$ or $\Z/2\Z\times \Z/2\Z$.\\
+Case 1: $Q$ is cyclic. Then we have $Q\cong \Z/4\Z$. Notice that $Aut(\Z/5\Z)\cong \Z/4\Z$. Hence, it is the same as discuss the endomorphism of $\Z/4\Z$. But there isn't much. We have $|End(\Z/4\Z)|=4$ and they are determined by the image of $1$. Let's denote the element as $\psi_i$ where $\psi_i(1)=i$ and $0\leq i\leq 3$. So we have
+\[G\cong \Z/4\Z\ltimes_{\psi_0}\Z/5\Z\cong Z/4\Z\times \Z/5\Z \]
+Since $\psi_1=\psi_3\circ \psi_3$, we know the semidirect product are isomorphism by problem 2. So we have
+\[G\cong Z/4\Z\ltimes_{\psi_1}Z/5\Z\cong Z/4\Z\ltimes_{\psi_3} Z/5\Z\cong \langle a,b\mid a^4=b^5=1, ba=ab^2\rangle\]
+And we also have
+\[G\cong Z/4\Z\ltimes_{\psi_2}Z/5\Z\cong \langle a,b\mid a^4=b^5=1, ba=ab^{-1}\rangle\]
+because $\psi_2(1)$ is an automorphism with order 2. And inverse is an automorphism of order 2, which is also the unique one because there is only one elment with order 2 in $Aut(\Z/5\Z)\cong \Z/4\Z$.\\
+Case 2: If $Q$ is not cyclic, then we have $Q\cong \Z/2\Z\times \Z/2\Z$. Then every element in $Q$ has order 1 or 2. Hence, $\psi(Q)=1$ or $\Z/2\Z$.
+If $\psi$ is trivial, then we have an abelain group
+\[G\cong  \Z/2\Z\times \Z/2\Z\times \Z/5\Z \]
+If $\psi$ is nontrivial, then we have $ker\psi =\Z/2\Z$. Since $Q\cong\Z/2\Z\times \Z/2\Z$ is the klein four group, we know $Q$ is generated by two elements. Let's say $g,h\in Q$ generates $Q$. Then the homomorphism is determined by the image of $g,h$. Then we have 3 choices, which are $2,2$, $0,2$, $0,2$ (they are the image of $g,h$, respectively). Notice that any other homomorphism can be obtained by automorphism of $Q$ since we can just permute the notions of $g,h, gh$ to get another(acting by $S_3$). By problem 2, we know the semidirect products defined by these homomorphisms give isomorphic groups. So one generator of $Q$ is commute with $\Z/5\Z$ and the other one acts by inverse like the last one in case 1. Hence, we have
+\[G\cong \Z/2\Z\times \Z/2\Z\ltimes_\psi\Z/5\Z\cong\langle a,b,c \mid a^2=b^2=c^5=1, ca=ac, ab=ba, cb=bc^{-1} \rangle\]
+Notice that in this case $G\cong \Z/2\Z\times  D_{10}$ because for group of order 10, there are only two possibility, namely $\Z/10\Z$ and $D_{10}$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:} Since $\Z/p\Z$ is an abelian group with respect to addition, we have $G$ is abelian with respect to addition. Hence, $G$ satisfies all additive axioms of a vector space. Then we define the scalar multiplication of $G$ over the finite field $\Z/p\Z$ as the sum of some copies of the element in $G$. For example, if $c\in \Z/p\Z$ and $g\in G$, then we have $cg=\sum_{i=1}^cg$. And we define $0g=0$ for every $g\in G$. Then if $d\in \Z/p\Z$ is another scalar, we have $(cd)g=\sum_{i=1}^{cd}g=\sum_{i=1}^c\sum_{j=1}^dg=\sum_{i=1}^cdg=c(dg)$.  Hence, $G$ satisfies all multiplicative axioms. For distribution law, assume $g,h\in G$ and $c,d\in \Z/p\Z$, we have
+\[(c+d)g=\sum_{i=1}^{c+d}g=\sum_{i=1}^cg+\sum_{i=1}^dg=cg+dg\]
+\[c(g+h)=\sum_{i=1}^c(g+h)=g+h+g+h+\dots+g+h=g+g+\dots +g+h+h+\dots +h\]
+where we have $n$ copies of $g$ and $n$ copies of $h$. Because $G$ is abelian, the sum commutes. Hence $c(g+h)=\sum_{i=1}^cg+\sum_{i=1}^ch=cg+ch$.
+So $G$ is naturally a vector space over $\Z/p\Z$.\\
+Suppose $\phi$ is an endomorphism of $G$, then we have for any $g,h\in G$, $\phi(g+h)=\phi(g)+\phi(h)$. If $c\in\Z/p\Z$, then we can consider $\phi(\sum_{i=1}^cg)=\sum_{i=1}^c\phi(g)=c\phi(g)$. Hence $\phi$ is a linear transformation.\\
+Furthermore, to say $\phi$ is an automorphism, we mean $\phi$ is a bijection. Being a bijective linear transformation, it is the same as having nonsingular matrix representation for the linear transformation. So it is the same as saying $\phi$ is an element in the general linear group of $\Z/p\Z$ with order $n$. Hence, the bijection between linear transformations of $G$ as avector space and homomorphisms of $G$ as a group gives a bijection between $Aut(G)$ and $GL_n(\Z/p\Z)$. We call this map as $f$, where $f(\phi)$ is the corresponding matrix for the linear transformation. The map $f$ is a homomorphism because for any $\sigma, \tau\in Aut(G)$, there exists some invertible matrices $A,B\in GL_n(\Z/p\Z)$ such that $f(\sigma)=A$ and $f(\tau)=B$. Then we know from linear algebra that the matrix for $f(\sigma\tau)$ is just the product of $A$ and $B$. So we have
+\[f(\sigma\tau)=AB=f(\sigma)f(\tau)\]
+So $f$ is an isomorphism from $Aut(G)$ to $GL_n(\Z/p\Z)$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:} The proof is similar to problem 4. Let $G$ be a group of order 75. By Sylow's theorem, we know $G$ has a normal Sylow 5-subgroup. Hence, $G$ can be classify by classifying all semidirect product of the Sylow 5-subgroup and some Sylow 3-subgroup. Notice that there are two possibility for Sylow 5-subgroup ($\Z/25\Z$ or $\Z/5\Z\times \Z/5\Z$) and one possibility of Sylow 3-subgroup ($\Z/3\Z$).\\
+Case 1: If the Sylow 5-subgroup of $G$ is isomorphic to $\Z/25\Z$, then we know $Aut(\Z/25\Z)\cong U_{25}$ has order $\varphi(25)=20$, which is the value of Euler's totient function. But in this case, $Aut(\Z/25\Z)$ has no elements of order 3. Hence, any homomorphism from $\Z/3\Z$ to $Aut(\Z/25\Z)$ is trivial. Hence, the semidirect product is the same as direct product in this case. We have $G\cong \Z/3\Z\times \Z/25\Z$.\\
+Case 2: If the Sylow 5-subgroup of $G$ is isomorphic to $\Z/5\Z\times \Z/5\Z$, we know one possibility of $G$ is given by the trivial homomorphism. So $G\cong \Z/3\Z\times \Z/5\Z \times \Z/5\Z$. If the homomorphism is nontrivial, then we want to understand $Aut(\Z/5\Z\times \Z/5\Z)$. Fortunately, we have proved in problem 5 that the automorphism group is isomorphic to the general linear group with order 2. And we know from previous homework, $|GL_2(\Z/5\Z)|=(5^2-1)(5^2-5)=24*20=3*160$. Then by the definition of Sylow's subgroup, we know all subgroups of order 3 in $Aut(\Z/5\Z\times \Z/5\Z)$ are Sylow 3-subgroups and conjugates of each other by Sylow's Theorem. Suppose $\psi:\Z/3\Z\to \Z/3\Z$ is an nontrivial automorphism(i.e. not identity map), then we have only one possibility, which is defined by $\psi(1)=2$. But then, we have $\psi=\psi\circ id_{\Z/3\Z}$. Then $\psi
+$ and the identity map generate isomorphic semidirect product. So if $\psi_1,\psi_2: \Z/3\Z\to Aut(\Z/5\Z\times \Z/5\Z)$ are homomorphism with same image, then the semidirect product given by $\psi_1,\psi_2$ are isomorphic. If they have different image, then we have 
+$\psi_1=\psi_2\circ \phi_\sigma$ where $\sigma\in Aut(\Z/5\Z\times \Z/5\Z)$ and $\psi_1(\Z/3\Z)=\sigma^{-1}\big(\psi_2(\Z/3\Z)\big)\sigma$ and $\phi_\sigma$ is the inner automorphism of $Aut(\Z/5\Z\times \Z/5\Z)$ defined by conjugating $\sigma$. So $\psi_1$ and $\psi_2$ gives isomorphic semidirect product if they have different images. So we have $G\cong \Z/3\Z \ltimes_\psi \Z/5\Z\times \Z/5\Z$, where $\psi$ is an isomorphic of $\Z/3\Z$ to some Sylow 3-subgroup of $Aut(\Z/5\Z\times \Z/5\Z)$.\\
+So there are 3 groups of order 75 up to isomorphism. Two abelian groups are 
+\[\Z/3\Z\times \Z/25\Z\]
+\[\Z/3\Z\times \Z/5\Z \times \Z/5\Z\]
+The nonabelian group is 
+\[\Z/3\Z \ltimes_\psi \Z/5\Z\times \Z/5\Z\]
+\phantom{qed}\hfill$\square$\\
+\end{document}

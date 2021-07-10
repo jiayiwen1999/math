@@ -1,0 +1,154 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 1 - 290B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+The homework uses Miller's note, lecture, and Prof. Lin's lecture notes(this quarter and last quarter) as references. For problem 1, I borrowed the idea from the proof of split in module theory(presented in Math 200B by Prof. Rogalski) to prove the internal direct sum. \\
+\textbf{Problem 1:} Let's first show all homomorphisms in (iii) are isomorphisms. For any $\alpha:A\oplus C\to B $ and $(a,c)\in A\oplus C$, we have $\alpha(a,c)=\alpha(a,0)+\alpha(0,c)=i(a)+\alpha(0,c)$. Since $p\alpha(0,c)=c$, we have $\alpha(0,c)\neq0$ if $c\neq 0$ because $p$ is a homomorphism. Hence, $\alpha(0,c)\notin kerp$ if $c\neq0$. Since the sequence is exact, we know $i:A\to B$ is injective and $i(a)=kerp$. Hence, $i(a)\neq-\alpha(0,c)$ if $c\neq 0$ because $\alpha(0,c)\notin kerp$ and $kerp$ is a subgroup. Hence, $\alpha(a,c)=0$ if and only if $i(a)=0$, and $\alpha(0,c)=0$ if and only if $a=0$ and $c=0$. So $\alpha$ is injective.\\
+By previous argument, we have $\alpha(A)\cap\alpha(C)=i(A)\cap \alpha(C)=kerp\cap \alpha(C)=0$. Also, for any $b\in \alpha(A\oplus C)$, we have $b=\alpha(a,c)$ for some $a\in A$ and $c\in C$. Since $\alpha$ is a group homomorphism, we have $b=\alpha(a,c)=\alpha(a,0)+\alpha(0,c)\in \alpha(A)\oplus\alpha(C)$. So we have $\alpha(A\oplus C)\cong \alpha(A)\oplus \alpha(C)$. Now, we want to show $B$ is the internal direct sum of $\alpha(A)=kerp$ and $\alpha(C)$. If $b\in B$, consider $b-\alpha(0,p (b))$. Then $p(b-\alpha(0,p (b)))=p(b)-p\alpha(0,p(b))=p(b)-p(b)=0$. So $b-\alpha(0,p(b))\in kerp$. And we know $\alpha(0,p(b))\in \alpha(C)$. So we have \[B=kerp\oplus \alpha(C)=\alpha(A)\oplus\alpha(C)=\alpha(A\oplus C)\]
+So $\alpha$ is surjective. Hence, it is an isomorphism.\\
+Now, we want to show a bijection between (i) and (iii).\\
+Given any $\sigma:C\to B$ such that $p\sigma=1_C$, we can define $\alpha:A\oplus C$ by 
+\[\alpha(a,0)=i(a),\ \alpha(0,c)=\sigma(c)\]
+Hence, $p\alpha(a,c)=p(i(a)+\sigma(c))=0+p\sigma(c)=c$. On the other hand, if we have an $\alpha:A\oplus C\to B$, then we can restrict $\alpha$ to $C$ and call this map $\sigma$. Then we have $p\sigma(c)=p\alpha(0,c)=c$ for all $c\in C$. Hence, $p\sigma=1_C$.\\
+Next, we want to show a bijection between (ii) and (iii).
+Before that, we want to use similar technique to show $\pi:B\to A$ implies $B\cong A\oplus\ker\pi$. Let $A'=i(A)\cong A$ by first isomorphism theorem, then we have $A'\cap ker\pi =0$ since if $a'\in A'$, then we have $a'=i(a)$ for some $a\in A$. If $\pi(a')=0$, then we have $0=\pi(a')=\pi(i(a))=a$. Hence, $a'=i(0)=0$. For any $b\in B$, consider $b-i(\pi(b))$, then we have $\pi(b-i(\pi(b)))=\pi(b)-\pi\circ i\circ \pi(b)=\pi(b)-\pi(b)=0$. Hence, we have $b=(b-i\circ \pi(b))+i\circ \pi(b)\in ker\pi+A'$. So $B=ker\pi\oplus A'\cong ker\pi\oplus A$. Notice that $p$ induces an isomorphisms from $B/kerp=B/i(A)=B/A'$ to $C$. So we have $B/A'\cong ker\pi\cong C$. And the isomorphism is given by $p|_{ker\pi}$. Now, consider the inverse of $p|_{\ker\pi}$ and call it $\beta:C\to \ker\pi$. Then we have a map $\alpha:A\oplus C\to B$ such that 
+\[\alpha(a,0)=i(a),\ \alpha(0,c)=\beta(c)\]
+Hence, $p\alpha(a,c)=0+p\alpha(0,c)=p\beta(c)=p\circ (p|_{\ker\pi})^{-1}(c)=1_C$.
+Conversely, if we have an isomorphism $\alpha:A\oplus C\to B$, then we can take the inverse, $\alpha^{-1}:B\to A\oplus C$. Let $\pi= \pi_1\circ \alpha^{-1}$, where $\pi_1:A\oplus C\to A$ is the projection to the first coordinate. Then we have $\pi\circ i(a)=\pi_1\circ \alpha^{-1}\circ i(a)=\pi_1(a,0)=a$ for all $a\in A$. So we have $\pi\circ i=1_A$.
+
+\phantom{qed}\hfill$\square$\\
+\textbf{Problem 2:}\\
+\textbf{Torus:}\hfill\\
+
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+
+
+
+Let $A,B=S^1\times (0,1)$. And we have $T^2=A\cup B$ and $A\cap B=S^1\times (0,1)\sqcup S^1\times (0,1)$ is the disjoint union of two cylinders.
+First, notice that $S^1\times (0,1)\simeq S^1\times \{\frac{1}{2}\}$. This is given by the following deformation retraction: 
+\[H:S^1\times (0,1)\times [0,1]\to S^1\times (0,1)\]
+\[(z,s,t)\mapsto (z,s(1-t)+\frac{1}{2}t)\]
+So at $t=0$, we have the identity map and at $t=1$, we have a retraction onto $S^1\times \{\frac{1}{2}\}$.
+So we have $H_n(A)=H_n(B)\cong H_n(S^1)$ since homology is a homotopic invariance. And we have $H_n(A\cap B)\cong H_n(S^1\sqcup S^1)\cong H_n(S^1)\oplus H_n(S^1)$. By Mayer-Vietoris Sequence, we have 
+\[\cdots \xrightarrow[]{}H_{n+1}(T^2) \xrightarrow[]{\partial}H_n(A\cap B)\xrightarrow[]{\alpha}H_n(S^1)\oplus H_n(S^1)\xrightarrow[]{}H_n(T^2)\xrightarrow[]{\partial}H_{n-1}(A\cap B)\to \cdots\]
+So for $n>2$, We have
+\[0\to H_n(T^2)\to 0\]
+is exact. Hence, $H_n(T^2)=0$.\\
+If $n=2$, then we have
+\[0\to H_2(T^2)\xrightarrow[]{\partial} H_1(A\cap B)\xrightarrow[]{\alpha}H_1(S^1)\oplus H_1(S^1)\]
+Since $H_1(A\cap B)\cong H_1(S_1)\oplus H_1(S^1)\cong \Z\oplus\Z$, we just need to understand the map $\alpha$ in order to compute $H^2(T^2)$. Notice that the first homology group is the abelianization of the fundamental group. So we can pick $a,b$ as a loop of winding number 1 on each componenet of $A\cap B$ and $a,b$ have the same orientation for convenience, then we can represent them as $(1,0)$ and $(0,1)$ in $\Z\oplus \Z$. Since $A,B$ are homotopic to $S^1$, we have $a=b$ in either $A$ or $B$. If we call $j_1:A\cap B\to A$, $j_2:A\cap B\to B$, then we should have $j_{1\ast}(1,0)=j_{1\ast}(0,1)$ and $j_{2\ast}(1,0)=j_{2\ast}(0,1)$. So $\alpha$ can be represented as the following $2\times 2$ matrix in $\Z$
+\[\begin{pmatrix}
+    1&1\\
+    1&1
+\end{pmatrix}\]
+So we have $ker\alpha=ker\begin{pmatrix}
+    1&1\\
+    1&1
+\end{pmatrix}=\Z(1,-1)\cong \Z$. By the exactness, we have $im(\partial)=ker\alpha=\Z$. Again, by exactness, we know $\partial$ is injective. Hence, $H_2(T^2)\cong \Z$ by the first isomorprhism theorem.\\
+Next, we compute $n=1,0$. Actually, these follow from the fact we already know. Since $\pi_1(T^2)\cong\pi_1(S^1\times S^1)=\Z\oplus \Z$ is abelian, we have $H_1(T^2)=\pi_1(T^2)=\Z\oplus \Z$. Also, since $T^2$ is path-connected, we have $H_0(T^2)=\Z\pi_0(T^2)=\Z$, where $\pi_0(T^2)$ is the path componenet of $T^2$.\\
+\smallskip\\
+\textbf{Klein Bottle:} 
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\
+\hfill\\Denote $K$ as the Klein bottle. Then we can construct $K$ by identifying edges of a square. Then we get two copies of Mobius bands from the construct. Let's call them $A,B$. Now, we want to show $A,B$ are homotopic to $S^1$.\\
+Let's realize a mobius band by $I\times I/(0,s)\sim(1,1-s)$ and consider the following deformation retraction
+\[H:\big(I\times I/(0,s)\sim(1,1-s)\big)\times I\to I\times I/(0,s)\sim(1,1-s)\]
+\[(a,s,t)\mapsto (a,s(1-t)+\frac{1}{2}t)\]
+So at $t=0$, we have the identity map and at $t=1$, we have a retraction onto $I\times \{\frac{1}{2}\}/(0,\frac{1}{2})\sim(1,\frac{1}{2})\cong S^1$. Therefore, we have $H_n(A)\cong H_n(B)\cong H_n(S^1)$. And the intersection of $A$ and $B$ is again a mobius band. Hence, we have  $H_n(A\cap B)\cong H_n(S^1)$. By Mayer-Vietoris Sequence, we have 
+\[\cdots \xrightarrow[]{}H_{n+1}(K) \xrightarrow[]{\partial}H_n(A\cap B)\xrightarrow[]{\alpha}H_n(S^1)\oplus H_n(S^1)\xrightarrow[]{}H_n(K)\xrightarrow[]{\partial}H_{n-1}(A\cap B)\to \cdots\]
+Similarly, we start computation from $n>2$. Since $H_n(S^1)=0$ for all $n>1$, we have $H_{n-1}(A\cap B)=0$ for all $n>2$. So we have
+\[0\to H_n(K)\to 0\]
+By exactness, we have $H_n(K)=0$.\\
+For $n=2$, we have 
+\[0\to H_2(K)\xrightarrow[]{\partial} H_1(A\cap B)\xrightarrow[]{\alpha}H_1(S^1)\oplus H_1(S^1)\]
+Since $H_1(A\cap B)\cong H_1(S_1)\oplus H_1(S^1)\cong \Z\oplus\Z$, we just need to understand the map $\alpha$ in order to compute $H^2(K)$. Notice that $H_1(A\cap B)=\Z$ is generated by a loop with winding number 1. But winding number 1 loop in the intersection is the same as winding number 2 loop in both $A$ and $B$ since a loop in the intersection will go alone the top part of the intersection (left to right) and then the bottom part of the intersection (left to right). So we have $\alpha(1)=(2,2)\neq (0,0)$. So $\alpha$ is injective. By the exactness, we have $ker\alpha=Im\partial\cong H_2(K)$. So $H_2(K)=0$. \\
+For $n=1$, since $A\cap B$, $A$, $B$ are path connected, we have 
+\[0\xrightarrow[]{\partial} \Z\xrightarrow[]{\alpha}\Z\oplus \Z\xrightarrow[]{\beta}H_1(K)\xrightarrow[]{\partial_1}\Z\xrightarrow[]{\gamma}\Z\oplus\Z\]
+From right to left, we have $\gamma(1)=(1,1)$ since $\gamma$ is induced by the inclusion maps.
+Hence, $0=\ker\gamma=Im\partial_1$. By exactness, we have $H_1(K)=\ker\partial_1=Im\beta$. By isomorphism theorem, we have $Im\beta=\Z\oplus\Z/\ker\beta=\Z\oplus\Z/Im\alpha$. As we mentioned before $Im\alpha=\Z(2,2)\cong 2\Z$. So we have 
+\[H_1(K)=Im\beta\cong \Z\oplus\Z/2\Z\]
+For $n=0$, since $K$ is path connected. We know $H_0(K)\cong\Z$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:}\\
+\textbf{(1): }Since $\pi_1(S^1)\cong\Z$ is abelian, we have $H_1(S^1)\cong \pi_1(S^1)\cong \Z$. So the induced map $f_\ast:H_1(S^1)\to H_1(S^1)$ is the same as the induced map on fundamental groups. Hence, we have $f_\ast(1)=n$ because the mapping $f$ send a loop with winding number 1 to a loop with winding number $n$. By definition, $\deg(f)=n$.\\
+\textbf{(2): }Let's follow the hint. First, we show $S^{m+1}$ can be covered by two copies with $D^{m+1}$, whose intersection is $\partial D^{m+1}=S^m$. Then we have the first copy of the disk is given by $\{(z,\vec{x})\in S^{m+1}\mid x_{m}\geq 0\}$. And the second disk is given by $\{(z,\vec{x})\in S^{m+1}\mid x_{m}\leq 0\}$. Hence, their intersection is their boundary $\{(z,\vec{x})\in S^{m+1}\mid x_{m}=0\}$. We can apply Mayer-Vietoris Sequence because we can find an open neighborhood that deformation retracts to the disk and the intersection of them deformation retracts to $S^{m}$. (i.e. For some small $\epsilon>0$, we take $\{(z,\vec{x})\in S^{m+1}\mid x_{m}>-\epsilon\}$ and $\{(z,\vec{x})\in S^{m+1}\mid x_{m}<\epsilon \}$. The intersection will be $\{(z,\vec{x})\in S^{m+1}\mid -\epsilon<x_{m}<\epsilon\}$.) Also, notice that $D^{m+1}$ is contractible. So we have $H_n(D^{m+1})\cong 0$ for all $n\neq 0$. And we have $H_n(S^n)\cong \Z$ for all $n>0$.\\
+Now, we are ready to give the proof. We will induct on $m$. For $m=1$, we have the following Commutative diagram given by Mayer-Vietoris Sequence and its naturality. 
+ 
+\begin{center}
+    \begin{tikzcd}
+    0 \arrow[rr] \arrow[d, "f_\ast"] &  & H_{2}(S^{2}) \arrow[d, "f_\ast"] \arrow[rr, "\partial"] &  & H_{1}(S^{1}) \arrow[rr] \arrow[d, "f_\ast"] &  & 0 \arrow[d, "f_\ast"] \\
+    0 \arrow[rr]                     &  & H_{2}(S^{2}) \arrow[rr, "\partial"]                     &  & H_{1}(S^{1}) \arrow[rr]                     &  & 0                    
+    \end{tikzcd}        
+\end{center}
+By the exactness, we know $\partial$ is the isomorphism given by $1_\Z$. And the third vertical arrow send $1\to n$ by the first part because if we restrict $f$ to $S^1$, then it means we restrict to $\C\times \{0\}$ and $f(z,0)=(z^n,0)$. Since the diagram commutes, we have $id_\Z\circ f_\ast(1)=\partial\circ f_\ast(1)=f_\ast\circ \partial(1)=f_\ast(1)=n$. (Sorry, I abused the notation here, the thrid and the fourth $f_\ast$ is the third vertical arrow.) Hence, we have $deg(f)=n$.\\
+Now, we suppose the argument is true for all $m< k$. Then consider $m=k$. We have the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+    0 \arrow[rr] \arrow[d, "f_\ast"] &  & H_{k+1}(S^{k+1}) \arrow[d, "f_\ast"] \arrow[rr, "\partial"] &  & H_{k}(S^{k}) \arrow[rr] \arrow[d, "f_\ast"] &  & 0 \arrow[d, "f_\ast"] \\
+    0 \arrow[rr]                     &  & H_{k+1}(S^{k+1}) \arrow[rr, "\partial"]                     &  & H_{k}(S^{k}) \arrow[rr, ]                     &  & 0                    
+    \end{tikzcd}        
+\end{center}
+Similarly, we have 
+\[id_\Z\circ f_\ast(1)=\partial\circ f_\ast(1)=f_\ast\circ \partial(1)=f_\ast(1)=n\]
+where the thrid and the fourth $f_\ast$ is the third vertical arrow. Hence, we have $\deg(f)=n$. So the induction completes and we have $\deg(f)=n$ for all $m\geq 1$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:}\\
+\textbf{(1): }Consider the continuous mapping 
+\[H:X\times I\to S^n\]
+\[(p,t)\mapsto\frac{(1-t)f(p)+tg(p)}{|(1-t)f(p)+tg(p)|}\]
+The fraction makes senses since $(1-t)f(p)+tg(p)=0$ if and only if $1-t=t$ and $f(p)=-g(p)$ because $f(p),g(p)$ are the unit vectors. But we assume that $f(p)\neq -g(p)$ for all $p\in X$. This gives a homotopy from $f$ to $g$ because $H(p,0)=\frac{f(p)}{|f(p)|}=f(p)$ and $H(p,1)=\frac{g(p)}{|g(p)|}=g(p)$. So we have $f,g$ are homotopic.\\
+\textbf{(2):} From the lecture, we compute the degree of a reflection map on $S^n$. Suppose $r_i$ is the reflection by taking negative sign on the $i$th coordinate. 
+\[r_i:S^n\to S^n\]
+\[(x_1,\cdots,x_{n+1})\mapsto (x_1,\cdots, x_{i-1},-x_{i},x_{i+1},\cdots x_{n+1})\] 
+Then we have $\deg(r_i)=-1$. Now, we want to use the fact the composition of induced map is the same as the induced map of the composition (result from last quarter). (i.e. $f,g:S^n\to S^n$, we have $(f\circ g)_\ast=f_\ast\circ g_\ast$) Then we have $\deg(f\circ g)=(f\circ g)_\ast(1)=f_\ast\circ g_\ast(1)=f_\ast(\deg(g))=\deg(g)f_\ast(1)=\deg(g)\deg(f)$. Then we have $\iota=r_1\circ r_2\circ \cdots \circ r_{n+1}$. Hence, we have 
+\[\deg(\iota)=\deg(r_1)\deg(r_2)\cdots \deg(r_{n+1})=(-1)^{n+1}\]
+Now, by homotopic invariance of homology, we have two maps has the same degree if they are homotopic. Since the identity map, $id_{S^n}$, induces identity map on homology, we have $deg(id_{S^n})=1$. If $n$ is even, we have $\deg(\iota)=-1\neq 1$. So $id_{S^n}$ is not homotopic to the antipodal map $\iota$.\\
+\textbf{(3):} Let's follow the hint. Suppose $f:S^n\to \R^{n+1}$ is a nowhere vanishing vector field, then we can normalized $f$, and we call the normalized map as 
+\[g:S^n\to S^n\]
+\[\vec{x}\mapsto \frac{f(\vec{x})}{|f(\vec{x})|}\]
+Next, we want to use part 1 as the criteria to show $g$ is homotopic to both $\iota$ and $id_{S^n}$ for contradiction. For any $\vec{x}\in S^n$, if $g(\vec{x})=-\vec{x}$, then we have 
+\[-1=-|\vec{x}|=-\vec{x}\cdot \vec{x}=g(\vec{x})\cdot \vec{x}=\frac{f(\vec{x})}{|f(\vec{x})|}\cdot \vec{x}=\frac{f(\vec{x})\cdot \vec{x}}{|f(\vec{x})|}\]
+But since $f$ is a vector field on $S^n$, we should have $\frac{f(\vec{x})\cdot \vec{x}}{|f(\vec{x})|}=0$. It contradicts. So $g(x)\neq -\vec{x}=-id_{S^n}(\vec{x})$ for all $\vec{x}\in S^n$. By part 1, we have $g\simeq id_{S^n}$. On the other hand, if we have $g(\vec{x})=\vec{x}=-\iota(\vec{x})$ for some $\vec{x}\in S^n$, then we have 
+\[1=|\vec{x}|=\vec{x}\cdot \vec{x}=g(\vec{x})\cdot \vec{x}=\frac{f(\vec{x})}{|f(\vec{x})|}\cdot \vec{x}=\frac{f(\vec{x})\cdot \vec{x}}{|f(\vec{x})|}\]
+It contradicts for the same reason. So $g(\vec{x})\neq -\iota(x)$ for all $\vec{x}\in S^n$. By part 1, we have $g\simeq \iota$. But by part 2, we have $\iota$ is not homotopic to $id_{S^n}$ if $n$ is even. It contradicts. Hence, such nowhere vanishing vector field $f$ doesn't exists.
+\\\phantom{qed}\hfill$\square$\\
+\end{document}

@@ -1,0 +1,165 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,mathtools}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+
+\begin{document}
+\title{Homework1 - 290A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+I appreciate Prof.Lin's help in the Problem 1(the direction of null-homotopic implies the existence of extended map) and Problem 7 for the odd case.\\
+\textbf{Problem 1:}
+Before starting the proof, I would like to prove one lemma from point-set topology that will be used in the first part of the proof.\\
+\textbf{Lemma: $(S^n\times I)/(S^n\times \{1\})\cong D^{n+1}$}\\
+Proof of Lemma: Consider the mapping
+$$\varphi: (S^n\times I)/(S^n\times \{1\})\rightarrow D^{n+1}$$
+\[\varphi(x_1,x_2,\dots,x_{n+1},t)=\sqrt{1-t^2} (x_1,x_2,\dots,x_{n+1})\]
+Notice that $\varphi$ is a continuous function since $\sqrt{1-t^2}$ is continuous in $I$ and the projection of first $n+1$ coordinates is continuous. So their composition is continuous.\\
+If $\varphi(x_1,x_2,\dots,x_{n+1},t)=\varphi(y_1,y_2,\dots,y_{n+1},s)$, then we have
+\[\sqrt{1-t^2}=\sqrt{1-s^2}\]
+since $(x_1,x_2,\dots,x_{n+1})$ and $(y_1,y_2,\dots,y_{n+1})$ are points from $S^n$ which have norm $1$. And $t=s$ since $t,s$ are positive. If $t=s\neq 1$, we have
+\[(x_1,x_2,\dots,x_{n+1})=(y_1,y_2,\dots,y_{n+1})\]
+If $t=s=1$, we have $\varphi(x_1,\dots,x_{n+1},1)=0$ for any $(x_1,\dots,x_{n+1})\in S^n$. But $(x_1,\dots,x_{n+1},1)$ is identify as the same point in the quotient space. So $\varphi$ is an injective function.\\
+Given any $x=(x_1,\dots,x_{n+1})\in D^{n+1}\setminus\{0\}$, there exists $(\frac{x_1}{\|x\|},\dots,\frac{x_{n+1}}{\|x\|},\sqrt{1-\|x\|^2})\in(S^n\times I)/(S^n\times \{1\})$ such that
+\[\varphi(\frac{x_1}{\|x\|},\dots,\frac{x_{n+1}}{\|x\|},\sqrt{1-\|x\|^2})=\|x\|(\frac{x_1}{\|x\|},\dots,\frac{x_{n+1}}{\|x\|})=x\]
+If $x=0$, then we have $\varphi(1,0,\dots,0,1)=\sqrt{1-1}(1,0,\dots,0)=0$. So $\varphi$ is surjective. Hence, $\varphi$ is a bijective continuous function. Since $(S^n\times I)/(S^n\times \{1\})$ is compact(It is a closed and bounded subset if we embeds it into $R^{n+2}$, then by Heine-Borel Theorem) and $D^{n+1}$ is Hausdorff, the mapping $\varphi$ is homeomorphism. And $S^n\times\{0\}$ maps to $\partial D^{n+1}=S^n$.
+\\
+If $f$ is null-homotopic, then $f$ is homotopic to some constant map $c_a:S^n \rightarrow X$ such that $c_a(x)=a$ for all $x\in S^n$, then denote the homotopy by $H:S^n \times I \rightarrow X$ such that $H(x,0)=f(x)$ and $H(x,1)=c_a(x)=a$. So $H(S^n\times \{1\})=\{a\}$ is a constant map restricted to $S^n\times \{1\}$. Then the homotopy $H$ induces a mapping $\phi: (S^n\times I)/(S^n\times \{1\})\rightarrow X$ such that $\phi\circ p=H$ where $p: S^n\times I\rightarrow (S^n\times I)/(S^n\times \{1\})$ is the quotient map. Also, $\phi$ is continuous since $H$ is continuous. Then by the lemma, we have $g:=\phi\circ\varphi^{-1}:D^{n+1}\rightarrow X$ is a continuous map and
+\[g|_{S^n}=\phi\circ\varphi^{-1}|_{S^n}=\phi|_{S^n\times{0}}=H|_{S^n\times{0}}=f\]
+Conversely, since $D^{n+1}$ is a convex set, hence any two continuous mappings are homotopic. Hence, we have a homotopy $H:D^{n+1}\times I \rightarrow X$ such that $H(x,0)=g(x)$ and $H(x,1)=y$ for some $y\in X$. Then we can restrict the homotopy to $S^n\times I$, which is still a homotopy. Then we have $H(x,0)|_{S^n\times I}=g(x)|_{S^n}=f(x)$ and $H(x,1)|_{S^n\times I}=y$ is a constant map. Hence the restricted homotopy gives a homotopy from $f$ to a constant map, which is equivalent to say $f$ is null-homotopic.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 2:} Let's denote the set of all path components of $X$ by $C_X$. Similarly, we denote the set of path components of $Y$ by $C_Y$. Then we show the mapping
+\[F:C_X \rightarrow C_Y\]
+\[F(X_i)=Y_j \text{ if } f(x)=y \text{ for some $x\in X_i$ and some $y\in Y_j$}\]
+is a well-defined bijection between $C_X$ and $C_Y$.\\
+To show $F$ is well-defined, we need the following lemma.\\
+\textbf{Lemma:} If $X$ is a path connected space, and $f:X \rightarrow Y$ is continuous, then $f(X)$ is a path connected subspace in $Y$.\\
+Proof: For any $y_1,y_2\in f(X)$, there exists some $x_1,x_2\in X$ such that $f(x_1)=y_1$ and $f(x_2)=y_2$. Since $X$ is path connected, then there exists a path $\gamma: I \rightarrow X$ such that $\gamma(0)=x_1$ and $\gamma(1)=x_2$. So, we have $f\circ \gamma:I\rightarrow Y$ is a continuous mapping and $f\circ \gamma(0)=f(x_1)=y_1$ and $f\circ \gamma(1)=f(x_2)=y_2$. Hence, $f\circ \gamma$ is a path from $y_1$ to $y_2$ in $Y$. So $f(X)$ is path connected.\\
+Continue to proof $F$ is well-defined: For any path component $X_i\in C_X$, we have $f(X_i)\subset Y_j\in C_Y$ is in some path component of $Y$ by the lemma.\\
+To show $F$ is a bijection, we want to construct a two-sided inverse $G:C_Y \rightarrow C_X$ and show that $G\circ F=id_{C_X}$ and $F\circ G=id_{C_Y}$. Since $f$ is a homotopy equivalence, then there exists a mapping $g:Y \rightarrow X$ such that $f\circ g\simeq id_Y$ and $g\circ f \simeq id_X$. We define $G$ the same way by the mapping $g$. So $G(Y_i)=X_j$ if $g(y)=x$ for some $y\in Y_i$ and $x\in X_j$. Therefore, the compositions of $F$ and $G$ is given by the compositions of $f$ and $g$. \\
+Consider any $X_i\in C_X$, then for any $x\in X_i$, we want to show $g\circ f(x)$ is in $X_i$. Since there exists a homotopy $H:X\times I \rightarrow X$ such that $H|_{X\times \{0\}}=g\circ f$ and $H|_{X\times \{1\}}=id_X$, then there exists a path from $g\circ f(x)$ to $x$ given by $H|_{\{x\}\times I}$. So $g\circ f(x)\in X_i$ for any $x\in X_i$. So $g\circ f(X_i)\subset X_i$ for any $X_i\in C_X$. Therefore, the mapping $G\circ F=id_{C_X}$.
+Conversely, the proof follows the same idea. For any $Y_i\in C_Y$ ,and for any $y\in Y_i$, there exists a path from $f\circ g(y)$ to $y$ given by the homotopy $H':Y\times I \rightarrow Y$ such that $H'|_{Y\times \{0\}}=f\circ g$ and $H'|_{Y\times \{1\}}=id_Y$. Namely, the path is $H'|_{\{y\}\times I}$ from $f\circ g(y)$ to $y$. So $f\circ g(Y_i)\subset Y_i$ for any $Y_i\in C_Y$ and $F\circ G=id_{C_Y}$. Hence, $F$ is a bijection between $C_X$ and $C_Y$ induced by the homotopy equivalence $f$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:} Since $n$ is odd, then we can embed $S^n$ into $\R^{n+1}\cong \C^{\frac{n+1}{2}}$. Then we show the homotopy is given by rotating each coordinate $180^\circ$. For convenience, we will use $2n-1$ for $n\in \N$ instead, which is the same as odd number in the previous content. Then we will embed $S^{2n-1}$ into $C^n$. The homotopy is given by
+the following mapping
+\[H:S^{2n-1}\times I \rightarrow S^{2n-1}\]
+\[(z_1,z_2,\dots,z_n,t)\rightarrow (e^{i\pi t}z_1,e^{i\pi t}z_2,\dots,e^{i\pi t}z_n)\]
+It is obvious that $H$ is a continuous mapping since exponential is continuous and each coordinate are just the product of exponential and identity. The continuity of all coordinates implies the continuity of $H$. Also $|H(\vec{z},t)|=|e^{i\pi t}||\vec{z}|=1$ for any $\vec{z}\in S^{2n-1}$ and $t\in I$.\\
+The mapping $H$ gives a homotopy between identity and antipodal map $A$ since
+\[H(\vec{z},0)=e^{i\pi 0}\vec{z}=\vec{z}\text{, $\forall \vec{z}\in S^{2n-1}$ and } H(\vec{z},1)=e^{i\pi}\vec{z}=-\vec{z} \text{, $\forall \vec{z}\in S^{2n-1}$}\]
+So $H$ is the identity map if $t=0$ and $H$ is the antipodal map $A$ if $t=1$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:}
+Let's show $\Phi$ is onto if $X$ is path-connected first.
+Given a mapping $f: S^1 \rightarrow X$, we show $f$ is homotopic to a basepoint preserving map $f':S^1\rightarrow X$ with $f'(1)=x_0$. We can use $1$ instead of $s_0$ because $S^1$ is path connected. Suppose $f(1)=x_1$ for some $x_1\in X$. Then we show $f$ induces a loop based at $x_1$. Consider the loop $l:I \rightarrow S^1$ such that $l(t)=e^{2\pi it}$. Then $\tilde{f}=f\circ l$ is a loop based at $f(1)=x_1$. Since $X$ is path-connected, there exists a path $h:[0,1]\rightarrow X$ such that $h(0)=x_0$, $h(1)=x_1$. Also, we define an inverse path $\bar{h}(t)=h(1-t)$. Then we can obtain a new loop $ h\cdot \tilde{f}\cdot \bar{h}$ from $I$ to $X$ with the base point $x_0$.
+\[h\cdot \tilde{f}\cdot \bar{h}(t)=\begin{cases}
+        h(3t)           & t\in [0,\frac{1}{3}]           \\
+        \tilde{f}(3t-1) & t\in [\frac{1}{3},\frac{2}{3}] \\
+        \bar{h}(3t-2)   & t\in [\frac{2}{3},1]
+    \end{cases}\]Next, we want to show the new loop $h\cdot \tilde{f}\cdot \bar{h}\simeq \bar{h}\cdot h\cdot \tilde{f}\simeq \tilde{f}$. The first homotopy is given by
+\[H:I\times I \rightarrow X \]
+\[H(t,s)=\begin{cases}
+        h\cdot \tilde{f}\cdot \bar{h}(t-\frac{1}{3}s)   & t-\frac{1}{3}s\geq 0 \\
+        h\cdot \tilde{f}\cdot \bar{h}(1+t-\frac{1}{3}s) & t-\frac{1}{3}s<0
+    \end{cases}
+\]
+Hence, $H(t,0)=h\cdot \tilde{f}\cdot \bar{h}(t)$ for all $t\in I$ and
+\[H(t,1)=\begin{cases}
+        h\cdot \tilde{f}\cdot \bar{h}(1+t-\frac{1}{3})= \bar{h}(3t)  & t\in[0,\frac{1}{3}]            \\
+        h\cdot \tilde{f}\cdot \bar{h}(t-\frac{1}{3})=h(3t-1)         & t\in [\frac{1}{3},\frac{2}{3}] \\
+        h\cdot \tilde{f}\cdot \bar{h}(t-\frac{1}{3})=\tilde{f}(3t-2) & t\in [\frac{2}{3},1]
+    \end{cases}\]
+So $H(t,1)=\bar{h}\cdot h\cdot \tilde{f}(t)$. And the second homotopy is given by a proof in the lecture that $\bar{h}\cdot h\simeq c_{x_1}$ and $c_{x_1}\cdot \tilde{f} \simeq \tilde{f}$. Last, we for any $e^{2\pi it}\in S^1$, we let $f':S^1\rightarrow X$ be $f'(e^2\pi it)=h\cdot \tilde{f}\cdot \bar{h}(t)$ and $f'=(h\cdot \tilde{f}\cdot \bar{h})\circ l^{-1}$. Since both $\tilde{f}$ and $h\cdot \tilde{f}\cdot \bar{h}$ are loops, $f'$ makes sense because the two preimage of $1\in S^1$ under $l^{-1}$ maps to the same point in $X$ under $h\cdot \tilde{f}\cdot \bar{h}$. Same for $f=\tilde{f}\circ l^{-1}$. Then we have $f\simeq f'$ because homotopic maps composition with same continuous function are still homotopic. This proves $\Phi$ is surjective since $f$ is in a homotopy classes with some mapping $f'$ that is basepoint preserving and the basepoint preserving homotopy class contains $f'$ is the preimage of the homotopy class under $\Phi$, which means $\Phi([f'])=[f']_{[S^1,X]}=[f]_{[S^1,X]}$.\\
+Next, we show $\Phi([f])=\Phi([g])$ if and only if they are in the same conjugacy classes in $\pi_1(X,x_0)$. If $g\simeq h\cdot f \cdot \bar{h}$, then we showed in previous part (which requires $X$ to be path-connected) that $ h\cdot f\cdot \bar{h}\simeq \bar{h}\cdot h\cdot f\simeq f$. So we have
+\[\Phi([g])=\Phi([h\cdot f \cdot \bar{h}])=\Phi([\bar{h}\cdot h\cdot f])=\Phi([f])\]
+Conversely, if $\Phi([f])=\Phi([g])$, then there is a homotopy between $f$ and $g$ but this homotopy is not necessarily basepoint preserving. Then denote such homotopy by the following
+\[H:S^1\times I \rightarrow X\]
+\[H|_{S^1\times \{0\}}=f \text{ and }H|_{S^1\times \{1\}}=g\]
+Then for any $t\in I$, we obtain a map $H|_{S^1\times \{t\}}=H_t$ from $S^1$ to $X$ with a base point $H(1,t)$ (Notice that in the previous proof, we choose the basepoint to be $f(1)=g(1)=x_0$). The homotopy $H$ defines paths $h_t$ from $x_0$ to $H(1,t)$ where $t\in I$ for us and we can use these paths to construct a homotopic map between $f$ and $g$. Then the new map $H':S^1\times I \rightarrow X$ is defined by
+\[H'(s,t)=h_t\cdot H(s,t)\cdot \bar{h_t}\]
+We show $H'$ is a homotopy. Since $h_0$ is nothing but the identity map of the set $\{x_0\}$, we have $H'|_{S^1\times \{0\}}=H|_{S^1\times \{0\}}=f$. And by previous proof (which requires $X$ to be path-connected), we showed for $t$ fixed,
+\[H'(s,t)=h_t\cdot H(s,t)\cdot \bar{h_t}\simeq \bar{h_t} \cdot h_t\cdot H(s,t)\simeq H(s,t) \]
+Since we are consider the homotopy classes over $[S^1,X]$, then $H'(s,t)=H(s,t)=f=g$ in the sense of homotopy classes. Therefore, $H'$ is a homotopy from $f$ to $h_1\cdot g\cdot \bar{h_1}$ and preserve the base point since $H'(s,t)$ is a loop based at $x_0$ for any fixed $t$. So $[f]=[h_1\cdot g\cdot \bar{h_1}]=[h_1]\cdot [g]\cdot [\bar{h_1}]$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:} We construct a linear homotopy as the following.
+\[F:S^1\times I\times I\rightarrow S^1\times I \]
+\[F(\theta,s,t)=(1-t)f(\theta,s)+t(\theta,s)=(\theta+(1-t)2\pi s,s)\]
+The map $F$ is obviously a well-defined continuous map and $F|_{t=0}(\theta,s,0)=(\theta+2\pi s,s)=f$ and $F|_{t=1}(\theta,s,1)=(\theta,s)=id_{S^1\times I}$. Hence, $F$ is a homotopy between $f$ and $id_{S^1\times I}$.\\
+Next, we show there doesn't exists a homotopy from $f$ to the identity that fixed both ends of $S^1\times I$. We assume such homotopy $F'$ exists towards contradiction. Let $F'|_{t=0}=f$ and $F'|_{t=1}=id_{S^1\times i}$. Then consider a fixed point $\theta_0=1\in S^1$. Then the we have $F'(1,s,0)=f(1,s)$ is a path from $(1,0)$ to $(1,1)$. Also, $F'(1,s,1)=id_{S^1\times I}$ is another path from $(1,0)$ to $(1,1)$. Since the homotopy $F'$ fixed both ends of $S^1\times I$, for any $t\in I$, $F'(1,s,t)$ is a path from $F'(1,0,t)=(1,0)$ to $F'(1,1,t)=(1,1)$. So $F'$ defines a homotopy of paths between the path $F'(1,s,0)$ and the path $F'(1,s,1)$. Since we proved in the lecture that homotopic paths are homotopic after composition with homotopic maps, $\pi_1\circ F'(1,s,0)\simeq \pi_1\circ F'(1,s,1)$. This leads to a contradiction since $\pi_1\circ F'(1,s,0)=\pi_1\circ f(1,s)=1+2\pi s$ has winding number 1 and $\pi_1\circ F'(1,s,1)=\pi_1\circ id_{S^1\times I}=1$ is a constant map with winding number 0. By the fact that $\pi_1(S^1)=\Z$, we know two loops in $S_1$ are homotopic if and only if they have the same winding number.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:} We will construct a map to $D^2$ and then apply the Brouwer's Fixed Point Theorem. For any $y\in \R^2$, consider the following map $g_y:\R^2\rightarrow D^2$
+\[g_y(x)=x-f(x)+y\]
+The map $g$ is continuous since $f$ is continuous. And the image of $g_y$ is contained in a disk centered at $y$ with radius $1$ because $|g_y(x)-y|=|x-f(x)|\leq 1$ for any $x\in \R^2$.
+Then we can restricted the domain of $g_y$ to be the same disk as the codomain. Then the Brouwer's Fixed Point Theorem says there exists a fixed point $x_0$ for $g_y$ in $D^2$. Therefore, we have $g_y(x_0)=x_0-f(x_0)+y=x_0$. Hence, we have $y=f(x_0)$. Since the argument is true for arbitrary $y$, then $f$ is surjective since the fixed point exists for all such mapping $g_y$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 7:} Let $\alpha: I \rightarrow S^1$ be the loop based at $1\in S^1$ defined as $\alpha(t)=e^{2\pi i t}$. Then $\alpha$ is a representative of $1\in \pi_1(S^1)$ and the degree of $f$ is the same as the winding number of $f\circ \alpha$. Consider the universal covering space $\R$ of $S^1$ with the covering map $p:\R\rightarrow S^1$ defined as $p(r)=e^{2\pi i r}$. By the path lifting property, we know there exists a unique lifting $\widetilde{f\circ \alpha}: I\rightarrow \R$ such that $\widetilde{f\circ \alpha}(0)=p^{-1}(1)=0$\\
+\textbf{(1)} If $f$ is odd, then we have $f\circ \alpha(t)=f(\alpha(t))=-f(-\alpha(t))=-f\circ \alpha(\frac{1}{2}+t)$. Hence, we have
+\[1=e^{2\pi i\widetilde{f\circ \alpha}(0)}=p\circ \widetilde{f\circ \alpha}(0)=f\circ \alpha(0)=-f\circ\alpha(\frac{1}{2})=-p\circ \widetilde{f\circ \alpha}(\frac{1}{2})=-e^{2\pi i\widetilde{f\circ \alpha}(\frac{1}{2})}\]
+Therefore, we have
+\[\widetilde{f\circ \alpha}(\frac{1}{2})=\frac{1}{2}+n \text{ for some }n\in \Z\]
+Since $f(x)=-f(-x)$ for every $x\in S^1$, the image of $f\circ \alpha([\frac{1}{2},1))$ is determined the image of $f\circ \alpha([0,\frac{1}{2}))$. So does the lifting. Therefore, the lifting on the second half is given by $\widetilde{f\circ \alpha}(\frac{1}{2}+t)=\frac{1}{2}+n+\widetilde{f\circ \alpha}(t)$. Notice that $n$ is a fixed integer given by the continuity of the lifting. Hence,
+\[ \widetilde{f\circ \alpha}(1)=\frac{1}{2}+n+\widetilde{f\circ \alpha}(\frac{1}{2})=1+2n\]
+Hence, $deg(f)=1+2n\equiv 1$ (mod 2).
+\\
+\textbf{(2)} If $f$ is even, the proof is much easier. Another way to think about the parity of the winding number of the image of $1\in \pi_1(S^1)$ under $f_\ast$ is to count the mod 2 cardinality of the set of preimages $f^{-1}(1)$. The fact that $f$ is even tells us the preimages show up as pairs, namely $\{x,-x\}$. Hence, we have
+\[deg(f)\equiv |f^{-1}(1)|\equiv 0 \text{ mod 2}\]
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 8:} For any loops $\alpha: I\times X\times \{y_0\}$ and $\beta: I\times \{x_0\}\times Y$ based at $(x_0,y_0)$, we want to show $\alpha\beta \simeq \beta \alpha$. Notice that if we look at each coordinate, then we have $\alpha(t)=(\pi_1 \circ \alpha(t),y_0)$ and $\beta (t)=(x_0,\pi_2\circ \beta(t))$. We construct a homotopy as following
+\[H: I\times I \rightarrow X\times Y\]
+\[H(t,s)=\begin{cases}
+        \alpha(2t)                                   & \text{ if } t\in [0,\frac{s}{2})                       \\
+        (\pi_1\circ\alpha(s),\pi_2\circ \beta(2t-s)) & \text{ if } t\in [\frac{s}{2},\frac{1}{2}+\frac{s}{2}] \\
+        \alpha(2t-1)                                 & \text{ if } t\in (\frac{1}{2}+\frac{s}{2},1]
+    \end{cases}
+\]
+To check $H$ is continuous, we use the pasting lemma. For $t=\frac{s}{2}$, we have
+\[\alpha(2\cdot \frac{s}{2})=\alpha(s)=(\pi_1\circ\alpha(s),y_0)=(\pi_1\circ\alpha(s),\pi_2\circ \beta(0))=(\pi_1\circ \alpha(s),\pi_2\circ \beta(2\cdot\frac{s}{2}-s))\]
+For $t=\frac{1}{2}+\frac{s}{2}$, we have
+\[(\pi_1\circ \alpha(s),\pi_2\circ \beta(2\cdot(\frac{1}{2}+\frac{s}{2})-s))=(\pi_1\circ \alpha(s),\pi_2\circ \beta(1))=(\pi_1\circ \alpha(2\cdot(\frac{1}{2}+\frac{s}{2})-1,y_0)=\alpha(2t-1)\]
+Next, we want to show at $H|_{s=1}=\alpha\beta$ and $H|_{s=0}=\beta\alpha$.
+\begin{align*}H|_{s=0}(t,0) & =
+    \begin{cases}
+        (\pi_1\circ\alpha(0),\pi_2\circ \beta(2t)) & \text{ if } t\in [0,\frac{1}{2}] \\
+        \alpha(2t-1)                               & \text{ if } t\in (\frac{1}{2},1]
+    \end{cases}                  \\
+                  & =\begin{cases}
+        (x_0,\pi_2\circ \beta(2t)) & \text{ if } t\in [0,\frac{1}{2}] \\
+        \alpha(2t-1)               & \text{ if } t\in (\frac{1}{2},1]
+    \end{cases} \\
+                  & =\begin{cases}
+        \beta(2t)    & \text{ if } t\in [0,\frac{1}{2}] \\
+        \alpha(2t-1) & \text{ if } t\in (\frac{1}{2},1]
+    \end{cases} \\
+                  & =\beta\alpha
+\end{align*}
+\begin{align*}H|_{s=1}(t,1) & =\begin{cases}
+        \alpha(2t)                                   & \text{ if } t\in [0,\frac{1}{2}] \\
+        (\pi_1\circ\alpha(1),\pi_2\circ \beta(2t-1)) & \text{ if } t\in (\frac{1}{2},1]
+    \end{cases}  \\
+                  & =\begin{cases}
+        \alpha(2t)                   & \text{ if } t\in [0,\frac{1}{2}] \\
+        (x_0,\pi_2\circ \beta(2t-1)) & \text{ if } t\in (\frac{1}{2},1]
+    \end{cases} \\
+                  & =\begin{cases}
+        \alpha(2t)  & \text{ if } t\in [0,\frac{1}{2}] \\
+        \beta(2t-1) & \text{ if } t\in (\frac{1}{2},1]
+    \end{cases} \\
+                  & =\alpha\beta
+\end{align*}
+Hence, $\alpha\beta\simeq\beta\alpha$. Therefore, we have $[\alpha][\beta]=[\alpha\beta]=[\beta\alpha]=[\beta][\alpha]$
+\\\phantom{qed}\hfill$\square$\\
+
+
+\end{document}

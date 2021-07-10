@@ -1,0 +1,88 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 2 - 104A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Source Consulted: We used or quoted the theorem mentioned (or proved) in the lectures and also those in the textbook.\\
+\textbf{Problem 21:} If $ord_p(a)=0$, then we $p\nmid a$. If $ord_p(b)=0$, then we have $p\nmid b$ as well. Hence, we have $ord_p(a+b)\geq 0=min(ord_p(a),ord_p(b))=0$. If $ord_p(b)>0$, then we have $p\mid b$. Now, we want to show $p\nmid a+b$. If not, then we have $p\mid a+b$ and $p\mid b$. Hence, we have $p\mid a+b-b=a$. It contradicts. So we have $p\nmid a+b$ and $ord_p(a+b)=0= min (ord_p(a),ord_p(b))$. So the equality holds if $ord_p(b)>0=ord_p(a).$\\
+Notice that if we switch the notation of $a,b$, we can have the same result. Namely, we have $ord(a+b)=0\geq min(ord_p(a),ord_p(b))$ if either $ord_p(a)=$ or $ord_p(b)=0$.\\
+Now, if none of them has order 0, then WLOG, we can assume $ord_p(a)=i\leq ord_p(b)=j$. Then we have $a=p^ic$ and $b=p^jd$ for some $c,d\in R\setminus\{0\}$ and $p\nmid c,d$. Then we have $a+b=p^i(c+p^{j-i}d)$. Since $ord_p(c)=0$, we can apply the result above to get $ord_p(c+p^{j-i}d)\geq 0$. Then, by Lemma 3 in 1.3, we have 
+\[ord_p(a+b)=ord_p(p^i)+ord_p(c+p^{j-i}d)\geq i+0=i=min(ord_p(a),ord_p(b))\]
+Notice that the equality holds if $ord_p(p^{j-i}d)>0$ by previous argument. Since $p\nmid d$, we have $ord_p(p^{j-i}d)=ord_p(p^{j-i})+ord_p(d)=j-i+0=j-i$. So the equality holds if $j>i$, which means $ord_p(a)< ord_p(b)$. The proof completes.
+\\\qed\\
+\textbf{Problem 29:} First of all, the fractions make sense if and only if $b,d\neq 0$. So we can assume $b,d\neq 0$. To show $b=\pm d$, we can show $b\mid d$ and $d\mid b$. Suppose 
+\[\frac{a}{b}+\frac{c}{d}=n\in \Z\tag*{(1)}\]
+Then we can multiply both by $bd$, then we have 
+\[ad+cb=nbd\]
+On the right hand side, we have $b\mid nbd$. Hence, we have $b\mid ad+cb$. Since $b\mid cb$, we have $b\mid ad$. Since $(a,b)=1$, we have $b\mid d$. Similarly, we have $d\mid nbd$ by the right hand side. So we have $d\mid ad+cb$. Since $d\mid ad$, we have $d\mid cb$. Since $(c,d)=1$, we have $d\mid b$. So we have $b,d$ are associates. Since $\Z^\times =\{1,-1\}$, we have $b=\pm d$.
+\\\qed\\
+\textbf{Problem 30:}  Suppose $ 2^m\leq n<2^{m+1}$. Then we want to show $max(ord_2(2),ord_2(3),\cdots ord_2(n))=m$ and the only number with order $m$ is $2^m$. Since $2^{m+1}>n$, for any $2\leq k\leq n$, we have $2^{m+1}>k$. So $k\nmid 2^{m+1}$. Since $2^m\leq n$ and $ord_2(2^m)=m$, we proved the first part. If there is another number $2\leq k\leq n$ such that $2^m\mid k$, we can assume $k=2^md$ for some $d\in \Z_{>1}$. If $d\geq 2$, then we have $2^{m+1}=2\cdot 2^m\leq d\cdot 2^m=k\leq n$. It contradicts. So $2^m$ is the unique one that is divisible by $2^m$.\\
+Now consider 
+\[2^{m-1}\sum_{k=2}^n\frac{1}{k}=\sum_{k=2}^n\frac{2^{m-1}}{k}\tag{1}\]
+For any $k\neq 2^m$, we can rewrite the fraction as 
+\[\frac{2^{m-1}}{k}=\frac{2^{l_k}}{q_k}\]
+where $0\leq l_k\leq m-1$ and $q_k$ is odd. Then the summand (1) equals
+\[2^{m-1}\sum_{k=2}^n\frac{1}{k}\tag{1}=\sum_{k\neq 2}\frac{2^{l_k}}{q_k}+\frac{1}{2}=\frac{a}{b}+\frac{1}{2}\]
+where $b$ is odd and $(a,b)=1$ because $b$ is some divisor of $\Pi_{k\neq 2}q_k$, which is a product of odd numbers. If $\sum_{k=2}^n\frac{1}{k}\in \Z$, then we have $\frac{a}{b}+\frac{1}{2}$ is an integer. Now, we can apply problem 29. We have $b=\pm 2$. It contradicts to the fact that $b$ is odd. So the harmonic sum cannot be an integer.
+\\\qed\\
+\textbf{Problem 34:} The proof follows from direct calculation.
+\begin{align*}
+    (1-\omega)^2&=1-2\omega+\omega^2\\
+    &=1-2\frac{-1+\sqrt[]{-3}}{2}+\frac{-1-\sqrt[]{-3}}{2}\\
+    &=1+1-\sqrt[]{-3}+\frac{-1-\sqrt[]{-3}}{2}\\
+    &=\frac{3-3\ \sqrt[]{-3}}{2}\\
+    &=-3\frac{-1+\sqrt[]{-3}}{2}\\
+    &=-3\omega
+\end{align*}
+So we have $3\mid (1-\omega)^2$.
+\\\qed\\
+\textbf{Problem 35:} By Prop 1.4.2, we have the function $\lambda:\Z[\omega]\setminus\{0\}\to \Z_{\geq 0}$ makes $\Z[\omega]$ to be an Euclidean domain. If $\alpha$ is an unit, there exists an element $\beta\neq 0$ such that $\alpha\beta=0$. Then we have 
+\[\lambda(\alpha\beta)=\alpha\beta(\overline{\alpha\beta})=\alpha\overline{\alpha}\beta\overline{\beta}=\lambda(\alpha)\lambda(\beta)=1\]
+because $\Z[\omega]\subseteq \C$, a subring, and  complex conjugation is a ring endomorphism (of the complex number) and $\C$ is a field. So we have $\lambda(\alpha)$ is a unit in $\Z_{\geq 0}$, but the only unit element in $\Z_{\geq 0}$ is 1. So we have $\lambda(\alpha)=1$.\\
+Conversely, if $\lambda(\alpha)=1$, then we have $\lambda(\alpha)=\alpha\overline{\alpha}=1$. By definition, $\overline{\alpha}=\alpha^{-1}$. Also, by the textbook (right above Prop 1.4.2), we know the $\Z[\omega]$ is closed under conjugation, we have $\overline{\alpha}\in\Z[\omega]$. So $\alpha\in \Z[\omega]^{\times}$ by definition.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 36:} First, we show $\Z[\ \sqrt[]{-2}]$ is a ring. Since $\Z[\ \sqrt[]{-2}]\subseteq \C$, we just need to show $(\Z[\ \sqrt[]{-2}],+)\leq (\C,+)$ as a subgroup and $(\Z[\ \sqrt[]{-2}],\cdot)\subseteq (\C,\cdot )$ as a submonoid.\\
+For any $a+b\ \sqrt[]{-2},c+d\ \sqrt[]{-2}\in \Z[\ \sqrt[]{-2}]$, we have 
+\[a+b\ \sqrt[]{-2}-(c+d\ \sqrt[]{-2})=a-c+(b-d)\ \sqrt[]{-2}\in \Z[\ \sqrt[]{-2}]\]
+\[(a+b\ \sqrt[]{-2})(c+d\ \sqrt[]{-2})=ac-2bd+(ad+bc)\ \sqrt[]{-2}\in \Z[\ \sqrt[]{-2}]\]
+\[1\in\Z\subseteq \Z[\ \sqrt[]{-2}]\]
+So $\Z[\ \sqrt[]{-2}]$ is a subring of $\C$; hence, it is a ring.\\
+Next, we show it is an Euclidean Domain. Notice that $\lambda(\alpha)=a^2+2b^2=(a+b\ \sqrt[]{-2})(a-b\ \sqrt[]{-2})=\alpha\overline{\alpha}$. Hence, if $\alpha\neq 0$, we have $\frac{1}{\alpha}=\frac{\overline{\alpha}}{\alpha\overline{\alpha}}\in \Q[\ \sqrt[]{-2}]$, which is the field of fraction of $\Z[\ \sqrt[]{-2}]$. Now, given $\alpha,\beta\in \Z[\ \sqrt[]{-2}]$ and $\beta\neq 0$. If $\beta$ is a unit, then we are done since $\alpha=\frac{\alpha}{\beta}\beta+0$. If not, we suppose $\frac{\alpha}{\beta}=a+b\ \sqrt[]{-2}\in \Q[ \ \sqrt[]{-2}]$. Take $c+d\ \sqrt[]{-2}\in \Z[\ \sqrt[]{-2}]$ such that $|a-c|\leq \frac{1}{2}$ and $|b-d|\leq \frac{1}{2}$. We have 
+\[r=\alpha-\beta(c+d\ \sqrt[]{-2})=\beta(a+b\ \sqrt[]{-2})-\beta(c+d\ \sqrt[]{-2})=\beta(a-c+(b-d)\ \sqrt[]{-2})\]
+We have 
+\[\lambda(r)=\lambda(\beta)\lambda((a-c)+(b-d)\ \sqrt[]{-2})=\lambda(\beta)(|a-c|^2+2|b-d|^2)\leq \lambda(\beta)(\frac{1}{4}+\frac{2}{4})<\lambda(\beta)\]
+So $\Z[\ \sqrt[]{-2}]$ is an Euclidean domain.
+\\\qed\\
+\textbf{Problem 37:} If $\alpha=a+b\ \sqrt[]{-2}\in \Z[\ \sqrt[]{-2}]^\times $, then we have 
+\[\frac{1}{\alpha}=\frac{\overline{\alpha}}{\lambda(\alpha)}=\frac{a-b\  \sqrt[]{-2}}{\lambda(\alpha)}\in \Z[\ \sqrt[]{-2}]\]
+Hence, we should have $\frac{a}{\lambda(\alpha)}\in \Z$ and $\frac{b}{\lambda(\alpha)}\in \Z$. So we have $\lambda(\alpha)= 1$. Since $b\in \Z$, we have $b=0$. Otherwise, we have $\lambda(\alpha)\geq 2b^2\geq 2$. This forces $a=\pm 1$. So $\Z[\ \sqrt[]{-2}]^\times =\{1,-1\}$.
+\\\qed\\
+\textbf{Problem 38:} Notice that in all cases, we can take the funciton $\lambda(\alpha)=\alpha\overline{\alpha}$ and make the ring into an ED. Since the proof works in all three cases, we denote the ring as $R$. Also, for all three cases, we have $R$ is a subring of $\C$ and complex conjugation is a ring homomorphism of $\C$. So we have 
+\[\lambda(\alpha\beta)=(\alpha\beta)\overline{\alpha\beta}=\alpha\overline{\alpha}\beta\overline{\beta}=\lambda(\alpha) \lambda(\beta)\] 
+If $\pi\in R$ and $\lambda(\pi)=p$ for some prime number $p$, then we want to show $\pi$ is not zero or a unit. Since $\lambda$ is defined on nonzero element of the ring, $\pi\neq 0$. If $\pi$ is a unit, then there exists $\alpha\in R$ such that $\pi\alpha=1$. Then we have $\lambda(\pi\alpha)=\lambda(\pi)\lambda(\alpha)=1$. Hence, we have $\lambda(\pi)=1$ since $\lambda(\pi)\in\Z_{\geq 0}$. Since $\lambda(\pi)=p\neq 1$, by contrapositivity, we have $\pi$ is not a unit.\\
+Furthermore, we want to show $\lambda(\alpha)=1$ if and only if $\alpha$ is a unit. We have already shown one direction. For the other direction, the proof is the same as what we have done in problem 35. Since $\lambda(\alpha)=\alpha\overline{\alpha}=1$, we just need to show $\overline{\alpha}\in R$. But in all three cases, the ring is closed under complex conjugation(by the textbook and our argument in previous problems). \\
+Since in all three cases, $R$ is an ED, and we know prime element is the same as irreducible element in $R$. So we can show $\pi$ is irreducible, instead. For any $a,b\in R$, if $\pi= ab$, we want to show either $a$ or $b$ is a unit.\\
+\[\lambda(a)\lambda(b)=\lambda(ab)=\lambda(\pi)=p\]
+Since $p$ is prime number, we have either $\lambda(a)=1$ or $\lambda(b)=1$. Then we have either $a$ is a unit or $b$ is a unit. So $\pi$ is an irreducible element in $R$. Hence, it is prime.
+\\\qed\\
+
+\end{document}

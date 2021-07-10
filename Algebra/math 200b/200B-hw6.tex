@@ -1,0 +1,102 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 6 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:} First, by the choice of $a,b$, we know $F(\sqrt{a})$ and $F(\sqrt{b})$ are two degree 2 field extensions over $F$. If $[F(\sqrt{a},\sqrt{b}):F]=4$, then we have 
+\[[F(\sqrt{a},\sqrt{b}):F(\sqrt{a})]=\frac{[F(\sqrt{a},\sqrt{b}):F]}{[F(\sqrt{a}):F]}=\frac{4}{2}=2\]
+Then we have $\{1,\sqrt{b}\}$ is a $F(\sqrt{a})$-basis of $F(\sqrt{a},\sqrt{b})$ since if not, then we have $\sqrt{b}\in F(\sqrt{a})$, which implies $F(\sqrt{a},\sqrt{b})=F(\sqrt{a})$ has degree 1. It contradicts. Then $\{1,\sqrt{b},\sqrt{a},\sqrt{ab}\}$ is a $F-$basis of $F(\sqrt{a},\sqrt{b})$. Let's check. Let $c_i\in F$, then we have
+\[c_0+c_1\sqrt{a}+c_2\sqrt{b}+c_3\sqrt{ab}=\sqrt{b}(c_2+c_3\sqrt{a})+(c_0+c_1\sqrt{a})\]
+The summand is zero if and only if $c_2+c_3\sqrt{a}=0$ and $c_0+c_1\sqrt{a}=0$ (because $\{\sqrt{b},1\}$ is a $F(\sqrt{a})$-basis of $F(\sqrt{a},\sqrt{b})$) if and only if $c_2=c_3=c_0=c_1=0$ (because $\{1,\sqrt{a}\})$ is a $F$-basis of $F(\sqrt{a})$). Also, we know any element in $F(\sqrt{a},\sqrt{b})$ is an $F$-linear combination of $1,\sqrt{a},\sqrt{b},\sqrt{ab}$ since $a,b\in F$. So it is indeed an $F$-basis. Hence, we have $\sqrt{ab}\notin F$.\\
+Notice that the square roots of $ab$ are solutions for $f(x)=x^2-ab$. And we have $f(x)=(x-\sqrt{ab})(x+\sqrt{ab})$ splits in the field $F(\sqrt{a},\sqrt{b})$. So the square roots of $ab$ are precisely $\sqrt{ab},-\sqrt{ab}$ by the UFD structure on $F(\sqrt{a},\sqrt{b})[x]$. Hence, $ab$ is not a square root in $F$.
+\\Conversely, if $ab$ is not a square. Since $F(\sqrt(a),\sqrt{b})=(F(\sqrt{a}))(\sqrt{b})$ and we already know $F(\sqrt{a})/F$ is a degree 2 extension, all we need to do is show $\sqrt{b}\notin F(\sqrt{a})$. Suppose not towards contradiction, then we have $\sqrt{b}=c+d\sqrt{a}$, where $c\in F$ and $d\in F\setminus\{0\}$ because $\sqrt{b}\notin F$. Since $b\in F$, we have 
+\[b=(\sqrt{b})^2=(c+d\sqrt{a})^2=c^2+d^2a+2cd\sqrt{a}\in F\]
+Since $\sqrt{a}\notin F$, we have $2cd=0$. Since $char(F)\neq 2$ and every field is a domain, we have $c=0$. Therefore, we have $\sqrt{b}=d\sqrt{a}$. But by previous argument, we know $\sqrt{ab}$ is a square root of $F$ and we have 
+\[\sqrt{ab}=\sqrt{a}(d\sqrt{a})=da\in F\]
+This contradicts to the assumption that $ab$ is not a square in $F$. So we must have $\sqrt{b}\notin F$. Since $b\in F$, we have $b\in F(\sqrt{a})$. Therefore, $\{1,\sqrt{b}\}$ is the maximal linearly independent set over $F(\sqrt{a})$ in $F(\sqrt{a},\sqrt{b})$. So it is a basis. Hence, we have 
+\[[F(\sqrt{a},\sqrt{b}):F]=[F(\sqrt{a},\sqrt{b}):F(\sqrt{a})][F(\sqrt{a}):F]=2\cdot 2=4\]
+\linebreak
+Now, if $ab$ is a square, then we have $\sqrt{ab}\in F$. Then we have $\sqrt{ab}\in F(\sqrt{a})$. Notice that $\sqrt{b}=\sqrt{ab}\cdot (\sqrt{a})^{-1}\in F(\sqrt{a})$ since $\sqrt{ab}\in F(\sqrt{a})$ and $(\sqrt{a})^{-1}\in F(\sqrt{a})$. So we have $[F(\sqrt{a},\sqrt{b}):F]=[F(\sqrt{a}):F]=2$. Conversely, if $[F(\sqrt{a},\sqrt{b}):F]=2$ and we have $F\subsetneq F(\sqrt{a})\subseteq F(\sqrt{a},\sqrt{b})$, then the second one must be a equality since 
+\[[F(\sqrt{a},\sqrt{b}):F(\sqrt{a})]=\frac{[F(\sqrt{a},\sqrt{b}):F]}{[F(\sqrt{a}):F]}=\frac{2}{2}=1\]
+So $\sqrt{b}=c+d\sqrt{a}$. Then by previous argument, we have $c=0$, then we have $\sqrt{ab}=da\in F$ is a square in $F$. The proof completes.
+\\\qed\\
+\textbf{Problem 2:} \\
+\textbf{(a):}First, we prove $K_1K_2$ is the smallest subring of $K$ that contains $K_1$ and $K_2$. Suppose $R$ is another subring that contains $K_1$ and $K_2$. Then for any $a_i\in K_1$ and any $b_i\in K_2$, we have $a_i,b_i\in R$. Hence, we have $a_ib_i\in R$. Hence, we have $\sum_{i=1}^da_ib_i\in R$. So we have $K_1K_2\subseteq R$. Also, $K_1K_2$ is a subring since for any $\sum_{i=1}^d a_ib_i\in K_1K_2$ and $\sum_{i=1}^c r_is_i\in K_1K_2$, we have 
+\[\sum_{i=1}^d a_ib_i+\sum_{i=1}^c r_is_i\in K_1K_2\]
+\[(\sum_{i=1}^d a_ib_i)(\sum_{i=1}^c r_is_i)=\sum_{i=1}^d\sum_{j=1}^ca_ir_jb_is_j\in K_1K_2\]
+\[1=1\cdot 1\in K_1K_2\]
+Now, we prove it is a subfield. Since it is minimal, if we can prove there is a subfield of $K$ that contains $K_1$ and $K_2$ and it is also contained by $K_1K_2$, then we are done. Since $K_2$ and $K_1$ are finite dimensional $F-$module, we suppose $\{a_1,\cdots,a_n\}$ is an $F-$basis of $K_1$ and $\{b_1,\cdots b_m\}$ is an $F$-basis of $K_2$ and $a_1=b_1=1$. Let $S=\{a_ib_j\mid 1\leq i \leq n, 1\leq j\leq m \}$, then we consider $F(S)$, the smallest field that contains $F$ and $S$. Then $F(S)$ contains $K_1$ and $K_2$ since the bases of them are contained in $S$, where $\{a_1b_1,a_2b_1,\cdots a_nb_1\}=\{a_1,a_2,\cdots, a_n\}\subseteq S$ and $\{a_1b_1,a_1b_2,\cdots a_1b_m\}=\{b_1,b_2,\cdots,b_n\}\subseteq S$. Hence, we have $K_1K_2\subseteq F(S)$. On the other hand, we have $a_ib_j\in K_1K_2$. So $K_1K_2$ contains the basis of $F(S)$; hence $F(S)\subseteq K_1K_2$. So we have $K_1K_2=F(S)$. Hence, it is a field. The proof completes.\\
+\textbf{(b):} Since $F(S)$ is an $F$-algebra, we have $K_1K_2=F(S)$ is an $F$-algebra. Let's define an $F$-bilinear map
+\[\varphi: K_1\times K_2\to K_1K_2\]
+\[(a,b)\mapsto ab\]
+We use the same bases for $K_1$ and $K_2$ as part a. Since $K_1,K_2$ are vector spaces over $F$, we just need to check $F$-blinearity over the basis elements. Suppose $r_1,r_2\in F$, and $1\leq i,j\leq n$, $1\leq k,l\leq m$, then we have 
+\[\varphi(r_1a_i+r_2a_j,b_k)=(r_1a_i+r_2a_j)b_k=r_1a_ib_k+r_2a_jb_k=r_1\varphi(a_i,b_k)+r_2\varphi(a_j,b_k)\]
+\[\varphi(a_i,r_1b_k+r_2b_l)=a_i(r_1b_k+r_2b_l)=a_ir_1b_k+a_ir_2b_l=r_1a_ib_k+r_2a_ib_l=r_1\varphi(a_i,b_k)+r_2\varphi(a_j,b_k)\]
+Notice that $\varphi(a_i,b_j)=a_ib_j$ for all $a_ib_j\in S$. 
+Then by the universal property of tensor product, there is an $F$-algebra homomorphism 
+\[\theta: K_1\otimes_F K_2\to K_1K_2\]
+\[(a\otimes b)\mapsto ab\]
+This is surjective since the $\varphi$ is surjective on the generating set $S$.\\
+If $\theta$ is an isomorphism, then we have $\dim_F(K_1\otimes_F K_2)=\dim(K_1K_2)$. However, we know that $\{a_i\otimes b_j\mid 1\leq i\leq n,1\leq j\leq m\}$ is an $F$-basis of $K_1\otimes_F K_2$. So we have $\dim(K_1K_2)=\dim_F(K_1\otimes_F K_2)=nm=[K_1:F][K_2:F]$. Conversely, if $\dim_F(K_1K_2)=[K_1K_2:F]=[K_1:F][K_2:F]=mn=\dim_F(K_1\otimes_F K_2)$, then we know $\theta$ is a bijection since surjective linear transformation between two finite dimensional vector space with same dimension implies bijective. So $\theta$ is an isomorphism of $F-$algebras.\\
+\textbf{(c):} We want to prove the composite field $K$ of $\Q(\sqrt{2}$) and $\Q(\sqrt{3})$ is $\Q(\sqrt{2},\sqrt{3})$ and the dimension of $\Q(\sqrt{2},\sqrt{3})$ is 4. Since $\sqrt{2},\sqrt{3}\in \Q(\sqrt{2},\sqrt{3})$, we have $K\subseteq \Q(\sqrt{2},\sqrt{3})$ because $K$ is minimal. Conversely, for any $a,b,c,d\in\Q$, we have 
+\[(a+b\sqrt{2})(c+d\sqrt{3})=ac+ad\sqrt{3}+bc\sqrt{2}+bd\sqrt{6}\in\Q(\sqrt{2},\sqrt{3})\]
+Since $\Q(\sqrt{2},\sqrt{3})$ is closed under addition, we have $K\subseteq \Q(\sqrt{2},\sqrt{3})$. So we have $K=\Q(\sqrt{2},\sqrt{3})$. It has dimension 4 since $2\cdot 3=6$ is not a square in $\Q$, then by problem 1, we know $[\Q(\sqrt{2},\sqrt{3}):\Q]=4$. Now, by part b, we know there is a $\Q-$algebra isomorphism between $\Q(\sqrt{2})\otimes_\Q\Q(\sqrt{3})$ and $\Q(\sqrt{2},\sqrt{3})$. So $\Q(\sqrt{2})\otimes_\Q\Q(\sqrt{3})$ is a field.
+\\\qed\\
+\textbf{Problem 3:} WLOG, we can assume $f$ is monic since we are working in a field $F$. We induct on $n$. If $n=1$, then $f=x-a\in F[x]$. So $f$ splits in $F[x]$. Hence, we have $K=F$. So we have $[K:F]=1\mid 1!$.\\
+Suppose the statement is true for all polynomials with degree less than $n$. Now, consider $\deg(f)=n$. If $f$ is irreducible, then we let $L=F[x]/(f)$, which is a field. Then $f$ has a solution $\alpha=x+(f)\in L$. So we have $f=(x-\alpha)g$ for some $g\in L[x]$. Let $K$ be a splitting field of $g$ over $L$. Suppose $K=L(\alpha_1,\alpha_2,\cdots, \alpha_{n-1})$, then we know $f$ also splits over $K[x]$ since $f=(x-\alpha)(x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_{n-1})$. And we have $K=L(\alpha_1,\cdots,\alpha_{n-1})=F(\alpha)(\alpha_1,\cdots,\alpha_{n-1})=F(\alpha,\alpha_1,\cdots,\alpha_{n-1})$. So $K$ is a splitting field of $f$ over $F$. Then we have 
+\[[K:F]=[K:L][L:F]=[K:L]n\]
+By our induction hypothesis, we have $[K:L]\mid (n-1)!$, so we have 
+\[[K:F]\mid (n-1)!\cdot n=n!\]
+If $f$ is reducible in $F[x]$, then there are monic polynomials $f_1,f_2\in F[x]$ with degree $\geq 1$ such that $f=f_1f_2$. Then we have $\deg(f_1)=\deg(f)-\deg(f_2)\leq n-1$. Now by induction hypothesis, we have a splitting field $K'$ of $f_1$ over $F$ such that $[K':F]\mid \deg(f_1)!$. Then we know $f_2$ is a polynomial in $K'[x]$ with degree $\leq n$. By induction hypothesis again, we have a splitting field $K$ of $f_2$ over $K'$ such that $[K:K']\mid \deg(f_2)!$. Suppose $\deg(f_1)=m$, then we assume $f_1=(x-\alpha_1)\cdots (x-\alpha_m)$ and $f_2=(x-\alpha_{m+1})\cdots (x-\alpha_{n})$. Then we have $K=K'(\alpha_{m+1},\cdots,\alpha_n)=F(\alpha_1,\cdots,\alpha_m)(\alpha_{m+1},\cdots ,\alpha_n)$. So $K$ is the splitting field of $f$ over $F$. And we have 
+\[[K:F]=[K:K'][K':F]\mid (n-m)!m!\]
+Since ${n\choose m}=\frac{n!}{(n-m)!m!}$ is an integer, we have $(n-m)!m!\mid n!$ for all $0\leq m\leq n$. Hence, we have $[K:F]\mid n!$.\\
+\qed\\
+\textbf{Problem 4:} Claim: $[K:\Q]=9$. Let $\zeta=e^{\frac{2\pi i}{6}}$. Then we have $\sqrt[3]{2}$ is a $6$-th root of $4$. Now, we have $\{\sqrt[3]{2}\zeta^j\mid 1\leq j\leq 6\}$ are 6 distinct root of $f$ because $(\sqrt[3]{2}\zeta^j)^6=4(\zeta^6)^j=4$. So we have 
+\[K=\Q(\sqrt[3]{2},\sqrt[3]{2}\zeta,\cdots,\sqrt[3]{2}\zeta^5)=\Q(\sqrt[3]{2},\zeta)\]
+So we have $[\Q(\sqrt[3]{2}):\Q]=3$ since $\sqrt[3]{4}=(\sqrt[3]{2})^2\notin \Q$. On the other hand, we have $\Q(\sqrt[3]{2})\subseteq \R$ and $\zeta,\zeta^2\notin \R$, but $\zeta^3=-1\in \Q$. Hence, $\{1,\zeta,\zeta^2\}$ is $\Q(\sqrt[3]{2})$-linearly independent. Also, we have $\zeta^4=-\zeta$ and $\zeta^5=-\zeta^2$, so $\{1,\zeta,\zeta^2\}$ span $\Q(\sqrt[3   ]{2},\zeta)$ over $\Q(\sqrt[3]{2})$. Hence, it is a basis. So we have 
+\[\Q(\zeta,\sqrt[3  ]{2})=[\Q(\zeta,\sqrt[3]{2}):\Q(\sqrt[3]{2})][\Q(\sqrt[3]{2}):\Q]=3\cdot 3 =9\]
+\qed\\
+\textbf{Problem 5:} Since $\alpha^2=2+\sqrt{2}$, we have $(\alpha^2-2)^2=2$. Hence, we have 
+$\alpha^4-4\alpha^2+2=0$. Let $f=x^4-4x^2+2$. Then $f(\alpha)=0$. Now, we want to show $f$ is irreducible. By Eisenstein criterion, we have $2\mid -4$,$2\mid 2$, but $2^2=4\nmid2$. Hence, $f$ is irreducible in $\Q[x]$. So $minipoly_\Q(\alpha)=x^4-4x^2+2$.\\
+Now, we claim that $[K:\Q]=8$. Notice that 
+\[f=(x^2-2)^2-2=(x^2-2-\sqrt{2})(x^-2+\sqrt{2})=(x-\sqrt{2+\sqrt{2}})(x+\sqrt{2+\sqrt{2}})(x-\sqrt{2-\sqrt{2}})(x+\sqrt{2-\sqrt{2}})\]
+So we have $K=\Q(\sqrt{2+\sqrt{2}},\sqrt{2-\sqrt{2}})$. First, we know $[\Q(\sqrt{2+\sqrt{2}}):\Q]=4$ since $\deg(f)=4$. Consider the set $\{1,\sqrt{2+\sqrt{2}},2+\sqrt{2},\sqrt{2+\sqrt{2}}(2+\sqrt{2})\}$. Suppose $a,b,c,d\in\Q$, then we have 
+\begin{align*}
+    a+b\sqrt{2+\sqrt{2}}+c(2+\sqrt{2})+d\sqrt{2+\sqrt{2}}(2+\sqrt{2})&=a+2c+(2d+b)\sqrt{2+\sqrt{2}}+c\sqrt{2}+d\sqrt{2}\sqrt{2+\sqrt{2}}
+\end{align*}
+This is 0 if and only if $a+2c=0$, $2d+b=0$, $c=0$, and $d=0$. Hence, we have $a=0$ and $b=0$. So the set $\{1,\sqrt{2+\sqrt{2}},2+\sqrt{2},\sqrt{2+\sqrt{2}}(2+\sqrt{2})\}$ is linearly independent over $\Q$. So $\{1,\alpha,\alpha^2,\alpha^3\}$ is a $\Q$-basis of $\Q(\alpha)$. Now, we consider the set $\{1,\sqrt{2-\sqrt{2}}\}$. This is linearly independent over $\Q(\alpha)$ since $\sqrt{2-\sqrt{2}}\notin \Q(\alpha)$. Also, we have 
+\[(\sqrt{2-\sqrt{2}})^2=2-\sqrt{2}=4+(-1)(2+\sqrt{2})\in \Q(\alpha)\]
+So $\{1,\sqrt{2-\sqrt{2}}\}$ spans $\Q(\sqrt{2+\sqrt{2},\sqrt{2-\sqrt{2}}})$ over $\Q(\sqrt{2+\sqrt{2}})$. Hence, we have 
+\[[K:\Q]=[\Q(\sqrt{2+\sqrt{2}},\sqrt{2-\sqrt{2}}):\Q(\sqrt{2+\sqrt{2}})][\Q(\sqrt{2+\sqrt{2}}):\Q]=2\cdot 4=8\]
+\qed\\
+\textbf{Problem 6:}\\
+\textbf{(a):} Consider $f=x^p-\alpha^p\in F[x]$. Then since $K$ has characteristic $p$, we have 
+\[(x-\alpha)^p=\sum_{i=1}^p{p\choose i}(-\alpha)^{p-i}x^i=x^p-\alpha^p\]
+since $p\mid {p\choose i}$ for all $1\leq i\leq p-1$. Now, we want to prove $f$ is irreducible. If not, then we have $f=f_1f_2$, where $f_1,f_2\in F[x]$ and $\deg(f_1),\deg(f_2)<f$. But we know $f=(x-\alpha)^p$, we have $f_1=(x-\alpha)^{\deg(f_1)}$. Suppose $\deg(f_1)=k<p$. Then we have 
+\[f_1=x^k-k\alpha x^{k-1}+{k\choose 2}\alpha^2x^{k-2}+\cdots+(-\alpha)^k\in F[x]\]
+So we have $k\alpha\in F$ in particular. But since $k\neq 0$, so we have $k^{-1}k\alpha=\alpha\in F$. It contradicts to the choice of $\alpha\in K-F$. Hence, $f$ is irreducible. And $f=minipoly_F(\alpha)$ since $minipoly_F(\alpha)\mid f$ implies $minipoly_F(\alpha)=(x-\alpha)^k$ for some $k\leq p$ and our argument says the smallest $k$ such that $(x-\alpha)^k\in F[x]$ is $k=p$. So we have $minipoly_F(\alpha)$ has degree $n$. It is inseparable since $F$ has characteristic $p$ and $f$ only has nonzero coefficient in $p$-th power terms.\\
+\textbf{(b):} Suppose $K=F(\gamma)$ for some $\gamma\in K$ towards contradiction. Then we have $K$ is spanned by $\{1,\gamma,\gamma^2,\cdots,\}$. Then we can find a $F$-basis of $K$ by choosing a maximal linearly independent subset of $\{1,\gamma,\gamma^2,\cdots,\}$. One possible choice is $\{1,\gamma,\cdots, \gamma^{p-1}\}$. First, we should notice that $\gamma\in K-F$. Otherwise, we will have $F(\gamma)=F\neq K$. Then by part $1$, we know $minipoly_F(\gamma)$ has degree $p$. If the set $\{1,\gamma,\cdots, \gamma^{p-1}\}$ is not $F$-linearly independent, then we have $\sum_{i=0}^{p-1}c_i\gamma^i=0$, where $c_i\in F$. Then $\gamma$ is a root of $f=\sum_{i=0}^{p-1}c_ix^i$. Then we have $minipoly_F(\gamma)\mid f$, which implies the degree of minimal polynomial of $\gamma$ is at most $\deg(f)=p-1$. It contradicts. So $\{1,\gamma,\cdots, \gamma^{p-1}\}$ is $F$-linearly independent. Now, for any $\gamma^k$ where $k\geq p$, we have $k=mp+k'$ where $0\leq k'<p$ by divsion algorithm. Then we have $\gamma^k=(\gamma^p)^m \gamma^{k'}\in Span\{1,\gamma,\cdots, \gamma^{p-1}\}$ since $\gamma^p\in F$ implies $(\gamma^p)^m\in F$. So $\{1,\gamma,\cdots, \gamma^{p-1}\}$ is a maximal linearly independent subset. Hence, we have $\dim_F(K)=[K:F]=p$. But this contradicts to the assumption $[K:F]>p$. So $K$ is not primitive.
+\\\textbf{(c):} Let $K=\Z/p\Z(x,y)$, which is field of fraction of the polynomial ring $\Z/p\Z[x,y]$ with 2 variables $x,y$. And let $F=K^p$. Then we have $\Z/p\Z\subseteq F$ since for any $1\leq i\leq p-1$, we have $i^p\equiv i\pmod{p}$ by Fermat's little theorem. Notice that $F$ is the image of Frobenius map, which is generated by the image of $\Z/p\Z,x,y$ under the Frobenius map since $K$ is generated by $\Z/p\Z,x,y$. Hence, we have $F=\Z/p\Z(x^p,y^p)$. Now, we want to show $[K:F]>p$ and $[K:F]<\infty$.\\
+We have $F(x)=\Z/p\Z(x,y^p)$, which is spanned by $\{1,x,x^2,\cdots, x^{p-1}\}$ over $F$. This is also a $F$-basis of $F(x)$ since if it is not linearly independent, then this implies the minimal polynomial of $x$ over $F$ has degree at most $p-1$, but this contradicts to part a since $x\in K-F$ implies the minimal polynomial of $x$ over $F$ has degree $n$. So we have $[\Z/p\Z(x,y^p):F]=p$.  Now, notice that $\{1,y,y^2,\cdots, y^{p-1}\}$ is a linearly independent set in $\Z/p\Z(x,y^p)$ since $x,y$ are distinct variables. Then we have $\{1,y,\cdots y^{p-1}\}$ is a $F(x)$-basis of $F(x,y)=\Z/p\Z(x,y)=K$. So we have 
+\[[K:F]=[K:F(x)][F(x):F]=p^2<\infty\]
+\qed\\
+\end{document}

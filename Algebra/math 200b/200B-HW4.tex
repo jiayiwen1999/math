@@ -1,0 +1,194 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 4 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:} First, we expand the linearly independent set $\{v_1,v_2\}$ into a basis of $V$. We denote the basis as  $\{v_1,v_2,v_3,\cdots\}$. Then suppose $v_1\otimes v_1+v_2\otimes v_2=u\otimes w$ for some $u,w\in V$. Then we can write $u=\sum_{i\geq 1}a_iv_i$ and $w=\sum_{i\geq 1}b_iv_i$, where the summands are finite sum. Then we have
+\[u\otimes w=(\sum_{i\geq 1}a_iv_i)\otimes (\sum_{i\geq 1}b_iv_i)=\sum_{i\geq 1}\sum_{j\geq 1}a_ib_jv_i\otimes v_j=v_1\]
+Hence, we have $a_1b_1=a_2b_2=1$ and the rest are zero. Therefore, we have $a_1b_i=0$ for all $i\neq 1$. Since $a_1\neq 0$, we have $b_i=0$ for all $i\neq 1$. But this leads to a contradiction since $a_2b_2=1$ implies $b_2\neq 0$. So we cannot write the sum of $v_1\otimes v_1$ and $v_2\otimes v_2$ as a pure tensor.
+\\\qed\\
+\textbf{Problem 2:}
+\\\textbf{(a):} Consider the following map,
+\[\phi:R/I\times R/J\to R/(I+J)\]
+\[(a+I,b+J)=ab+(I+J)\]
+This is $R$-balanced because for any $a,b,c\in R$, we have
+\[\phi(a+c+I,b+J)=(a+c)b+(I+J)=ab+(I+J)+cb+(I+J)=\phi(a+I,b+J)+\phi(c+I,b+J)\]
+\[\phi(a+I,b+c+J)=a(b+c)+(I+J)=ab+(I+J)+ac+(I+J)=\phi(a+I,b+J)+\phi(a+I,c+J)\]
+\[\phi(ac+I,b+J)=acb+(I+J)=a(cb)+(I+J)=\phi(a+I,cb+J)\]
+If we denote the $R$-balanced map of the tensor product as $\Phi:R/I\times R/J\to R/I\otimes_R R/J$, then by the universal property, there is a unique $R$-module homomorphism $\varphi$ that commutes the diagram.
+\begin{center}
+    \begin{tikzcd}
+        R/I\times R/J \arrow[r, "\Phi"] \arrow[rd, "\phi"] & R/I\otimes_R R/J \arrow[d, "\exists! \varphi", dashed] \\
+        & R/(I+J)
+    \end{tikzcd}
+\end{center}
+Now, we want to show $\varphi$ is an isomorphism. For any $r\in R$, we have
+\[\varphi(r\otimes 1)=\phi(r+I,1+J)=r+(I+J)\]
+So $\varphi$ is surjective. It is injective because any element $\sum_{i=1}^nr_i(a_i\otimes b_i)\in R/I\otimes_R R/J$ can be written as
+\[\sum_{i=1}^nr_i(a_i\otimes b_i)=\sum_{i=1}^nr_ib_i(a_i\otimes 1)=\sum_{i=1}^n(r_ib_ia_i\otimes 1)=(\sum_{i=1}^nr_ib_ia_i)\otimes 1\]
+If $\varphi(r\otimes 1)=0+(I+J)$, then we have $\phi(r+I,1+J)=r+(I+J)=0$.
+Hence, we have $r\in I+J$. Then there exists $x\in I,y\in J$ such that $r=x+y$. So we have
+\[r\otimes 1=(x+y)\otimes 1=x\otimes 1+y\otimes 1=0\otimes 1+ 1\otimes y=0+1\otimes 0=0+0=0\]
+So $\varphi$ is injective.
+\\\textbf{(b):} Suppose the generating sets of $M,N$ are $\{m_1,\cdots,m_k\}$ and $\{n_1,\cdots n_s\}$, respectively. Then we claim that the set $\{ m_i\otimes n_j\mid 1\leq i\leq k,\ 1\leq j\leq s\}$ generates $M\otimes_R N$.
+Suppose $m=\sum_{i=1}^k a_im_i\in M$ and $n=\sum_{i=1}^sb_in_i\in N$, where $a_i,b_i\in R$. Then we have
+\begin{align*}
+    m\otimes n & =(\sum_{i=1}^k a_im_i)\otimes \sum_{i=1}^sb_in_i  \\
+               & =\sum_{i=1}^ka_i(m_i\otimes (\sum_{i=1}^sb_in_i)) \\
+               & =\sum_{i=1}^ka_i(\sum_{j=1}^sb_j(m_i\otimes n_j)) \\
+               & =\sum_{i=1}^k\sum_{j=1}^sa_ib_j(m_i\otimes n_j)
+\end{align*}
+So $M\otimes_R N$ is finitely generated as $R$-module. Now, we look at the elementary divisors.\\
+By the structure theorem of finitely generated module over PID, we have $M\cong \oplus_{i=1}^m R/(p_i^{\alpha_i})$ and $N\cong \oplus_{i=1}^nR/(q_i^{\beta_i})$ where $p_i,q_i$ are primes and $\alpha_i,\beta_i\geq 1$. Then since tensor product commutes with direct sum, we have 
+\[M\otimes N\cong \oplus_{i,j}R/(p_i^{\alpha_i})\otimes_R R/(q_j^{\beta_j}) \]
+And we claim that $R/(x)\otimes_R R/(y)\cong R/(\gcd(x,y))$ for all $x,y\in R$.\\
+Consider the $R$-balanced map, 
+\[\phi:R/(x)\times R/(y)\to R/(\gcd(x,y))\]
+\[(a,b)\mapsto ab\]
+By the universal property of tensor product, there exists a unique homomorphism commutes the diagram.
+\begin{center}
+    \begin{tikzcd}
+        R/(x)\times R/(y) \arrow[r, "\Phi"] \arrow[rd, "\phi"] & R/(x)\otimes_R R/(y) \arrow[d, "\exists! \varphi", dashed] \\
+        & R/(\gcd(x,y))
+    \end{tikzcd}
+\end{center}
+Notice that $(\gcd(x,y))=(x)+(y)$ in PID by definition. And part a, says $\varphi$ is an isomorphism. Hence, we have $R/(x)\otimes_R R/(y)\cong R/(\gcd(x,y))$. So
+$R/(p_i^{\alpha_i})\otimes_R R/(q_j^{\beta_j})\cong R$ if $p_i\nsim q_j$. and $R/(p_i^{\alpha_i})\otimes_R R/(q_j^{\beta_j})\cong R/
+(p_i^{\min(\alpha_i,\beta_j)})$ if $p_i\sim q_j$. So the elementary divisors of $M\otimes N$ are $\{p_i^{\min(\alpha_i,\beta_j)}\mid p_i\sim q_j,\ 1\leq i\leq m,\  1\leq j\leq n\}$.
+\\\qed\\
+\textbf{Problem 3:}\\
+\textbf{(a):} Define a $K-$action by
+\[K\times K\otimes_F F[x]\to K\otimes_F F[x]\]
+\[a\cdot (\sum_{i=1}^np_i(b_i\otimes f_i))=\sum_{i=1}^np_i(ab_i\otimes f_i)\]
+We check this is a $K$-module. For any $a,b\in K$ and $\sum_{i=1}^np_i(x_i\otimes f_i), \sum_{i=1}^mq_i(y_i\otimes g_i)\in K\otimes_F F[x]$, we have
+\[a\cdot b\cdot \sum_{i=1}^np_i(x_i\otimes f_i)=a\cdot (\sum_{i=1}^np_i(bx_i\otimes f_i))=\sum_{i=1}^np_i(abx_i\otimes f_i)=ab\cdot(\sum_{i=1}^np_i(x_i\otimes f_i))\]
+\[1\cdot(\sum_{i=1}^np_i(x_i\otimes f_i))=(\sum_{i=1}^np_i(1x_i\otimes f_i))=(\sum_{i=1}^np_i(x_i\otimes f_i))\]
+\[a\cdot (\sum_{i=1}^np_i(x_i\otimes f_i)+\sum_{i=1}^mq_i(y_i\otimes g_i))=\sum_{i=1}^np_i(ax_i\otimes f_i)+\sum_{i=1}^mq_i(ay_i\otimes g_i)=a\cdot (\sum_{i=1}^np_i(x_i\otimes f_i))+a\cdot (\sum_{i=1}^mq_i(y_i\otimes g_i))\]
+\begin{align*}
+    (a+b)\cdot (\sum_{i=1}^np_i(x_i\otimes f_i)) & =\sum_{i=1}^np_i((a+b)x_i\otimes f_i)                                            \\
+                                                 & =\sum_{i=1}^n(p_i(ax_i\otimes f_i)+p_i(bx_i\otimes f_i))                         \\
+                                                 & =\sum_{i=1}^np_i(ax_i\otimes f_i)+\sum_{i=1}^np_i(bx_i\otimes f_i)               \\
+                                                 & =a\cdot(\sum_{i=1^n}p_i(x_i\otimes f_i))+b\cdot(\sum_{i=1^n}p_i(x_i\otimes f_i))
+\end{align*}
+So $K\otimes_F F[x]$ is a $K$-module. It is a ring because $K\otimes_F F[x]$ is an $F$-algebra. Hence, $K\otimes_F F[x]$ is a $K-$algebra. We construct the isomorphism by the universal property of tensor product.\\
+Let $\phi:K\times F[x]$ such that $\phi(a,f)=af$. It is $F$-balanced because for any $a,b\in K, c\in F,f_1,f_2\in F[x]$, we have 
+\[\phi(a,f_1+f_2)=a(f_1+f_2)=af_1+af_2=\phi(a,f_1)+\phi(a,f_2)\] 
+\[\phi(a+b,f_1)=(a+b)f_1=af_1+bf_1=\phi(a,f_1)+\phi(b,f_1)\] 
+\[\phi(ac,f_1)=acf_1=a(cf_1)=\phi(a,cf_1)\]
+Then the universal property says there exists a unique $F-$module homomorphism, $\varphi$, that commutes the diagram. 
+\begin{center}
+    \begin{tikzcd}
+        K\times F[x] \arrow[r, "\Phi"] \arrow[rd, "\phi"] & K\otimes_F F[x] \arrow[d, "\exists! \varphi", dashed] \\
+        & K[x]
+    \end{tikzcd}
+\end{center}
+Now, we want to show $\varphi$ is also a $K$-module homomorphism, a ring homomorphism, and bijective. For any $k\in K$ and $\sum_{i=1}^na_i(k_i\otimes f_i)\in K\otimes_F F[x]$, we have 
+\begin{align*}
+    \varphi\bigg(k\cdot \big(\sum_{i=1}^na_i(k_i\otimes f_i)\big)\bigg)&=\varphi(\sum_{i=1}^na_i(kk_i\otimes f_i))\\
+    &=\sum_{i=1}^na_i\varphi(kk_i\otimes f_i) \tag*{(as $F$-module homomorphism)}\\
+    &=\sum_{i=1}^na_i\phi(kk_i,f_i) \tag*{(by the diagram)}\\
+    &=\sum_{i=1}^na_i(kk_if_i)\\
+    &=k\bigg(\sum_{i=1}^na_i(k_if_i)\bigg)\\
+    &=k\bigg(\sum_{i=1}^na_i\varphi(k_i\otimes f_i)\bigg)\\
+    &=k\bigg(\varphi\big(\sum_{i=1}^na_i(k_i\otimes f_i)\big)\bigg)
+\end{align*}
+It is a ring homomorphism because an $F$-module homomorphism is a homomorphism respect to the additive group of the tensor product. Also, we have 
+\[\varphi(1\otimes 1)=\phi(1,1)=1_{K[x]}\]
+To check $\varphi$ preserve the product, we can check on pure tensor. Since the product of general element can be extended through summand of $F$-action of pure tensor and $\varphi$ preserves addition and $F$-action. For any $a,b\in K$ and $f,g\in F[x]$, we have
+\[\varphi\bigg((a\otimes f)(b\otimes g)\bigg)=\varphi(ab\otimes fg)=abfg=(af)(bg)=\varphi(a\otimes f)\varphi(b\otimes g)\]
+So $\varphi$ is a ring homomorphism. Hence, $\varphi$ is a $K-$algebra homomorphism.\\
+It is surjective since for any $k\in K$, we have 
+\[\varphi(k\otimes 1)=k\]
+\[\varphi(1\otimes x)=x\]
+Since $K[x]$ is generated by $K,x$, we have $\varphi$ is surjective.\\
+Notice that a general element in $K\otimes_F F[x]$ is $\sum_[i=1]^na_i(k_1\otimes f_i)=\sum_{i=1}^n(a_ik_i\otimes f_i)$, some finite sum of pure tensor. We can also assume $f_i$ is monic because if the highest coefficient of $f_i$ is $b_i\neq 0$, then $b_i^{-1}f_i$ is monic and 
+we have $k_i\otimes f_i=b_ik_i\otimes b_i^{-1}f_i$. Now, we induct on $n$. When $n=1$, if we have $\varphi(k\otimes f)=0$, then we have $kf=0$. Since $f$ is monic, we have $k=0$ since the highest coefficient of $kf$ is $k$. So we have $k\otimes f=0$.\\
+If $\varphi(\sum_{i=1}^mk_i\otimes f_i)=0$ implies $\sum_{i=1}^nk_i\otimes f_i=0$ for all $n\leq m$, then we have 
+\[\varphi(\sum_{i=1}^{m+1}k_i\otimes f_i)=0\]
+Let $B=\{\deg(f_i)\mid 1\leq i\leq m+1\}$ and $A=\{i\mid 1\leq i\leq m+1,\ \deg(f_i)=max(B)\}$. Since $A$ is nonempty, by rearrange of the pure tensors, we can let $m+1\in A$. If we look at the highest coefficient of $\varphi(\sum_{i=1}^{m+1}k_i\otimes f_i)$, we have 
+\[\sum_{i\in A}k_i=0\implies k_{m+1}=\sum_{i\in A,i\neq m+1}-k_i\]
+So we have
+\[\sum_{i=1}^{m+1}k_i\otimes f_i=\sum_{i=1}^{m}k_i\otimes f_i-\sum_{i\in A,\ i\neq m+1}(k_i\otimes f_m)=\sum_{i\in A,i\neq m+1}(k_i\otimes (f_i-f_m))+\sum_{i\notin A}k_i\otimes f_i.\]
+Notice that the pure tensor in first sum can be rewrite as some element in $K$ tensor with a monic polynomial in $F[x]$. And we have $m$ terms in total. By the induction hypothesis, we have $\sum_{i=1}^{m+1}k_i\otimes f_i=0$. So $\varphi$ is injective. So $\varphi$ is a $K$-algebra isomorphism.\\
+\textbf{(b):} The proof is similar to part a. If $a\in K$ and $\sum_{i=1}^nk_i\otimes (f_i+(g))\in K\otimes_F R$, we define the action as 
+\[a\cdot \sum_{i=1}^nk_i\otimes (f_i+(g))=\sum_{i=1}^nak_i\otimes (f_i+(g))\]
+Then we have a $K$-module structure on $K\otimes_F R$ since all calculations of checking module axioms are the same as previous except that on the second coordinates, we are working on the representatives instead. Similarly, we have an $F$-balanced map $\phi:K\times R$ such that $\phi(a,f+(g))=af+(g)$. 
+\begin{center}
+    \begin{tikzcd}
+        K\times R \arrow[r, "\Phi"] \arrow[rd, "\phi"] & K\otimes_F R \arrow[d, "\exists! \varphi", dashed] \\
+        & K[x]/(g)
+    \end{tikzcd}
+\end{center}
+Then $\varphi$ is also a $K$-module homomorphism and ring homomorphism. Now, we want to show it is a bijection.\\
+It is surjective for the same reason since $\varphi(1\otimes (x+(g)))=1x+(g)=x+(g)$ and $\varphi(k\otimes 1+(g))=k+(g)$ for all $k\in K$.\\
+Suppose $g=\sum_{i=1}^ma_ix^i$. Since any polynomial $f$ can be written as $\sum_{i=1}^mb_ix^i\in F[x]$, we can rewrite the tensor product $k\otimes f$ as $\sum_{i=1}^mkb_i\otimes x^i$. So if $\sum_{i=1}^l k_i\otimes f_i=\sum_{i=1}^q c_i\otimes x^i$ is in the kernel, where $q=max\{\deg(f_i)\}$ and $c_i$ is the sum of $k_i$ multiply with $i$th coefficient over all $f_i$, then we have 
+\[\varphi(\sum_{i=1}^qc_i\otimes x^i)=\sum_{i=1}^qc_ix^i=0\pmod g\]
+So there exists some polynomial $h(x)=\sum_{i=1}^sd_ix^i$ such that $hg=\sum_{i=1}^qc_ix^i$. So we have 
+\[c_i=\sum_{i=u+v}d_ua_v\]
+So we have 
+\begin{align*}
+    \sum_{i=1}^qc_i\otimes x^i&=\sum_{i=1}^q(\sum_{i=u+v}d_ua_v)\otimes x^i\\
+    &=\sum_{u,v}d_ua_v\otimes x^{u+v}\\
+    &=\sum_{u,v}d_u\otimes a_vx^{u+v}\\
+    &=\sum_{u}d_u\otimes x^u(\sum_{v}a_vx^v)\\
+    &=\sum_{u}d_u\otimes x^ug\\
+    &=\sum_u d_u\otimes 0\\
+    &=0
+\end{align*}
+So it is injective. Hence, we have a $K$-algebra isomorphism.\\
+\textbf{(c):} By previous part, we know $\C\otimes_\R \C\cong \C\otimes_\R \R[x]/(x^2+1)\cong \C[x]/(x^2+1)$ as a $\C$-algebra. By chinese remainder theorem, we have 
+\[\C[x]/(x^2+1)\cong \C[x]/(x-i)\oplus \C[x]/(x+i)\cong \C \oplus \C \]
+since $\pm i\in \C$. Also, since direct sum and carterisan product are the same in finite cases, we have 
+\[\C\otimes_\R\C\cong\C[x]/(x^2+1)\cong \C \times \C\]
+\\\qed\\
+\textbf{Problem 4:}\\
+\textbf{(a): } Like before, we define the $F$-action by multiplication on the first coordinate. Let's check the $F$-module axioms.\\
+Suppose $\{m_1,\cdots m_n\}$ is a generating set of $M$. Then an arbitrary element of $F\otimes_R M$ can be written as 
+\[\sum_{i=1}^q f_i\otimes (\sum_{j=1}^nr_jm_j)=\sum_{i=1}^q\sum_{j=1}^n r_jf_i\otimes m_j=\sum_{j=1}^n((\sum_{i=1}^qr_jf_i)\otimes m_j)\]
+So for any $c_1,c_2\in F$ and $\sum_{i=1}^nf_i\otimes m_i$ and $\sum_{i=1}^ng_i\otimes m_i$ in  $F\otimes_R M$, we have
+\[c_1\cdot (c_2\cdot (\sum_{i=1}^nf_i\otimes m_i))=c_1\cdot (\sum_{i=1}^nc_2f_i\otimes m_i)=\sum_{i=1}^nc_1c_2f_i\otimes m_i=(c_1c_2)\cdot(\sum_{i=1}^nf_i\otimes m_i)\]
+\[1\cdot (\sum_{i=1}^nf_i\otimes m_i)=\sum_{i=1}^n1f_i\otimes m_i=\sum_{i=1}^nf_i\otimes m_i\] 
+\[(c_1+c_2)\cdot (\sum_{i=1}^nf_i\otimes m_i)=\sum_{i=1}^n(c_1+c_2)f_i\otimes m_i=\sum_{i=1}^nc_1f_i\otimes m_i+\sum_{i=1}^nc_2f_i\otimes m_i=c_1\cdot (\sum_{i=1}^nf_i\otimes m_i)+c_2\cdot (\sum_{i=1}^nf_i\otimes m_i)\]
+\begin{align*}
+    c_1\cdot (\sum_{i=1}^nf_i\otimes m_i+\sum_{i=1}^ng_i\otimes m_i)
+    &=c_1\cdot (\sum_{i=1}^n(f_i+g_i)\otimes m_i)\\
+    &=\sum_{i=1}^nc_1(f_i+g_i)\otimes m_i\\
+    &=\sum_{i=1}^nc_1f_i\otimes m_i+\sum_{i=1}^nc_1g_i\otimes m_i\\
+    &=c_1\cdot (\sum_{i=1}^nf_i\otimes m_i)+c_1\cdot (\sum_{i=1}^ng_i\otimes m_i)
+\end{align*}
+So it is a $F$-vector space. Also it is spanned by the set $\{1\otimes m_i\mid 1\leq i\leq n\}$ since 
+\[\sum_{i=1}^nf_i\otimes m_i=\sum_{i=1}^nf_i(1\otimes m_i)\] 
+So $\dim_F(F\otimes_R M)\leq n$ is finite. If $M$ is torsion, then $ann_R(M)\neq \emptyset$. Suppose $a\in ann_R(M)$, then we have 
+\[1\otimes m_i=a^{-1}\otimes am=a^{-1}\otimes 0=0 \]
+So $F\otimes_R M$ is spanned by $0$. Hence, $F\otimes M=0$.\\
+\textbf{(b): }If $rk(M)=r$, then the spanning set $\{1\otimes m_i\}$ contains $r$ linearly independent elements. By reordering, we assume they are $\{1\otimes m_1,\cdots, 1\otimes m_r\}$. Then $ann_R(m_i)=\emptyset$ for all $1\leq i\leq r$. Since if $c\in R\setminus\{0\}$, then we have $1\otimes cm_i=c(1\otimes m_i)\neq 0$. Hence, $c\notin ann_R(m_i)$. Also, notice that 
+$N\cong \oplus_{i=1}^r Rm_i$ is a submodule of $M$, which is free of rank $r$. Now, we want to show this is the largest free submodule of $M$ (in the sense of rank). Suppose there is some free module $N'$ with rank $s>r$ in $M$. Then the generating set $\{n_1,n_2,\cdots n_k\}$ of $M$ will also contains a basis for $N'$, which will gives an $R$-linearly independent subset $n_1,\cdots n_s$.\\
+Also, we know $\{1\otimes n_1,\cdots,1\otimes n_k\}$ spans $F\otimes_R M$. We want to show the subset $\{1\otimes n_1,\cdots,1\otimes n_s\}$ is $F$-linearly independent. Since $F$ is the field of fraction of $R$, then for any $f_i\in F$, we have $f_i=\frac{p_i}{q_i}$ where $p_i\in R$ and $q_i\in R\setminus\{0\}$. Hence, we have
+\begin{align*}
+    \sum_{i=1}^sf_i(1\otimes n_)&=\sum_{i=1}^s\frac{p_i}{q_i}(1\otimes n_i)\\
+    &=\sum_{i=1}^s\frac{p_iq_1q_2\cdots q_s}{q_1q_2\cdots q_s}(1\otimes n_i)\\
+    &=\frac{1}{q_1q_2\cdots q_s}\sum_{i=1}^s(p_iq_1q_2\cdots q_s)(1\otimes n_i)\\
+    &=\frac{1}{q_1q_2\cdots q_s}1\otimes (\sum_{i=1}^s(p_iq_1q_2\cdots q_s)n_i)\\
+\end{align*}
+But this is equal to zero if and only if $p_iq_1q_2\cdots q_s=0$ for all $i$ since $n_i$ is $R$ linearly independent. Hence, we have $p_i=0$ for all $i$. Hence, $f_i=0$ for all $i$. Hence, the set is $F$-linearly independent. But this contradicts the assumption $rk(M)=r<s$. So $N'$ cannot exist.
+\\
+\textbf{(c): }By the structure theorem of f.g. module over PID, we know $M\cong R^n\oplus T$, where $T$ is torsion and $n\in\N$. By part b, we know $M$ contains a submodule that is free of rank $r$. If $n<r$, then $M$ doesn't contain a submodule with rank r. It contradicts. If $n>r$, then $R^n$ is a submodule of $M$ that is free of rank $n$, which means $r$ is not the largest natural number. It contradicts. So we have $n=r$.  \end{document}

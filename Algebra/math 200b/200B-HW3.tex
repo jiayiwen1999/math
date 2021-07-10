@@ -1,0 +1,337 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 2 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+We use Daniel's lecture note as main reference.\\
+\textbf{Problem 1:} If $A,B$ are similar, then they have same rational canonical form. Hence, they have the same invariant factors. Since the characteristic polynomial is equal to the product of all invariant factors and the minimal polynomial is equal to the last invariant factors, $A,B$ has same characteristic polynomial and minimal polynomial.\\
+Conversely, if $A,B$ has same characteristic polynomial and minimal polynomial. If $n=1$, then we are done since $1\times 1$ matrices are just element in $F$. So the characteristic polynomial determines the matrix since $\det(A-\lambda I)=A-\lambda=0$ implies $A=\lambda$. Now, suppose $2\leq n\leq 3$. Let $f$ be the characteristic polynomial and $g$ be the minimal polynomial. First observation is that $g$ cannot be constant since $g$ is divisible by all invariant factor of $A,B$, which implies $g$ has the highest degree among all invariant factors of $A,B$. If $g$ is constant, then $f$ is constant since $f$ is the product of all invariant factors. It contradicts to the degree of $f$ is equal to $n>1$.\\ 
+Since $g\mid f$, we discuss it case by case. If $g=f$, then $g$ is the only invariant factor of $A,B$. So we have $A$ similar to $B$ since they have the same rational form $C_g$. If $g\neq f$, in the case of $n=2$, we have $g$ is linear. So $f$ can be factor into linear factors. Therefore, the invariant factors are $g,\frac{f}{g}$. So the rational form is determined. Hence, $A$ is similar to $B$. In the case $n=3$, we have two possibility. If $\deg (g)=2$, then we have $f=g(x-a)$ for some $a\in F$. Since $(x-a)$ is irreducible in $F[x]$ and $(x-a)\mid f$, we have $x-a\mid g$. So $g=(x-a)(x-b)$ for some $b\in F$. So the invariant factors are $(x-a),(x-a)(x-b)$. Hence, the similarity class of $A,B$ are determined. If $\deg(g)=1$, then we assume $g=x-a$. Since $g$ divides all other invariant factors, the only possibility is that $f=(x-a)^3$ and the invariant factors are $x-a,x-a,x-a$. So we have $A$ is similar to $B$.\\
+The argument fails for $n=4$ since we cannot fully determined the invariant factor by $f,g$.
+Let $A=\begin{pmatrix}
+    1&1&0&0\\
+    0&1&0&0\\
+    0&0&1&0\\
+    0&0&0&1
+\end{pmatrix}$ and $B=\begin{pmatrix}
+    1&1&0&0\\
+    0&1&0&0\\
+    0&0&1&1\\
+    0&0&0&1
+\end{pmatrix}$. So we have $A,B$ are not similar because they have different Jordan forms. It is obvious that they have same characteristic polynomial $(x-1)^4$. Now, we claim they have the same minimal polynomial $(x-1)^2$.
+Since $$(\begin{pmatrix}
+    1 &1\\
+    0&1
+\end{pmatrix}-I_2)^2=\begin{pmatrix}
+    0&1\\
+    0&0
+\end{pmatrix}^2=\begin{pmatrix}
+    0&0\\
+    0&0
+\end{pmatrix}$$
+So we have 
+\[(A-I_4)^2=\begin{pmatrix}
+    0&1&0&0\\0&0&0&0\\0&0&0&0\\0&0&0&0
+\end{pmatrix}^2=0\]
+\[(B-I_4)^2=\begin{pmatrix}
+    0&1&0&0\\0&0&0&0\\0&0&0&1\\0&0&0&0
+\end{pmatrix}^2=0\]
+So $g\mid (x-1)^2$. But notice that $A,B$ doesn't satisfies $x-1$ since they are not identity matrices. So $(x-1)^2$ is the minimal polynomial.\\\qed\\
+\textbf{Problem 2:} Let's do calculations.
+\[charpoly(M)=\det(xI-M)=x\det(\begin{pmatrix}
+    x&0\\
+    0&x\\
+\end{pmatrix})-\det(\begin{pmatrix}
+    0&0\\
+    1&x\\
+\end{pmatrix})+\det(\begin{pmatrix}
+    0&x\\
+    1&0
+\end{pmatrix})=x^3-x\]
+So the characteristic polynomial of $M$ can be factored as $x(x-1)(x+1)$. If $char(F)\neq 2$, then it factors into distinct linear factor, the minimal polynomial is also $x^3-x$. If $char(F)=2$, we need to do more calculations. It is obvious that the minimal polynomial has degree at least 2 since $M$ is not zero matrix, identity matrix, or -$I$. 
+\[M(M-I)=\begin{pmatrix}
+    1&1&1\\
+    0&0&0\\
+    1&1&1
+\end{pmatrix}\]
+\[M(M+I)=\begin{pmatrix}
+    1&-1&-1\\
+    0&0&0\\
+    -1&1&1
+\end{pmatrix}\]
+\[(M-I)(M+I)=\begin{pmatrix}
+    0&0&0\\
+    0&-1&0\\
+    0&1&0
+\end{pmatrix}\]
+So the minimal polynomial has degree 3, which is the same as the characteristic polynomial. So we have the Jordan form as 
+\[\begin{pmatrix}
+    0&0&0\\
+    0&1&0\\
+    0&0&-1
+\end{pmatrix}\]
+And the rational form as 
+\[\begin{pmatrix}
+    0&0&0\\
+    1&0&1\\
+    0&1&0
+\end{pmatrix}\]
+\qed\\
+\textbf{Problem 3:} We claim that they are not similar to each other. First, we have 
+\[charpoly(A)=charpoly(B)=charpoly(C)=(x-1)^4\]
+If we can show they have different minimal polynomials, then they are not similar since similar matrices have same minimal polynomial. Since none of them are identity, so their minimal polynomial has degree at least 2.
+\[(A-I)^2=\begin{pmatrix}
+    0&0&0&2\\
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+\end{pmatrix}, (A-I)^3=\begin{pmatrix}
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+\end{pmatrix}\]
+So minimal polynomial of $A$ is $(x-1)^3$.
+\[(B-I)^2=\begin{pmatrix}
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+\end{pmatrix}\]
+So minimal polynomial of $B$ is $(x-1)^2$.
+\[(C-I)^2=\begin{pmatrix}
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+\end{pmatrix}\]
+So minimal polynomial of $C$ is $(x-1)^2$.
+So we can conlude that $A$ is not similar to $B$ or $C$. But notice that 
+\[B-I=\begin{pmatrix}
+    0&0&0&1\\
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0\\
+\end{pmatrix}\]
+has rank 1, which means the null space has rank 3. So there are 3 elementary divisors with degree greater than 1. And the onyl possibility is that the elementary divisors of $B$ are $x-1$, $x-1$, $(x-1)^2$. \\
+Similarly, we have 
+\[C-I=\begin{pmatrix}
+    0&1&1&1\\
+    0&0&0&-1\\
+    0&0&0&1\\
+    0&0&0&0\\
+\end{pmatrix}\]
+has rank 2, which means the null space has rank 2. So there are 2 elementary divisors with degree greater than 1. But notice that $(x-2)^2$ is the last invariant factors, which should divides all elementary divisors. So the elementary divisors has degree at most 2. So the only possibility is that $(x-1)^2,(x-1)^2$. So $B$ is not similar to $C$. Because different elementary divisors implies different Jordan form.
+\\\qed\\
+\textbf{Problem 4:}\\
+\textbf{(a):} If $F=\Q$, if $A$ is diagonalizable and $P^{-1}AP=\lambda_1\oplus \lambda_2$ for some $\lambda_i\in\Q$, then we have $\lambda_i^4=1$, but this implies $\lambda_i=\pm1$. However, we have $(\pm1)^2=1$. So $P^{-1}AP$ cannot have order 4. So $A$ is not diagonalizable. So the minimal polynomial of $A$ has degree 2. Suppose the rational form of $A$ is 
+\[B=\begin{pmatrix}
+    0&a\\
+    1&b\\
+\end{pmatrix}\]
+where $a,b\in\Q$ and $P^{-1}BP=A$. Then $A^4=I$ implies that 
+\[P^{-1}B^4P=I\implies B^4=PP^{-1}=I \]
+So we have 
+\[B^4=\begin{pmatrix}
+    a^2+ab^2&2a^2b+ab^3\\
+    2ab+b^3 & a^2+3ab^2+b^4
+\end{pmatrix}=\begin{pmatrix}
+    1&0\\
+    0&1
+\end{pmatrix}\]
+So we have $2a^2b+ab^3=0$ and $a^2+ab^2=1$. If we factor the first equation, we have 
+\[ab(2a+b^2)=0\]
+Since $\Q$ is a domain, we have $a=0$ or $b=0$ or $2a+b^2=0$.
+If $a=0$, then the second equation says $0^2+0b^2=1$. It contradicts. So $a\neq 0$. If $b=0$, we have $a^2=1$. So $a=\pm1$.\\
+So we have two similarity classes with representatives $\begin{pmatrix}
+    0&1\\
+    1&0
+\end{pmatrix}$ and $\begin{pmatrix}
+    0&-1\\
+    1&0
+\end{pmatrix}$ respectively.\\
+If $2a+b^2=0$, then we have $b^2=-2a.$ So we have 
+\[a^2+a(-2a)=1\implies -a^2=1\]
+But there is no such $a\in \Q$ satisfies the euqation. Hence, such $a$ doesn't exist.\\
+So there is exactly 2 similarity classes with representatives $\begin{pmatrix}
+    0&1\\
+    1&0
+\end{pmatrix}$ and $\begin{pmatrix}
+    0&-1\\
+    1&0
+\end{pmatrix}$ respectively.
+\\\textbf{(b):} Since $\C$ is algebraically closed, every matrix has a Jordan form. If $A$ has exactly one Jordan block, then we suppose $P^{-1}AP=B=\begin{pmatrix}
+    a&1\\
+    0&a
+\end{pmatrix}$. So we have 
+\[B^4=\begin{pmatrix}
+    a^4&4a^3\\0&a^4
+\end{pmatrix} =I\]
+So we have $4a^3=0$ implies that $a=0$ since $\C$ is a domain. Hence, $a^4=0\neq 1$. So such $a$ doesn't exists. So there is no matrix $A$ satisfies the condition. If $A$ has two Jordan blocks. Then $A$ is diagonalizable. Suppose $P^{-1}AP=B=\begin{pmatrix}
+    a&0\\
+    0&b
+\end{pmatrix}$. Then we have 
+\[B^4=\begin{pmatrix}
+    a^4&0\\
+    0&b^4
+\end{pmatrix}=I\implies \ a^4=1,\   b^4=1\]
+So there are four possibilities $1,-1,i,-i$. But notice that 
+\[\begin{pmatrix}
+    a&0\\
+    0&b
+\end{pmatrix}=\begin{pmatrix}
+    0&1\\
+    1&0\\
+\end{pmatrix}\begin{pmatrix}
+    b&0\\
+    0&a
+\end{pmatrix}\begin{pmatrix}
+    0&1\\
+    1&0\\
+\end{pmatrix}\]
+So we just need to pick a pair of values from $\{1,-1,i,-i\}$ such that one of it has order 4. So we have 4 choices $1,i$ or $-1,i$ or $1,-i$ or $-1,-i$. 
+So there are 4 similarity classes and the representatives are 
+\[\begin{pmatrix}
+    1&0\\
+    0&i
+\end{pmatrix},\begin{pmatrix}
+    -1&0\\
+    0&i
+\end{pmatrix},\begin{pmatrix}
+    1&0\\
+    0&-i
+\end{pmatrix},\begin{pmatrix}
+    -1&0\\
+    0&-i
+\end{pmatrix}\]
+\textbf{(c): } We do the same calculation as part a. If $A$ is diagonalizable and $P^{-1}AP=\lambda_1\oplus \lambda_2$ for some $\lambda_i\in F$, then we have $\lambda_i^4=1$, but this implies $\lambda_i^2=1$ since $char(F)=2$. Hence, we have $\lambda_i=1$. So $P^{-1}AP=I$ has order 1. It contradicts. So $A$ is not diagonalizable. So the minimal polynomial of $A$ has degree 2. Suppose the rational form of $A$ is 
+\[B=\begin{pmatrix}
+    0&a\\
+    1&b\\
+\end{pmatrix}\]
+where $a,b\in F$ and $P^{-1}BP=A$. So we have 
+\[B^4=\begin{pmatrix}
+    a^2+ab^2&2a^2b+ab^3\\
+    2ab+b^3 & a^2+3ab^2+b^4
+\end{pmatrix}=\begin{pmatrix}
+    1&0\\
+    0&1
+\end{pmatrix}\]
+So we have $2a^2b+ab^3=ab^3=0$ since $char(F)=2$. So we have $a=0$ or $b=0$. If $a=0$, we have a zero matrix. So it cannot be the case. If $b=0$, then we have $a^2=1$. So we have $a=1$. Hence, we have $B=\begin{pmatrix}
+    0&1\\
+    1&0
+\end{pmatrix}$. But we have $B^2=I$, so $A$ has order 2. It contradicts. So there is no such $A$ in $GL_2(F)$ if $F$ has characteristic 2.
+\\\qed\\
+\textbf{Problem 5:}\\
+\textbf{(a):} Since $charpoly(A^t)=\det(xI-A^t)$ and we have 
+$xI-A^t=(xI-A)^t$, so we have $charpoly(A^t)=\det(xI-A)^t=\det(xI-A)=charpoly(A)=f$. Also, we have $(A^t)^n=(A^n)^t$ and $(A+B)^t=A^t+B^t$. So if $g'=\sum_{i=1}^nb_ix^i$ is the minimal polynomial of $A^t$, then we have 
+\[g'(A^t)=\sum_{i=1}^nb_i(A^t)^i=(\sum_{i=1}^nb_iA^i)^t=0\]
+Hence, we have $\sum_{i=1}^nb_iA^i=0$. But notice that $\sum_{i=1}^nb_iA^i=g'(A)$. So we have $g\mid g'$. On the other hand, if $g=\sum_{i=1}^na_ix^i$, then we have 
+\[g(A^t)=(\sum_{i=1}^na_iA^i)^t=0^t=0\]
+So we have $g'\mid g$. So we have $g\sim g'$. But since both $g'$ and $g$ are monic, we have $g=g'$. So we have $minpoly(A^t)=g$.\\
+\textbf{(b): }If $f=g$, then $g$ is the only invariant factor of $A$. Hence, the rational form of $A$ has exactly one block, which is $C_f$. So $A$ is similar to $C_f$.\\
+Conversely, if $A$ is similar to $C_f$, then $f$ is an invariant factor of $A$. But since $f=charpoly(A)$ is the product of all invariant factors of $A$, $A$ contains exactly one invariant factor. Since $g$ is also an invariant factor of $A$, we have $f=g$.\\
+\textbf{(c):} Notice that $C_h^t$ has the same minimal polynomial and same characteristic polynomial of $C_h$ by part a. Then by part b (if part with $A=C_h$), we know the characteristic polynomial of $C_h$ is $h$, and the minimal polynomial of $C_h$ is also $h$. So we have $charpoly(C_h^t)=minpoly(C_h^t)=h$. Then by part b (only if part), we have $C_h^t$ is similar to $C_h$.\\
+\textbf{(d): } Suppose the rational canonical form of $A$ is $C_{h_1}\oplus \cdots \oplus C_{h_n}$. By part c, we know there exists $P_i\in GL_{\deg h_i}(F)$ such that $P_i^{-1}C_h^tP_i=C_h$ for all $1\leq i\leq n$. Hence, we can consider the direct sum $P_1\oplus P_2\oplus \cdots\oplus P_n$.
+So we have 
+\begin{align*}
+    &\ \ \ \ (P_1\oplus P_2\oplus \cdots\oplus P_n)^{-1}(C_{h_1}^t\oplus \cdots \oplus C_{h_n}^t)(P_1\oplus P_2\oplus \cdots\oplus P_n) \\
+    &=\begin{pmatrix}
+        P_1^{-1}&\ &\ &\ &\ \\
+        \ & P_2^{-1} &\ &\ &\ \\
+        \\
+        &\ &\ \ddots\\
+        \ &\ &\ &\ &P_n^{-1}
+    \end{pmatrix}\begin{pmatrix}
+        C_{h_1}^{t}&\ &\ &\ &\ \\
+        \ & C_{h_2}^{t} &\ &\ &\ \\
+        \\
+        &\ &\ \ddots\\
+        \ &\ &\ &\ &C_{h_n}^{t}
+    \end{pmatrix}\begin{pmatrix}
+        P_1&\ &\ &\ &\ \\
+        \ & P_2 &\ &\ &\ \\
+        \\
+        &\ &\ \ddots\\
+        \ &\ &\ &\ &P_n
+    \end{pmatrix}\\
+    &=\begin{pmatrix}
+        P_1^{-1}C_{h_1}^tP_1&\ &\ &\ &\ \\
+        \ & P_2^{-1}C_{h_2}^tP_2 &\ &\ &\ \\
+        \\
+        &\ &\ \ddots\\
+        \ &\ &\ &\ &P_n^{-1}C_{h_n}^tP_n
+    \end{pmatrix}\\
+    &=\begin{pmatrix}
+        C_{h_1}&\ &\ &\ &\ \\
+        \ & C_{h_2} &\ &\ &\ \\
+        \\
+        &\ &\ \ddots\\
+        \ &\ &\ &\ &C_{h_n}
+    \end{pmatrix}
+\end{align*}
+So $C_{h_1}^t\oplus \cdots \oplus C_{h_n}^t$ is similar to $C_{h_1}\oplus \cdots \oplus C_{h_n}$. Now, suppose $B^{-1}AB=C_{h_1}\oplus \cdots \oplus C_{h_n}$ for some invertible $B$. Then we have 
+\[C_{h_1}^t\oplus \cdots \oplus C_{h_n}^t=(C_{h_1}\oplus \cdots \oplus C_{h_n})^t=(B^{-1}AB)^t=B^tA^t(B^{-1})^t\]
+So $A^t$ is similar to $C_{h_1}^t\oplus \cdots \oplus C_{h_n}^t$. So we have $A^t$ is similar to $A$.
+\\\qed\\
+\textbf{Problem 6:} \\
+\textbf{(a): }If $\lambda\neq 0$, since $J$ is an upper triangular matrix, we have $J^2$ is an upper triangular matrix with diagonals are $\lambda^2$. So the characteristic polynomial of $J^2$ is $(x-\lambda^2)^n$. To show it has exactly one Jordan block, we want to show $(x-\lambda^2)^n$ is an elementary divisors of $J^2$. Consider the matrix $(J^2-\lambda^2I)$.
+We have 
+\[J^2-\lambda^2I=\begin{pmatrix}
+    0&2\lambda &1 &\ &\ &\ &\ \\
+        \ & 0&2\lambda&1 &\ &\ &\ \\
+        \ & \ &\ddots&\ddots&\ddots &\ &\ \\
+        \\
+        \\
+        \ &\ &\ &\ &\   &2\lambda &1\\
+        \ &\ &\ &\ &\ & 0 &2\lambda\\
+        \ &\ &\ &\ &\  &\ &0
+\end{pmatrix}\]
+It has rank $n-1$. Hence, the null space has rank $1$. So there is only one elementary divisors of $J^2$. So $J^2$ has one Jordan block.\\
+\textbf{(b): } If $\lambda=0$, then by same calculation, we have 
+\[J^2-0I=\begin{pmatrix}
+    0&0 &1 &\ &\ &\ &\ \\
+        \ & 0&0 &1 &\ &\ \\
+        \ & \ &\ddots&\ddots&\ddots &\ &\ \\
+        \\
+        \\
+        \ &\ &\ &\ &\   &0&1\\
+        \ &\ &\ &\ &\ & 0 &0\\
+        \ &\ &\ &\ &\  &\ &0
+\end{pmatrix}\]
+which has rank $n-2$ and the null space has rank $2$. So there are exactly 2 Jordan blocks. A basic pattern here is that if we multiply $J^2$ by itself $i$ times, we will move the entries with 1 up by $2i$ rows. Let's denote $V$ as the 0-generalized eigenspace. Then we have $\dim_F V[1]=2$. So each step will increase the rank of null space by $2$. So we have $\dim_F V[k]=2k$ where $2k\leq n$. If $n$ is even, then it takes $\frac{n}{2}-1$ steps to reach highest rank of the null spaces. So we have $\dim_F V[\frac{n}{2}]=n$. And we have $\dim_FV[\frac{n}{2}+1]=n$ since $\dim_FV[k]\leq n$. So there are 2 elementary divisors of degree $\frac{n}{2}$. So the Jordan form of $J^2$ is 2 Jordan blocks of size $\frac{n}{2}$ with eigenvalues 0.\\
+If $n$ is odd, then we have 
+\[\dim_FV[\frac{n-1}{2}]=n-1,\dim_FV[\frac{n+1}{2}]=n\]
+So there is one elementary divisors of degree $\frac{n-1}{2}$ and one of degree $\frac{n+1}{2}$. So the Jordan form is one Jordan block of size $\frac{n-1}{2}$ and one Jordan block of size $\frac{n+1}{2}$ with eigenvalues 0.\\
+\textbf{(c):} Suppose $M$ has Jordan form of $J=J_{\lambda_1}\oplus \cdots \oplus J_{\lambda_k}$, where $1\leq k\leq n$ and $J_{\lambda_i}$ is a Jordan block with eigenvalue $\lambda_i$. Suppose $M=P^{-1}JP$. Then if $M$ has some square root, we should also be able to find square root of its Jordan form $J$. If $\lambda_i\neq 0$, then by part $a$, we know there exists a Jordan block $J'_{\lambda_i}$ with same size as $J_{\lambda_i}$ and the eigenvalues is $\pm\sqrt{\lambda_i}$ such that $P_{\lambda_i}^{-1}(J'_{\lambda_i})^2P_{\lambda_i}=J_{\lambda_i}$. So we don't need to worry about nonzero eigenvalues.\\
+For nonzero eigenvalues, suppose there are $l$ of them. By rearranging, we let them to be the first $l$ eigenvalues and we order the blocks by size (increasing). First observation is that $l$ must be even since each Jordan block splits into 2 blocks when we square it. Second, if we call the first $l$ blocks by $J_1,J_2,\cdots J_l$, then the size of them should satisfies size of $J_{2i}$ is either equal to size of $J_{2i-1}$ or one greater than size of $J_{2i-1}$. By the proof of part b, these two conditions are implied by the Jordan form of $N$ and $l$ is equal to twice of the number of Jordan blocks of $N$ with eigenvalues 0.\\
+On the other hand if both condition are satisfies, let 
+\[N'=J'_1\oplus\cdots \oplus J'_{\frac{l}{2}}\oplus J'_{\lambda_{k-l+1}}\oplus \cdots \oplus J'_{\lambda_k}\]
+where $J'_i$ is Jordan block with eigenvalue 0 and size of $J_i\oplus J_{i+1}$, for $1\leq i\leq \frac{l}{2}$. And $J'_{\lambda_i}$ is Jordan block with eigenvalue $\sqrt{\lambda_i}$ and size of $J_{\lambda_i}$, for $k-l+1\leq i\leq k$. If $Q^{-1}N'^2Q=J$, then we let $N=P^{-1}Q^{-1}N'QP$. So we have 
+\[N^2=P^{-1}Q^{-1}N'^2QP=P^{-1}JP=M\]
+So the necessary and sufficient conditions are 
+\begin{enumerate}
+    \item $M$ has even number of Jordan blocks with eigenvalue 0.\\
+    \item If $J_1,J_2,\cdots J_l$ are Jordan blocks with eigenvalue 0 and they are ordered by size (increasing), then si.ze of $J_{2i}$ is either equal to size of $J_{2i-1}$ or one greater than size of $J_{2i-1}$
+\end{enumerate}
+\qed
+\end{document}

@@ -1,0 +1,67 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 2 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:}\\
+\textbf{(a):} Since $R$ is an integral domain, we know every ideal $I $ of $R$ is torsion free. Since $R$ is noetherian, we know $I$ is finitely generated. Then $I$ is free by the assumption. Suppose $\{a_1,\cdots,a_n\}$ is a basis of $I$. We want to show $n=1$. Suppose not, then we have $n\geq 2$. Let's show $a_1,a_2$ are not linearly independent.
+\[a_2a_1+(-a_1)a_2=a_1a_2-a_1a_2=0\] 
+So we have $a_1,a_2$ is not linearly independent. It contradicts since we choose $\{a_1,\cdots,a_n\}$ as a basis of $I$. Hence, $n=1$. So $I=Ra_1=(a_1)$ is principal. So $R$ is a PID.\\
+\textbf{(b):} Suppose $F$ is the field of fraction of $R$. Now, we want to show $F$ is a torsion free $R$-module. It is obvious that $F$ is an $R$-module acting by left multiplicaiton. It is torsion free since for any $0\neq \frac{r}{s}\in F$, we have $m\cdot \frac{r}{s}=0$ implies 
+\[0=0\cdot s=(m\cdot \frac{r}{s})s=mr\]
+Since $R$ is an integral domain, so we have either $m=0$ or $r=0$. Since $\frac{r}{s}\neq 0$, we have $r\neq 0$. So we have $m=0$ if $m\cdot \frac{r}{s}=0$. So $\frac{r}{s}$ is not torsion. So $F$ is torsion free.\\
+Now, by the assumption $F$ is free. Now, we want to apply a similar trick to show the basis of $F$ consists of exactly one element. Suppose $\frac{a}{b},\frac{c}{d}$ are two different elements in the basis of $F$. So we have $a,b,c,d\neq 0$.\\
+Now, take $\alpha=b^2cd\neq 0$ and $\beta=-abd^2\neq 0$, then we have  
+\[\alpha \frac{a}{b}+\beta\frac{c}{d}=abcd-abcd=0\]
+So $\frac{a}{b}$ and $\frac{c}{d}$ are linearly dependent. So the basis of $F$ consists of exactly one basis element.\\
+Suppose this basis element is $\frac{a}{b}$, then if $b\in R^\times$, then we have $\frac{a}{b}\in R$. So $F=R\frac{a}{b}=(\frac{a}{b})\subseteq R$. So we have $R=F$. So every nonzero element in $R$ is invertible. Hence, $R$ is a field.\\
+Otherwise, we have $b$ is not a unit. Now consider $\frac{1}{b^2}$. Suppose $r\frac{a}{b}=\frac{1}{b^2}$ for some $r\in R$. Then we have 
+\[b^2ra=b\]
+\[0=b^2ra-b=b(bra-1)\]
+Since $b\neq 0$ and $R$ is an integral domain, we must have $bra-1=0$, which implies $b^{-1}=ra\in R$. So $b$ is a unit. It contradicts. So $R$ must be a field.
+\\\qed\\
+\textbf{Problem 2:}\\
+\textbf{(a):} To find the elementary divisors and invariant factos, we want to factor all these polynomials into irreducibles first. Notice that $x^2+1$ and $x^2-x+1$ are irreducibles in $\Q[x]$ since they have no roots in $\Q$. So we have 
+\[x^2-1=(x+1)(x-1), \ x^2-2x+1=(x-1)^2, \ x^3+1=(x+1)(x^2-x+1) \]\\
+So the elementary divisors are $(x+1),(x-1), (x^2+1),(x-1)^2,(x+1),(x^2-x+1)$. So the invariant factors are $(x+1)(x-1)$ and $(x+1)(x-1)^2(x^2+1)(x^2-x+1)$.
+\\\textbf{(b):} Part b is similar to part a. The only difference is that every polynomials can be factor into linear factors since the only irreducibles in $\C[x]$ is linear polynomials. So we have 
+\[x^2+1=(x-i)(x+i), x^2-x+1=(x-\frac{1+\sqrt{-3}}{2})(x-\frac{1-\sqrt{-3}}{2})\]
+So the elementary divisors are $(x+1),(x-1), (x+i),(x-i),(x-1)^2,(x+1),(x-\frac{1-\sqrt{-3}}{2}),(x-\frac{1+\sqrt{-3}}{2})$. Then, the invariant factos are 
+\[(x+1)(x-1),\  (x+i)(x-i)(x-1)^2(x+1)(x-\frac{1-\sqrt{-3}}{2})(x-\frac{1+\sqrt{-3}}{2})\]
+\\\qed\\
+\textbf{Problem 3:}\\
+\textbf{(a):} Since any cyclic $R$-module is isomorphic to $R/I$ for some ideal $I$ of $R$, we can write these cyclic modules in the form of $R/(a)$ for some $a\in R$ because $R$ is a PID. Now we assume 
+\[M\cong R/(a_1)\oplus R/(a_2)\oplus R/(a_m)\]
+By the Chinese Remainder Theorem of modules, we have $R/(a_i)\cong R/(p_{i1}^{e_{i1}})\oplus R/(p_{ik}^{e_{ik}})$ where $a_i=p_{i1}^{e_{i1}}\cdots p_{ik}^{e_{ik}}$ by unique factorization, and $p_{ij}$ are nonassociate primes and $e^{ij}>0$. After we decomposed all $R/(a_i)$, we get the maximal number of cyclic modules in the direct sum. Since for each $R/(p_i^{e_i})$, we cannot decompose as the direct sum of $R/(p_i^l)\oplus R/(p_i^q)$ where $l,q<e_i$ since $p_i^l$ is not killed in the $R/(p_i^{e_i})$ but it is killed in the direct sum. Now, by the classification theorem of finitely generated $R$-module, we know two module is isomorphic if and only if they have same rank and "same" elementary divisors (up to rearrangement and associates). Hence, $s$ is equal to the maximal number of cyclic modules in the direct sum. So we have $s=max(S)$.\\
+\textbf{(b):} Let's start with the result from part a. So we have the information about all of the elementary divisors. Let's suppose they are 
+\[p_1^{e_1},\cdots, p_s^{e_s}\]
+where $p_i$ may not be distinct primes, but $e_i>0$ for all $i$. To putting these elementary divisors together, we can again use Chinese Remainder Theorem. So we can let $a_j=p_{j1}^{e_{j1}}\cdots p_{jk}^{e_{jk}}$, where $p_{ji}$ are distinct primes. If we let each $a_j$ to be the product of as much distinct prime powers as possible, then the number of $a_j$ is equal to the maximal number of times that some prime $p$ repeats in the $p_i$. So we have $min(S)$ is equal to maximal repeats of primes. Notice that the process of finding invariant factors is almost the same as finding $a_j$ except that we want to decrease the power of primes in order to have $a_1\mid a_2\mid \cdots\mid a_t$. Now, by the classification theorem, we have $t=$ maximal number of times that some prime $p$ repeats $=min(S)$.
+\qed\\
+\textbf{Problem 4:}\\
+\textbf{(a):} If $(m_p)\in Tors(M)$, then there exists some $0\neq n\in \Z$ such that $(nm_p)=(0)$. Suppose finitely many $m_p$ is nonzero. Then we choose some $p>>0$ (in particular, $p>n$), prime, such that $m_p\neq 0$. And we have $nm_p\equiv 0 \pmod p$. So $p\mid nm_p$, but this implies $p\mid n$ or $p\mid m_p$. Since $m_p\neq 0$, we have $p\nmid m_p$. But since $n<p$, we cannot have $p\mid n$. So it contradicts. So only finitely many $m_p$ is nonzero. So $(m_p)\in \oplus \Z/p\Z$. So $Tors(M)\subseteq \oplus \Z/p\Z$. In last homework, we proved that the direct sum of torsion module is torsion. So we have $\oplus \Z/p\Z\subseteq Tors(M)$. So we have $Tors(M)=\oplus \Z/p\Z$.
+\\
+\textbf{(b):} Suppose $x=(x_q)$. Then if $q\neq p$, we know $p\in \Z/q\Z^\times$. So there is some $y_q\in \Z/q\Z$ such that $y_q=p^{-1}x_q$. Then let $y=(y_q)$ where $y_q=p^{-1}x_q$ if $q\neq p$ and $y_q=0$ if $q=p$. Then we have $x-py=(x_q-py_q)$. If $q\neq p$, then we have $x_q-py_q=0$. So we have $x-py=(0,0,\cdots,0,x_p,0,\cdots)\in Tors(M)$. Hence $x-py=0$ in $N$. So we have $x=py$.\\
+\textbf{(c):} Suppose $M'$ is a nonzero submodule of $M$ over $\Z$. Then exists some $0\neq x=(x_p)\in M'$. WLOG, we assume $x_p\neq 0$ for some $p\in\Z$ is prime. Now, for any $y=(y_p)\in M$, we have $py=(py_p)$ and the $p$-th coordinate of $py$ is zero since $py_p\equiv 0y_p=0\pmod p$. Hence, we have $py\neq x$. Hence, there is no $y\in M'$ such that $py=x$. So $M'$ is not divisible.\\
+\textbf{(d):} Since $M$ has no divisible submodule over $\Z$, so $N$ isn't isomorphic a submodule over $\Z$ by part (b). Hence, $M$ is not isomorphic to the direct sum of $Tors(M)$ and $N$.
+\\\qed\\
+
+\end{document}

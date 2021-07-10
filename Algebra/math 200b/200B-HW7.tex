@@ -1,0 +1,103 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\Aut}[0]{\operatorname{Aut}}
+\newcommand{\Hom}[0]{\operatorname{Hom}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Gal}[0]{\operatorname{Gal}}
+
+\begin{document}
+\title{Homework 7 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:} \\
+\textbf{(a):} Given $\sigma\in\Aut(\R)$, then we have $\sigma(1)=1$. Notice that $1$ is the generator of $(\Z,+)\leq (\R,+)$. So we have $\sigma(n)=n\sigma(1)=n$ for all $n\in \Z$. Hence, we have $\sigma|_\Z=1_\Z$. Now, for any $0\neq n\in \Z$, we have $\sigma(\frac{1}{n})=\frac{1}{\sigma(n)}=\frac{1}{n}$. So for any $\frac{p}{q}\in \Q$, we have $\sigma(\frac{p}{q})=\sigma(p)\sigma(\frac{1}{q})=p\cdot \frac{1}{q}=\frac{p}{q}$. Hence, we have $\sigma|_\Q=1|_\Q$. So we have $\Aut(\R)\leq \Gal(\R/\Q)$. On the other hand, we know $\Gal(\R/\Q)\leq \Aut(R)$ by definition. So we have $\Aut(\R)=\Gal(\R/\Q)$.\\
+\textbf{(b):} For any $x\in \R$ and $\sigma\in\Aut(\R)$, we have 
+\[\sigma(x^2)=\sigma(x)^2>0\]
+So $\sigma$ takes squares to squares. Also, we know for any $r\in\R_{>0}$, we can take the square root of $r$. Namely, there exists another real number $a\in R$ such that $a^2=r$. So we have 
+\[\sigma(r)=\sigma(a^2)=\sigma(a)^2>0\]
+So $\sigma$ take the set of positive number to the set of positive number. Now, we prove $\sigma$ preserve the order. For any two real number $a,b\in R$ such that $a>b$, we have $a-b\in R_{>0}$. So we have 
+\[\sigma(a)-\sigma(b)=\sigma(a-b)>0\]
+Hence, we have $\sigma(a)>\sigma(b)$.\\
+\textbf{(c): }For any $x\in R$, and given $\epsilon>0$, there are rational numbers $a,b\in \Q$ such that 
+$$\sigma(x)-\epsilon<a<\sigma(x)<b<\sigma(x)+\epsilon$$
+Since $\sigma$ fixes all rational numbers, we have $a<x<b$. Now, we take $\delta= \min\{x-a,b-x\}>0$. Hence, we have $x-\delta\geq x-(x-a)=a$ and $x+\delta\leq x+(b-x)=b$. Then $\sigma(x-\delta,x+\delta)$ is bounded by $\sigma(x-\delta)\geq \sigma(a)=a$ and $\sigma(x+\delta)\leq\sigma(b)=b$. Hence, $\sigma(x-\delta,x+\delta)\subseteq (\sigma(x)-\epsilon,\sigma(x)+\epsilon)$. So $\sigma$ is continuous.\\
+\textbf{(d):} Since $\Q$ is dense on $\R$, for any real $r\in R$, we have $r=\lim_{i\to \infty} x_i$, where $\{x_i|i\in \N\}\subseteq \Q$. Since $\sigma$ is continuous, we can interchange $\sigma$ and $\lim$. 
+\[\sigma(r)=\lim_{i\to \infty}\sigma(x_i)=\lim_{i\to \infty}x_i=r\]
+So $\sigma=1_\R$.
+\\\qed\\
+\textbf{Problem 2:}
+\\\textbf{(a):} If $f$ is any irreducible polynomial in $F[x]$ such that $f$ has a root $\alpha_1\in E_1\cap E_2$, then since $E_1/F$ and $E_2/F$ are normal extension, we have $f$ splits in $E_1[x]$ and $E_2[x]$. Assume $f=c(x-\alpha_1)\cdots(x-\alpha_n)$, then we have $\alpha_i\in E_1,E_2$ for all $i$. Hence, we have $\alpha_i\in E_1\cap E_2$ for all $i$. So $f$ splits in $E_1\cap E_2$. So $(E_1\cap E_2)/F$ is normal.\\
+\textbf{(b):} By lemma 17.8, we know $E_1/F$ is normal implies there is a polynomial $f_1\in F[x]$ such that $E_1$ is the splitting field of $f_1$. Now, suppose $f_1=c(x-a_1)\cdots (x-a_n)$, then we have $E_1=F(a_1,\cdots,a_n)$. Similarly, we have $E_2$ is the splitting field of some polynomial $f_2=(x-b_1)\cdots(x-b_m)\in F[x]$. So $E_2=F(b_1,\cdots,b_m)$. Now, we claim that $E_1E_2=F(a_1,\cdots,a_n,b_1,\cdots, b_m)$. Notice that $E_1E_2$ is the smallest field that contains $E_1,E_2$. So we have $E_1E_2\subseteq F(a_1,\cdots,a_n,b_1,\cdots, b_m)$ since $E_1,E_2\subseteq F(a_1,\cdots,a_n,b_1,\cdots, b_m)$. Conversely, since $a_i\in E_1\subseteq E_1E_2$ for any $i$ and $b_j\in E_2\subseteq E_1E_2$, we have $F(a_1,\cdots,a_n,b_1,\cdots, b_m)\subseteq E_1E_2$. So $E_1E_2=F(a_1,\cdots,a_n,b_1,\cdots, b_m)$. Consider the polynomial $f=f_1f_2$. Then we have $f$ splits in $E_1E_2$ and $f=(x-a_1)\cdots (x-a_n)(x-b_1)\cdots (x-b_m)$. By definition, we have $E_1E_2$ is the splitting field of $f$ over $F$. So $E_1E_2/F$ is normal by lemma 17.8.\\
+\textbf{Problem 3:}\\
+$\implies$: Since $K/F$ is Galois, we have $K/F$ is normal. So $K$ is a splitting field $f\in F[x]$ for some polynomial $f$. So $f$ is also a polynomial in $E[x]$ and $L[x]$. If we extend $\theta$ to an isomorphism of rings $\theta:E[x]\to L[x]$, then we have $\theta(f)=f$. Now, by prop 16.49, there is an isomorphism $\varphi:K\to K$ such that $\varphi|_E=\theta$. Since $\theta|_F=1_F$, we have $\varphi|_F=1_F$. So $\varphi\in Gal(K/F)$.\\
+Now, we claim that $\varphi^{-1}\Gal(K/L)\varphi=\Gal(K/E)$. For any $\tau\in \Gal(K/L)$ and $e\in E$, we have 
+\[\varphi^{-1}\circ \tau\circ \varphi(e)=\varphi^{-1}\tau\circ \theta(e)=\varphi^{-1}\circ \theta(e)=e\]
+since $\varphi^{-1}|_L=\theta^{-1}$. So we have $\varphi^{-1}\Gal(K/L)\varphi\leq \Gal(K/E)$. Notice that $\theta$ is also an isomorphism of finite dimensional $F$-vector spaces, we have 
+\[|G:\Gal(K/E)|=[E:F]=[L:F]=|G:\Gal(K/L)|\implies |\Gal(K/E)|=|\Gal(K/L)|\]
+So we have $\varphi^{-1}\Gal(K/L)\varphi=\Gal(K/E)$.\\
+$\Longleftarrow $: If $\sigma\in \Gal(K/F)$ such that $\sigma^{-1}\Gal(K/L)\sigma=\Gal(K/E)$, then we for any $\tau\in Gal(K/L)$ and $e\in E$, we have 
+\[e=\sigma^{-1}\circ \tau\circ \sigma(e)\implies \tau(\sigma(e))=\sigma(e)\]
+So $\tau$ fixes the image of $\sigma(E)$ for any $\tau\in \Gal(K/L)$. But notice that the only subfields that is fixes by the group $\Gal(K/L)$ is $L$, so we have $\sigma(E)\leq L$. But if we count the dimension, then we have 
+\[[\sigma(E):F]=[E:F]=|G:\Gal(K/E)|=|G:\Gal(K/L)|=[L:F]\]
+And we know $\sigma$ is also an $F$-linear transformation of $K$, So we must have $\sigma(E)=L$. So we have $\sigma(E)=L$. Then we have $\sigma|_E:E\to L$ is an isomorphism by the first isomorphism theorem and $\sigma|_F=1_F$ since $\sigma\in \Gal(K/F)$.
+\\\qed\\
+\textbf{Problem 4:}\\
+\textbf{(a): }There are two cases: If $f$ is separable, then we already have $f$ is an irreducible and separable polynomial in $F[x]$. Let $g=f$, then we have $f=g(x^{p^0})$.\\
+If $f$ is inseparable, then suppose $f=a_0+\sum_{i=1}^na_ix^{pb_i}$, where $0<b_1<b_2<\cdots<b_n$. If $n=1$, then we assume $pb_1=p^kd$, where $p\nmid d$. Then we have $g=a_0+a_1x^d$ is separable since $p\nmid d$ and $g(x^{p^k})=a_0+a_1(x^{p^k})^d=a_0+a_1x^{p^kd}=f$. If $n>1$, we suppose $p^{k-1}\mid \gcd(b_1,b_2,\cdots, b_n)$ and $p^k\nmid \gcd(b_1,b_2,\cdots, b_n)$, then we have $g=a_0+\sum_{i=1}^nx^{\frac{b_i}{p^{k-1}}}$. We know $g$ is separable since if $p\mid \frac{b_i}{p^{k-1}}$ for all $i$, then we will have $p^k\mid \gcd(b_1,\cdots,b_n)$, which contradicts. Then we have 
+\[g(x^{p^k})=a_0+\sum_{i=1}^n(x^{p^k})^{\frac{b_i}{p^{k-1}}}=a_0+\sum_{i=1}^na_ix^{pb_i}=f\]
+\textbf{(b): }\\
+$\Longrightarrow$: If $K$ is purely inseparable, then for any $\alpha\in K-F$, we have $minipoly_F(\alpha)$ is irreducible in $F[x]$. Then there exists some irreducible and separable polynomial $g\in F[x]$ such that $g(x^{p^k})=minipoly_F(\alpha)$. Then we have $g(\alpha^{p^k})=0$. Hence, we have $minipoly_F(\alpha^{p^k})\mid g$. But since $g$ is irreducible, we have $g=minipoly_F(\alpha^{p^k})$. Since $g$ is separable, we cannot have $\alpha^{p^k}\in K-F$; otherwise, it contradicts with the fact that $K$ is purely inseparable. So $\alpha^{p^k}\in F$.  \\
+$\Longleftarrow$: For $\alpha\in K-F$ and $\alpha^{p^k}\in F$, we have  
+\[x^{p^k}-\alpha^{p^k}=(x^p-\alpha^p)^{p^{k-1}}=((x-\alpha)^p)^{p^{k-1}}=(x-\alpha)^{p^k}\]
+So we have $f=minipoly_F(\alpha)\mid x^{p^k}-\alpha^{p^k}$. Hence, we have $f=(x-\alpha)^d$. If $d\nmid p^k$, then by division algorithm, we have $p^k=dq+r$, where $0\leq r<d$. Then we have $x^{p^k}-\alpha^{p^k}=f^qf_1$ factors in $F[x]$. But we have $f_1=(x-\alpha)^r$ implies $\alpha^r\in F$, which contradicts to the fact that $\deg(\alpha)=d>r$. So we must have $r=0$. Then $x^{p^k}-\alpha^{p^k}=f^q$, which implies that $q\mid p^k$. So $q$ is some power of $p$. Hence $d$ is also some power of $p$. Notice that $d\neq 1$ since $\alpha\notin F$. So we have $x^d-\alpha^d$ is inseparable since it is irreducible and $p\mid d$.
+\\\qed\\
+\textbf{Problem 5:}\\
+\textbf{(a):} Since $i\in \mathbb{F}_p$, we have $i^p=i$ by fermat little therorem. Then we have 
+\[f(\alpha+i)=(\alpha+i)^p-(\alpha+i)-a=\alpha^p+i^p-\alpha-i-a=\alpha^p-\alpha-a=f(\alpha)=0\]
+\textbf{(b):} By part a, we have $\{\alpha+i\mid i\in \mathbb{F}_p\}$ are all the roots of $f$ since $f$ has degree $p$. So we can factor $f$ as 
+\[f=(x-\alpha)(x-\alpha-1)\cdots(x-\alpha-p+1)\]
+Then by definition of splitting field, we have $K=F(\alpha,\alpha+1,\cdots,\alpha+p-1)=F(\alpha)$ since $\mathbb{F}_p\subseteq F$.
+\\\textbf{(c):} Since $f$ has distinct roots, $f$ is separable by definition. Since $f(\alpha)=0$, we have $minipoly_F(\alpha)|f$. But we also have $\deg(minipoly_F(\alpha))=[F(\alpha):F]=n$. So we have $f=minipoly_F(\alpha)$ since $f$ is monic and the uniqueness of minimal polynomial. So $f$ is irreducible. By corollary 16.50, there exists automorphism $\sigma_i:K\to K$ such that $\sigma(\alpha)=\alpha+i$ for all $0\leq i\leq p-1$. By the proof of the cororllary, we know $\sigma_i$ fixes $F$ for all $i$. So $\sigma_i\in \Gal(K/F)$. And $\sigma_i\neq \sigma_j$ for all $i\neq j$ since $\sigma_i(\alpha)=\alpha+i\neq \alpha+j=\sigma_j(\alpha)$. So we have $p\leq |\Gal(K/F)|\leq [K:F]=p$. Hence, we have $|\Gal(K/F)|=p$. So $K/F$ is Galois.
+\\\textbf{(d):} In part c, we prove the first part of the conclusion. Now, we just need to prove $G$ is cyclic. We claim that $\sigma_i=\sigma^i$. We just need to check the generator.
+\[\sigma^i(\alpha)=\sigma^{i-1}(\alpha+1)=\sigma^{i-1}(\alpha)+1=\sigma^{i-2}(\alpha)+1+1=\cdots=(\alpha+1)+i-1=\alpha+i=\sigma_i(\alpha)\]
+\qed\\
+\textbf{Problem 6:} Consider the following polynomial
+\[f=(x^2-p_1)(x^2-p_2)\cdots(x^2-p_n)\in \Q[x]\]
+Then we know $f$ is separable since 
+\[f=(x-\sqrt{p_1})(x+\sqrt{p_1})\cdots (x-\sqrt{p_n})(x+\sqrt{p_n})\]
+has distinct roots. Now, we know the splitting of $f$ over $\Q$ is $\Q(\pm\sqrt{p_1},\cdots,\pm\sqrt{p_n})=\Q(\sqrt{p_1},\cdots,\sqrt{p_1}) $. So $\Q(\sqrt{p_1},\cdots,\sqrt{p_1}) /\Q$ is Galois by theorem 17.10. So we have $|\Gal(E/\Q)|=[E:\Q]=2^n$. 
+Consider the family of automorphisms $\{\sigma_i:E\to E\mid 1\leq i\leq n\}$ such that $\sigma|_\Q=1|_\Q$ and $\sigma_i(\sqrt{p_j})=\begin{cases}
+    -\sqrt{p_i} &\text{ if } j=i\\
+    \sqrt{p_j} &\text{ if } j\neq i\\
+\end{cases}$. It is obvious that $\sigma_i\neq \sigma_j$ for any $i\neq j$.\\
+Now, we want to show $\sigma_i\circ \sigma_j=\sigma_j\circ \sigma_i$ for all $i,j$. If we can show they commute at the generators, then they commute on $E$ by the property of field homomorphism. Note that if $k\neq i,j$, then 
+$$\sigma_i\circ \sigma_j(\sqrt{p_k})=\sigma_i(\sqrt{p_k})=\sqrt{p_k}=\sigma_j(\sqrt{p_k})=\sigma_j(\sigma_i(\sqrt{p_k}))=\sigma_j\circ \sigma_i(\sqrt{p_k})$$
+Also, we have 
+$$\sigma_i\circ \sigma_j(\sqrt{p_i})=\sigma_i(\sqrt{p_i})=-\sqrt{p_i}=\sigma_j(-\sqrt{p_i})=\sigma_j(\sigma_i(\sqrt{p_i}))=\sigma_j\circ \sigma_i(\sqrt{p_i})$$
+$$\sigma_i\circ \sigma_j(\sqrt{p_j})=\sigma_i(-\sqrt{p_j})=-\sqrt{p_j}=\sigma_j(\sqrt{p_j})=\sigma_j(\sigma_i(\sqrt{p_j}))=\sigma_j\circ \sigma_i(\sqrt{p_j})$$
+So $\sigma_i$ commutes with all $\sigma_j$.\\
+Now, we consider the subgroup generated $\langle\sigma_i|1\leq i\leq n\rangle\leq \Gal(E/\Q)$. Then we have $\langle\sigma_i|1\leq i\leq n\rangle$ is abelian since the generators commute with each other. Notice that $\sigma_i^2=1_E$ for all $i$, so $\langle\sigma_i|1\leq i\leq n\rangle$ is a finite abelian group such that every element has order 2. By the classification theorem of PID, we have  
+\[\langle\sigma_i|1\leq i\leq n\rangle\cong(\Z/2\Z)^n\]
+So we have $|\langle\sigma_i|1\leq i\leq n\rangle|=2^n=|\Gal(E/\Q)|$. Hence, we have $\langle\sigma_i|1\leq i\leq n\rangle=\Gal(E/\Q)$. So the galois group of $E/\Q$ is elementary abelian.\\
+\textbf{(b):} By part a, we know any element in $\Gal(E/\Q)$ has the form of $\sigma_1^{a_1}\cdots\sigma_n^{a_n}$, where $a_i=0,1$. So we have 
+\[\sigma_1^{a_1}\cdots\sigma_n^{a_n}(\alpha)=\sum_{i=1}^n\sigma_1^{a_1}\cdots\sigma_n^{a_n}(\sqrt{p_i})=\sum_{i=1}^n(-1)^a_i\sqrt{p_i}\]
+Hence, we have $\Orbit(\alpha)=\{\sum_{i=1}^n(-1)^a_i\sqrt{p_i}|(a_1,\cdots,a_n)\in(\Z/2\Z)^n\}$ and $|\Orbit(\alpha)|=2^n$. By lemma 17.17, the minimal polynomial of $\alpha$ over $\Q$ has degree $2^n$, which implies $[\Q(\alpha):\Q]=2^n$. But on the other hand, we have $\Q(\alpha)\subseteq E$. This forces $E=\Q(\alpha)$ since $[E:\Q]=2^n$.
+\\\qed\\
+\end{document}

@@ -1,0 +1,127 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd,todonotes}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\If}{\text{ if }}
+\newcommand{\Else}{\text{ else}}
+\begin{document}
+\title{Homework 6 - 290B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Source Consulted: We refer to Prof. Lin's lecture notes, Miller's notes and Hatcher's book. \\
+\section*{Problem 1.}
+\textbf{(1):} By cellular cohomology, we have
+\[H^n(S^2;\Z)=\begin{cases}
+        \Z & \If n=0,2 \\
+        0  & \Else
+    \end{cases}\]
+Then by Kunneth formula, we have
+\[H^n(S^2\times S^2;\Z )\cong \bigoplus_{p+q=n}H^p(S^2;\Z)\otimes_\Z  H^q(S^2;\Z )=\begin{cases}
+        \Z          & \If n=0,4 \\
+        \Z\oplus \Z & \If n=2   \\
+        0           & \Else
+    \end{cases}\]
+since the torsion term vanishes. Since the isomorphism in the Kunneth formula is induced by the cross product, if we pick $\alpha,\beta$ as the generators of $H^2(S^2;\Z)$ (one for each copy of $S^2$), then we have the cohomology ring is
+\[H^\ast(S^2\times S^2;\Z)\cong \Z\langle 1,\alpha,\beta,\alpha\smile \beta\rangle\]
+Now, we want to compute the cup product.
+$$\alpha\smile\beta=(\alpha\times 1)\smile(1\times \beta)=(-1)^4(\alpha\smile 1)\times (1\smile \beta)=\alpha\times \beta$$
+This is just the cross product
+\[\times : H^2(S^2;\Z)\otimes H^2(S^2;\Z)\to H^4(S^2\times S^2;\Z)\]
+If $\sigma:\Delta^4\to S^2\times S^2$ is a singualr chain, then we denote $\sigma_1=p_1\circ \sigma\circ i_1$ and $\sigma_2=p_2\circ \sigma\circ i_2$, where $i_1:\Delta^2\to \Delta^4$ is the front face inclusion and $i_2:\Delta^2\to \Delta^4$ is the back face inclusion, $p_1,p_2$ are the projection map to the first coordinate and the second coordinate, respectively. Then we have
+\[\alpha\times \beta(\sigma)=(-1)^{|\alpha||\beta|}\alpha(\sigma_1)\beta(\sigma_2)=(-1)^4\alpha(\sigma_1)\beta(\sigma_2)=\alpha(\sigma_1)\beta(\sigma_2)\]
+So we have $\alpha\smile\beta(\sigma)=\alpha(\sigma_1)\beta(\sigma_2)$ is nontrivial since $\alpha$ and $\beta$ is nontrivial.
+\qed\\
+\textbf{(2):} Consider the Mayer-Vietoris sequence (on reduced cohomology), we have
+\[0=\tilde{H}^{m-1}(\ast;\Z)\to \tilde{H}^{m}(X\vee Y;\Z)\xrightarrow[]{\cong} \tilde{H}^{m}(X;\Z)\oplus \tilde{H}^{m}(Y;\Z)\to \tilde{H}^{m}(\ast;\Z)=0\]
+where the middle map is induced by the inclusion map. So we have the inclusion map $(i_1^\ast,i_2^\ast)$ is an isomorphism. Now, we denote $i^{\ast}_m=(i_1^\ast,i_2^\ast)$ be the induced isomorphism at dimension $m$. Since $\smile=\Delta^\ast \circ \times$, we have the following diagram
+\begin{center}
+    \begin{tikzcd}
+        H^m(X\vee Y;\Z)\otimes H^n(X\vee Y;\Z)\arrow[r,"i_m^\ast\otimes i_n^\ast"]\arrow[d,"\times"] & (H^m(X;\Z)\oplus H^m(Y;\Z))\otimes (H^n(X;\Z)\oplus H^n( Y;\Z)) \arrow[d,"\times"]\\
+        H^{m+n}(X\vee Y\times X\vee Y;\Z) \arrow[d,"\Delta^\ast"] \arrow[r,"i_{m+n}^\ast "] &
+        H^{m+n}(X\times X;\Z)\oplus H^{m+n}(Y\times  Y;\Z)\arrow[d,"\Delta^\ast"]\\
+        H^{m+n}(X\vee Y;\Z) \arrow[r,"i_{m+n}^\ast"]& H^{m+n}(X;\Z) \oplus H^{m+n}(Y;\Z)
+    \end{tikzcd}
+\end{center}
+To prove the isomorphism preserves the cup product, it is equivalent to say the following diagram commutes. By the naturality of the cross product, we have the top square commutes.
+By the naturality of Mayer-Vietoris sequence, we have the bottom square commutes. So the whole diagram commutes.
+\\\qed\\
+\textbf{(3):} If we consider the CW-structure of $S^2$ as one 0-cell (identify as $\{p\}$) and one 2-cell, then $Y$ is a CW-subcomplex of $S^2\times S^2$. In particular, $Y$ is the 2-skeleton of $S^2\times S^2$. Notice that $S^2\times S^2$ consists of one 4-cell, two 2-cells, and one 0-cell. So $S^2\times S^2/Y$ has one 0-cell and one 4-cell. By cellular cohomology, we have
+\[H^2(S^2\times S^2,Y;\Z)\cong H^2(S^2\times S^2/Y;\Z)=0\]
+\[H^3(S^2\times S^2,Y;\Z)\cong H^3(S^2\times S^2/Y;\Z)=0\]
+Now, putting into the long exact sequence of relative cohomology, we have
+\[0\to H^(S^2\times S^2;\Z )\xrightarrow[]{i^\ast}H^2(Y;\Z)\to 0\]
+So the inclusion map $i:Y\to S^2\times S^2$ induces an isomorphism on dimension 2. Suppose there is a retraction $r:S^2\times S^2\to Y$, then we have $r\circ i =1_Y$. So we have
+\[ i^\ast \circ r^\ast=1_{H^2(Y;\Z)}\]
+Hence, $r^\ast$ must be an isomorphism as well. By naturality of the cup product, we have
+\begin{center}
+    \begin{tikzcd}
+        H^2(Y;\Z)\otimes H^2(Y;\Z)\arrow[r,"\smile"] \arrow[d,"r^\ast"] & H^4(Y;\Z)\arrow[d,"r^\ast"]\\
+        H^2(S^2\times S^2;\Z)\otimes H^2(S^2\times S^2;\Z) \arrow[r,"\smile"]& H^4(S^2\times S^2;\Z)
+    \end{tikzcd}
+\end{center}
+But since $Y$ has dimension 2, so $H^4(Y;\Z)=0$. If we pick an nonzero element $\alpha\otimes \beta\in H^2(Y;\Z)\otimes H^2(Y;\Z)$, then we go along the induced map first, then the cup product, we get something nonzero since the induced map on $H^2$ is isomorphism and by part 1, we know the cup product is nontrivial. But if we go along the cup product first, then we will have $\alpha\smile \beta=0$. So we have $r^\ast(\alpha\smile\beta)=r^\ast(0)=0$. It contradicts. So such retraction doesn't exist.\\
+\qed\\
+\section*{Problem 2.} Suppose $g_i=\# genus(\Sigma_i)$, then we have $H^1(\Sigma_1;\F_2)\cong \F_2^{2g_1}$ and $H^1(\Sigma_2;\F_2)\cong \F_2^{2g_2}$. So we have $f^\ast:H^1(\Sigma_2;\F_2)\to H^1(\Sigma_1;\F_2)$ is not injective because $g_2>g_1$. Choose $\alpha\in H^1(\Sigma;\F_2)$ such that $\alpha\in \ker(f^\ast)$. Then P.D., we know $\alpha$ is represented by a loop on a copy of $T^2$ in $\Sigma_2$, where $\Sigma_2=\#_{2g_2}T^2$ is orientable. Then we can pick $\beta\in H^1(\Sigma_2;\F_2)$ such that $\beta$ another loop on the same copy of $T^2$, which intersect with $\alpha$. Then we have the intersection $\alpha\cdot\beta=\#(\alpha\cap\beta)=1$. Now, by the naturality of P.D., we have
+\[\begin{tikzcd}
+        H^1(\Sigma_2;\F_2)\times H^1(\Sigma_2;\F_2)\arrow[r,"\cdot"]\arrow[d,"f^\ast"]&H^2(\Sigma_2;\F_2)\arrow[d,"f^\ast"]\\
+        H^1(\Sigma_1;\F_2)\times H^1(\Sigma_1;\F_2)\arrow[r,"\cdot"]& H^2(\Sigma_1;\F_2)
+    \end{tikzcd}\]
+Notice that if we go along $f^\ast$ first, then the intersection pairing, we have
+\[f^\ast(\alpha)\cdot f^\ast(\beta)=0\cdot f^\ast(\beta)=0\]
+But if we go along the intersection pairing first, we have
+\[f^\ast(\alpha\cdot \beta)=f^\ast(1)=0\]
+So we have $f^\ast:H^2(\Sigma_2;\F_2)\to H^2(\Sigma_1;\F_2)$ is trivial.
+\\\qed\\
+\section*{Problem 3.}
+\textbf{(1):} Consider the relative homology, we have
+\[\cdots \to H^l(\R P^n,\R P^k;\F_2)\to H^l(\R P^n;\F_2)\xrightarrow[]{f^\ast}H^l(\R P^k;\F_2)\xrightarrow[]{\partial}H^{l+1}(\R P^n,\R P^k;\F_2)\to \cdots \]
+Since $(\R P^n,\R P^k)$ is a CW-pair, we have
+\[H^l(\R P^n,\R P^k;\F_2)=H^l(\R P^n/\R P^k;\F_2)=\begin{cases}
+        \Z/2 & \If l=0, or\  k+1\leq l \leq n \\
+        0    & \Else
+    \end{cases}\]
+Also, we know
+\[H^l(\R P^n;\F_2)\cong H^l(\R P^k;\F_2)\cong \F_2,\ \forall 0\leq l\leq k\]
+So if $l=0$, then we have $f^\ast$ is surjective because $H^1(\R P^n,\R P^k;\F_2)=0$. But there is only two endomorphism of $\F_2$, namely the trivial map and the identity map. So $f^\ast$ is the identity map if it is surjective. Similarly, if $l=k$, then we have $f^\ast$ is injective because $H^k(\R P^n,\R P^k;\F_2)=0$, which implies $f^\ast$ is the identity map. If $1\leq l\leq k-1$, then we have $f^\ast$ is an isomorphism because $H^l(\R P^n,\R P^k;\F_2)=H^{l+1}(\R P^n,\R P^k;\F_2)=0$.
+\\\qed\\
+\textbf{(2):} We induct on $n$. It is obvious that when $n=1$, we have $H^\ast(\R P^1;\F_2)\cong \F_2[x]/(x^2)$ since $H^2(\R P^1;\F_2)=0$. Now, we suppose it is true for $n=k$. Then we have $x^k$ is a generator of $H^k(\R P^{k+1};\F_2)$ since $H^k(\R P^{k+1};\F_2)\cong H^k(\R P^{k};\F_2)\cong \F_2$ by part 1 and any nonzero element generates the subspace because we have coefficient mod 2.\\
+For $n=k+1$, we consider the intersection pairing
+\[x\cdot x^k=\langle x\smile x^k,[\R P^{k+1}]\rangle\]
+Since the pairing is perfect, we know the mapping
+\[x\mapsto \langle x\smile -,[\R P^{k+1}]\rangle\]
+is an isomorphism. Hence, we have
+\[x\cdot x^k=\langle x\smile x^k,[\R P^{k+1}]\rangle\neq 0\]
+because $x\neq 0$ implies the homomorphism $\langle x\smile -,[\R P^{k+1}]\rangle$ is nontrivial and $x^k$ is the generator of $H^k(\R P^{k+1};\F_2)$, which must have nontrivial image.
+So we have $x^{k+1}\neq 0$. But we have $x^{k+2}=0$ since $\R P^{k+1}$ has no $k+2$-cell, which implies trivial cohomology at k+2 dimension. The induction completes.
+\\\qed\\
+\section*{Problem 4.}
+\textbf{(1): }Suppose $n>1$. Then we have $H_1(\R P^n;\Z)\cong \Z/2\Z$. And the generator is a loop $\alpha$ with winding number 1. Since $f$ is odd, we have $f\circ \alpha$ has odd winding number. Hence, we have $f_\ast(1)=1$. So $f_\ast$ is nontrivial.\\
+If $n=1$, then $H_1(\R P^n;\Z)\cong  \Z$. The induced map is nontrivial since $f\circ \alpha$ cannot be null-homotopic given $f$ is odd.\\\qed\\
+\textbf{(2):} Since $f^\ast$ is defined by precomposing $f_\ast$, so for a generator $\alpha\in H^1(\R P^n;\Z/2\Z)$, we have $\alpha: H_1(\R P^n;\Z )\to \Z/2\Z$ is nontrivial. Then we have
+\[f^\ast(\alpha)=\alpha\circ f_\ast\]
+This is a nontrivial map since $f_\ast$ is nontrivial by part 1. So we have $f^\ast: H^1(\R P^n;\Z/2\Z)\to H^1(\R P^m;\Z/2\Z)$ is nontrivial.
+\\\qed\\
+\textbf{(3)} Suppose there is such an odd map towards contradiction. By part 2, we know the induced map of $f^\ast$ sends the generator to the generator since the only nontrivial endomorphism $\Z/2\Z$ is the identity map. By the naturality of cup product, we know $f^\ast(x^k)=f^\ast(x)^k=x^k$, where $x$ is the generator of $H^1(\R P^n;\F_2)$. So the induced map on the cohomology ring is
+\[f^\ast: \F_2[x]/(x^{n+1})\to \F_2[x]/(x^{m+1})\]
+\[x\mapsto x\]
+We have $0=f^\ast(x^m)$ since $x^m=0$ in $H^1(\R P^n;\F_2)$ by the assumption $n<m$. But we also have $f^\ast(x^m)=f^\ast(x)^m=x^m\neq 0$ in $H^1(\R P^m;\F_2)$. It contradicts.
+\\\qed\\ 
+\end{document}

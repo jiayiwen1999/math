@@ -1,0 +1,138 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 2 - 290B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+The homework uses Miller's note, Hatcher's book, lecture, and Prof. Lin's lecture notes(this quarter and last quarter) as references. For notation, we use $\Z^k=\oplus_{i=1}^k\Z$ to denote the direct sum of $k$ copies of $\Z$. We used $H_n(f)$ to denote the induced map of $f$ on $n$th homology group if we use the fact that $H_n()$ is a functor. Otherwise, we use $f_\ast$ to denote the induced map of homology without saying which homology group if the context is clear. Since the singular homology is isomorphic to the cellular homology on CW-complex, we won't distinguish them in notation for convenience.\\
+\textbf{Problem 1:}\\
+\textbf{(1):} Suppose $\Sigma$ has genus $n$. Then by the standard CW complex structure, we have one 2-cell, one 0-cell, and $2n$ copies of 1-cells.\\
+\vspace{4cm}
+To compute the cellular homology of $\Sigma$, we want to understand the homology of the following chain complex.
+\[\cdots\to0\to\Z\xrightarrow[]{\partial_2}\Z^{2n}\xrightarrow[]{\partial_1}\Z\to 0 \]
+Notice that we have constant maps for the attaching map of 1-cells since $X_0=\{\ast\}$ is a singleton set. So the degree of each attaching map is zero. So $\partial_1:\Z^{2n}\to \Z$ is trivial. For the attaching map $f$ of the 2-cell, we have 
+\[f_{a_i}:S^1\to S^1\]
+If we look at the induced map of homology, it is the same as the induced map of fundamental groups since $H_1(S^1)\cong \pi_1(S^1)\cong \Z$. And the generator is the loop with winding number 1. So if we start with any vertex of the regular $n$-gon and go clockwise, the image of any other $a_j$ or $a_j^{-1}$ is staying at the 0-cell of $S^1\cong D^1_{a_i}/\partial D^1_{a_i}$ if $j\neq i$. And $a_i$ means to go along $S^1$ clockwise once, and $a_i^{-1}$ is go alone $S^1$ counterclockwise once. So $f_{a_i,\ast}(1)$ is the loop that go clockwise once and counterclockwise once, which is homotopic to the constant map. 
+\pagebreak
+\\\vspace{6cm}\\
+Hence, we have $\deg(f_{a_i})=f_{a_i,\ast}(1)=0$. So $\partial_2:\Z\to \Z^{2n}$ is trivial.
+So we have 
+\[H_0(\Sigma)=\frac{\Z}{Im \partial_1}=\frac{\Z}{0}=\Z\]
+\[H_1(\Sigma)=\frac{\ker \partial_1}{Im \partial_2}=\frac{\Z^{2n}}{0}=\Z^{2n}\]
+\[H_2(\Sigma)=\frac{\ker \partial_2}{0}=\Z\]
+So we have 
+\[H_k(\Sigma)=\begin{cases}
+    \Z & \text{ if }k=0,2\\
+    \Z^{2n} &\text{ if }k=1\\
+    0&\text{ otherwise}
+\end{cases}\]\\
+\textbf{(2): } We will follow the similar process. Suppose $\Sigma$ has genus $n$, then by the standard CW-structure, $\Sigma$ has one 0-cell, $n$ 1-cells, and one 2-cells.\\
+\vspace{4cm}\\
+So we have the following chain complex. 
+\[\cdots\to0\to\Z\xrightarrow[]{\partial_2}\Z^{n}\xrightarrow[]{\partial_1}\Z\to 0 \]
+Also, since the attaching map of 1-cells is constant, we know $\partial_1$ is trivial. For $\partial_2$, we have the induced map of $f_{a_i}$ sends the generator (namely the loop $a_1a_1a_2a_2\cdots a_na_n$) to a loop with windering number 2 because each copies of $a_i$ gives a loop of windering number 1 and they have the same direction and for any other $a_j$, where $j\neq i$, it is constant.\pagebreak\\
+\vspace{6cm}\\
+So $\partial_2(1)=(2,\cdots,2)$. So $Im(\partial_2)\cong 2\Z$ and $\ker(\partial_2)=0$. So we have 
+\[H_0(\Sigma)=\frac{\Z}{Im \partial_1}=\frac{\Z}{0}=\Z\]
+\[H_1(\Sigma)=\frac{\ker \partial_1}{Im \partial_2}=\frac{\Z^n}{2\Z}=\Z^{n-1}\oplus \Z/2\Z\]
+\[H_2(\Sigma)=\frac{\ker \partial_2}{0}=0\]
+So we have 
+\[H_k(\Sigma)=\begin{cases}
+    \Z & \text{ if }k=0\\
+    \Z^{n-1}\oplus \Z/2\Z &\text{ if }k=1\\
+    0&\text{ otherwise}
+\end{cases}\]
+\qed\\
+\textbf{Problem 2:} We will give a CW-structure with one 0-cell, three 1-cells, and two 2-cells. Here is the construction.\\
+\vspace{6cm}\\
+If we identify all three $a$ edges, we will have $(S^1\vee S^1)\times I$. If we further identify $b$ and $c$, we will have $(S^1\vee S^1)\times S^1$. Notice that this is the same as a two tori with one circle identified. So we have the following chain complex.
+\[\cdots\to0\to \Z\oplus \Z\xrightarrow[]{\partial_2}\Z^3\xrightarrow[]{\partial_1}\Z\to 0\]
+Similar to problem 1, we have $\partial_1$ is trivial since $X_0=\{\ast\}$ is a singleton. For $\partial_2$, we denote the left square as $\alpha$ and the right square as $\beta$. We have $f_{\alpha a}$ and $f_{\alpha b}$ is the same as the codimension 1 attaching map of orientable closed surface with genus 2; hence, they have degree 0. $f_{\alpha c}$ is a constant map since the image of attaching map of $\alpha$ intersects the interior of $c$ on an empty set. Therefore, $\deg(f_{\alpha c})=0$. Similarly, we have $\deg(f_{\beta b})=\deg(f_{\beta c})=\deg (f_{\beta a})=0$. So $\partial_2$ is also trivial. So we have 
+\[H_0(\Sigma)=\frac{\Z}{Im \partial_1}=\frac{\Z}{0}=\Z\]
+\[H_1(\Sigma)=\frac{\ker \partial_1}{Im \partial_2}=\frac{\Z^{3}}{0}=\Z^{3}\]
+\[H_2(\Sigma)=\frac{\ker \partial_2}{0}=\Z^2\]
+So we have 
+\[H_k(\Sigma)=\begin{cases}
+    \Z & \text{ if }k=0\\
+    \Z^{3} &\text{ if }k=1\\
+    \Z^{2} &\text{ if }k=2\\
+    0&\text{ otherwise}
+\end{cases}\]
+\qed\\
+\textbf{Problem 3:} Let's consider the non-effective CW-structure on $S^2$. Then the quotient map will identify one 1-cell with another 1-cell and one 0-cell with another 0-cell. So the induced CW-structure of $X$ has two 2-cells, one 1-cell, and one 0-cell. So we have the following chain complex:
+\[\cdots \to 0\to \Z\oplus \Z\xrightarrow[]{\partial_2}\Z\xrightarrow[]{\partial_1}\Z\to 0\]
+Similarly to the previous problems, we have $X_0=\{\ast\}$. So the attaching map is constant. Therefore, we have $\partial_1$ is trivial. For $\partial_2$, we denote the upper hemisphere as $\alpha$ and the bottom hemisphere with $\beta$. Since the original attaching map (the one, gives noneffectice CW-structure of $S^2$) is the identity map, so the attaching map of $X$ is just the quotient precomposed with identity, which is equal to the antipodal map on $S^1$. Hence, a loop with winding number 1 will be sent to a loop with winding number 2, where the first half is a loop with winding number 1 and the second half is also a loop with winding number 1. So we have $\deg(f_\alpha)=2=\deg(f_\beta)$. So we have 
+\[\partial_2: \Z\oplus \Z \to \Z\]
+\[(1,0)\mapsto 2\]
+\[(0,1)\mapsto 2\]
+where $(1,0)$ denotes the boundary of $\alpha$ and $(0,1)$ denotes the boundary of $\beta$.
+So we have  
+\[H_0(X)=\frac{\Z}{Im \partial_1}=\frac{\Z}{0}=\Z\]
+\[H_1(X)=\frac{\ker \partial_1}{Im \partial_2}=\frac{\Z^{}}{2\Z}=\Z/2\Z\]
+\[H_2(X)=\frac{\ker \partial_2}{0}=\Z(1,-1)\cong \Z\]
+So we have 
+\[H_k(X)=\begin{cases}
+    \Z & \text{ if }k=0,2\\
+    \Z/2\Z &\text{ if }k=1\\
+    0&\text{ otherwise}
+\end{cases}\]
+Next, we do the same for $S^3$. Consider the noneffective CW-structure of $S^3$ and then take the induced the CW-structure by the quotient map. So the CW-structure on $X$ is two 3-cells, one 2-cell, one 1-cell, and one 0-cell. We have the following chain complex 
+\[0\to \Z^2\xrightarrow[]{\partial_3}\Z\xrightarrow[]{\partial_2}\Z\xrightarrow[]{\partial_1}\Z\to 0\]
+Since $X_2\cong S^/x\sim -x\cong \R P^2$ by the CW-structure we chose. Therefore, we know $\partial_1$ is trivial and $\partial _2(1)=2$ is map multiply by 2 (by part 2 of problem 1). For $\partial_3$, we denote $\alpha$ as the upper hemisphere and $\beta$ as lower hemisphere, then we have $(1,0)$ denotes $\alpha$ and $(0,1)$ denotes $\beta$. Also, we notice that $\alpha\cong \beta\cong \R P^3$. Because we can construct $\R P^3$ by taking a hemisphere of $S^3$ and identifying the antipodal map on the boundary, which is $S^2$, this construction coincides with $\alpha$ and $\beta$ since $X$ is obtained by quotient with antipodal map on the equator. Now, we have $\deg(f_\alpha)=(-1)^{2+1}+1=0$ and $\deg(f_\beta)=(-1)^{2+1}+1=0$ by the result from the lecture (Lecture 6, calculation of cellular homology of $\R P^n$). So we have $\partial_3$ is trivial map. So we have 
+\[H_0(X)=\frac{\Z}{Im \partial_1}=\frac{\Z}{0}=\Z\]
+\[H_1(X)=\frac{\ker \partial_1}{Im \partial_2}=\frac{\Z^{}}{2\Z}=\Z/2\Z\]
+\[H_2(X)=\frac{\ker \partial_2}{Im \partial_3}=\frac{0}{0}=0\]
+\[H_3(X)=\frac{\ker \partial_3}{0}=\Z^2\]
+So we have 
+\[H_k(X)=\begin{cases}
+    \Z & \text{ if }k=0\\
+    \Z/2\Z &\text{ if }k=1\\
+    \Z^2 &\text{ if }k=3\\
+    0&\text{ otherwise}
+\end{cases}\]
+\qed\\
+\textbf{Problem 4:} If $f$ is an even map, then by the universal property of quotient map, we have the following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        S^n \arrow[rd, "f"] \arrow[d, "p"']    &     \\
+        \mathbb{R}P^n \arrow[r, "\exists !g", dashed] & S^n
+    \end{tikzcd}    
+\end{center}
+where $p$ is the antipodal map. Since $H_n()$ is a functor, we have $H_n(f)=H_n(g)\circ H_n(p)$. If $n$ is even, then we have $H_n(\R P^n)=0$ by lecture 6. So we have $H_n(p)$ is the trivial map. Therefore, $H_n(f)$ is the trivial map. So $\deg(f)=0$ if $n$ is even. \\
+For $n$ is odd, we want to first show the quotient map $q:\R P^n\to \R P^n/\R P^{n-1}$ induced an isomorphism on the $n$th homology group. Consider the long exact sequence of relative homology. Consider the CW-pair $(\R P^n,\R P^{n-1})$. We have the following long exact sequence. So we have 
+\[\cdots \to H_n(\R P^{n-1})\xrightarrow[]{i_\ast}H_n(\R P^n)\xrightarrow[]{q_\ast}H_n(\R P^n/\R P^{n-1})\xrightarrow[]{\partial }H_{n-1}(\R P^{n-1})\]
+Since $n$ is odd, we have $n-1$ is even. So we have $H_n(\R P^{n-1})=H_{n-1}(\R P^{n-1})=0$.
+So we have a short exact sequence
+\[0\xrightarrow[]{i_\ast}H_n(\R P^n)\xrightarrow[]{q_\ast}H_n(\R P^n/\R P^{n-1})\xrightarrow[]{\partial }0\]
+So we have $\ker q=Im(i_\ast)=0$ and $Im q=\ker \partial=H_n(\R P^n/\R P^{n-1})$. Hence, $q$ is an isomorphism. Now, we want to use the result from the lecture. We have the codimension 1 attaching map is
+\[f_{n+1,n}: S^n\xrightarrow[]{p}\R P^n\xrightarrow[]{q}\R P^n/\R P^{n-1}\]
+has degree $(-1)^{n+1}+1=2$. Since automorphism of $\Z$ sends 1 to  either 1 or -1. So $\deg(f_{n+1,n})=\deg(p)\deg(q)=\pm\deg(p)=2$ implies $\deg (p)=\pm2$. So we have $\deg(f)=\deg(p)\deg(g)=\pm2\deg(g)$ is even. Next, we show there exists even map for any even degree.\\
+Recall from HW1, Problem 3, we showed that given any $m$, we have a map with degree $m$.
+\[\sigma:S^n\to S^n\]
+\[(z,x)\mapsto (z^m,x)\]
+where we identify $S^n=\{(z,x)\in\C\oplus \R^{n-1}: |z|^2+|x|^2=1\}$. Now, consider
+\[\gamma: S^n\xrightarrow[]{p}\R P^n\xrightarrow[]{q}\R P^n/\R P^{n-1}\xrightarrow[\cong]{\tau}S^n\xrightarrow[]{\sigma}S^n\]
+where $\tau$ is a homeomorphism between $S^n$ and $\R P^n/\R P^{n-1}$.
+Then, we have 
+\[\deg(\gamma)=\deg(p)\deg(q)\deg(\tau)\deg(\sigma)=\pm2m\]
+So we can obtained any even degree if we choose different $m$.
+\\\qed\\
+\end{document}

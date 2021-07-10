@@ -1,0 +1,216 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 1 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:}\\
+\textbf{(a):} The answer is yes. Given $(m_n)_{n\geq 1}\in \oplus_{n\geq 1} M_n$, let $S\subseteq \N$ such that for any $n\in S$, $m_n\neq 0$. Then, by the definition of direct sum, we have $S$ is a finte set. Then since every $M_n$ is a torsion $R$-module, for any $n\in S$, there exists $r_n\in R\setminus\{0\}$ such that $r_nm_n=0$. Since $R$ is an integral domain, we have 
+\[\Pi_{n\in S}r_n\neq 0\]
+Now, we claim $(\Pi_{n\in S}r_n)\cdot (m_n)_{n\geq 1}=(0)_{n\geq 1}$. This requires $R$ to be commutative, which is garanteed by the fact that $R$ is an integral domain.\\
+For $n\notin S$, we have 
+\[(\Pi_{n\in S}r_n)\cdot m_n=(\Pi_{n\in S}r_n)\cdot 0=0\]
+For $n\in S$, we have 
+\[[(\Pi_{m\in S, m\neq n}r_m)r_n]\cdot m_n=(\Pi_{m\in S, m\neq n}r_m)\cdot (r_n\cdot m_n)=(\Pi_{m\in S, m\neq n}r_m)\cdot 0=0\]
+Hence, $(\Pi_{n\in S}r_n)\cdot (m_n)_{n\geq 1}=0_{n\geq 1}$. So $\oplus_{n\geq 1}M_n$ is a torsion $R$-module.\\
+\textbf{(b):} The answer is no. Here is a simple example. For convenience, we want to reindex and start with $n=2$.\\
+Let $M_n=(\Z/n\Z,+)$, where $n\geq 2$. So $M_n$ is an abelian group for each $n\geq 2$. We can realize them as $\Z$-modules. They are torsion $\Z-$modules because for any $n\geq 2$, and any element $a\in \Z/nZ$, we have $na=0$. Now, we take the direct product. We can consider $(1)_{n\geq 2}$. For any $N\in \Z\setminus \{0\}$, we have $N\cdot 1=N\neq 0$ in $\Z/n\Z$ if $n>|N|$. Hence, $N\cdot (1)_{n\geq 2}\neq (0)_{n\geq 2}$. So $\Pi_{n\geq 2}M_n$ is not a torsion $\Z$-module even all $M_n$ is torsion.\\
+\textbf{(c):} In general the answer is no. Let $M=N=\oplus_{n\geq 2}\Z/n\Z$, then $M$ is a torsion $\Z$-module by part (a). Then $Hom_\Z(M,N)=End_\Z(\oplus_{n\geq 2} \Z/n\Z)$.\\
+Let's consider the identity map. Then for any $\N\in \Z\setminus\{0\}$, there exists $(m_n)_{n\geq 2}\in M$ where $m_n=0$ for all $n$ but $n=N+1$. Then we have 
+\[N\cdot id_M[(m_n)_{n\geq 2}]=N\cdot (m_n)_{n\geq2}=\begin{cases}
+    0 \ \text{if}\  n\neq N+1\\
+    N \ \text{if}\  n= N+1
+\end{cases}\]
+Hence, the identity map is not a torsion element in $End(M)$. Hence, $End(M)$ is not a torsion $\Z$-module.
+\\
+If $M$ is finitely generated, then the answer is yes.\\
+Let's do the case, when $M$ is finitely generated. Suppose the generating set is $\{m_1,m_2,\dots, m_n\}$, then exists a collection of elements $\{r_1,r_2,\dots,r_n\}\subseteq R\setminus\{0\}$ such that $r_i\cdot m_i=0$ for any $1\leq i\leq n$ since $M$ is a torsion $R$-module. As we mentioned before, $(\Pi_{j=1}^nr_j)\neq 0$ because $R$ is an integral domain. Then for any $f\in Hom_R(M,N)$ and any $\sum_{i=1}^n a_im_i$, we have 
+\begin{align*}
+    (\Pi_{j=1}^nr_j)f(\sum_{i=1}^n a_im_i)&=\sum_{i=1}^n a_i(\Pi_{j=1}^nr_j)f(m_i)\\
+    &=\sum_{i=1}^n a_i(\Pi_{1\leq j\leq n, \  j\neq i}r_j)f(r_im_i) \\
+    &= \sum_{i=1}^n a_i(\Pi_{1\leq j\leq n, \  j\neq i}r_j)f(0) \\
+    &= \sum_{i=1}^n a_i(\Pi_{1\leq j\leq n, \  j\neq i}r_j)0 \\
+    &= 0 \\
+\end{align*}
+Hence, $Hom_R(M,N)$ is a torsion $R$-module if $M$ is finitely generated.\\
+When $N$ is finitely generated, the idea is similar. Suppose the generating set is $\{n_1,n_2,\dots, n_k\}$, then exists a collection of elements $\{r_1,r_2,\dots,r_k\}\subseteq R\setminus\{0\}$ such that $r_i\cdot m_i=0$ for any $1\leq i\leq k$ since $N$ is a torsion $R$-module. Then for any $x\in N$, we can write $x=\sum_{i=1}^k a_in_i$ where $a_i\in R$. And, we have 
+\[(\Pi_{i=1}^kr_i)x=\sum_{j=1}^ka_j(\Pi_{i\neq j}r_i)r_jn_j=\sum_{j=1}^k a_j(\Pi_{i\neq j}r_i)0=0\]
+where $\Pi_{i=1}^kr_i\neq 0$ because $R$ is an integral domain.\\
+Hence, we have for any $f\in Hom_R(M,N)$ and any $m\in M$,
+\[(\Pi_{i=1}^kr_i)f(m)=0\]
+because $f(m)\in N$.
+Hence, $Hom_R(M,N)$ is a torsion $R$-module.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 2:} Let's construct a $FG-$module structure from a representation first. Since $V$ is a vector space over $F$, then we already have the action by $F$ on $V$ because an $F$-module is a vector space over $F$. All we need to do is to define the action by $G$. By the representation, we know each element $g\in G$ maps to some automorphism of $V$. Hence, we can define
+\[FG\times V\to V\]
+\[g\cdot v\mapsto \phi(g)v\]
+Let's check the module axioms. For any $x,y\in F$, $g,h\in G$, $u,v\in V$, we have 
+\[(xg\cdot yh)\cdot u=(xygh)\cdot u=xy\phi(gh)u=x\phi(g)y\phi(h)u=xg\cdot (yh\cdot u)\]
+\[1\cdot u=id_V u=u\]
+\[(xg)\cdot (u+v)=x\phi(g)(u+v)=x\phi(g)u+x\phi(g)v=xg\cdot u+xg\cdot v\]
+\[(xg+yh)u=(x\phi(g)+y\phi(h))u=x\phi(g)u+y\phi(h)u=xg\cdot u +yh\cdot u\]
+So $V$ is indeed a $FG$-module. Notice that two representation is the same if the group homomorphisms $\phi$'s are the same. And the module structure on $V$ are the same if the actions are the same. By the way we define the action, we have the module structure are the same if and only if the group homomorphisms are the same. Hence, we have an injective function from the set of representations of $G$ to the set of $FG$-modules.\\
+To show the surjectivity, we want to give an representation of $G$ from the module structure of $V$. Notice that if we restrict the action to $F$, then $V$ is an $F$-module, which is a vector space over $F$. By the lecture, we know the $FG$-module structure on $V$ can be viewed as a ring homomorphism $\theta: FG\to End_\Z(V)$. So given any $g\in G$, we have $\theta(g)\in End_\Z(V)$. Now, we want to show $\theta(g)\in GL(V)$. First, $\theta(g)$ is invertible since there exists $g^{-1}\in G$ and $\theta$ is a ring homomorphism, so we have 
+\[id_V=\theta(1)=\theta(gg^{-1})=\theta(g)\theta(g^{-1})\]
+Now we want to show $\theta(g)$ is a linear transformation. Since $V$ is a vector space over $F$, we have $\theta(c)=c\cdot id_V$ for any $c\in F$. Hence, for any $g\in G$, $c\in F$, $u,v\in V$, we have
+\[\theta(g)(cv)=\theta(gc)(v)=\theta(cg)(v)=(c\cdot id_V)\circ \theta(g)(v)=c\theta(g)(v)\]
+\[\theta(g)(u+v)=\theta(g)(u)+\theta(g)(v)\]
+because $\theta$ is a ring homomorphisms, $FG$ is a group algebra (for the first line), and $\theta(g)$ is an endomorphism of $V$ (for the second line). So $\theta(g)\in GL(V)$. Hence, we can define a map 
+\[\phi:G\to GL(V)\]
+\[g\mapsto \theta(g)\]
+This map is a group homomorphism because $\phi(gh)=\theta(gh)=\theta(g)\theta(h)=\phi(g)\phi(h)$. So for any $FG$-module, there exists some representation defined by $FG$-action. This completes the proof.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:}\\
+\textbf{(a): }To prove (a), $S$ need to be a commutative ring. Let's check the module axioms. Since, $M$ is a right $S$-module, for any $\phi\in Hom_R(M,N)$, $m,n\in M$, $s,t\in S$, we have 
+\[[(st)\cdot \phi](m)=\phi(mst)=\phi(mts)=[s\cdot \phi](mt)=[s\cdot (t\cdot \phi)](m)\tag{1}\]
+\[[1_S\cdot\phi](m)=\phi(m\cdot 1)=\phi(m) \tag{2}\]
+\[[s\cdot \phi](m+n)=\phi((m+n)\cdot s)=\phi(ms+ns)=\phi(ms)+\phi(ns)=[s\cdot \phi](m)+[s\cdot \phi](n)\tag{3}\]
+\[[(s+t)\cdot \phi](m)=\phi(m\cdot (s+t))=\phi(ms+mt)=\phi(ms)+\phi(mt)=[s\cdot \phi](m)+[t\cdot \phi](m)\tag{4}\]
+So $Hom_R(M,N)$ is a left $S$-module.\\
+\textbf{(b):} Since $N$ is a right $T$-module, for any $\phi\in Hom_R(M,N)$, $m,n\in M$, $s,t\in T$, we have 
+\[[\phi\cdot (st)](m)=\phi(m)st=[\phi\cdot s](m)t=[(\phi\cdot s)\cdot t](m)\tag{1}\]
+\[[\phi\cdot 1_T](m)=\phi(m)1_T=\phi(m) \tag{2}\]
+\[[\phi\cdot t](m+n)=\phi(m+n)t=[\phi(m)+\phi(n)]t=\phi(m)t+\phi(n)t=[\phi\cdot t](m)+[\phi\cdot t](n)\tag{3}\]
+\[[\phi\cdot (s+t)](m)=\phi(m)(s+t)=\phi(m)s+\phi(m)t=[\phi\cdot s](m)+[\phi\cdot t](m)\tag{4}\]
+So $Hom_R(M,N)$ is a right $T$-module.\\
+\textbf{(c):} To show $Hom_R(M,N)$ is a $(S,T)-$bimodule, we want to show that the left action by $S$ is compatible with the right action by $T$. For any $s\in S$, $t\in T$, $\phi\in Hom_R(M,N)$, and $m\in M$, we have 
+\[[(s\cdot \phi)\cdot t](m)=[\phi\cdot t](ms)=\phi(ms)t\]
+\[[s\cdot (\phi\cdot t)](m)=[s\cdot \phi](m)t=\phi(ms)t\]
+So we have $(s\cdot \phi) \cdot t=s\cdot (\phi \cdot t)$. Hence, $Hom_R(M,N)$ is a $(S,T)$-bimodule.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:}\\
+\textbf{(a):} By the lecture note, we know the quotient of two $R$-module is an $R$-module. So $M/IM$ is an $R$-module. So we just need to show it also an $R/I$-module. First, the action is well-defined. 
+If $r+I=s+I$ and for any $m+IM\in M/IM$, then we have $r-s\in I$ and 
+\[[(r-s)+I]\cdot(m+IM)=(r-s)m+IM=0+IM\]
+since $m\in M$ and $(r-s)\in I$ implies $(r-s)m\in IM$. So we have $(r+I)\cdot (m+IM)=(s+I)\cdot(m+IM)$. Also, if $m+IM=n+IM$ and for any $r+I\in R/I$, we have $m-n\in IM$. Hence, we can suppose $m-n=\sum_{i=1}^nx_im_i$ where $x_i\in I$ and $m_i\in M$. Then we have
+\[(r+I)\cdot [(m-n)+IM]=r(m-n)+IM=r(\sum_{i=1}^nx_im_i)+IM=\sum_{i=1}^nrx_im_i+IM\]
+Since $I$ is an ideal, we have $rx_i\in I$ for all $1\leq i\leq n$. Hence, $r(m-n)\in IM$. So we have 
+\[(r+I)\cdot (m+IM)=(r+I)\cdot (n+IM)\]
+So the action is well-defined. Now, we want to check the axioms. For any $r+I,s+I\in R/I$, $m+IM,n+IM\in M/IM$, we have 
+\begin{align*}
+    [(r+I)(s+I)]\cdot (m+IM)&=(rs+ I)\cdot (m+IM)\\
+    &=rsm+IM\\
+    &=(r+I)\cdot (sm+IM)\\
+    &=(r+I)\cdot \big((s+I)\cdot (m+IM)\big)
+\tag{Axiom 1}\end{align*}
+\[(1+I)\cdot(m+IM)=1m+IM=m+IM\tag{Axiom 2}\]
+\begin{align*}
+    (r+I)\cdot [(m+IM)+(n+IM)]&=(r+ I)\cdot (m+n+IM)\\
+    &=r(m+m)+IM\\
+    &=rm+rn+IM\\
+    &=(rm+IM)+(rn+IM)\\
+    &=(r+I)\cdot (m+IM)+(r+I)\cdot (n+IM)
+\tag{Axiom 3}\end{align*}
+\begin{align*}
+    [(r+I)+(s+I)]\cdot (m+IM)&=(r+s+ I)\cdot (m+IM)\\
+    &=(r+s)m+IM\\
+    &=rm+sm+IM\\
+    &=(rm+IM)+(sm+IM)\\
+    &=(r+I)\cdot (m+IM)+(s+I)\cdot (m+IM)
+\tag{Axiom 4}\end{align*}
+So $M/IM$ is a $R/I$-module.\\
+\textbf{(b): }If $|X|=|Y|$, then we have a bijection $f:X\to Y$. Suppose $g:Y\to X$ is the inverse of $f$. Let $i_Y:Y\to N$ be the inclusion map, and let $i_Y\circ f:X\to N$. Since $M$ is a free module, then we have a unique $R$-module homomorphism $\phi: M\to N$ such that $\phi\circ i_X=i_Y\circ f$, where $i_X:X\to M$ is the inclusion map. Also, we have a unique $R$-module homomorphism 
+$\tau: N\to M$ such that $\tau\circ i_Y= i_X\circ g$. Hence, we have $\tau\circ \phi:M\to M$ is an $R$-module homomorphism. And we have 
+\[\tau\circ( \phi\circ i_X)=(\tau\circ i_Y)\circ f=i_X\circ (g\circ f)=i_X\circ id_X=i_X\]
+Notice that the identity map $id_M:M\to M$ also satisfies $ id_M\circ i_X=i_X$. By the uniqueness of free module, we must have $id_M=\tau\circ \phi$.\\
+On the other hand, we have 
+\[\phi\circ (\tau\circ i_Y)=(\phi\circ i_X)\circ g=i_Y\circ (f\circ g)=i_Y\circ id_Y=i_Y \]
+Also, we have $id_N\circ i_Y=i_Y$. Hence, by the uniqueness of free module, $\phi\circ \tau=id_N$. So $M\cong N$.\\
+Conversely, if we have $M\cong N$ as $R$-modules, then there exists an $R$-module isomorphism $\phi:M\to N$. Let $I$ be a maximal ideal of $R$. Now, we want to show $IN=\phi(IM)$.\\
+If $y=\sum_{i=1}^kx_in_i\in IN$, where $x_i\in I$ and $n_i\in N$, then we have $m_i\in M$ such that $\phi(m_i)=n_i$ for all $i$ because $\phi$ is surjective. So we have 
+\[\phi(\sum_{i=1}^kx_im_i)=\sum_{i=1}^kx_i\phi(m_i)=\sum_{i=1}^kx_in_i=y\]
+Hence, $IN\subseteq \phi(IM)$.\\
+If $x=\sum_{i=1}^kx_im_i\in IM$, then we have $\phi(\sum_{i=1}^kx_im_i)=\sum_{i=1}^kx_i\phi(m_i)\in IN$ because $\phi(m_i)\in\phi(M)=N$. So we have $\phi(IM)\subseteq IN$. Hence, we have $ \phi(IM)= IN$. Now, consider the $R$-module homomorphism
+\[M\xrightarrow{\phi}N\xrightarrow{p}N/IN\]
+where $p$ is the canonical quotient map. Then we have $p\circ \phi:M\to N/IN$ is a surjective homomorphism since $p$ is surjective and $\phi$ is a bijection. And we have 
+\[ker(p\circ \phi)=\phi^{-1}(IN)=IM\]
+So we have an isomorphism from $M/IM$ to $N/IN$ by the first isomorphism theorem. By part a, we know $M/IM$ and $N/IN$ are $R/I$-modules. We want to show $M/IM\cong N/IN$ as $R/I$-modules.\\
+Notice that the isomorphism induced by $p\circ \phi$ is defined as the following:
+\[\varphi:M/IM\to N/IN\]
+\[m+IM\mapsto \phi(m)+IN \]
+So for any $m+IM\in M/IM$ and $r+I\in R/I$, we have 
+\[\varphi[(r+I)\cdot (m+IM)]=\varphi(rm+IM)=\phi(rm)+IN=r\phi(m)+IN=(r+I)\cdot (\phi(m)+IN)=(r+I)\cdot \varphi(m+IM) \]
+So $\varphi$ is a $R/I$-module isomorphism. Notice that $R/I$ is a field since $I$ is a maximal ideal. So $\varphi$ is a bijective linear transformation over $R/I$. Now, we want to show $X$ is a basis of $M/IM$ and $Y$ is a basis of $N/IN$ (as vector spaces).\\
+Since $I$ is maximal, we have $1\notin I$. Hence, for any $m_i\in X$, we have $m_i\notin IM$ and $m_i+IM\neq 0+ IM$. Since $X$ spans $M$, we have $X+IM:=\{m_i+IM\mid m_i\in X\}$ spans $M/IM$. Also, for any finite collection of elements in $X$, we have 
+\[\sum_{i=1}^k(r_i+I)(m_i+IM)=\sum_{i=1}^kr_im_i+IM\]
+The sum is equal to $0+IM$ if and only if $\sum_{i=1}^kr_im_i\in IM$ if and only if $r_i\in I$ for all $i$. So the colleciton are linearly independent because $r_i\in I$ for all $i$ implies $r_i+I=0+I$ for all $i$. Hence, $X+IM$ is a basis of $M/IM$.\\
+Similarly, we have $Y+IN$ is a basis of $N/IN$ if we replace $M$ by $N$ and $X$ by $Y$. Notice that $|X|=|X+IM|$ since $m_i-m_j\in IM$ if and only if $i=j$. So we have a bijection between $X$ to $X+IM$. Similarly for $|Y|=|Y+IN|$. Since two vector spaces are isomorphic if and only if the basis has same cardinality, we have $|X|=|X+IM|=|Y+IN|=|Y|$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:}\\
+First, we show $R=R\phi\oplus R\psi$. If $\tau=\alpha\phi=\beta\psi$ where $\alpha,\beta\in R$, then we have 
+\[\tau(v_i)=\begin{cases}
+    \alpha\phi(v_i)=\alpha(0)=0 & \text{ if } i\equiv 1 \pmod 2\\
+    \beta\psi(v_i)=\beta(0)=0 & \text{ if } i\equiv 0\pmod2
+\end{cases}\]
+So we have $\tau$ is trivial since linear transformation is determined by the image of basis elements. To show $R=R\phi+R\psi$, we want to use the idea of elementary row operations. Notice that $\phi$ has the matrix representation as $\begin{bmatrix}
+    0 |\vec{e_1}|0|\vec{e_2}|\cdots
+\end{bmatrix}$, where $\vec{e_i}$ is the standard basis vector, which has 1 at $i$th coordinate and 0 elsewhere. Similarly, $\psi$ has the matrix representation as $\begin{bmatrix}
+    \vec{e_1}|0|\vec{e_2}|0|\cdots
+\end{bmatrix}$. Since $R=End_K(V)$, $R$ consists of all square matrices; hence $R$ contains elementary matrices. By switching the rows, we can get 1 at all possible entries of the matrix. Also, we can multiply (on left) with matrices with 0 in all entries but 1 at the $i$th column to get a matrix with 0 else with and $i$th column unchanged. Hence, we can get all of the matrices, which has 1 at exactly one entry and 0 elsewhere. Then we can sum them up to get arbitrary matrices. So we have $R=R\phi+ R\psi$. Hence, $R=R\phi\oplus R\psi$.\\
+Now, we want to show $R\phi\cong R\cong R\psi$ as left $R-$module.\\
+Consider the following map:
+\[\tau: R\to R\phi\]
+\[f\mapsto f\phi\]
+This is a module homomorphism since for any $f,g\in R$, we have 
+\[\tau(f+g)=(f+g)\phi=f\phi+g\phi=\tau(f)+\tau(g)\]
+is a group homomorphism and 
+\[\tau(fg)=fg\phi=f(g\phi)=f(\tau(g))\]
+and it commutes with $R$-action. Now, we check it is a bijection. If $\tau(f)=0$, then we have for any $i\in \N$, 
+\[0=\tau(f)(v_{2i})=f\phi(v_{2i})=f(v_i)\]
+Hence, $f=0$. Conversely, since any element in $R\phi$ has the form, $f\phi$, by definition. Hence, we have $\tau(f)=f\phi$. Hence, $\tau$ is surjective. So $\tau$ is an isomorphism.\\
+On the other hand, we consider
+\[\sigma:R\to R\psi\]
+\[f\mapsto f\psi\]
+
+This is a module homomorphism since for any $f,g\in R$, we have 
+\[\sigma(f+g)=(f+g)\psi=f\psi+g\psi=\sigma(f)+\sigma(g)\]
+is a group homomorphism and 
+\[\sigma(fg)=fg\psi=f(g\psi)=f(\sigma(g))\]
+and it commutes with $R$-action. Now, we check it is a bijection. If $\sigma(f)=0$, then we have for any $i\in \N$, 
+\[0=\sigma(f)(v_{2i-1})=f\psi(v_{2i-1})=f(v_i)\]
+Hence, $f=0$. Conversely, since any element in $R\psi$ has the form, $f\psi$, by definition. Hence, we have $\sigma(f)=f\psi$. Hence, $\sigma$ is surjective. So $\sigma$ is an isomorphism.\\
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:}\\
+\textbf{(a):} If $M$ is a simple $R$-module, then $M\neq 0$. So, we can pick any $x\in M\setminus\{0\}$. And, we have $Rx$ is a submodule of $M$ that generated by $x$. Since $x\in Rx$, we have $Rx\neq 0$. Hence, $Rx=M$ since $M$ is simple. So $M$ is a cyclic module. Next, we consider the following $R$-module homomorphism:
+\[\phi: R\to M=Rx\]
+\[r\mapsto rx\]
+Since any element $y\in Rx$ can be written as $y=rx=\phi(r)$ for some $r\in R$, we conclude that $ \phi$ is surjective. Notice that a $R-$submodule of $R$ is the same as an ideal of $R$. Suppose $ker\phi=P$, which is an ideal of $R$. We want to show $P$ is maximal. Then we have an induced isomorphism:
+\[\phi':R/P\xrightarrow{\cong}M\]
+If $P$ is not maximal, then exists a maximal ideal $I$ contains $P$. By the correspondence theorem, we have $\phi'(I/P)$ is a submodule of $M$. Since $P\subsetneq I$, we have $\phi'(I/P)\neq 0$. Since $I\subsetneq R$, $\phi'(I/P)\neq M$. This contradicts to the fact that $M$ is simple. Hence, $P$ must be maximal. So we have $M$ is a cyclic module of the form $R/P$ for some maximal ideal $P$.\\
+\textbf{(b): }To show every nonzero element is a unit, we want to show that any nontrivial endomorphism of $M$ is an isomorphism. Suppose $\phi:M\to M$ is an endomorphism of $M$. Since $M$ is a simple $R$-module, we have $ker\phi=0$ or $ker\phi=M$. If $ker\phi=M$, then $\phi=0$ is trivial. If not, then we have $ker\phi=0$ is injective. Also, we know $\phi(M)$ is a submodule of $M$. Hence, $\phi(M)=0$ or $\phi(M)=M$. Since $ker\phi=0$, we have $\phi(M)=M$. So $\phi$ is surjective. Hence, $\phi$ is an isomorphism if $\phi\neq 0$. Hence, $\phi$ is unit. Hence, $End_R(M)$ is a divison ring.\\
+\textbf{(c):} First, we want to show if $\phi\in End_R(V)$, then $\phi$ is a linear transformation. Since $\phi$ is a module homomorphism, we have for any $u,v\in V$, 
+\[\phi(u+v)=\phi(u)+\phi(v)\]
+And consider $\lambda I_n\in R$, where $\lambda\in F$, we have 
+\[\phi(\lambda v)=\phi(\lambda I_nv)=\lambda I_n\phi(v)=\lambda\phi(v)\]
+Then by part b, we know $End_R(V)$ is a division ring. Hence, $End_R(V)$ consists of invertible linear transformations and the trivial linear transformation. If we fix some basis of $V$, then we can write $\phi$ in terms of some invertible $n\times n$ matrix or the zero matrix. Now, we want to show $\phi$ is actually some multiple of $I_n$. Being an element $\phi$ in $End_R(V)$ requires $\phi$ commutes with any matrix in $R$. Let $A_{ii}\in R$ such that $a_{jk}=1$ if $i=j=k$ and $a_{jk}=0$ elsewhere. Suppose $\vec{c_i}$ is the ith column of $\phi$ and $\vec{r_i}$ is the ith row of $\phi$. Then we have 
+\[\begin{bmatrix}
+    0 |0 |\cdots |\vec{c_i}|0|\cdots
+\end{bmatrix}=\phi A_{ii}=A_{ii}\phi=\begin{bmatrix}
+    0\\
+    0\\
+    \cdots\\
+    \vec{r_i}\\
+    0\\
+    \cdots
+\end{bmatrix} \text{ for all } 1\leq i\leq n\]
+Hence, $\phi$ is a diagonal matrix. Consider the elementary row/column operation matrix. Let $E_{ij}$ be the matrix, which switch $i$th row with $j$th row if we multiply on the left and switch $i$th column and $j$th column if we multiply on the right. Then we should have if we look at the $ij$-th entry of $\phi E_{ij}$, we have $\phi{ii}$. If we look at the $ij$-th entry of $E_{ij}\phi$, we have $\phi_{jj}$. Hence, we should have $\phi{ii}=\phi_{jj}$ because $\phi E_{ij}=E_{ij}\phi$. Hence, $\phi=\lambda I_n$ for some $\lambda\in F$. Hence, $End_R(V)=\{\lambda I_n\mid \lambda\in F\}$.
+\\\phantom{qed}\hfill$\square$\\
+\end{document}

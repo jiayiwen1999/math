@@ -1,0 +1,155 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 3 - 290B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Source Consulted: We refer to Prof. Lin's lecture notes, Miller's notes and Hatcher's book. For part c of the third problem, we heavily use the idea presented by Prof. Lin in last quarter. \\
+\textbf{Problem 1:} The proof is actually very simple. Since $X'$ is a finite CW-complex, $X'$ only has fintie dimension. So if we calculate the euler characteristic of $X'$, we get a finite sum
+\[\chi(X')=\sum_{i=0}^{\dim X'}(-1)^i rank (C_i)<\infty\]
+where $C_i$ is the $i$th cellular chain complex of $X'.$  Since $X$ is a $n$-fold covering space of $X'$, then we know the euler characteristic of $X$ is given by
+\[\chi(X)=n\chi(X')\]
+Since euler characteristic is a homotopy invariant, so if $X$ is homotopic to a point (i.e. $X$ is contractible), then $\chi(X)=\chi(\ast)=1$. But this implies that $n\chi(X')=1$. Since $\chi(X')\in\Z$ and $n>1$, it is impossible. So $X$ cannot be contractible.\\
+Notice that if we have $n=1$, then it is possible. For example, $D^2$ is a finite CW complex, which is contractible.
+\\\qed\\
+\textbf{Problem 2:}
+Consider the following sequence of abelian groups
+\[0\to \Z/2\xrightarrow[]{\varphi}\Z/2^{n}\xrightarrow[]{\phi}\Z/2^{n-1}\to 0\]
+where $\varphi(1)=1$ and $\phi(1)=1$. Then we have $\ker \varphi=0$ is trivial and $Im\phi=\Z/2^{n-1}$. Now, we want to show $\ker\phi\cong 2\Z$. If $\phi(k)=0$, then we have $2^{n-1}\mid k.$ So we have $\ker \phi=2^{n-1}(\Z/2^n)\cong 2\Z$. So it is a short exact sequence. Then by theorem we proved in class, this induces two natural long exact sequences.
+\[\cdots \to H_k(X;\Z/2)\to H_k(X;\Z/2^{n})\to H_k(X;\Z/2^{n-1})\to H_{k-1}(X;\Z/2)\to \cdots \]
+\[\cdots \to H_k(Y;\Z/2)\to H_k(Y;\Z/2^{n})\to H_k(Y;\Z/2^{n-1})\to H_{k-1}(Y;\Z/2)\to \cdots \]
+Since they are natural, we have the following commutative diagram.\\
+\begin{center}
+    \begin{tikzcd}
+        H_{k+1}(X;\mathbb{Z}/2^{n-1}) \arrow[d, "f_\ast"] \arrow[r] & H_k(X;\mathbb{Z}/2) \arrow[d, "f_\ast"] \arrow[r] & H_k(X;\mathbb{Z}/2^n) \arrow[d, "f_\ast"] \arrow[r] & H_k(X;\mathbb{Z}/2^{n-1}) \arrow[d, "f_\ast"] \arrow[r] & H_{k-1}(X;\mathbb{Z}/2) \arrow[d, "f_\ast"] \\
+        H_{k+1}(Y;\mathbb{Z}/2^{n-1}) \arrow[r]                     & H_k(Y;\mathbb{Z}/2) \arrow[r]                     & H_k(Y;\mathbb{Z}/2^n) \arrow[r]                     & H_k(Y;\mathbb{Z}/2^{n-1}) \arrow[r]                     & H_{k-1}(Y;\mathbb{Z}/2)
+    \end{tikzcd}
+\end{center}
+Now, we want to prove the middle induced map is an isomorphism by induction.
+If $n=1$, there is nothing to prove since we already know $f_\ast$ is an isomorphism if the coefficient is $\Z/2$.
+Suppose it is true for the first $n-1$ cases. Then we have the first, second, fourth, fifth induced maps are isomorphisms. By five lemma, the third one is also an isomorphism. So we finished the induction. Hence, we have $f$ induces isomorphism for all $H_\ast(X;\Z/2^n)\xrightarrow[]{\cong}H_\ast(Y;\Z/2^n)$.
+\\\qed\\
+\textbf{Problem 3:}
+\\\textbf{(a):} We claim that $\Z/m\otimes \Z/n\cong \Z/\gcd(m,n)$. Suppose $d=\gcd(m,n)$.\\
+Let $\phi:\Z/m\times \Z/n\to \Z/d$, where $\phi(a,b)=ab$. It is well-defined since if $a\in\Z/m$ and $b\in\Z/n$ and $k,l\in\Z$ , we have
+\[\phi(a+km,b+ln)=(a+km)(b+ln)=ab\]
+since $d\mid m$ and $d\mid n$ implies $d\mid km$ and $d\mid ln$.\\
+Now, we want to show $\phi$ is a $\Z$-bilinear map. For any $k\in\Z$, $a_1,a_2\in\Z/m$ and $b_1,b_2\in\Z/n$, we have
+\[\phi(a_1+a_2,b_1)=(a_1+a_2)b_1=a_1b_1+a_2b_1=\phi(a_1,b_1)+\phi(a_2,b_1)\]
+\[\phi(a_1,b_1+b_2)=a_1(b_1+b_2)=a_1b_1+a_1b_2=\phi(a_1,b_1)+\phi(a_1,b_2)\]
+\[\phi(ka_1,b_1)=ka_1b_1=k\phi(a_1,b_1)\]
+\[\phi(a_1,kb_1)=a_1(kb_1)=ka_1b_1=k\phi(a_1,b_1)\]
+Now, by universal property of tensor product, there is an abelian group homomorphism
+\[\varphi:\Z/m\otimes \Z/n\to \Z/d\]
+such that $\varphi\circ \theta=\phi$, where $\theta$ is the bilinear map from $\Z/m\times \Z/n$ to $\Z/m\otimes \Z/n$. Now, we want to show $\varphi$ is an isomorphism.
+It is surjective since $1\in\Z/d$ is a generator and $\phi(1,1)=1$ implies $\varphi(1\otimes 1)=1$. If $\varphi(a\otimes b)=0$, then we have $\phi(a,b)=ab\equiv 0\pmod d$. Suppose $a=d_1a'$ and $b=d_2b'$ such that $d=d_1d_2$. Also, suppose $d=rm+sn$, where $r,s\in\Z$. Then we have
+\begin{align*}
+    a\otimes b & =d(a'\otimes b')                   \\
+               & =(rm+sn)(a'\otimes b')             \\
+               & =rm(a'\otimes b')+sn(a'\otimes b') \\
+               & =(rma'\otimes b')+(a'\otimes snb') \\
+               & =(0\otimes b')+(a'\otimes 0)       \\
+               & =0(0\otimes b')+0(a'\otimes 0)     \\
+               & =0\otimes 0+0\otimes 0             \\
+               & =2(0\otimes 0)                     \\
+               & =0\otimes 0
+\end{align*}
+So $\varphi$ is injective. So it is an isomorphism.
+\\\textbf{(b):} If $p=2$, then we have the following cellular chain complex:
+\[0\to \Z/2\xrightarrow[]{0}\Z/2\xrightarrow[]{0}\cdots \xrightarrow[]{0}\Z/2\to 0\]
+Since the degree of codimension 1 attaching map is alternating between 0 and 2, but $2\equiv 0\pmod 2$, so all differentials are trivial. Hence, the cellualr homology is
+\[H_k(\R P^n;\Z/2)=\begin{cases}
+        \Z/2 & \text{ if }0\leq k\leq n \\
+        0    & \text{ otherwise }
+    \end{cases}\]
+If $p\neq 2$, then we know $Z/p$ is a field with characteristic $p$. So $2$ is invertible.  Also if $M=\Q$, $2$ is also invertible. So the differentials are alternating between trivial map and isomorphism. If we have
+\[M\xrightarrow[]{0}M\xrightarrow[]{\cong}M\]
+then the homology of the middle term is trivial because the image of trivial map is trivial and the kernel of isomorphism is trivial. Also, if we have
+\[M\xrightarrow[]{\cong}M\xrightarrow[]{0}M\]
+then the homology of the middle term is trivial because the image of isomorphism is $M$ and the kernel of trivial map is $M$ as well.\\
+Hence, the result is depend on the parity of $n$. If $n$ is even, we have
+\[H_k(\R P^n;M)=\begin{cases}
+        M & \text{ if } k=0    \\
+        0 & \text{ otherwise }
+    \end{cases}\]
+If $n$ is odd, then we have
+\[H_k(\R P^n;M)=\begin{cases}
+        M & \text{ if } k=0,n  \\
+        0 & \text{ otherwise }
+    \end{cases}\]
+\textbf{(c):} To consturct this boundary map, the idea comes from the proof of homology long exact sequence associated to a short exact sequence given by Prof. Lin in last quarter.
+We denote the short exact sequence induced by $0\to L\to M\to N\to 0$ as
+\[0\to S_\ast (X;L)\xrightarrow[]{f}S_\ast(X;M)\xrightarrow[]{g}S_\ast(X;N)\to 0\]
+Take any $[c]\in H_{k+1}(X;N)$, where $c$ is a $(k+1)$-cycle, we have a element $b\in S_{k+1}(X;M)$ such that $g(b)=c$ since $g$ is a surjective map by exactness. Since $f,g$ are chain map, they commute with differentials. We denote the differentials by $d$ as usual. So we have
+\[g(db)=d(g(b))=dc=0\]
+So $db\in \ker(g:S_k(X;M)\to S_k(X;N))$. So $db\in Im(f:S_k(X;L)\to S_k(X;M))$ by the exactness. Hence, there exists some $a\in S_k(X;L)$ such that $f(a)=db$.\\
+Next, we want to show $[a]\in H_k(S;L)$. It is equivalent to show $a$ is $k$-cycle. Consider
+\[f(da)=d(f(a))=d(db)=d^2b=0\]
+Since $f$ is injective, we have $da=0$. So $a$ is a $k-$cycle.\\
+Now, we define
+\[\partial:H_{k+1}(X;N)\to H_k(X;L)\]
+\[\ \ \ [c]\mapsto [a]\]
+All we left is to check $\partial$ is well-defined and it is a natural transformation. To show this is well-defined, we have two things to verify. Since the choice of $a$ is given by the preimage of $db$, and $b$ is the preimage of $c$, but $g$ is not injective, so we want to show $a$ is independent of the choice of $b$. Suppose $g(b')=c$ for some $b'\in S_{k+1}(X;M)$. Then we have $g(b'-b)=0$. So $b'-b\in \ker g=Im f$. So there exists $a'\in S_{k+1}(X;L)$ such that $f(a')=b'-b$. Hence, we have $[a]=[a+da']$. Also, we have
+\[f(a+da')=f(a)+df(a')=db+d(b'-b)=db'\]
+So the choice of $a$ is independent of the choice of $b$.\\
+Also, if we have $c'\in[c]$, then we assume $c'=c+d\alpha$ where $\alpha\in S_{k+2}(X;N)$. Since $g$ is surjective, there exists some $\beta\in S_{k+2}(X;N)$ such that $g(\beta)=\alpha$. Then we have
+\[g(b+d\beta)=g(b)+d(g(\beta))=c+d\alpha=c'\]
+And we have
+\[d(b+d\beta)=db+d^2\beta=db=f(a)\]
+Hence, $\partial([c'])=[a]$ by our definition. So $\partial$ is well-defined.\\
+Now, we prove the naturality. Suppose $\phi:X\to Y$ is continuous. Then we have an induced map on singular $n-$simplices is
+\[\phi_\ast:Sin_n(X)\to Sin_n(Y)\]
+\[(\sigma:\Delta^n\to X)\mapsto (\phi\circ \sigma:\Delta^n\to X\to Y)\]
+Since $S_n(X;M)=\oplus_{\sigma\in Sin_n(X)}M$, we have an induced map on singular $n-$chain with coefficients in $M$.
+\[\phi_\ast:S_n(X;M)\to S_n(Y;M)\]
+\[\sum_{i=1}^km_i\sigma_i\mapsto \sum_{i=1}^km_i\phi_\ast(\sigma_i), \text{ where }m_i\in M, \sigma_i\in Sin_n(X)\]
+Notice that this induced map fits into the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        0 \arrow[r] & S_{n}(X;L) \arrow[d, "\phi_\ast"] \arrow[r, "f"] & S_{n}(X;M) \arrow[d, "\phi_\ast"] \arrow[r, "g"] & S_{n}(X;N) \arrow[d, "\phi_\ast"] \arrow[r] & 0 \\
+        0 \arrow[r] & S_{n}(Y;L) \arrow[r, "f"]                             & S_{n}(Y;M) \arrow[r, "g"]                             & S_{k}(Y;N) \arrow[r]                        & 0
+    \end{tikzcd}
+\end{center}
+Let's do some diagram chasing and see why this is true. Suppose $\sum_{i=1}^kl_i\sigma_i\in S_n(X;L)$, we have 
+\[\phi_\ast\circ f(\sum_{i=1}^kl_i\sigma_i)=\phi_\ast(\sum_{i=1}^kf(l_i)\sigma_i)=\sum_{i=1}^kf(l_i)\phi_\ast(\sigma_i)\]
+\[f\circ \phi_\ast(\sum_{i=1}^kl_i\sigma_i)=f(\sum_{i=1}^kl_i\phi_\ast(\sigma_i))=\sum_{i=1}^kf(l_i)\phi_\ast(\sigma_i)\]
+So the first square commutes. Suppose $\sum_{i=1}^km_i\sigma_i\in S_n(X;M)$, we have 
+\[\phi_\ast\circ g(\sum_{i=1}^km_i\sigma_i)=\phi_\ast(\sum_{i=1}^kg(m_i)\sigma_i)=\sum_{i=1}^kg(m_i)\phi_\ast(\sigma_i)\]
+\[g\circ \phi_\ast(\sum_{i=1}^km_i\sigma_i)=g(\sum_{i=1}^km_i\phi_\ast(\sigma_i))=\sum_{i=1}^kg(m_i)\phi_\ast(\sigma_i)\]
+So the second diagram commutes.\\
+Now, we are ready to prove the following diagram commutes. The induced map of homology by $\phi$ is defined by sending representatives of the equivalent class to representatives of the equivalent class, which is same as singular homology theory.
+\begin{center}
+    \begin{tikzcd}
+        H_{k+1}(X;N) \arrow[r, "\partial"] \arrow[d, "\phi_\ast"] & H_{k}(X;L) \arrow[d, "\phi_\ast"] \\
+        H_{k+1}(Y;N) \arrow[r, "\partial"]                        & H_{k}(Y;L)                       
+        \end{tikzcd}
+\end{center}
+Suppose $[c]\in H_{k+1}(X;N)$, then we have $c\in S_{k+1}(X;N)$. By the induced map $\phi_\ast:S_{k+1}(X;N)\to S_{k+1}(Y;N)$, we have $\phi_\ast(c)\in S_{k+1}(Y;N)$. Also, since $d$ is a natural transformation, we have 
+\[d\phi_\ast(c)=\phi_\ast(dc)=\phi_\ast(0)=0\]
+So $[\phi_\ast(c)]\in H_{k+1}(Y;N)$. Same proof works for $[\phi_\ast(a)]\in H_k(Y;L)$, where $\partial([c])=[a]$. Now, we want to show $\partial([\phi_\ast(c)])=[\phi_\ast(a)]$. Let's do diagram chasing.\\
+Suppose $g(b)=c$ as before, then by the diagram of singular n-chain, we have 
+\[g(\phi_\ast(b))=\phi_\ast(g(b))=\phi_\ast(c)\]
+Now, suppose $f(a)=db$ as before, then by the naturality of differentials, we have $d\phi_\ast(b)=\phi_\ast(db)=\phi_\ast(f(a))=f(\phi_\ast(a))$. Notice that the last equality is given by the commutative diagram of singular $n-$chain. So by our definition of $\partial$, we have 
+\[\partial([\phi_\ast(c)])=[\phi_\ast(a)]\]
+So the diagram commutes and $\partial$ is a natural transformation.
+\\\qed\\
+
+\end{document}

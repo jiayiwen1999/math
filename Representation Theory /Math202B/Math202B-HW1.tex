@@ -1,0 +1,106 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 1 - 202B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:}
+Since $G$ is a finite group, let $n=|G|$ be the order of $G$. Then we have $X(g)^n=X(g^n)=X(e)=I_d$. And notice that $X(g)$ satisfies the polynomial $x^n-1\in \C[x]$. So the minimal polynomial of $X(g)$ divides $x^n-1$. Since $\C$ is algebrically closed, we know $x^n-1$ factors into linear factor and it has $n$ distinct roots $\{1,\zeta^1,\cdots,\zeta^{n-1}\}$, where $\zeta=e^{2\pi i/n}$. So does the minimal polynomial of $X(g)$. Hence, it's Jordan canonical forms looks like the direct sum of some $1\times 1$ matrices, which diagonalizes $X(g)$. 
+\\\qed\\
+\textbf{Problem 2:} This is a direct consequence of Schur's Lemma, and the proof actually works for abelian group in general. Since $\F$ is algebrically closed and $V$ is an irreducible finite-dim $G$-module, we can apply Schur's Lemma. So every $G$-module endomorphism of $V$ is linear. Suppose $X:G\to GL(V)$ is the corresponding matrix representation of $V$. We want to show $X(g)\in End_G(V)$ for all $g\in G$. Fix $g\in G$, for any $h\in G$, we have 
+\[X(g)X(h)=X(gh)=X(hg)=X(h)X(g)\]
+Hence, $X(g)$ commutes with $G$-action on $V$, and $X(g)\in GL(V)$ is an vector space endomorphism of $V$. So we have $X(g)\in End_G(V)$. Therefore, $X(g)$ is a complex scalar multiplication. Therefore, any subspace of $V$ is a $G$-submodule since vector subspace is closed under scalar multiplication. Since $V$ is irreducible, we must have $V$ is 1-dimensional.\\
+If $\F$ is not algebrically closed, then the result may fail. The reason is that we cannot apply Schur's Lemma. We quote an example given in the lecture. Consider a cyclic group $C_n=\langle g\rangle$, where $n>2$, and its rotation representation over the real. Then we have 
+\[X:C_n\to GL_2(\R)\]
+\[g\mapsto \begin{pmatrix}
+    \cos\theta & -\sin\theta\\
+    \sin\theta & \cos\theta
+
+\end{pmatrix}\]
+where $\theta = \frac{2\pi}{n}$. This is irreducible because for any $v\in V$, we can act by $X(g)$ and get a new vector doesn't in the subspace spanned by $v$.
+\\\qed\\
+\textbf{Problem 3:} Let's first prove $V$ is an $S_n$-module. Given any $\pi\in S_n$ and $(a_1,\cdots, a_n)\in V$, we have 
+\[\sum_{i=1}^na_{\pi(i)}=\sum_{i=1}^na_i=0\]
+So $(a_{\pi(1)},\cdots, a_{\pi(n)})\in V$. Also, given any $c\in \F$ and $v_1=(a_1,\cdots,a_n),v_2=(b_1,\cdots,b_n)\in V$, we have 
+\[\sum_{i=1}^n ca_i=c\sum_{i=1}^na_i=c\cdot 0=0\]
+\[\sum_{i=1}^n (a_i+b_i)=\sum_{i=1}^n a_i+\sum_{i=1}^n b_i=0+0=0\]
+So $V$ is an $S_n$-module.\\
+Next, we want to show $V$ is irreducible. Suppose $W$ is a nonzero submodule of $V$. Then exists $(a_1,\cdots,a_n)\in W$ that is non-zero. Hence, there exists $1\leq i\leq n$ such that $a_i\neq 0$. Since $\F$ is characteristic zero and $\sum_{i=1}^n  a_i=0$, there exists at least another $j\neq i$ such that $a_j\neq 0$. If not, then all other coordinate is 0, then we will $a_i=0$, which is a contradiction. Now, we act by $\pi=(i,j)$. WLOG, we assume $i<j$. We have $(a_1,\cdots, a_n)-\pi (a_1,\cdots, a_n)=(0,\cdots,0,a_i-a_j,\cdots,a_j-a_i,\cdots,0)\in W$. Hence, we have $(0,\cdots, 0,1,\cdots,-1,\cdots,0)\in W$. If we denote $e_i$ to be the standard basis vectors, then acting by coordinate permutation, we have $e_i-e_j\in W$ for all $1\leq i,j\leq n$.\\
+Now, we want to show $V$ is contained in the subspace spanning by all $e_i-e_j$, which is a subspace of $W$.
+Given any $(a_1,\cdots, a_n)$, we have 
+\begin{align*}
+    (a_1,\cdots, a_n)
+    &=a_1(e_1-e_2)+(0,a_1+a_2,a_3,\cdots, a_n)\\
+    &=a_1(e_1-e_2)+(a_1+a_2)(e_2-e_3)+(0,0,a_1+a_2+a_3,\cdots, a_n)\\
+    &\ \vdots\\
+    &=a_1(e_1-e_2)+(a_1+a_2)(e_2-e_3)+\cdots+ (\sum_{i=1}^{n-1}a_i)(e_{n-1}-e_n)
+\end{align*}
+So the collection $\{e_i-e_j\mid 1\leq i,j\leq n\}$ spans $V$, which forces $W=V$. So $V$ is irreducible.\\
+Note that if $\F$ is not characteristic zero, the result may fails. Suppose $\F=\Z/3\Z$ and $n=3$, then we let $V\subseteq \F^3$. Then $V$ is a 2-dimension vector subspace of $\F^3$ since $V$ is spanned by $\{(1,-1,0),(0,1,-1)\}$ and if $\alpha(1,-1,0)+\beta(0,1,-1)=(0,0,0)$, then we have $\alpha=0$ and $\beta=0$. So $\{(1,-1,0),(0,1,-1)\}$ is a basis of $V$. However, $V$ is not irreducible since we can consider the subspace spanned by $(1,1,1)$, which is a 1-dimensional subspace of $V$. This is also a $S_3$-module. 
+\\\qed\\
+\textbf{Problem 4:} Let $\langle\ ,\ \rangle: V\times V\to \R$ be the dot product. Then we can use the averaging argument to obtain an $G$-invariant inner product
+\[(\ ,\ ):V\times V\to \R\]
+\[(u,v)=\frac{1}{|G|}\sum_{g\in G}\langle \rho(g)u,\rho(g)v\rangle\]
+Now, choose an orthonormal basis with respect to $(\ ,\ )$. Suppose $V$ has $n$ dimensions, then we denote the orthonormal basis as $\{v_1,v_2,\cdots, v_n\}$. Then we have 
+\[(v_i,v_j)=\frac{1}{|G|}\sum_{g\in G} v_i^T\rho(g)^T\rho(g)v_j=\frac{1}{|G|} v_i^T(\sum_{g\in G}\rho(g)^T\rho(g))v_j\]
+Since the basis we chose is orthonormal w.r.t. the inner product, we have $\rho(g)^T\rho(g)=I_n$ for all $g\in G$. So every matrix $\rho(g)$ is orthogonal under this basis.\\
+Since 1-dim complex representation is equivalent to 2-dim real representation and we prove in problem 2 that all irreducible complex representation of $C_n$ is 1-dim. Hence, any real irreducible representation of $C_n$ has at most 2 dimensional.
+\\\qed\\
+\textbf{Problem 5:}
+\textbf{\\(1):} Given any automorphism $\phi$ of $G$, we have 
+\[\phi(xyx^{-1}y^{-1})=\phi(x)\phi(y)\phi(x)^{-1}\phi(y)^{-1}\in [G,G]\]
+So we have $\phi([G,G])\subseteq [G,G]$. Conversely, since $\phi\in Aut(G)$, we have $\phi(a)=x$ and $\phi(b)=y$ for some $a,b\in G$. Hence, we have 
+\[xyx^{-1}y^{-1}=\phi(a)\phi(b)\phi(a^{-1})\phi(b^{-1})=\phi(aba^{-1}b^{-1})\in\phi([G,G])\]
+So we have $\phi([G,G])=[G,G]$. Hence, $[G,G]$ is a characteristic subgroup of $G$. Hence, it is a normal subgroup.
+\\\textbf{(2):} First, we want to show $G/[G,G]$ is abelian. For any $x,y\in G$, we have $xy=yx$ if and only if $e=xy(yx)^{-1}=xyx^{-1}y^{-1}$. Since $xyx^{-1}y^{-1}\in [G,G]$, so we have $x[G,G],y[G,G]$ commutes for all $x[G,G],y[G,G]\in G/[G,G]$. If $N\normal G$ and $G/N$ is abelian, then we have $xyx^{-1}y^{-1}\in N$ for all $x,y\in G$. But by definition, $[G,G]=\{xyx^{-1}y^{-1}\mid x,y\in G\}$, so we have $[G,G]\subseteq N$. So $[G,G]$ is minimal.\\
+\textbf{(3): }Given any linear representation $\rho: G\to F^\times$. Since the image is a subgroup of $F^\times$, which is an abelian group, so the kernel of $\rho$ must contain $[G,G]$. Then $\rho$ induces an injective homomorphism $\rho':G/\ker\rho\to F^\times$. Now, we can pre-compose a projection 
+\[p:G/[G,G]\to G/\ker\rho\]
+\[g[G,G]\mapsto g\ker\rho\]
+Then we have $\rho'\circ p:G^{ab}\to F^\times$ is a group homomorphism because composition of homomorphisms is still homomorphisms.\\
+Conversely, given any group homomorphism $f:G^{ab}\to F^\times$, we let $h:G\to G^{ab}$ be the quotient map of abelianization of $G$. (i.e. $h(g)=g[G,G]$ for any $g\in G$.)
+Then we have a group homomorphism $f\circ h:G\to F^\times$. This is a linear representation of $G$ by definition.
+\\\qed\\
+\textbf{Problem  6:}
+Given any permutation $\pi\in S_n$, and any transposition $(i,j)\in S_n$, we want to show the transposition change numbers of inversion by an odd number. WLOG, we assume $i<j$. First observation is that the changes of inversion (either being created or being destroyed) take place between the $i$th and the $j$th number in the one line notation of $\pi(i,j)=\sigma$. Second, these changes relates to the ith or the jth number. Because to create an inversion or destroy an inversion requires the relative position of two numbers changed.\\
+Also, we will create an inversion if $\pi(i)<\pi(j)$ or destroy an inversion if $\pi(i)>\pi(j)$. And this is the only change that doesn't show up in a pair. Now, we prove it. For other inversions, it involves with some number $k$, such that $i<k<j$.\\
+We have six cases.\\
+If $\pi(i)<\pi(k)<\pi(j)$, then after transposition, we have $\sigma(i)=\pi(j)>\sigma(k)>\sigma(j)=\pi(i)$. So two additional inversion are created.\\
+If $\pi(i)<\pi(j)<\pi(k)$, then after transposition, we will still have $\sigma(j)<\sigma(i)<\sigma(k)$. No additional inversion occurs.\\
+If $\pi(k)<\pi(i)<\pi(j)$, then after transposition, we will still have $\sigma(k)<\sigma(j)<\sigma(i)$. No additional inversion occurs.\\
+If $\pi(j)<\pi(k)<\pi(i)$, then after transposition, we have $\sigma(i)=\pi(j)<\sigma(k)<\sigma(j)=\pi(i)$. So two additional inversion are destroyed.\\
+If $\pi(j)<\pi(i)<\pi(k)$, then after transposition, we will still have $\sigma(i)<\sigma(j)<\sigma(k)$. No additional inversion occurs.\\
+If $\pi(k)<\pi(j)<\pi(i)$, then after transposition, we will still have $\sigma(k)<\sigma(i)<\sigma(j)$. No additional inversion occurs.\\
+So the change of inversion is by 1, which is the same as number of transposition we take under modulo 2. If we write $\pi$ as the product of $r$ transpositions. It is the same as we start with no inversion (the identity) and multiply $r$ transpositions. In this process, we will change the number of transposition by $1$ mod 2 for each time we multiply one transposition. So in total, we have $inv(\pi)\equiv r\pmod 2$.\\
+Notice that number of inversion is a well-defined number since the one line notation is unique for any permutation. And the sign is defined to be the number of transpositions modulo 2, which we just proved that it is congruent to number of inversion modulo 2. So the sign is well-defined.
+\\\qed\\
+\textbf{Problem 7:} Let $\chi:G\to \C$ be the character of $\C[X]$, then the multiplicity of trivial in $\C[X]$ is $\langle \chi, \chi^{triv}\rangle=\frac{1}{|G|}\sum_{g\in G}\chi(g)\cdot 1=\frac{1}{|G|}\sum_{g\in G}\chi(g)$. Notice that $\chi(g)$ is the number of fixed point under $G$ action. Then by burnside's lemma, we have 
+\[|X/G|=\frac{1}{|G|}\sum_{g\in G}\chi(g)=\langle \chi, \chi^{triv}\rangle\]
+where $X/G$ is the set of all $G$-orbits. So the proof completes.
+\\\qed\\
+\textbf{Problem 8:} In problem 2, we have proved the irreducible representations of abelian group are linear. Now, we want to prove if $G$ is a finite group, and all irreducible representations of $G$ is 1-dimensional, then $G$ is abelian.\\
+Suppose $G$ has nonisomorphic irreducible representations $X_1,X_2,\cdots,X_n$ and $|G|=m<\infty$. Then we have 
+\[m=|G|=\sum_{i=1}^n (\dim X_i)^2\]
+Since all irreducible representations of $G$ is 1-dimensional, we have $n=m$. Also, notice that number of conjugacy class of $G$ is equal to number of nonisomorphic irreducible representations of $G$. So $G$ has $m$ conjugacy class. Namely, given any $g,h\in G$, we have 
+\[hgh^{-1}=g\]
+So we have $hg=gh$. So $G$ is abelian.
+\\\qed\\
+\end{document}

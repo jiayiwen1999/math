@@ -1,0 +1,118 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+
+\begin{document}
+\title{Homework4 - 200A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\indent For the notation of function composition, we follow with the one in the text book. For example, $f \circ g$ means do $f$ first then do $g$. For the identity element of a group, we will use either the notation $e$ or $1$ or $1_G$.\\
+\textbf{Problem 1:} We prove by constructing a bijection between orbits of $G$ acts on $\Omega\times \Omega$ and orbits of $G_\alpha$ acts on $\Omega$. Let $S:=\Omega\times \Omega/G=\{$Orbits that $G\curvearrowright \Omega\times \Omega \}$ and $T:=\Omega/G_\alpha=\{$Orbits that $G_\alpha \curvearrowright \Omega\}$
+\[f:S\to T\]
+\[f(\mathcal{O}_{(\alpha,\beta)})=\mathcal{O}_\beta\]
+First, we want to show that every orbit in $S$ has a representative in the form of $(\alpha,\beta)$ for some $\beta\in \Omega$. Because $G$ acts transitively on $\Omega$, then for any $x\in \Omega$, there exists some $g\in G$ such that $x\cdot g=\alpha$. Then for any $(x,y)\in \Orbit_{(x,y)}$, we have $(x,y)\cdot g=(\alpha,y\cdot g)\in \Orbit_{(x,y)}$. Then if we take $\beta=y\cdot g$, $(\alpha,\beta)$ is a representative of $\Orbit_{(x,y)}$.\\
+Next, we show $f$ is well-defined. If $(\alpha, \beta_1)$ and $(\alpha,\beta_2)$ are two distinct representative of the same orbit in $S$, then we have $(\alpha,\beta_1)\cdot g=(\alpha,\beta_2)$ for some $g\in G$. This implies $\alpha\cdot g=\alpha$. Therefore, by definition of the stabilizer, we have $g\in G_\alpha$. So, we have $\beta_1\cdot g=\beta_2$ for some $g\in G_\alpha$, which is the same as $\beta_1$ and $\beta_2$ are in the same orbit in $T$. Hence, we have $f(\Orbit_{(\alpha,\beta_1)})=\Orbit_{\beta_1}=\Orbit_{\beta_2}=f(\Orbit_{(\alpha,\beta_2)})$.\\
+The injectivity is just the converse argument. If $f(\Orbit_{(\alpha,\beta_1)})=f(\Orbit_{(\alpha,\beta_2)})$, then we have $\Orbit_{\beta_1}=\Orbit_{\beta_2}$. Hence, $\beta_1\cdot g=\beta_2$ for some $g\in G_\alpha$. Hence, $(\alpha,\beta_1)\cdot g=(\alpha\cdot g,\beta_1\cdot g)=(\alpha,\beta_2)$. Hence, $\Orbit_{(\alpha,\beta_1)}=\Orbit_{(\alpha,\beta_2)}$.\\
+It is obvious that $f$ is surjective since for any $\Orbit_\beta\in T$, there exists a $\Orbit_{(\alpha,\beta)}\in S$ with $f(\Orbit_{(\alpha,\beta)})=\Orbit_{\beta}$.
+So $f$ is the bijection we want. Therefore, $|S|=|T|$.\\
+\textbf{Remark:} It makes senses to discuss the cardinality of $S$ and $T$ because a finite group acts transitively on a set implies the set is finite.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 2:} The solution follows directly from the Burnside's Lemma. If $g$ fixes $\chi(g)$ points in $\Omega$, then $g$ fixes $\chi(g)(\chi(g)-1)$ points in $\Omega\times \Omega\setminus\triangle$, where $\triangle$ is the diagonal of the cartisian product. Then the number of orbit in $\Omega\times \Omega\setminus\triangle$ equals
+\[\frac{1}{|G|}\sum_{g\in G}\chi(g)(\chi(g)-1)=\frac{1}{|G|}\sum_{g\in G}(\chi(g)^2-\chi(g))=\frac{1}{|G|}\sum_{g\in G}\chi(g)^2-\frac{1}{|G|}\sum_{g\in G}\chi(g)\]
+Also, we have the number of orbits in $\Omega$ equals
+\[\frac{1}{|G|}\sum_{g\in G}\chi(g)\geq 1\]
+And we know
+\[\frac{1}{|G|}\sum_{g\in G}\chi(g)^2=2\]
+Hence
+\[1\leq\#\text{Orbits in }\Omega\times \Omega\setminus\triangle=2-\#\text{Orbits in }\Omega\leq 2-1=1\]
+Hence, $\#\text{Orbits in }\Omega\times \Omega\setminus\triangle=1$ and the action is doubly transitive by definition.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:}
+By the application of group action we discussed in the lecture, we know how to count the size of the product of two subgroups. Also, $H^g$ is a finite subgroup of $G$ since $H$ is a fintie subgroup. Hence, we have
+\[|H^gK|=\frac{|H^g||K|}{|K\cap H^g|}=\frac{|H||K|}{|K\cap H^g|}\]
+So we just need to show $|H^gK|=|HgK|$. Let $f:X \to gX$, where $X$ is a finite subset of $G$, $g\in G$ and $gX:=\{gx\mid x\in X\}$. Then $f$ is injective since $f(x)=f(y)$ if and only if $gx=gy$ if and only if $x=y$ by the cancellation rule. $f$ is surjective since for any $y\in gX$, we can write $y=gx$ for some $x\in X$. Hence, $y=f(x)$. So we have $|X|=|gX|$ for any fintie subset of $G$. Therefore, we have $|H^gK|=|g^{-1}(HgK)|=|HgK|$. Hence, we complete the proof.
+\[|HgK|=|H^gK|=\frac{|H||K|}{|K\cap H^g|}\]
+\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:} Let $K=\varphi^{-1}(C_H(\varphi(g)))$ be the preimage in $G$. First, $K$ is a subgroup of $G$ and actually the preimage of any subgroup of the codomain is a subgroup of domain. For any $x,y\in K$, we have $\varphi(xy^{-1})=\varphi(x)\varphi(y)^{-1}\in C_H(\varphi(g))$ because $\varphi(x),\varphi(y)\in C_H(\varphi(g))$ and $C_H(\varphi(g))$ is a subgroup of $H$. Then we can restrict the homomorphism and have $\varphi|_K: K\to H$ is a surjective homomorphism. If we consider the group action that $K$ acts on itself by the conjugation, then we have
+\[|cl(g)|=|K:C_K(g)|\]
+where $cl(g)$ denote the conjugacy class of $g$ in $K$.
+Hence, we have
+\[|K|=|cl(g)||C_K(g)|\]
+Also, by the first isomorphism theorem, we have $|K|=|ker\varphi||C_H(\varphi(g))|$. Notice that $ker\varphi=ker\varphi|_K$ since $\varphi(ker\varphi)=\{1_H\}\in C_H(\varphi(g))$. Then we can combine two equality and get
+\[|cl(g)||C_K(g)|=|ker\varphi||C_H(\varphi(g))|\]
+Next, we want to show $C_K(g)=C_G(g)$. It is obvious that $C_K(g)\leq C_G(g)$ by the definition. If $h\in C_G(g)$, then we have $\varphi(g)=\varphi(g^h)=\varphi(g)^{\varphi(h)}$. Hence $\varphi(h)\in C_H(\varphi(g))$. Therefore, $h\in K$. So $C_K(g)\subseteq C_G(g)$. Therefore, we have $C_K(g)=C_G(g)$.\\
+Now, if we can show the hint, then we complete the proof. By the claim we proved in the last problem, we know $|g^{-1}cl(g)|=|cl(g)|$. Therefore, we just need to prove $g^{-1}cl(g)\subseteq ker\varphi$. If $x\in g^{-1}cl(g)$, then there exists some $h\in K$ such that $x=g^{-1}h^{-1}gh$. Then we have $\varphi(x)=\varphi(g)^{-1}\varphi(g)^{\varphi(h)}=\varphi(g)^{-1}\varphi(g)=1_H$. Hence, $x\in ker\varphi$. So we have $g^{-1}cl(g)\subseteq ker\varphi$. Hence, $|cl(g)|=|g^{-1}cl(g)|\leq |ker\varphi|$. So we have
+\[\frac{|C_G(g)|}{|C_H(\varphi(g))|}=\frac{|ker\varphi|}{|cl(g)|}\geq 1\]
+\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:}
+Similar to the example presented in the lecture, the number of ways to coloring the cube is the same as the number of orbits of $S_4$ acting on the set of all colorings of the cube, which has distinguishable faces. And then by the Burnside's Lemma, we just need to count the fixed points under the actions of each element in $S_4$.\\
+(1) The identity fixes every faces, hence it fixes all colorings. We have $\chi(e)=n^6$.\\
+(2) Consider the rotation that fixes two opposite faces and rotate along the axis through the centers of two fixed faces. We have 9 such rotations(3 for each pair of opposite faces). If we rotate $90^\circ $ or $270^\circ$, we have $n^2$ ways to color the two opposite faces and $n$ ways to color the other 4 faces. So $\chi(g)=n^3$ for $g$ representing $90^\circ $ and $270^\circ$ rotation. If we rotate $180^\circ$, then we have $n^4$ ways to color since $n^2$ ways to color the fixed opposite faces and $n$ ways to color the opposite faces that is not fixed and we have 2 pair of opposite faces that is not fixed. So $\chi(g)=n^4$.\\
+(3) Next, consider the rotation along the diagonals of the cube. We have two rotations for each diagonal and we have 4 diagonals in total. For each rotation, the vertices of the diagonal is fixed and the 3 faces that are adjacent to one of the vertex on the diagonal rearrange. Hence, we have $n$ ways to color 3 faces that are adjacent to one vertex and $n$ ways to color the rest. So $\chi(g)=n^2$.\\
+(4) Consider the rotations along the midpoint of two opposite edges. We have exactly one for each pair of opposite edges and 6 distinct pairs. So the only fixed edges in such rotation are the two chosen edges. For each rotation, the two faces that share the same fixed edge should have the same color and the two opposite faces that are not adjacent to the two fixed edges should have the same color. So $\chi(g)=n^3$.\\
+\[\text{\# coloring}=\frac{1}{|S^4|}(n^6+3n^4+6n^3+8n^2+6n^3)=\frac{n^6+3n^4+12n^3+8n^2}{24}\]
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:} Suppose $|G|=p^mk$ for some $m\in \Z_+$ and $gcd(p,k)=1$. Then since $N\triangleleft G$, we have $|N|=p^nl$ for some $n\leq m$ and $l\mid k$. So we just need to show $|S\cap N|=p^n$. This actually follows directly from the fact that $N$ is a normal subgroup.\\
+Since $N$ is normal in $G$, then $NS$ is a subgroup in $G$. Also, we have 
+\[|NS|=\frac{|N||S|}{|S\cap N|}=\frac{p^{m+n}l}{|S\cap N|}\]
+Since $|NS|$ divides $ |G|$, then we know $p^n\mid |S\cap N|$ because $gcd(k,p)=1$. Also, since $S\cap N$ is a subgroup of $G$ and $S\cap N\subseteq S$, $S\cap N$ is a subgroup of $S$, which is a $p$-group. So $S\cap N$ is a $p$-group as well. Furthermore, we also have $S\cap N$ is a subgroup of $N$ for the same reason. Then, $S\cap N$ is a $p$-group in $N$ with at least $p^n$ elements. But the largest $p$-group in $N$ is one of the Sylow $p$-subgroups of $N$. Hence $S\cap N\in Syl_p(N)$.\\
+If $N$ is a $p$-group, then $Syl_p(N)=\{N\}$. Therefore, $S\cap N=N$. Hence, $N\subseteq S$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 7:}\\
+\textbf{(a)} Let $N=ker(\varphi|P)=ker\varphi \cap P$. Then by the previous problem, we know $N\in Syl_p(ker\varphi)$ since $ker\varphi\triangleleft G$. Then by the isomorphism theorem, we have $\frac{|P|}{|N|}=|\varphi(P)|$. Suppose $|G|=p^mk$ and $|ker\varphi|=p^nl$ where $gcd(p,k)=1$, $m\geq n$ and $l\mid k$. Then we have $|H|=p^{m-n}\frac{k}{l}$ and $|P|=p^m$, $|N|=p^n$. So it follows that 
+\[|\varphi(P)|=\frac{p^m}{p^n}=p^{m-n}\]
+Hence, $\varphi(P)\in Syl_p(H)$.\\
+\textbf{(b)} The second part is a consequence of the fact that Sylow $p$-subgroup are conjugate. Suppose $P$ is a Sylow $p$-subgroup of $G$. Then by the first part, we know $\varphi(P)$ is a Sylow $p$-subgroup of $H$. Then there exists some $h\in H$ such that $\varphi(P)^h=Q$. Since $\varphi$ is a surjective map, there exists some $g\in G$ such that $\varphi(g)=h$. Hence, we have $Q=\varphi(P)^h=\varphi(P)^{\varphi(g)}=\varphi(P^g)$. So there exists a Sylow $p$-subgroup $P'=P^g$ such that $\varphi(P')=Q$.
+\\\textbf{(c)} By Sylow's theorem, we have $n_p(H)=|H:N_H(Q)|$ and $n_p(G))=|G:N_G(P)|$, where $P\in Syl_p(G)$ and $Q\in Syl_p(H)$. Acutally, we can assume $Q=\varphi(P)$ because of part 1 and 2. Hence, the problem turns out to be showing 
+$$1\leq \frac{n_p(G)}{n_p(H)}=\frac{|G:N_G(P)|}{|H:N_H(Q)|}=\frac{|G|}{|H|}\cdot \frac{|N_H(Q)|}{|N_G(P)|}=|ker\varphi|\frac{|N_H(Q)|}{|N_G(P)|}$$
+Next, we want to show $\varphi(N_G(P))\subseteq N_H(\varphi(P))$. If we $g\in N_G(P)$, then we have $P^g=P$. Therefore, $\varphi(P)=\varphi(P^g)=\varphi(P)^{\varphi(g)}$. Hence, $\varphi(g)\in N_H(\varphi(P))$. So $\varphi(N_G(P))\subseteq N_H(\varphi(P))$. Notice that this result holds for every subgroup of $G$. Then by the isomorphism theorem, we have 
+\[|N_G(P):ker(\varphi|_{N_G(P)})|\leq N_H(\varphi(P))|\]
+Hence ,we have 
+\[|ker\varphi|\frac{|N_H(Q)|}{|N_G(P)|}\geq |ker\varphi|\frac{|N_G(P):ker(\varphi|_{N_G(P)})|}{|N_G(P)|}=\frac{|ker\varphi|}{|ker(\varphi|_{N_G(P)})|}\geq 1\]
+The last inequality follows directly from the kernel of the restricted homomorphism is a subgroup of the kernel.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 8:} The idea is to construct an injective function $f:Syl_p(H)\to Syl_p(G)$. By the Sylow's Theorem, the map can be defined by containment since every Sylow $p-$subgroup of $H$ is a p-subgroup of $G$. So we just need to show such mapping is injective. If $Q_1,Q_2\in Syl_p(H)$ and $f(Q_1)=f(Q_2)=P$, then we have $Q_1,Q_2\leq P$ and $Q_1,Q_2\leq H$. Hence, we have $Q_1,Q_2\leq P\cap H\leq H$. Notice that $P\cap H$ is a $p$-subgroup and if $|H|=p^nk$ where $gcd(k,p)=1$, then $|P\cap H|=p^a$ for some $a\leq n$. But since $|Q_1|=|Q_2|=p^n\leq |P\cap H|=p^a$, we have $a=n$. Hence, $Q_1=Q_2=P\cap H$. So $f$ is an injective function. Therefore, we have $n_p(H)\leq n_p(G)$. 
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 9:} Suppose $|G|=p^mk$. We want to prove the following claim first.\\
+\textbf{Claim:} If $P$ is a $p-$subgroup of $G$, then $|G:P|\equiv |N_G(P):P|\pmod{p}$\\
+If $P$ is a Sylow $p-$subgroup, then the claim follows directly from the Sylow's Theorem. Since $n_p(G)=|G:N_G(P)|\equiv 1\pmod{p}$, we have 
+\[|G:P|=|G:N_G(P)||N_G(P):P|\equiv |N_G(P):P|\pmod{p}\]
+If $P$ is not a Sylow $p$-subgroup, then we have $|G:P|\equiv 0\pmod{p}$. So we want to show there exists some subgroup with order $p|P|$ such that it normalize $P$. Consider the double cosets $Px_iP$ where $x_i\in G$.\\
+First, we want to show there exists a collection of elements $\{e,x_1,x_2,\dots x_r\}$ such that $\{P,Px_1P,\dots,Px_rP\}$ partition $G$. Notice that a double coset can be view as a union of right cosets.
+\[Px_iP=\bigcup_{p\in P}Px_ip\]\\
+Since $Px_ip$ is a right coset of $P$ with representative $x_ip$ for every $p\in P$, the double coset $Px_iP$ is simply the union of right cosets with representatives in the left coset $x_iP$. Hence, if we find a collection $A$ of representatives of all distinct right cosets that partition $G$, then each representative must contained in some left cosets of $P$ since the left cosets also partition the group. Then, we just pick all the left cosets containing some elements in $A$, and the representative of the chosen left cosets forms the desired collection $\{e,x_1,\dots, x_r\}$. Next, if we let $s_i$ to be the number of right cosets in $Px_iP$, then we have 
+\[|G:P|=1+s_1+s_2+\dots +s_r\]
+We want to show $s_i$ is a power of $p$ ($1=p^0$ is allowed). Since the cosets of $P$ has the same size and by problem 3, we have 
+\[s_i=\frac{|Px_iP|}{|P|}=\frac{\frac{|P||P|}{|P\cap P^{x_i}|}
+}{|P|}=\frac{|P|}{|P\cap P^{x_i}|}\]
+Hence, we have $s_i$ is a power of $p$. Since $p\mid |G:P|$ and $s_i$ is either 1 or divdes $p$, there are $p$ multiple of $s_i$ are 1 (if we consider $x_0=e$ and $s_0=\frac{PeP}{|P|}=1$). Also, if $s_i=1$, then we have $|P\cap P^{x_i}|=|P|$ if and only if $P= P^{x_i}$ if and only if $x_i\in N_G(P)$. Hence, $Px_iP=Px_i$ is a right coset of $P$ in $N_G(P)$. This gives a function 
+\[f:\{Px_iP\mid Px_i=Px_iP\}\to \{Py\mid y\in N_G(P)\}\]
+\[f(Px_iP)=Px_i\]\\
+If we consider the right cosets $Py$ of $P$ in $N_G(P)$, then it is also a right cosets of $P$ in $G$. Hence, it belongs to some $Px_iP$ and $x_ip=y$ for some $p\in P$. Hence, we have $x_i=yp^{-1}$. Since $P\leq N_G(P)$, we have $x_i=yp^{-1}\in N_G(P)$. Hence, we have $Px_iP=P$ and 
+\[s_i=\frac{|P|}{|P\cap P^{x_i}|}=1\]
+So we have another function 
+\[g:\{Py\mid y\in N_G(P)\}\to \{Px_iP\mid Px_i=Px_iP\}\]
+\[g(Py)=Px_iP=Pyp^{-1}P=PyP\]
+Hence, we have $g\circ f(Py)=f(PyP)=Py$ and $f\circ g(Px_iP)=g(Px_i)=Px_iP$. So $f,g$ are inverse of each other. Hence, $f$ is a bijection from the set consists of all double cosets $Px_iP$ such that $s_i=1$ to the right cosets of $P$ in $N_G(P)$. Hence, we have $|N_G(P):P|$ is a multiple of $p$ since we proved there are a multiple of double cosets with $s_i=1$. So we have 
+\[|G:P|\equiv 0\equiv |N_G(P):P|\pmod{p}\]
+Then we go back to the problem. Suppose $|H|=p^nl$, where $gcd(p,k)=1$, $gcd(p,l)=1$, $n\leq m$, $l\mid k$. Since $P\in Syl_p(H)$, we have $|P|=p^n$. We want to show $n=m$. Since $N_G(P)\leq H$, we can assume $N_G(P)=p^nq$, where $q\mid l$ and $gcd(p,q)=1$. By the claim, we have 
+\[|G:P|\equiv |N_G(P):P| \pmod{p}\]
+\[\frac{p^mk}{p^n}\equiv \frac{p^nq}{p^n}\pmod{p}\]
+\[p^{m-n}k\equiv q\pmod{p}\]
+Since $gcd(q,p)=1$, we have $p\nmid p^{m-n}k$. But $p\nmid p^{m-n}k$ if and only if $m=n$ since $gcd(p,k)=1$. However, if $n=m$, then we have $|P|=p^m$ is a Sylow $p$-subgroup in $G$.
+\\\phantom{qed}\hfill$\square$\\
+\end{document}

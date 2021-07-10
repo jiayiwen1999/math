@@ -1,0 +1,65 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd,mathtools}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\Aut}[0]{\operatorname{Aut}}
+\newcommand{\Hom}[0]{\operatorname{Hom}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Gal}[0]{\operatorname{Gal}}
+\newcommand{\Mor}[0]{\operatorname{Mor}}
+\newcommand{\Ann}[0]{\operatorname{Ann}}
+\newcommand{\Ob}[0]{\operatorname{Ob}}
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Ring}{\catname{Ring}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Grp}{\catname{Grp}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\Ab}{\catname{Ab}}
+\newcommand{\Def}{\textbf{Definition: }}
+\newcommand{\Thm}{\textbf{Theorem: }}
+\newcommand{\Lemma}{\textbf{Lemma: }}
+\newcommand{\Cor}{\textbf{Corollary: }}
+
+
+\begin{document}
+\title{Noetherian Module}
+\maketitle
+\noindent In this note, we assume $R$ is a commutative ring with unit.\\
+\Def A Noetherian module over a ring $R$ is a $R-$module $M$ such that every submodule of $M$ is finitely generated. In particular, $M$ is finitely generated $R$-module. Also, when $M\cong R$, this is the same as saying $R$ is a Noetherian ring.\\
+As a corollary of the definition, any submodule of Noetherian module is again Noetherian.\\
+\linebreak
+\Thm For any short exact sequence of $R$-module, $0\to A\xrightarrow[]{f} B\xrightarrow[]{g} C\to 0$, prove that $B$ is Noetherian if and only if $A$ and $C$ is Noetherian.\\
+\textbf{Proof:} If $B$ is Noetherian, then by exactness, we have $A$ is a submodule of $B$, which is Noetherian. For any submodule $C'$ of $C$, we have $g^{-1}(C')$ is a submodule of $B$, which is finitely generated. Thus $C'$ is finitely generated because $g$ is a surjective mapping.\\
+Conversely, if $A$ and $C$ are finitely generated, we consider an ascending chain of submodules in $B$.
+\[B_0\subseteq B_1\subseteq\cdots \]
+Then we have two corresponding chain in $A$ and $C$
+\[f^{-1}(B_0)\subseteq f^{-1}(B_1)\subseteq\cdots \]
+\[g(B_0)\subseteq g(B_1)\subseteq\cdots \]
+For some large $N$, we have $f^{-1}(B_n)=f^{-1}(B_{n+1})$ and $g(B_n)=g(B_{n+1})$. Now, we want to show $B_n=B_{n+1}$.\\
+For any $b\in B_{n+1}$, if $b\notin \ker g=A$, then we have $g(b)\neq 0$ in $g(B_{n+1})=g(B_{n})$. Thus, there exists some $b'\in B_n$ such that $g(b')=g(b)$. Furthermore, we have a short exact sequence 
+\[0\to f^{-1}(B_{n+1})\to B_{n+1}\to g(B_{n+1})\to 0\]
+where the mapping are just restricted mapping of $f$ and $g$. Then $f^{-1}(b-b')\in f^{-1}(B_{n+1})=f^{-1}(B_{n})$. So we have $b=b'+f(f^{-1}(b-b'))\in B_n$.\\
+If $b\in \ker g$, then $f^{-1}(b)\in f^{-1}(B_{n+1})=f^{-1}(B_n)$. So we have $f(f^{-1}(b))=b\in B_{n}$. So, we have $B_{n+1}\subseteq B_n$. Thus, $B_n=B_{n+1}$. So $B$ is Noetherian.
+\\\qed
+\linebreak
+\Cor The direct sum of two Noetherian modules is Noetherian. The proof uses splitting of short exact sequence.\\
+\Cor If $R$ is a Noetherian ring and $M$ is a finitely generated $R$-module, then $M$ is Noetherian.\\
+\textbf{Proof: } Suppose a generating set of $M$ has size $m$, then we have a surjective $R-$module morphism $\varphi:R^m\to M$. We have a short exact sequence 
+\[0\to \ker \varphi\hookrightarrow R^m\xrightarrow[]{\varphi}M \to 0\]
+By the theorem, we have $\ker\varphi$ and $M$ are Noetherian.\\\qed
+\linebreak
+\end{document}

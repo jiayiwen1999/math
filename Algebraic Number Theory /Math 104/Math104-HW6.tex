@@ -1,0 +1,122 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\ord}{\mathrm{ord}}
+
+\begin{document}
+\title{Homework 6 - 104A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Notation: We will use $[a]_n$ to denote the congruence class of $a$ in $\Z/n\Z$. The subscript $n$ is omitted if the ring $\Z/n\Z$ is clear by the context.
+\begin{center}
+    \textbf{Chapter 4:}
+\end{center}
+\textbf{Problem 3:} If $a$ is a primitive root mod $p^n$, then we know $[a]_{p^n}$ has order $(p-1)p^{n-1}$. Also, we know $\gcd(a,p^n)=1$, hence $p\nmid a$. So $a\in (\Z/p\Z)^\times$. Since $[a]_p\in (\Z/p\Z)^\times$ has order $(p-1)$, we have $\ord([a]_p)\mid (p-1)$. If $\ord([a]_p)=d\mid (p-1)$, then we have 
+\[a^d\equiv 1\pmod p\]
+By Lemma 3, we have 
+\[(a^d)^{p^{n-1}}\equiv 1^{p^{n-1}}\pmod{p^n}\]
+So we have $(p-1)p^{n-1}\mid dp^{n-1}$. So we have $p-1\mid d$. Hence, $d=p-1$. So $[a]_p$ is a primitive root.
+\\\qed\\
+\textbf{Problem 4:} If $a^(p-1)=1\pmod p$, then we have 
+\[(-a)^{p-1}=(-a)^{4t}=(-1)^{4t}a^{4t}=a^{4t}=1\pmod p\]
+Suppose $\ord(-a)=d<4t$, then we have $d\mid 2t$. Hence, we have $1=(-a)^{2t}=a^{2t}\pmod p$. It contradicts since $a$ has order $4t=p-1$. Hence, $\ord(-a)=p-1$. So $-a$ is a primitive root mod $p$.\\
+Conversely, if $-a$ is a primitive root, then we have $a^4t=(-a)^{4t}=1\pmod p$. Also, we have $a^{2t}=(-a)^{2t}\neq 1\pmod p$. So $\ord(a)=4t$. So $a$ is a primitive root mod $p$.\\
+\textbf{Problem 5:} The proof is similar to last problem. If $a$ has order $p-1=4t+2$, we know $a^{2t+1}$ has order 2. Since $(\Z/p\Z)^\times$ is cyclic, there are only two elements are killed by 2. One is identity and the other one is $-1$. So we must have $a^{2t+1}=-1$ because $a^{2t+1}\neq 1$. Now, if we raise $-a$ to $2t+1$ power, then we have 
+\[(-a)^{2t+1}=-a^{2t+1}=-(-1)=1\]
+So $\ord(-a)\mid 2t+1$. If $\ord(-a)=d\mid 2t+1$, then we have $d$ is odd and $(-a)^d=-a^d=1$, which implies $a^d=-1$. But we already know that $a^{2t+1}=-1$ and $1\leq d\leq 2t+1$. So we must have $d=2t+1$ by the structure of cyclic group.\\
+Conversely, if $(-a)$ has order $2t+1$, then we have $(-a)^{2t+1}=-a^{2t+1}=1$ implies $a^{2t+1}=-1$ and $a^{4t+2}=(-1)^2=1$.. Hence, we have $\ord(a)\nmid 2t+1$ but $\ord(a)\mid 4t+2$. So we must have $\ord(a)=4t+2=p-1$. So $a$ is a primitive root mod $p$.
+\\\qed\\
+\textbf{Problem 6:} Notice that $p=3$ is a Fermat prime, but 3 is not a primitive root mod $3$. Hence, we should assume $p\neq 3$. So we have $n>1$. So we have $p=4\cdot 2^{n-1}+1$. Now, by Wilson's theorem, we have 
+\[-1=(p-1)!=\prod_{i=1}^{\frac{p-1}{2}}i\prod_{i=\frac{p-1}{2}+1}^{p-1}i=(-1)^{\frac{p-1}{2}}(\prod_{i=1}^{\frac{p-1}{2}}i)^2=(\prod_{i=1}^{\frac{p-1}{2}}i)^2\]
+since $\frac{p-1}{2}+i=-i\pmod p$ for any $1\leq i\leq \frac{p-1}{2}$ and $\frac{p-1}{2}=2\cdot 2^{n-1}$ is even.\\
+Now, we claim that $3$ is not a square. We suppose it is towards contradiction. Then, we have $3=a^2$ for some $a\in (\Z/p\Z)^\times $. Then we have $-3=(\prod_{i=1}^{\frac{p-1}{2}}i)^2a^2=b^2$, where $b=(\prod_{i=1}^{\frac{p-1}{2}}i)a$. If $b$ is even, then we let $b'=b+p$, we still have $b'^2=b^2=-3\pmod p$. So we can suppose $b$ is odd. Let $b=2m+1$ for some $m\in\Z$. Then we solve for $m$. 
+\[(2m+1)^2\equiv -3\implies 4m^2+4m+4\equiv 0\pmod p\]
+Since $p$ is odd prime, we have 
+\[m^2+m+1\equiv 0\pmod p\]
+Now multiply both side by $m-1$, we have 
+\[m^3-1\equiv 0\pmod p\]
+So we have $\ord(m)\mid 3$. But $m\neq 1$ since if $m=1$, then $-3\equiv(3)^2=9\pmod p$, which implies $p\mid 12$. But, we assume that $p\neq 3$ and $p>2$, so it is not possible. So we have $\ord(m)=3$. But this is weird since $\ord(m)\mid p$ implies $3\mid p$. It contradicts to the fact that $p$ is prime. So $3$ is not a square.\\
+Now, suppose $g$ is a primitive root mod $p$. Then $3=g^{2k+1}$ for some $1\leq k\leq 2^{n-1}-1$. Suppose $\ord(3)=\alpha$. Then we have 
+\[3^{\alpha}=(g^{2k+1})^\alpha=g^{\alpha(2k+1)}\equiv 1\pmod p\]
+So we have $p-1\mid \alpha(2k+1)$. But since $p-1=2^n$, So we have $p-1\mid \alpha$ since $\gcd (2^n,2k+1)=1$. On the other hand, we have $\alpha=\ord(3)\mid (p-1)$, so we have $\alpha=p-1$. So $3$ is a primitive root. 
+\\\qed\\
+\textbf{Problem 12:}
+Notice that when $p=2$, the result is trivial, we have nothing to prove. So we can assume $p>2$. So $p$ is odd. Now by the existence, we suppose the primitive root is $a$, the taking the product of all elements in the group is the same as taking the product of all power of a from $1$ to $p-1$.
+\[(p-1)!=a^{\sum_{i=1}^pi}=a^{\frac{p(p-1)}{2}}\]
+Since $p$ is odd, we have $2\nmid p$. So we have $p-1\nmid \frac{(p-1)p}{2}$ by multiply both side by $\frac{p-1}{2}$. So $a^{\frac{p(p-1)}{2}}\neq 1$. But we know 
+\[(a^{\frac{p(p-1)}{2}})^2=a^{(p-1)p}=(a^{p-1})^p=1^p=1\]
+So we know $a^{\frac{p(p-1)}{2}}$ has order 2. But there are exactly one element has order 2 in the cyclic group $(\Z/p\Z)^\times $, which is $-1$. Otherwise the group will have two distinct subgroups with order 2, which cannot happens in a cyclic group. So we have $a^{\frac{p(p-1)}{2}}=-1$. The proof completes.
+\\\qed\\
+\textbf{Problem 19:} Notice that if $g$ is a primitive root mod $p$, then we can write $a=g^k$ for some $1\leq k\leq p-1$. Then being solvable is the same as saying $3\mid k$.
+If $p=7$, then we know the group of unity has order 6. So there is only one element is solvable, which is $a=g^3$, where $g$ is primitive root mod $7$.\\
+If $p=11$, then the group of unity has order $10$. There are 3 elements making the equation solvable, $g^3,g^6,g^9$, where $g$ is primitive root mod $11$.\\
+If $p=13$, then the group of unity has order 12. There are 3 elements making the equation solvable, $g^3,g^6,g^9$, where $g$ is primitive root mod $13$.\\
+\qed\\
+\textbf{Problem 21:} We can work in any finite cyclic group with order $p-1$ and let $g$ the a generator the group. Then we have $(g^{\frac{p-1}{d}})^d=g^{p-1}=1$. implies that $\ord(g^{\frac{p-1}{d}})\mid d$. If $\ord(g^{\frac{p-1}{d}})=d'< d$, then we have 
+\[1\leq \frac{p-1}{d}d'<\frac{p-1}{d}d=p-1\]
+So we have $(g^{\frac{p-1}{d}})^{d'}\neq 1$. It contradicts to the fact that $\ord(g^{\frac{p-1}{d}})=d'$. So $\ord(g^{\frac{p-1}{d}})=d$.\\
+We shall suppose $a\neq 0\pmod p$; otherwise, $a$ can be any positive power of itself. If $a\neq 0$ is a $d$-th power, then there exists some element $n^d=a$. Suppose $n=g^k$, then 
+we have $a=g^{kd}$.\\ Conversely, if $a= g^{kd }$, then we take $n=g^k$, we have $a=n^d$ is a dth power.\\\qed\\
+\textbf{Problem 22:} Since $a^3\equiv 1\pmod p$, we have 
+\[a^3-1=(a-1)(a^2+a+1)\equiv 0\pmod p\]
+Since $a$ has order 3, $a-1\neq 0$. Since $\Z/p\Z$ is an integral domain, so $a^2+a+1=0$.
+Then we have 
+\[(1+a)^6=((1+a)^2)^3=(1+2a+a^2)^3\equiv a^3\equiv 1\pmod p\]
+So we have $\ord(1+a)\mid 6$. If $\ord(1+a)=1$, then we have $1+a\equiv 1\pmod p$ implies $a\equiv 0$. It contradicts. If $\ord(1+a)=2$, then we have $(1+a)^2=1+2a+a^2\equiv a\equiv 1\pmod p$. It contradicts. Also, we know $\ord(1+a)\neq 3$, since we have 
+$$(1+a)^3=(1+a)^2(1+a)=a(1+a)=a+a^2\equiv -1\pmod p$$ 
+So we have $\ord(1+a)=6$.
+\\\qed\\
+\textbf{Problem 24:} We first construct a bijection between solutions in $(\Z/p\Z)^\times\times (\Z/p\Z)^\times$.\\
+Since $m'=\gcd(m,p-1)$, then we have $m'd=m$ for some $d\in \Z$. Notice that $d=\frac{m}{\gcd(m,p-1)}$, we have $\gcd(d,p-1)=1$. Then we have $d\in (\Z/(p-1)\Z)^\times$. So we have $m'=d^{-1}m\pmod {p-1}$. Similarly, we can suppose $n'e=n$ and $n'=e^{-1}n\pmod{p-1}$. Now, we are ready to give a bijection between the solution sets. 
+\[ax^m+by^n=c\tag{1}\] 
+\[ax^{m'}+by^{n'}=c\tag{2}\] 
+Since $p$ is a prime, there exists a primitive root of unity $g$ mod $p$. Suppose $(g^\alpha,g^\beta)$ is a solution for $(1)$. Then we have $(g^{d\alpha},g^{e\beta})$ is a solution for (2) since 
+\[a(g^{d\alpha})^{m'}+b(g^{e\beta })^{n'}=a(g^{\alpha})^{m'd}+b(g^{\beta })^{n'e}=a(g^{\alpha})^{m}+b(g^{\beta })^{n}=c\]
+We denote this function as 
+\[f:Sol(1)\cap((\Z/p\Z)^\times\times (\Z/p\Z)^\times)\to Sol(2)\cap((\Z/p\Z)^\times\times (\Z/p\Z)^\times)\]
+\[(g^\alpha,g^\beta)\mapsto(g^{d\alpha},g^{e\beta})\]
+On the other hand, if $(g^{\alpha},g^{\beta})$ is a solution for $(2)$, then we can consider $(g^{d^{-1}\alpha},g^{e^{-1}\beta})$, where $d^{-1},e^{-1}$ makes senses because the power of $g$ is in $\Z/(p-1)\Z$ since $(\Z/p\Z)^\times$ is a cyclic group of order $p-1$.
+Then we have 
+\[a(g^{d^{-1}\alpha})^{m}+b(g^{e^{-1}\beta })^{n}=a(g^{\alpha})^{md^{-1}}+b(g^{\beta })^{ne^{-1}}=a(g^{\alpha})^{m'}+b(g^{\beta })^{n'}=c\]
+is a solution for $(1)$.
+We denote this function as 
+\[h:Sol(2)\cap((\Z/p\Z)^\times\times (\Z/p\Z)^\times)\to Sol(1)\cap((\Z/p\Z)^\times\times (\Z/p\Z)^\times)\]
+\[(g^\alpha,g^\beta)\mapsto(g^{d^{-1}\alpha},g^{e^{-1}\beta})\]
+Now, we have 
+\[f\circ h(g^{\alpha},g^{\beta})=f(g^{d^{-1}\alpha},g^{e^{-1}\beta})=(g^{dd^{-1}\alpha},g^{ee^{-1}\beta})=(g^\alpha,g^\beta)\]
+\[h\circ f(g^{\alpha},g^{\beta})=h(g^{d\alpha},g^{e\beta})=(g^{d^{-1}d\alpha},g^{e^{-1}e\beta})=(g^\alpha,g^\beta)\]
+So $f$ is a bijection.\\
+Now, we consider the solutions such that $x=0$, and $y\in(\Z/p\Z)^\times$, then we also have a bijection 
+$$f':Sol(1)\cap (0\times (\Z/p\Z)^\times)\to Sol(2)\cap (0\times (\Z/p\Z)^\times)$$
+\[(0,g^\beta)\mapsto (0,g^{e\beta})\]
+It is well-defined because 
+\[b(g^{e\beta })^{n'}=b(g^{\beta })^{n'e}=b(g^{\beta })^{n}=c\]
+Also, we have its inverse 
+\[h':Sol(2)\cap(0\times (\Z/p\Z)^\times)\to Sol(1)\cap(0\times (\Z/p\Z)^\times)\]
+\[(0,g^\beta)\mapsto(0,g^{e^{-1}\beta})\]
+It is well-defined since 
+\[b(g^{e^{-1}\beta })^{n}=b(g^{\beta })^{ne^{-1}}=b(g^{\beta })^{n'}=c\]
+And we know $f'\circ h'=id$ and $h'\circ f'=id$ since $f'$ is just the second coordinate of $f$ and same for $h'$.
+So we have a bijection here.\\
+Similarly if we consider the solutions such that $x\in(\Z/p\Z)^\times$ and $y=0$. We have a bijection arise in the same way.\\
+Now, if $x=0,y=0$ is a solution for $(1)$, then it is definitely a solution for (2) since this implies $c=0\pmod p$.
+If it is not a solution, then we just ignore it.\\
+Now, we can put these three bijective function together since they are functions whose domain are pairwise disjoint and whose image are pairwise disjoint. We will still get a bijective function. So $(1),(2)$ has same number of solutions.
+
+\end{document}

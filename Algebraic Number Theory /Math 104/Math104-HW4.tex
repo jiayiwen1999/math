@@ -1,0 +1,80 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\ord}{\text{ord}}
+
+\begin{document}
+\title{Homework 3 - 104A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Notation: We will use $[a]_n$ to denote the congruence class of $a$ in $\Z/n\Z$. The subscript $n$ is omitted if the ring $\Z/n\Z$ is clear by the context.\\
+\textbf{Problem 1:} Suppose there are only finitely many primes that congruent to -1 mod 6. We denote these prime by $p_1,\cdots, p_k$. Then consider 
+\[N=6p_1\cdots p_k-1\]
+So we have $p_i\nmid N$ for all $i$. Suppose $N=q_1^{\alpha_1}\cdots q_s^{\alpha_s}$ is the prime factorization of $N$. Since none of $q_i$ congruent to $-1$ mod 6, they must congruent to 1 mod 6. Since congruent 2, 3, 4 mod 6 implies divisible by 2,3,2 respectively, so prime number is either congruent 1 or -1 mod 6 or it is 2 or 3. But we know $2,3\nmid N$. So $q_i\equiv 1\pmod{ 6}$. Then we have 
+\[N\equiv 1^{\alpha_1}\cdots 1^{\alpha_s}\equiv 1\pmod{6}\]
+It contradicts since $N=6p_1\cdots p_k-1\equiv 0-1\equiv -1\pmod{6}$. So there are infinitely many primes that congruent -1 mod 6.
+\\\qed\\
+\textbf{Problem 3:} We can write the decimal notation $abc$ in terms of multiples of $10^2,10,1$. So we have 
+\[a10^2+b10+c\equiv a+b+c \pmod 3\]
+since $100\equiv 1\pmod 3$ and $10\equiv 1\pmod 3$. So we have $3\mid abc $ if and only if $3\mid a+b+c$.\\
+Similarly, we have 
+\[a10^2+b10+c\equiv a+b+c\pmod{9}\]
+since $100\equiv 1\pmod 9$ and $10\equiv 1\pmod 9$. So $9\mid abc$ if and only if $9\mid a+b+c$.\\
+Since $10\equiv -1\pmod {11}$, we have $100\equiv (-1)^2\equiv 1\pmod {11}$.
+So we have 
+\[a10^2+b10+c\equiv a-b+c\pmod{11}\]
+So we have $11\mid abc$ if and only if $11\mid a+b+c$.\\
+For general cases, we denote an integer as 
+\[a_n10^n+a_{n-1}10^{n-1}+\cdots+ a_110+a_0\]
+Then we have 
+\[10^k\equiv (1)^k\pmod 3,\forall k\]
+\[10^k\equiv (1)^k\pmod 9, \forall k\]
+\[10^k\equiv (-1)^k\pmod {11}, \forall k\]
+So we have $3\mid a_n10^n+a_{n-1}10^{n-1}+\cdots+ a_110+a_0$ if and only if $3\mid \sum_{i=0}^n a_i$.
+So we have $9\mid a_n10^n+a_{n-1}10^{n-1}+\cdots+ a_110+a_0$ if and only if $9\mid \sum_{i=0}^n a_i$.
+So we have $11\mid a_n10^n+a_{n-1}10^{n-1}+\cdots+ a_110+a_0$ if and only if $11\mid \sum_{i=0}^n (-1)^ia_i$.
+\\\qed\\
+\textbf{Problem 5:} Suppose there is a pair of integer solution $(x,y)$ for the equation. Then $(x,y)$ is also a solution mod 7. So we have 
+\[2\equiv 7x^3+2=y^3\pmod{7}\]
+We will show there is no $y\in\Z/7\Z$ satisfies the equation. It is obvious that $7\nmid y$. If $y\equiv 1\pmod{7}$, then $y^3\equiv 1\pmod{7}$. If $y\equiv 2\pmod{7}$, then $y^3\equiv 1\pmod{7}$. If $y\equiv 3\pmod{7}$, then $y^3\equiv 6\pmod{7}$. If $y\equiv 4\pmod{7}$, then $y^3\equiv 1\pmod{7}$. If $y\equiv 5\pmod{7}$, then $y^3\equiv 6\pmod{7}$. If $y\equiv 6\pmod{7}$, then $y^3\equiv 6\pmod{7}$. So we cannot find a $y\in \Z/7\Z$ satisfies the equation. It contradicts to the assumption that there is an integer solution. So there is no integer solution.
+\\\qed\\
+\textbf{Problem 6:} If $\gcd(a,n)=1$, then $[a]\in (\Z/n\Z)^\times$. So we have 
+\[[aa_i]-[aa_j]=[a]([a_i]-[a_j])\]
+Since $[a_i]-[a_j]\neq 0$ for $i\neq j$, we have $[aa_i]-[aa_j]\neq 0$ because $[a]$ is a unit, which cannot be a zero divisor. So we have $[aa_i]$ are pairwise incongruent modulo $n$. Also, we have $\gcd(aa_i,n)=1$ since any prime $p\mid n$ doesn't divide $a$ or $a_i$ for all $i$. Hence, $p\nmid aa_i$ for all $i$. So $aa_1,\cdots, aa_{\phi(n)}$ is a reduced residue system modulo n.
+\\\qed\\
+\textbf{Problem 7:} We use the same notation as previous problem, then we know the new reduced residue system is just a rearrangement of the original one. Hence, we have 
+\[\prod_{i=1}^{\phi(n)}(aa_i)=a^{\phi(n)}\prod_{i=1}^{\phi(n)}a_i=\prod_{i=1}^{\phi(n)}a_i\]
+So we have 
+\[(a^{\phi(n)}-1)\prod_{i=1}^{\phi(n)}a_i\equiv 0\pmod n\]
+Since $a_i$ are unit, we have $a^{\phi(n)}-1\equiv 0\pmod n$. Hence we have 
+\[a^{\phi(n)}\equiv 1\pmod n\]
+\\\qed\\
+\textbf{Problem 12:}
+For $1\leq k\leq p-1$, since $p$ is a prime, then if $p\mid k!(p-k)!$, we have $p\mid l$, where $1\leq l\leq k$ or $1\leq l\leq p-k$. But since $k,p-k<p$, we have $l<p$. So $l\nmid p$. Hence, we have $p\nmid k!(p-k)!$. So we can factor out $p$ such that ${p\choose{k}} =p\frac{(p-1)!}{k!(p-k)!}$, where $\frac{(p-1)!}{k!(p-k)!}\in\Z$. So we have $p\mid {p\choose{k}}$ for all $1\leq k\leq p-1$. Then binomial theorem says
+\[(a+1)^p=\sum_{i=0}^p{p\choose{i}}a^{p-i}\equiv {p\choose{0}}a^p+{p\choose{p}}1\equiv a^p+1\pmod{p}\]
+\\\qed\\
+\textbf{Problem 13:} Let's prove $a^p\equiv a$ for all $a$ first. We prove by induction. If $a=0$, then we have 
+\[0^p=0\equiv 0\pmod p\]
+Suppose it is true for $a=n$, then for $a=n+1$, we have 
+\[(a+1)^p=(n+1)^p\equiv n^p+1=a^p+1\equiv a+1\pmod p \]
+So we have $a^p\equiv a\pmod p$ for all $a$. If $p\nmid a$, then we have 
+\[a^p-a=a(a^{p-1}-1)\equiv 0\pmod p\]
+So we have $p\mid a^{p-1}-1$. The proof completes.
+\\\qed\\
+\end{document}

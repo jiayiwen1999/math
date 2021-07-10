@@ -1,0 +1,92 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,mathtools}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+
+\begin{document}
+\title{Homework2 - 290A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+First of all, thank you Prof. Lin's idea for how to attach cells in Problem 3. Also, thank you Prof. Lin's advice in problem 6 for proving by contradiction and building $X$ inductively by skeleton. For convenience, I will not specific the base point if the space is path connected. Also, for problem 3 and the last problem, I refer to some fact(Product and quotient) about CW-complex that is mentioned in chapter 0 of Hatcher's book.\\
+\textbf{Problem 1:}First, we show $\R^{n+1}\setminus \{0\}$ strong deformation retracts to $S^n$. Consider the following homotopy
+\[H:\R^{n+1}\setminus \{0\}\times I\to \R^{n+1}\setminus \{0\}\]
+\[H(x,t)=t\frac{x}{|x|}+(1-t)x\]
+Therefore, we have $H(x,0)=x$ for any $x\in\R^{n+1}\setminus \{0\}$, $H(x,1)=\frac{x}{|x|}\in S^n$ for any $x\in \R^{n+1}\setminus \{0\}$ and $H(x,1)=x$ for any $x\in S^n$. Also, for any $x\in S^n$, we have $H(x,t)=t\frac{x}{|x|}+(1-t)x=tx+(1-t)x=x$. So $H$ is a strong deformation retraction.\\
+For $n=2$, we get a strong deformation retraction from $\R^3\setminus\{0\}$ to $S^2$. Since $\R^{3}\setminus X$ is a subspace of $\R^3\setminus \{0\}$, therefore, if we restrict $H$ to $\R^3\setminus X$, we will get a strong deformation retraction to a subspace of $S^2$. Since each line passes through the sphere twice, we have 
+\[H(\R^3\setminus X,I)=S^2\setminus\{x_1,x_2,\dots x_{2n-1},x_{2n}\}\]
+where $x_i$ are distinct points on $S^2$. Then the problem becomes to compute 
+\[\pi_1(\R^3\setminus X)\cong \pi_1(S^2\setminus \{x_1,\dots, x_{2n}\})\]
+Notice that $S^2\setminus\{x_{2n}\}\cong R^2$ by stereographic projection. Hence, we have 
+\[S^2\setminus \{x_1,\dots, x_{2n}\}\cong \R^2\setminus\{y_1,\dots y_{2n-1}\}\]
+Since homeomorphic spaces have the isomorphic fundamental groups, we have  $$\pi_1(S^2\setminus \{x_1,\dots, x_{2n}\})\cong \pi_1(\R^2\setminus\{y_1,\dots y_{2n-1}\})$$
+Since $\R^2\setminus\{y_1,\dots y_{2n-1}\}$ deformation retracts to $\vee_{2n-1}S^1$, we have 
+\[\pi_1(\R^2\setminus\{y_1,\dots y_{2n-1}\})\cong \pi_1(\vee_{2n-1}S^1)\cong \ast_{2n-1}\pi_1(S_1)=\ast_{2n-1}\Z\]
+Hence, the fundamental group of $\R^3\setminus X$ is the free product of $2n-1$ copies of $\Z$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 2:} In order to compute the fundamental group, we want to first understand the object that is obtained by gluing two tori by a circle in each torus. The construction is similar to the construct of a torus by a square and identify the opposite sides of the square. So we start with two squares and identify one side of a square with another. Then, on each square we identify the opposite sides. By the construction, we obtained a space that is isomorphic to $(S^1\vee S^1)\times S^1$, where $S^1\vee S^1$ is given by identifying the gluing edge of two squares and the opposite edge of the gluing edge on each square. Then, the fundamental group is 
+\[\pi_1((S^1\vee S^1)\times S^1)=\pi_1(S^1\vee S^1)\times \pi_1(S^1)=F_2\times\Z\]
+where $F_2$ is the free group with 2 generators.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:} The general idea is to build the mapping torus as building a CW-complex. So we first need to identify a CW-complex structure on $X$. Then we will start with $(X\times \{1\})\vee S^1$ and attaching cells on it. So here we use the fact that the cells the product of two CW-complex are in the form of the product of cells in each CW-complex(refer to chapter 0 in Hatcher's book). But we only cares about 1-cells and 2-cells because we showed in lecture that attaching $n$-cells on a topological space doesn't change the fundamental group as long as $n\geq 3$. Also, for both cases, we identify $I=D^1$ is CW-complex with two 0-cell in $\{\partial D^1\}$ and a 1-cell $Int(D^1)$.\\
+Let's start with the case $X=S^1\vee S^1$. The CW structure is given by a 0-cell and two 1-cells, where the 0-cell is the intersection of the wedge product and each $S^1$ represent a 1-cell. Then since $f$ is a basepoint preserving map, take $x_0=SK_0(X)$. We have $f(x_0)=x_0$. Hence, if we attaching the one cell $\{x_0\}\times Int(D^1)$ on $X\times \{1\}$, then the boundary point goes to $(x_0,1)=(f(x_0),1)$. Hence, we have $(X\times \{1\})\vee S^1=S^1\vee S^1\vee S^1$. So far, we obtained our 1-Skeleton. Next, we need to attach two 2-cells, which are $S^1\times \partial D^1$. Then attaching map will be a continuous map 
+\[F:I\times\{0,1\}\cup\{0,1\} \times I\to (X\times \{1\})\vee S^1\]
+\[F(1,0)=F(0,0)=F(0,1)=F(1,1)=x_0\]
+where $F(I,0)=id_{I\times \{0\}}$ is attaching to the copy of $S^1$ on $X\times \{1\}$, and $F(t,1)=f(t)$ is attaching by the continuous map $f$. Last, $F(0,I)=F(1,I)=id_{S^1}$ where $S^1$ is the the one cell we attached on $X\times \{1\}$ in the previous step. The continuity of $F$ is given by the pasting lemma. Then by the theorem about attaching 2-cells in the lecture, we have 
+\[\pi_1(Tf)\cong \pi_1(X\vee S^1)/N\cong \Z\ast \Z\ast \Z/N\]
+where $N$ is the normal subgroup generated by $\gamma_\alpha f_\alpha \bar{\gamma_\alpha}$, where $\gamma_\alpha$ is a path from any point in $X$ to $x_0$ and $f_\alpha$ is a loop based at $x_0$ denote boundary of the 2-cell $D^2_\alpha $ we attached. Since we specify the base point in this problem, we dont need to worry about $\gamma_{\alpha}$. All we care about is the loop $f_\alpha$, which is given by the induced map $f_\ast$. If we denote the three copy of $S^1$ in the 1-Skeleton by $a,b,c$ where $c$ denotes the $S^1$ in the wedge product $X\times \{1\}\vee S^1$, then the induced loop is $ac\bar{f_\ast(a)}\bar{c}$ for the cell attached on the the copy of $S^1$ represented by $a$. Similarly, the other induced loop is $bc\bar{f_\ast(b)}\bar{c}$. So the fundamental group is 
+\[\pi_1(Tf)\cong \langle a,b,c\mid ac\bar{f_\ast(a)}\bar{c},bc\bar{f_\ast(b)}\bar{c}\rangle\]
+Next, we work on the case $X=S^1\times S^1$. The step is basically the same. We identity the CW structure on $X$ by a 0-cell $x_0$, 2 1-cells, and 1 2-cell. Similarly, we attached a one cell by the loop of $\{x_0\}\times I$. So we get the 1-skeleton of $Tf$, $S^1\vee S^1\vee S^1$. Note that if we are attaching a two cell, we only need the information about the one-skeleton. So let's denote the $a,b$ as the loop in $SK_1(X)$ and $c$ as the loop in the wedge product. Since the 2-cell in the form of $e^2_\alpha\times e^0_\beta$ is attached on $X$ along $ab\bar{a}\bar{b}$, we will identify the loop $ab\bar{a}\bar{b}$ as the identity element. There are two possible way to get additional 2-cell by the product of two 1-cells attaching on $X\times \{1\}\vee S^1$. One is attaching along $a,c$, and the other is attaching along $b,c$. So we have 
+\[\pi_1(Tf)\cong\pi_1(S^1\vee S^1\vee S^1)/\langle a,b,c\mid ac\bar{f_\ast(a)}\bar{c},bc\bar{f_\ast(b)}\bar{c}, ab\bar{a}\bar{b}\rangle \]
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:} The idea is that any loop in $X$ is null-homotopic by the cone structure. We will prove by Van Kampen's Theorem.\\
+In the mapping cone $Cf$, take an open neighborhood $U$ of $\{0\}\times X$ such that $U$ is strong deformation retracts to $\{0\}\times X$. Then we get two open subset of $Cf$, which are $A_1=CX \cup U$ and $A_2=Y\cup U$. Then we have $Cf=A_1\cup A_2$ and $A_1,A_2,U=A_1\cap A_2$ are path-connected. Then we have an surjective homomorphism
+\[\phi:\pi_1(A_1)\ast \pi_1(A_2)\to \pi_1(Cf)\]
+Also, the kernel of $\phi$ is the normal subgroup generated by $i_{12}(\omega)i_{21}(\omega)^{-1}$ and $i_{21}(\omega)i_{12}(\omega)^{-1}$ where $\omega \in \pi_1(U)$.
+Notice that $\pi_1(A_1)\cong \pi_1(CX)=0$ is trivial. Then $i_{12}$ is just the trivial map.
+And since $\pi_1(\{0\}\times X)\cong \pi_1(X)\cong\pi_1(U)$ and $\pi_1(A_2)\cong \pi_1(Y)$, the inclusion map $i_{21}$ is just the homomorphism $f_\ast$ induced by $f$. Hence, $i_{21}(\pi_1(U))\cong f_\ast\big(\pi_1(X)\big)$. So the kernel is the normal subgroup $N$ generated by $f_\ast\big(\pi_1(X)\big)$.
+Hence, we have $$\pi_1(Cf)\cong \pi_1(A_1)\ast \pi_1(A_2)/N\cong \pi_1(CX)\ast\pi_1(Y)/N\cong \pi_1(Y)/N$$
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:} Let's consider projection from the closest point to $(x,y,z)$ on the inner disk $\{(x,y,0)\mid x^2+y^2=\frac{1}{2}\}$ onto $A$. Then we define the retraction $r$ by the projection. If $x^2+y^2\neq 0$, then the closest point of $(x,y,z)$ is given by $\frac{1}{\sqrt{2(x^2+y^2)}}(x,y,0)$. Then, the retraction is defined by the first intersection of $A$ and the line through $(x,y,z)$ and $\frac{1}{\sqrt{2(x^2+y^2)}}(x,y,0)$. And "first" means if we parametrize the line by
+\[l(t)=(x,y,z)+t\big((x,y,z)-\frac{1}{\sqrt{2(x^2+y^2)}}(x,y,0)\big)\]
+Then the first intersection is the smallest positive $t$ such that $l(t)\in A$. If $x^2+y^2=0$, then we are on the $z$-axis and the projection does nothing because we are already on $A$. So, if $(x,y,z)$ is a point in the bicone, which means $0\leq \sqrt{x^2+y^2}< \frac{1}{2}$ and $|z|\leq 1-2\sqrt{x^2+y^2}$ , then we have $r(x,y,z)=(0,0,\frac{z}{1-\sqrt{2(x^2+y^2)}})$ is on the $z$-axis. Otherwise, $r(x,y,z)$ is on the sphere. If we are on the boundary of the bicone, then we have $|z|=1-\sqrt{2(x^2+y^2)}$ and $r(x,y,z)=\{\pm 1\}$ depending on the sign of $z$. Then by the pasting lemma, the function $r$ is continuous. Then we can obtain a linear homotopy from the identity map to the retraction.
+\[H:X\times I\to X\]
+\[H(\vec{x},t)=(1-t)\vec{x}+tr(\vec{x})\]
+So $H(\vec{x,0})=\vec{x}$ and $H(\vec{x},1)=r(\vec{x})\in A$ for any $\vec{x}\in X$. And for any $\vec{x}\in A$, $H(\vec{x},t)=(1-t)\vec{x}+t\vec{x}=\vec{x}$. So $A$ is a deformation retract of $X$.\\
+For part 2, we will use the second theorem provided in the homework. Let $Z=S^2$, and the CW-pair $(D^1=I,\{0,1\})$. Then consider the homotopy $F:\{0,1\}\times I\to Z$, where $F(0,t)=(0,0,1)$ for all $t\in I$ and $F(1,t)=\big(\sin(\pi+\pi t),0,\cos(\pi+\pi t)\big)$. Hence, at $t=0$, we get two antipodal point on $S^2$ and at $t=1$, we get the same point at the north pole of $S^2$. Then, by the theoerm, we have $S^2\cup_{F|_{t=0}}X$ is homotopic to $S^2\cup_{F|_{t=1}}X$. Notice that $A$ can be identify as a CW-complex with 2 0-cells, 3 1-cells, 2 2-cells, where the 0-cells are $(0,0,1)$ and $(0,0,-1)$ and we use 2 1-cells, 2 2-cells to build a sphere and the additional 1-cell is attached by $F|_{t=0}$. Similarly, for $S^2\vee S^1$, we construct the sphere in the same way but attaching the additional one cell by $F|_{t=1}$. So, $A$ is homotopic $S^2\vee S^1$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:} For part 1, we will assume $SK_1(X)$ is not path-connected towards contradiction. The idea is that whenever we attaching a $n-$cell ($n\geq 2$), the image of the attaching map is contained in some path component of $SK_1(X)$.\\
+For $n\geq 2$, and any $p:I\to D^n$ with $p(0),p(1)\in \partial D^n$, because $D^n$ is convex and $\partial D^n$ is path-connected for $n\geq 2$, we have $p$ is homotopic to a path $p'$ with $p(0)=p'(0)$, $p(1)=p'(1)$ and $p'(t)\in \partial D^n$ for any $t\in I$. For $n=2$, if we attached the cell by the attaching map $f_\alpha:S^1\to SK_1(X)$, then $f_\alpha(S^1)$. If $f_\alpha \circ p$ is a path in $SK_1(X)\cup D^2_\alpha$ that with end points in two different path components of $SK_1(X)$.  Then the homotopic path $f\circ p'\simeq f\circ p$ is also a path in the same path-component of $SK_1(X)\cup D^2_\alpha$ but $f_\alpha \circ p'$ is a path in $SK_1(X)$. It contradicts to the assumption that $SK_1(X)$ is not path connected.Then inductively, we attached all 2-cells but not changing the path component(means two distinct path component are still disjoint after attaching). Similarly, we attach an $n$-cell on $SK_{n-1}(X)$, then a path in $SK_{n-1}(X)\cup D^n_\alpha$ is homotopic to a path in $SK_{n-1}(X)$. If the path connected two path component, so does the homotopic path, which is a contradiction. Here completes the induction.\\
+Since $X$ is a finite CW-complex, if $SK_1(X)$ is not path connected, then $X$ is not path connected. It contradicts to $X$ is path connected. Hence, $SK_1(X)$ is path connected.\\
+For part 2, we want to use the first theorem. Since $X$ is fintie, then $X$ has finitely many 0-cells. Consider the subcomplex consists of two vertices and one edge between the vertices. Then we get a contractible subcomplex of $X$ because it is homeomorphic to an closed interval. Then $X/Y$ is a CW-complex homotopic to $X$, and $X/Y$ has one 0-cell less than $X$. If we repeat the process finitely many times, we will obtain a CW-complex with exactly one 0-cell that is homotopic to $X$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 7:} The idea is to obtain $X'$ by taking the equivalence relation on a contractible subcomplex. Let $Z=X\cup_f D^1$ be a CW-complex obtained from an attaching map $f$ with $f(0)=x_0$ and $f(1)=x_1$. Then we have $(Z,f(\partial D^1)\cup Int(D^1))$ is a CW-pair where $f(\partial D^1)\cup Int(D^1)\cong D^1$ is a contractible space. Then we have
+$$Z\simeq Z/(f(\partial D^1)\cup Int(D^1))\cong X'$$
+Next, we want to show $Z\simeq X\vee S^1$ by considering a homotopy of the attaching map. Since $X$ is path-connected, then there exists a path $p:I\to X$ such that $p(0)=x_0$ and $p(1)=x_1$. Then consider the homotopy 
+\[H:\partial D^1\times I\to X\]
+\[H(0,t)=x_0\text{ for any }t\in I\]
+\[H(1,t)=p(t)\]
+Then at $t=0$ we have $H|_{t=0}=f$ and at $t=1,$ we have $H|_{t=1}=f'$ where $f'$ is the constant map from $\partial D^1$ to $x_0$. So we have $f\simeq f'$. Hence, we have $Z=X\cup_f D^1\simeq X\cup_{f'} D^1\cong X\vee S^1$.
+Therefore, we have 
+\[X'\simeq Z\simeq X\vee S^1\]
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 8:} First, we want to give a CW structure for $CY$. First, $I$ is a CW-complex with 2 0-cells and 1 1-cell. Then $Y\times I$ is a CW-complex since $Y$ is a CW-complex as well, and the cell structure of $Y\times I$ is given by the product of cells $e^n_\alpha$ and $e^m_\beta$, where $e^n_\alpha$ is a cell in $Y$ and $e^m_\beta$ is a cell in $I$. For convenience, we change the definition of $CY$ a little bit. So we identify the bottom of the cone as a point and attaching $X$ at the top of the cone. So the attaching map is $\tilde{i}:Y\times \{1\}\to X$ defined as $\tilde{i}(x,1)=i(x)$. Hence, $CY=Y\times I/(Y\times \{0\})$ is a CW-complex because $Y\times \{0\}$ is a subcomplex of $Y\times I$. Hence, $Ci$ is a CW-complex with cells either in $X$ or $CY$. Therefore, $(Ci,CY)$ is a CW-pair. Notice that $CY$ is contractible. The homotopic is given as the following 
+\[H:CY \times I\to CY\]
+\[H(y,t,s)=(y,t(1-s))\]
+where $(y,t)$ denotes the element in $CY$.
+Then as $s=0$, we have $H(y,t,0)=(y,t)$ is the identity map. And as $s=1$, we have $H(y,t,1)=(y,0)$ is a constant map since we identify $Y\times \{0\}$ as a point.
+So $CY$ is contractible. And by the first theorem, we have $Ci/CY\simeq Ci$.\\
+On the other hand, we have $X/Y\cong Ci/CY$ since $X-Y\cong Ci-CY$ and the quotient is obtained by adding a point. So we have $X/Y\cong Ci/CY\simeq Ci$.
+\\\phantom{qed}\hfill$\square$\\
+\end{document}

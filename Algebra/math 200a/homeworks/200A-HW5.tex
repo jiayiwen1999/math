@@ -1,0 +1,110 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework4 - 200A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\indent For the notation of function composition, we follow with the one in the text book. For example, $f \circ g$ means do $f$ first then do $g$. For the identity element of a group, we will use either the notation $e$ or $1$ or $1_G$. And $o(g)$ denote the order of $g$. Also, whenever "disjoint" is mentioned, it means pairwise disjoint.\\
+\textbf{Problem 1:} By Sylow's Theorem, we have $n_p\equiv 1\pmod p$ and $n_p\mid q^2$. There are three cases.\\
+If $n_p=1$, then we are done. Since by Sylow's Theorem, $n_p=1$ is equivalent to say the Sylow $ p$-subgroup is a normal subgroup of $G$.\\
+If $n_p=q$, then we lead to a contradiction since $p>q>1$, we have $n_p\equiv q\not\equiv 1\pmod p$. So $n_p\neq q$.\\
+If $n_p=q^2$, then we also obtain a contradiction. Since $n_p=q^2\equiv 1\pmod p$, we have $p\mid q^2-1$. And if we factor $q^2-1=(q+1)(q-1)$, we have $p\mid q+1$ or $p\mid q-1$. It is obvious that $p\nmid q-1$ since $p>q>q-1$. But if $p\mid q+1$, this implies $q+1\geq p>q$. Hence $p=q+1$. And we know the only pair of consecutive primes are $2,3$, but $2^23^2=36\neq |G|$. It contradicts. So $n_p\neq q^2$ as well.\\
+So the only case works is $n_p=1$, hence $G$ has a normal $p$-subgroup.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 2:} Since the normalizer of any subgroup contains that subgroup, we just need to check $N_G\big(N_G(P)\big)\subseteq N_G(P)$. For any $g\in N_G\big(N_G(P)\big)$, then we have $g^{-1}Pg$ is also a Sylow $p-$subgroup of $G$. Since $g$ fixes $N_G(P)$, we have $g^{-1}Pg\subseteq N_G(P)$. If we look at the cardinality, we have $g^{-1}Pg$ is a Sylow $p$-subgroup in $N_G(P)$. This implies $g^{-1}Pg=P$ since $P\normal N_G(P)$ is equivalent to $P$ is the unique Sylow $p$-subgroup in $N_G(P)$. Hence, $g\in N_G(P)$. So it follows that $N_G\big(N_G(P)\big)\subseteq N_G(P)$ and $N_G\big(N_G(P)\big)=N_G(P)$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 3:} If we have $p,q,r$ are not distinct primes, then we are done since the textbook shows the only simple $p$-group is $\Z/p\Z$ and group with $p^2q$ order is not simple. So we only need to justify the case $p,q,r$ are distinct primes. WLOG, we assume $p<q<r$.\\
+The argument will follows by counting the elements in $G$ and leads to some contradiction. Assume $G$ is simple towards contradiction. Then we have $n_r,n_q,n_p\neq 1$  Since $n_r\equiv 1 \pmod p$ and $n_r\mid pq$ by Sylow's Theorem, we have $n_r=pq$. Since $r$ is a prime, the Sylow $r-$subgroups are cyclic group with order $r$. Hence, the intersection of any two distinct Sylow $r-$subgroups is trivial. The each group has $r-1$ elements with order $r$ and we have $pq$ such subgroups. So $G$ has $pq(r-1)=pqr-pq$ elements with order $r$.\\ We also count elements with order $q$ and order $p$ as well. Since $n_q\equiv 1 \pmod q$ and $n_q\mid pr$, we have $n_q=r$ or $pr$. So we have at least $r(q-1)=qr-r$ elements with order $q$. Since $n_p\mid qr$, $n_p=q,r,qr$. So we have at least $q(p-1)=pq-q$ elements with order $p$. And of course, we have at least 1 element with order 1. Then add them up, we have 
+\[pqr-pq+qr-r+pq-q+1=pqr+qr-r-q+1=pqr+(q-1)(r-1)\]
+Because $p,q,r$ are distinct primes, we have $(q-1)(r-1)>(3-1)(5-1)>0$. So we have more elements than $pqr=|G|$. But we are counting elements in $G$, which leads to a contradiction. So $G$ is not simple and furthermore, one of $n_r,n_q,n_p$ is equal to 1. Hence, $G$ has a normal Sylow subgroup.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 4:} Since $|G|=280=2^3\cdot 5\cdot 7$, we can consider Sylow 7-subgroup. By Sylow's Theorem, we have $n_7\equiv 1\pmod 7$ and $n_7\mid 40$. Hence, $n_7=1$ or $8$. Similarly, we have $n_5\equiv 1 \pmod 5$ and $n_5\mid 56$. Hence, $n_5=1$ or $56$. If either $n_7$ or $n_5$ is one, then we are done since $G$ will have either a normal Sylow 7-subgroup or a normal Sylow 5-subgroup. If not, then we have $n_7=8$ and $n_5=56$. We want to use the counting technique to show $G$ has a normal Sylow 2-subgroup.\\
+Since the Sylow 7-subgroups of $G$ has order 7 and Sylow 5-subgroups of $G$ has order 5, then any two distinct Sylow 7-subgroups intersects trivially. So do any two distinct Sylow 5-subgroups. Hence, there are $8\cdot (7-1)=48$ elements of order 7 in $G$ and $56\cdot(5-1)=224$ elements of order 5 in $G$. So we have $224+48=272$ distinct elements in $G$. So we have 8 elements left. By Sylow's Theorem, $G$ contains a Sylow 2-subgroup $P$. Since $|P|=2^3$, any element $g\in P$ has 2-power order. $P$ doesn't contain any element from the 272 elements we counted before. Therefore, $P$ consists of exactly the 8 elements left. So does any other Sylow 2-subgroups. So the Sylow 2-subgroup of $G$ are unique in this case, which implies $P$ is a normal subgroup of $G$. Hence, $G$ is not simple.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:} Since $gcd(p,p+1)=1$, the Sylow $p$-subgroups of $G$ have order $p$. By Sylow's Theorem, we have $n_p\equiv 1\pmod p$ and $n_p\mid p+1$. Then, we have $n_p=1$ or $p+1$. If $n_p=1$, then the Sylow $p$-subgroup is a normal subgroup of $G$ with order $p$.\\
+If not, then we have $n_p=p+1$. Let's first count the element with order $p$ in $G$. Since the Sylow $p-$subgroups of $G$ has order $p$, any two distinct Sylow $p$-subgroups intersects trivially. So there are $(p+1)(p-1)=p^2-1$ elements of order $p$ in $G$. So there are $p(p+1)-(p^2-1)=p+1$ elements left in $G$. Let $H$ be the subset of $G$ consists of those $p+1$, whose order is not $p$. Let $x\in G$ such that $o(x)\neq 1,p$. So $o(x)\nmid p$ because $o(x)\mid p(p+1)$ and $gcd(p,p+1)=1$.\\
+\textbf{Claim:} $C_G(x)$ is a subgroup of $G$ with order $p+1$.\\
+Let $G$ acts on itself by conjugation, then $C_G(x)$ is the stabilizer of $x$. Then, we have $|\Orbit_x|=|G:C_G(x)|$ by Orbit-Stabilizer Theorem. Notice that $\Orbit_x$ doesn't contain any element with order $p$. If not, we assume $(g^{-1}xg)^p=e$. Then we have 
+\[e=(g^{-1}xg)^p=g^{-1}x^pg\]
+\[geg^{-1}=gg^{-1}x^pgg^{-1}\]
+\[e=x^p\]
+It is a contradiction since $o(x)\nmid p$. So $\Orbit_x\subseteq H$ and $|\Orbit_x|\leq |H|=p+1$. But $\Orbit_x$ also doesn't contain $e\in H$ because $\{e\}$ is a singleton orbit. Hence $|\Orbit_x|\leq |H|-1=p+1-1=p$. Then we have 
+\[|C_G(x)|=\frac{|G|}{|\Orbit_x|}\geq \frac{(p+1)p}{p}=p+1\]
+But $C_G(x)$ doesn't contain any element with order $p$ as well. For any Sylow $p$-subgroup $P\cong \Z/p\Z$, let $h$ be a generator of $P$. If $h\in C_G(x)$, then $x\in C_G(h)$. Then $x\in N_G(P)$ since 
+\[x^{-1}h^ix=(x^{-1}hx)^i=h^i\]
+But notice that $|N_G(P)|=\frac{|G|}{n_p}=\frac{p(p+1)}{p+1}=p$ and $P\leq N_G(P)$. So we have $N_G(P)=P$ and $x\in N_G(P)=P$. This contradicts to the choice of $x$ since $o(x)\neq 1,p$. So $C_G(x)\subseteq H$. Hence, $|C_G(x)|\leq |H|=p+1$. Hence, $|C_G(x)|=p+1$.\\
+Last, we want to show $C_G(x)$ is normal. Let $g\in G$ be any element, then we want to show $g^{-1}C_G(x)g$ doesn't contain element with order $p$. For any $h\in C_G(x)$, suppose $o(g^{-1}hg)=p$ for contradiction.
+\[e=(g^{-1}hg)^p=g^{-1}h^pg\]
+\[e=h^p\]
+So, $o(h)\mid p$. But $o(h)\mid p+1$ and $gcd(p,p+1)=1$, we must have $o(h)=1$ and $h=e$. However, $o(g^{-1}eg)=o(e)=1$. It contradicts. Hence, $o(g^{-1}hg)\neq p$ for any $h\in C_G(x)$. So $g^{-1}C_G(x)g$ doesn't contain any element with order $p$. Hence, $g^{-1}C_G(x)g\subseteq H=C_G(x)$. Hence, $C_G(x)$ is a normal subgroup since the statement is true for any $g\in G$. So we found a normal subgroup of $G$ with order $p+1$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:} Let $x\in A_n$ and $G=S_n$. Since $A_n$ is normal subgroup of $S_n$, $A_n$ is the disjoint union of conjugacy classes of $S_n$. Let $cl(x)$ be the conjugacy class of $x$ in $S_n$, which is the same as the orbit of $x$ under the action $S_n\curvearrowright A_n$. Then $cl(x)\subseteq A_n$. Then let $A_n$ acts on $S_n$ by conjugation and denote the orbit of $x$ by $\Orbit_x$. So $\Orbit_x\subseteq cl(x)\subseteq A_n$. So a conjugacy class of $A_n$ is the same as an orbit of $x$ under the action $A_n\curvearrowright S_n$. So we don't have to indicate whether we are acting on $A_n$ or $S_n$ when we are talking about orbits or conjugacy class of $x$. And the statement becomes  $\Orbit_x$ is a proper subset of $cl(x)$ if and only if $x$ has cycle type as distinct odd integers.\\
+Actually, $cl(x)$ can only splits into at most 2 orbits. By second isomorphism theorem, we have 
+\[C_G(x)/(A_n\cap C_G(x))\cong A_nC_G(x)/A_n\]
+\[\frac{|C_G(x)|}{|A_n\cap C_G(x)|}=\frac{|A_nC_G(x)|}{|A_n|}\]
+\[\frac{|A_n|}{|A_n\cap C_G(x)|}=\frac{|A_nC_G(x)|}{|C_G(x)|}\tag{1}\]
+And by orbit stabilizer theorem, we have
+\[\frac{|cl(x)|}{|\Orbit_x|}=\frac{|S_n:C_G(x)|}{|A_n:A_n\cap C_G(x)|}=\frac{|S_n:C_G(x)||C_G(x)|}{|A_nC_G(x)|}=|S_n:A_nC_G(x)|\leq 2\]
+So $cl(x)$ splits if and only if $|S_n:A_nC_G(x)|=2$ if and only if 
+$A_nC_G(x)\leq A_n$ if and only if $C_G(x)\leq A_n$. So $cl(x)$ splits if and only if $x$ doesn't commute with odd permutations. So we want to show $x$ doesn't commute with odd permutations if and only if its cycle type is distinct odd integers.\\
+$\Rightarrow$: If $x$ doesn't commute with odd permutation, then we suppose $s(2k)\geq 1$ for some $k$ towards contradiction. Then $x$ contains a $2k$-cycle $\sigma$, which is an odd permutation since a $2k$-cycle can be writen as a product of $2k+1$ transpositions. Assume the cycle notation of $x$ is $\sigma x'$, where $x'$ is the product of pairwise disjoint cycles. Then we have $x\sigma=\sigma x'\sigma=\sigma \sigma x'=\sigma x$ since $x'$ and $\sigma$ disjoint. It contradicts to the assumption $x$ doesn't commute with odd permutations. Hence, $s(2k)=0$ for any $k$. Next, we assume $s(2k+1)\geq 2$ for some $k$. Then there exists two disjoint $2k+1$ cycles in the disjoint cycle notation of $x$. Assume $x=(a_1,\dots ,a_{2k+1})(b_1,\dots ,b_{2k+1})\dots$. Then consider the odd permutation
+\[\tau=(a_1b_1)(a_2b_2)\dots (a_{2k+1}b_{2k+1})\]
+We have 
+\[x^\tau=\big(\tau(a_1)\dots \tau(a_{2k+1})\big)\big(\tau(b_1)\dots \tau(b_{2k+1})\big)\dots=(b_1,\dots ,b_{2k+1})(a_1,\dots ,a_{2k+1})\dots=x\]
+Hence, we have $x$ commutes with $\tau$ because the stabilizer of conjugation is the same as $C_G(x)$. It contradicts. Hence, $s(2k+1)\leq 1$ for all $k$. So if $x$ doesn't commute with odd permutation, then its cycle type is distinct odd integers.\\
+$\Leftarrow$: If the cycle type of $x$ is distinct odd integers, then for any $\tau \in C_G(x)$, we want to show $\tau$ is even. Suppose the disjoint cycle notation of $x$ is 
+\[x=x_1x_2\dots x_k\]
+where $x_1,x_2,\dots,x_k$ are odd-length cycles with different length. Since the cycles have different length, $x^\tau=x_1^\tau\dots x_k^\tau=x$ if and only if $x_i^\tau =x_i$ for all $1\leq i\leq k$. Suppose $x_i=(a_1a_2\dots a_l)$, then $x=x_i^\tau=(\tau(a_1)\dots \tau(a_l))$. So we just write the cycle starting from $\tau(a_1)$ instead of starting from $a_1$. So if $\tau(a_1)=a_{m+1}$, then $\tau(a_j)=a_{m+j}$ for all $j$. Hence, $\tau|_{\{a_1,\dots,a_l\}}=x_i^m$. Hence, we have 
+\[\tau=x_1^{m_1}\dots x_k^{m_k}\]
+where $m_i$ are integers. So $\tau$ is a product of even permutations. So $\tau\in A_n$. So $x$ doesn't commute with odd permutations. The proof completes.\\
+Since a conjugacy class splits if and only if its cycle type is distinct odd integers, we know there are only two such cycle types, namely $9,1$ and $7,3$. And these splits into 4 classes in $A_{10}$. Hence, there are 4 classes in $A_{10}$ that are not in $S_{10}$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 7:} We will split the proof into two part. For convenience, we denote $\sigma=(1,2)$ and $\tau=(1,2,\dots,n)$. \\
+\textbf{Claim 1:} $\sigma,\tau$ generate all transpositions in the form of $(i,i+1)$.\\
+Since $\sigma^\tau=(\tau(1),\tau(2))=(2,3)$, we can do this inductively. So $(i,i+1)$ can be obtained If we conjugate $\sigma$ by $\tau$ for $i$ times, then we have $\sigma^{\tau^i}=\sigma(\tau^i(1),\tau^i(2))=(i+1,i+2)$. So $\sigma,\tau$ generate all transposition in the form of $(i,i+1)$\\
+\textbf{Claim 2:} All adjacent transpositions generate all transpositions.\\
+For any transpositions $(i,j)$, we can assume $i<j$ without loss of generality. Then we can start with $(i,i+1)$. If $j=i+1$, then we are done. If not, we conjugate by $(i+1,i+2)$. We have 
+\[(i+1,i+2)(i,i+1)(i+1,i+2)=(i,i+2)\]
+Since $j\leq n$ is finite, we can conjugate finitely many times and get $(i,j)$. So we can obtain all transpositions in the same way.\\
+Combine claim 1 and claim 2, we know $\sigma,\tau$ generate all transpositions, hence generate $S_n$ since $S_n$ is generated by all transpositions.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 8:} We will follow the hint. Since the conjugacy class of $S_n$ is determined by the cycle type, the size of the conjugacy class of $a$ is equal to number of permutation with the same cycle type. To write $n$ numbers in a line, we have $n$ ways to choose the first number, $n-1$ ways to choose the second number, $\dots,$ and 1 way to choose the last number. So we have $n!$ ways to write them in a line. But notice that every $n$-cycle can be written in $n$ different ways because we have $n$ different number to start. So we have $\frac{n!}{n}=(n-1)!$ $n-$cycle in $S_n$, which is the size of $cl(a)$. Then we have $|C_{S_n}(a)|=\frac{|S_n|}{|cl(g)|}=\frac{n!}{(n-1)!}=n$ by orbit-stabilizer theorem. Notice that $\langle a\rangle \leq C_{S_n}(a)$. So we have 
+$$n=o(a)=|\langle a\rangle|\leq |C_{S_n}(a)|=n $$
+So we have $\langle a \rangle =C_{S_n}(a)$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 9:} Since $G$ has a cyclic Sylow $2-$subgroup, let $x\in G$ be the generator of the cyclic Sylow 2-subgroup. Suppose $|G|=2^nm$ where $m$ is odd. Then $o(x)=2^n$. Let $G$ acts on itself by right multiplication. Then the action induce a homomorphism 
+\[\phi:G\to Sym(G)\]
+\[g\mapsto \phi_g\]
+where $\phi_g(h)=h\cdot g=hg$ is a bijection from $G$ to $G$ defined by the action of right multiplication. Notice that $\phi$ has trivial kernel since if $\phi(h)=id_G$ if and only if $h$ multiple with any element is equal to the element itself, which is the same as $h=e$ by the nature of multiplication. Since $o(x)=2^n$, $\phi_g$ also has order $2^n$ because $\langle x\rangle \cong \langle \phi_x\rangle.$ Hence, the disjoint cycle decomposition of $\phi_x$ consists of cycles with length $2^i$, where $0\leq i\leq n$.\\
+\textbf{Claim:} $\phi_g$ only consists of cycle with $2^n$ length.\\
+Suppose there exists some cycle $\sigma$ with length $2^i$, where $i<n$. Let $h\in G$ be an element that permutes by $\sigma$. Then we have 
+\[h\cdot x^{2^i}=\phi_{x^{2^i}}(h)=(\phi_x(h)^{2^i})=\sigma^{2^i}(h)=h\]
+So we have $x^{2^i}=e$. It contradicts with $o(x)=2^n$.\\
+So $\phi_x$ can be represented by the product of $m$ disjoint cycles with length $2^n$. Since $m$ is odd, $\phi_x$ is an odd permutation because a cycle with even length is odd and the product of odd number odd permutations is also odd.\\
+ Let $sgn: Sym(G)\to \Z/2\Z$ be the homomorphism given by sign function on $Sym(G)$. Then the composition $\tau=\phi\circ sgn$ is a homomorphism from $G$ to $\Z/2\Z$ where the kernel of $\tau$ is the preimage of the alternating subgroup under $\phi$. Also $\tau$ is surjective since $\tau(e)=0$ and $\tau(g)=sgn(\phi_g)=1$. Then by first isomorphism theorem, we have 
+ \[\frac{|G|}{|ker\tau|}=|\Z/2\Z|=2\]
+ So we find a normal subgroup of $G$ with index 2.\\
+ For the second part, we want to induct on $n$, where $|G|=2^nm$. The statement is the following: If $G$ has a cyclic Sylow 2-subgroup, then $G$ has a characteristic subgroup of order $m$.
+ If $n=1$, then $|\ker \tau|=m$ has odd $m$. We want to show $ker\tau$ is characteristic in $G$. Suppose $H$ is a subgroup of $G$ with order $m$. Then $ker\tau H$ is subgroup of $G$ since $ker\tau \normal G$. Hence, we have $ker\tau \leq ker\tau H\leq G$. But since $|G/ker\tau|=2$ is a simple group, $ker\tau H$ is either $ker\tau $ or $G$. But notice that $|ker\tau H|=\frac{|ker\tau ||H|}{|ker\tau \cap H|}=\frac{m^2}{|ker\tau \cap H|}$ is odd. So $ker\tau H$ must be equal to $ker\tau$. Hence, we have $H\leq  ker\tau H=ker\tau$. And they have the same cardinality implies $H=ker\tau$. Hence, $ker\tau$ is the unique subgroup in $G$ with order m. So $ker\tau$ is characteristic since automorphism send a subgroup to another subgroup with same cardinality.\\
+ Then we assume the statement is true for $n\leq k-1$. For $n=k$, we have $ker\tau$ is a subgroup of order $2^{k-1}m$. And suppose $C_{2^k}$ is a cyclic Sylow 2-subgroup of $G$. Then, $C_{2^k}\cap ker\tau$ is a Sylow 2-subgroup of $ker\tau$(proved in last homework) and it is cyclic because it is a subgroup of some cyclic group. So $ker\tau$ has a characteristic subgroup $L$ with order $m$ by induction hypothesis. Then $L$ is a normal subgroup of $G$ since $L\ char\ ker\tau \normal G$.\\
+ For any subgroup $H$ of $G$ with order $m$, we have $HL$ is a subgroup of $G$. Since $|HL|=\frac{|H||L|}{|H\cap L|}$, $HL$ has odd order. And $|HL|\geq |L|=m$ since $L$ is a subgroup of $HL$. But $|G|=2^km$ implies $m$ is the largest odd number divides $|G|$. Hence, $|HL|=m$ and $HL=L$. Therefore, we have $H\leq HL=L$ and $|H|=|L|=m$. So $H=L$. So $L$ is the unique subgroup of $G$ with order $m$ and therefore characteristic in $G$. Here we complete the induction.\\
+ So $G$ has a characteristic subgroup of order $m$, which is a subgroup of odd order and 2-power index.
+ \\\phantom{qed}\hfill$\square$\\
+\end{document}

@@ -1,0 +1,180 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,mathtools}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Cat}{\catname{C}}
+\newcommand{\Grp}{\catname{Grp}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\Ab}{\catname{Ab}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\torus}{\mathbb{T}^2}
+\newcommand{\rp}{\mathbb{RP}^2}
+
+\begin{document}
+\title{Homework 5 - 290A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+For identity group homomorphisms, we denote by $1_G:G\to G$ or $id_G:G\to G$. For the induced group homomorphism by a continuous map $f:X\to Y$ between $n$-th homology groups, we denote as $H_n(f):H_n(X)\to H_n(Y)$.\\
+\textbf{Problem 1:}\\
+(1): We first define standard n-simplices $\Delta^n$.
+\[\Delta^n:=\{\sum_{i=0}^nt_ie_i\mid \sum_{i=0}^nt_i=1, t_i\geq 0\}\subseteq \R^{n+1}\]
+where $\{e_0,e_1,\dots, e_n\}$ is the standard basis of $\R^{n+1}$. Then the a singular n-simplex in a topological space $X$ is a continuous map $\sigma:\Delta^n\to X$. And the set consists of all singular n-simplices in $X$ is $Sin_n(X)$.\\
+(2): The abelian group $S_n(X)$ is a $\Z$-module with basis $Sin_n(X)$. So it define as the follows
+\[S_n(X)=\Z Sin_n(X)=\{\sum_{i=1}^mz_i\sigma_i\mid m\in \Z, z_i\in \Z,\sigma_i\in Sin_n(X)\}\]
+We call an element in $S_n(X)$ as a singular n-chain in $X$. It is also the formal sum of singular n-simplices.\\
+(3): The boundary operator is first defined on the singular n-simplices and then extends $\Z$-linearly to the singular n-chains. So we first define an embedding $d^i:\Delta^{n-1}\to \Delta^n$ of a standard $(n-1)$-simplex into a standard $n$-simplex by
+\[d^i(\sum_{j=0}^{n-1}t_je_j)=\sum_{j=1}^{i-1}t_je_j+0e_i+\sum_{j=i+1}^{n}t_{j-1}e_j\]
+Then we can define a map $d_i:Sin_n(X)\to Sin_{n-1}(X)$ that sends a singular n-simplex to a singular (n-1)-simplex by precomposition $d_i(\sigma)=\sigma\circ d^i$. Then this defines the boundary operator on singular n-simplices.
+\[d:Sin_n(X)\to S_{n-1}(X)\]
+\[d(\sigma)=\sum_{i=0}^n(-1)^id_i(\sigma)\]
+For convenience, we won't write the parentheses (i.e. $d\sigma=\sum_{i=0}^n(-1)^id_i\sigma$). Notice that we actually omit the index of $d$, and $d:Sin_n(X)\to S_{n-1}(X)$, $d:Sin_m(X)\to S_{m-1}(X)$ are different maps if $m\neq n$.
+And this map can be extended linearly to singular n-chains, where we take the boundary separately and then add them up linearly in the formal sum. So we have 
+\[d:S_n(X)\to S_{n-1}(X)\]
+\[d(\sum_{j=1}^mz_j\sigma_j)=\sum_{j=1}^mz_jd\sigma_j=\sum_{j=1}^mz_j(\sum_{i=0}^n(-1)^id_i\sigma_j)\]
+Since we construct the map by linear extension, we automatically get a homomorphism(i.e. every boundary operator is a group homomorphism from $S_n(X)$ to $S_{n-1}(X)$, where $n\in \Z$).\\
+(4): The definition of cycles are just the kernel of the boundary operators. So we have 
+\[Z_n(X)=ker(d:S_n(X)\to S_{n-1}(X))\]
+So $\sigma\in Z_n(X)$ if $\sigma\in S_n(X)$ and $d(\sigma)=0$.\\
+(5): Similarly, we can define the boundary if it is in the image of the boundary operators.
+\[B_n(X)=Im(d:S_{n+1}(X)\to S_n(X))\]
+So $\sigma\in B_n(X)$ if $\sigma\in S_n(X)$ and there exists some $\gamma\in S_{n+1}(X)$ such that $d\gamma=\sigma$.\\
+(6): As we showed in last homework, any boundary is a cycle (i.e. $d^2:S_n(X)\to S_{n-2}(X)$ is a trivial homomorphism for all $n\in \Z$). So $B_n(X)$ is contained in $Z_n(X)$ for all $n\in\Z$. Because the $S_n(X)$ is abelian, $Z_n(X)$ is abelian as well. Hence, it makes sense to take the quotient because every subgroup is normal. And we call the quotient as $n$-th homology group
+\[H_n(X)=\frac{Z_n(X)}{B_n(X)}\]
+\textbf{Problem 2:}\\
+(1): A chain complex $A_\ast$ is a sequence of Abelian groups $\{A_n\}_{n\in\Z}$ together with group homomorphisms $d:A_n\to A_{n-1}$ defined for all $n\in \Z$ such that $d^2=0$ is the trivial homomorphism. We will call the group homomorphisms $d$ as boundary operators.\\
+(2): The homology of a chain complex is defined by generalizing the homology groups.
+\[H_n(A_\ast)=\frac{ker(d:A_n\to A_{n-1})}{Im(d:A_{n+1}\to A_n)}\]
+(3): A chain map between two chain complex $f_\ast: A_\ast\to B_\ast$ is a sequence of group homomorphisms $f_n:A_n\to B_n$ such that $d_B\circ f_n=f_{n-1}\circ d_A$ for all $n\in\Z$, where $d_A$ and $d_B$ are the boundary operators of $A_\ast$ and $B_\ast$, respectively.\\
+(4): Two chain maps $f_0,f_1: A_\ast\to B_\ast$ are homotopic if there exists a collection of group homomorphisms $\{h_n:A_n\to B_{n+1}\}_{n\in\Z}$ such that for any $n\in\Z$, we have 
+$$d_B\circ h_{n}+h_{n-1}\circ d_A=f_1-f_0$$
+where $d_A: A_n\to A_{n-1}$, $d_B: B_{n+1}\to B_n$ and $f_1,f_0:A_n\to B_n$. We denote this collection by $h$ and say it is a chain homotopy between $f_1$ and $f_0$. We denote it by $f_1\simeq f_0$.\\
+(5): Two chain complex $A_\ast,B_\ast$ are homotopy equivalent to each other if there exists two chain maps $f:A_\ast\to B_\ast$ and $g:B_\ast\to A_\ast$ such that $f\circ g\simeq 1_{B_\ast}$ and $g\circ f\simeq 1_{A_\ast}$, where $1_{A_\ast}$ and $1_{B_\ast}$ are collections of identity isomorphisms $\{1_{A_n}\}$ and $\{1_{B_n}\}$, respectively. And we call the chain maps $f,g$ as chain homotopy equivalence.\\
+(6): If two chain complexes $A_\ast,B_\ast$ are chain homotopy equivalent, then their homologies are isomorphic abelian groups. Suppose $f:A_\ast\to B_\ast$ is a chain homotopy equivalence such that $f\circ g\simeq 1_{B_\ast}$ and $g\circ f\simeq 1_{A_\ast}$ for some chain map $g:B_\ast\to A_\ast$. By the lemma we proved in the lecture, chain homotopic maps induce the same maps between homology group. For any $n$, we have $H_n(f\circ g)=H_n(1_{B_\ast})=1_{H_n(B_\ast)}$ and $H_n(g\circ f)=H_n(1_{A_\ast})=1_{H_n(A_\ast)}$. So $H_n(f)$ is an isomorphism from $H_n(A_\ast)$ to $H_n(B_\ast)$. 
+\pagebreak\\
+\textbf{Problem 3:} Let's show $C_\ast$ is acyclic first. Let's denote 
+\[H_1(C_\ast)=\frac{ker(d_1:\Z\to \Z)}{Im(d:0\to \Z)}, H_0(C_\ast)=\frac{ker(d_0:\Z\to \Z/2\Z)}{Im(d_1:\Z\to\Z)}\]
+\[H_{-1}(C_\ast)=\frac{ker(d:\Z/2\Z\to 0)}{Im(d_0:\Z\to \Z/2\Z)}\]
+It is sufficient to check $n=1,0,-1$ because in other cases, we have $H_n(C_\ast)=\frac{ker(d:0\to G)}{Im(d:H\to 0)}=0$, where $G,H$ denote the corresponding abelian groups in the chain complex.
+Since $d_1$ is the multiplication by $2$, we have $kerd_1=0$ and $Imd_1=2\Z$. Hence $H_1(C_\ast)=\frac{0}{0}=0$. Since $d_0$ is the quotient map that sends even numbers to 0 and odd numbers to 1, we have $kerd_0=2\Z$ and $Imd_0=\Z/2\Z$. We have 
+\[H_0(C_\ast)=\frac{2\Z}{2\Z}=0,H_{-1}(C_\ast)=\frac{\Z/2\Z}{\Z/2\Z}=0\]
+So $C_\ast$ is acyclic.\\
+Let's denote the trivial complex by $0_\ast$. To prove it is not contractible, we suppose there exists some homotopy equivalence $f:C_\ast\to 0_\ast$ and $g:0_\ast\to C_\ast$. And we assume $\{h_n:C_n\to C_{n+1}\}$ is a chain homotopy of $id_{C_\ast}$ and $f\circ g$. And we denote 
+\[C_1=\Z,C_0=\Z,C_{-1}=\Z/2\Z\]
+Then we have $h_{-1}:C_{-1}\to C_0$ is trivial because $h_{-1}(1)$ has order two and the only elment with fintie order in $C_0=\Z$ is $0$. Also, we have $f\circ g$ is trivial because $g$ is trivial.\\
+So we have 
+\[f\circ g(1)-id_{C_0}(1)=h_{-1}d(1)+d_1(h_{1}(1))\]
+\[0-1=h_{-1}(1)+d_1(h_1(1))\]
+\[-1=d_1(h_1(1))\]
+It contradicts because $-1\notin Imd_1=2\Z$. So $C_\ast$ is not contractible.\\
+\textbf{Problem 4:} Since $\Sigma$ is an orientable, connected, closed suface with genus $n\geq 2$, we can construct it from a regular $2n$-gon by the standard construction we mentioned in the lecture. 
+The picture illustrate an example when $n=2$. Then we can define a rotation map $\sigma$ if we embed the regular $2n$-gon into complex plane. If we denote the space of $2n-$gon as $X$, then $\sigma$ is to rotate the whole space clockwise by $e^{\frac{2\pi i}{n}}$. And we denote the quotient map that identify two directed edges with same label by $p$. We get a continuous map $g=p\circ \sigma:X\to\Sigma$.\\
+Now, we want to show $g$ is constant on each $p^{-1}(y)$ where $y\in\Sigma$. It is obvious if $y\in SK_0\Sigma$ because $g=p\circ \sigma$ and $p$ sends all vertices in $X$ to the 0-cell. It is obvious for any interior point. If $y\in SK_1\Sigma-SK_0\Sigma$, then $p^{-1}(y)$ consists of two points. When we rotate, we will send each $a_i$(or $b_i$) to $a_{i+1}$ (or $b_{i+1}$) where the index is in $\Z/n\Z$ and the direction of the edges is preserved under rotation. Hence, the two points in $p^{-1}(y)$ will map to the same point under $g$. Now, we have the following commutative diagram. 
+\\The existence of $f$ is given by the universal property of quotient map. And it is continuous because $g$ is continuous.\\
+And $f$ satisfies the first condition (by the diagram) because $f^n\circ p=p\circ \sigma^n=p\circ 1_X=p$ implies $f^n=1_\Sigma$.\\
+Now, we want to show $f^m$ is not homotopic to $1_\Sigma$ if $1\leq m <n$. Suppose $f^m\simeq 1_\Sigma$ towards contradiction. Then as we showed in the lecture, they should induce the same map on the homology group. From our construction, we know 
+\[\pi_1(\Sigma)\cong \langle a_1,b_1,a_2,b_2,\dots, a_n,b_n\mid a_1b_1a_1^{-1}b_1^{-1}\dots a_nb_na_n^{-1}b_n^{-1}\rangle\]
+Since $H_1(\Sigma)\cong \pi_1(\Sigma)/[\pi_1(\Sigma),\pi_1(\Sigma)]\cong \oplus_{i=1}^{2n}\Z$, we can write element in $H_1(\Sigma)$ as the product of loops denoted by $a_i$ and $b_i$. As we intepretted in the construction of $f$, we have the induced map $f_\ast:H_1(\Sigma)\to H_1(\Sigma)$ is defined by the following
+\[f_\ast(a_i)=a_{i+1},f_\ast(b_i)=b_{i+1}\ ,\forall\  1\leq i\leq n\]
+Hence, we have $f^m_\ast(a_1)=a_{1+m}$, where the index of the subscripts is in $\Z/n\Z$. However, we have $1_\Sigma$ induce identity map on the homology. If we denote $1_{\Sigma,\ast}$ as the induced map of $1_\Sigma$, then we have 
+\[1_{\Sigma,\ast}(a_1)=1_{H_1(\Sigma)}(a_1)=a_1\]
+By our assumption, we have $f^m_\ast=1_{\Sigma,\ast}=id_{H_1(\Sigma)}$. Hence, we have $a_{1+m}=a_1$. This implies $1+m\equiv 1\pmod{n}$, so $m\equiv 0\pmod{n}$. However, we have $1\leq m<n$. It contradicts. So $f^m$ is not homotopic to $1_\Sigma$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 5:}\\
+(a): Let's do it case by case.\\
+\break
+Category: \Set\\
+In the category of set, the objects are sets and the morphisms are maps between sets. Suppose $\{X_a\}_{a\in A}$ is the collection of sets given by the assignments. Then we define $Y=\Pi_{a\in A}X_a$, the cartesian product of sets. Then we define the morphisms $pr_a=\pi_a:Y\to X_a$ by projection on the $a-$th coordinate. Then for any object $Z$ and any family of maps $\{f_a:Z\to X_a\}$, we can define $f:Z\to Y$ by $f(z)=(f_a(z))_{a\in A}$. It is unique because each of $f_a$ is well-defined. Hence, $(\Pi_{a\in A}X_a,\{\pi_a\}_{a\in A})$ is a product of $\{X_a\}_{a\in A}$.\\
+For the coproduct, we can consider $Y=\sqcup_{a\in A}X_a$, the disjoint union of $X_a$. By disjoint union, we mean every element in $Y$ can is corresponding to exacy one elment in $X_a$ for some $a\in A$. For example, if we have $X_0=\{0,1\}$ and $X_1=\{1\}$, then $Y=\{0_0,1_0,1_1\}$. So we index the element of $Y$ by the index set $A$.
+\[Y=\sqcup_{a\in A}X_a=\{b_a\mid b\in X_a,a\in A\}\] 
+Then, we can define the function $in_a:X_a\to Y$ by $in_a(b)=b_a$. Then for any object $Z$ and family of morphisms $\{f_a\}_{a\in A}$, we can define $f:Y\to Z$ uniquely by $f(b_a)=f_a(b)$. Hence, we have $f_a=f\circ in_a$ for all $a\in A$. Notice that the uniqueness of $f$ is also given by the fact that $f_a\in \Set(X_a,Z)$ is well-defined.
+\\\break
+Category: Pointed set. \\
+Let's denote the category of pointed sets by \Cat. Then the object of \Cat\  is just the pairs $(S,\ast)$, where $\ast\in S$ and $S$ is nonempty. Then the morphism of $\Cat$ is just the ``basepoint" preserving maps between sets.
+For example, $f\in\Cat\big((S_1,\ast),(S_2,\star)\big)$, then $f$ is a maps from $S_1$ to $S_2$ and $f(\ast)=\star$. The construction of product and coproduct in $\Cat$ is quite silimar to \Set, except we need to preserve the basepoint.\\
+For the product, let 
+$$(Y,\ast_Y)=\big(\Pi_{a\in A}X_a,(\ast_a)_{a\in A}\big)$$
+\[pr_a=\pi_a:(Y,\ast_Y)\to (X_a,\ast_a)\]
+\[pr_a\big((x_a)_{a\in A}\big)=x_a,\ pr_a\big((\ast_a)_{a\in A}\big)=\ast_a \]
+Similarly, the unique map $f:(Z,\ast_Z)\to (Y,\ast_Y)$ is defined by $f(z)=\big(f_a(z)\big)_{a\in A}$ and $f(\ast_Z)=\ast_Y$. Hence, we have $f_a=pr_a\circ f$ for all $a\in A$ and $pr_a\circ f(\ast_Z)=\ast_a$ preserve the base point. It is unique because $f_a$ is well-defined.\\
+Similarly, the coproduct defined as 
+\[(Y,\ast_Y)=\sqcup_{a\in A}X_a/\sim=\{b_a\mid b\in X_a,a\in A\}/\sim\]
+where $\sim$ defines an equivalence relation on the basepoint of each $(X_a,\ast_a)$(i.e. $\ast_a\sim \ast_b$ for any $a,b\in A$). And we denote the equivalent class $[\ast_a]=\ast_Y$. Then we have 
+\[in_a:(X_a,\ast_a)\to (Y,\ast_Y)\]
+\[in_a(b)=\begin{cases}
+    b_a &\text{ if } b\neq \ast_a\\
+    \ast_Y &\text{ if } b= \ast_a
+\end{cases}\]
+Hence, we have $f:(Y,\ast_Y)\to (Z,\ast_Z)$ is defined by $f(b_a)=f_a(b)$. Notice that $f$ is well-defined because we have $f_a(\ast_a)=\ast_Z$ and $in_a(\ast_a)=\ast_Y$ for all $a\in A$. So, $f_a=f\circ in_a$ for all $a\in A$. The uniqueness is again given by the fact that $f_a$ is well-defined.\\
+\break
+Category: \Top\\
+The construction of product is exactly the same as in \Set. So $Y:\Pi_{a\in A}X_a$ and $f(z)=\big(f_a(z)\big)_{a\in A}$. We just need to check $pr_a$ and $f$ is continuous. From point set topology, we know the projection map is continuous. But to make $f$ continuous, we need to be careful about the topology on $Y$. We want to use the product topology. Hence, we know $f$ is continuous if and only if $f_a$ is continuous for all $a\in A$. The choice of $f$ is unique because in $\Set$ it is unique (we can view $f$ as a morphism in \Set \ if we forget the topology).\\
+For the coproduct, we take the disjoint union.
+\[Y=\sqcup_{a\in A}X_a=\{b_a\mid b\in X_a,a\in A\}\] 
+The topology on $Y$ is given by the disjoint union of open sets of $X_a$. (i.e. $U\subseteq Y$ is open if and only if $U=\sqcup_{a\in A}U_a$, where $U_a$ is an open subset of $X_a$ for all $a\in A$.)\\
+Then $in_a:X_a\to Y$ is just the inclusion map, which is continuous. Then we define $f:Y\to Z$ by $f(b_a)=f_a(b)$. It is continuous because for any $U\in Z$ open, we have $f^{-1}(U)=\sqcup_{a\in A}f_a^{-1}(U)$ is open because $f_a^{-1}(U)$ is open in each $X_a$ and the topology we gave on $Y$ makes the union open. It is obvious $f_a=f\circ in_a$ by the construction. Similarly, the uniqueness gives by the case in $\Set$.
+\\
+\break
+Category: \Ab\\
+Again, we do the same construction and then verify $f,pr_a,in_a$ are homomorphisms. For convenience, we will consider addition as the group operation. So, $Y:\Pi_{a\in A}X_a$ and $f(z)=\big(f_a(z)\big)_{a\in A}$. Notice that we use the direct product instead of cartesian product. Hence, we obtain the group structure on $Y$. It is obvious that $pr_a$ is homomorphism because for any $\big(x_a\big)_{a\in A}$, $\big(x_a\big)_{a\in A}\in Y$ and $\big(y_a\big)_{a\in A}\in Y$, we have 
+\[pr_a\big((x_a)_{a\in A}+ (y_a)_{a\in A}\big)=pr_a\big((x_a+y_a)_{a\in A}\big)=x_a+y_a=pr_a\big((x_a)_{a\in A}\big)+ pr_a\big((y_a)_{a\in A}\big)\]
+Similarly, $f$ is homomorphism because 
+\[f(z_1,z_2)=\big(f_a(z_1+z_2)\big)_{a\in A}=\big(f_a(z_1)\big)_{a\in A}+ \big(f_a(z_2)\big)_{a\in A}=f(z_1)+f(z_2)\]
+The diagram commutes and $f$ is unique because the diagram commutes in $\Set$ and is unique in $\Set$.\\
+For the coproduct, we have 
+\[Y=\oplus_{a\in A}X_a\] 
+\[in_a:X_a\to Y\]
+where $in_a$ is the inclusion map. So $in_a$ is a homomorphism. Now, we define $f:Y\to Z$ such that $f(\sum_{a\in A} x_a)=\sum_{a\in A}f_a(x_a)$. Since we don't have infinite sum in group operation, we want to make sure that only finitely many $f_a(x_a)$ is non-zero. Otherwise, the sum will undefined. If $A$ is fintie, then we are done. If $A$ is infinite, then we will require the property of direct sum. Since $Y$ is the direct sum of abelian groups, there are only finitely many $x_a\neq 0$ in the sum $\sum_{a\in A}x_a$. Since $f_a$ is homomorphism, then we have only finitely many $f_a(x_a)$ is non-zero. So $f$ is well-defined. And $f$ is a homomorphism because 
+\[f(\sum_{a\in A} x_a+\sum_{a\in A} y_a)=\sum_{a\in A}f_a(x_a+y_a)=\sum_{a\in A}f_a(x_a)+\sum_{a\in A}f_a(y_a)=f(\sum_{a\in A} x_a)+f(\sum_{a\in A} y_a)\]
+So we have $f_a=f\circ in_a$. It is unique because $f_a=f\circ in_a$ implies the image of each element of each $X_a$ is uniquely determined, hence the sum of these image is uniquely determined. And $f$ is a homomorphism implies the image of the sum of elements of $X_a$ should agree with the sum of image.
+\\
+\break
+(b): For both empty product and empty coproduct, we just need to make sure $\Cat(Z,Y)$ and $\Cat(Y,Z)$ consists of exactly one morphism, respectively.
+\\In $\Set$, the empty product is $\{\ast\}$, any singleton set. Because there is no morphism $f_a$, we just need to make sure $\Set(Z,Y)$ has cardinality one. Hence, $Y$ must be a singleton set. Because if $Y$ is empty, then there is no morphism. If $Y$ has more than one element, then there are at least two morphism if $Z$ is nonempty. The empty coproduct is $\varnothing$, the empty set. Notice that $\Set(\varnothing,\varnothing)$ has one element. So we have $\Set(\varnothing,Z)$ has exactly one element for any $Z\in \Set$. We don't need to worry about $in_a$ because $A$ is empty.\\
+In the category of pointed set, both product and coproduct are singleton sets. The product is exactly the same reason. For the coproduct, since the morphism preserves the basepoint, we have exactly one choice of morphism, which sends basepoint to basepoint.\\
+In $\Top$, similarly, the empty product is a singleton set, where the topology consists of the empty set and the whole set. And we have $\Top(Z,Y)$ consists of exactly one morphism which is the constant map and it is obviously continuous. On the other hand, the empty coproduct is the empty set. And the morphism in $\Top(\varnothing, Z) $ is the empty map, which is also continuous because the preimage of any set in $Z$ is empty; hence, the preimage of open sets is open.\\
+In $\Ab$, the construction is similar to the category of pointed set. So we have $\{0\}$ is both the empty product and the empty coproduct because every morphism in $\Ab$ must sends $0$ to $0$. So both $\Ab(\{0\},Z)$ and $\Ab(Z,\{0\})$ consists of only trivial homomorphism.\\
+A simple example that neither of the construction exists is the category of sets with at least 2 elements. We call it $\normalfont\textbf{D}$. The axioms of category follow directly because $\Set$ is a category and the objects in $D$ are objects in $\Set$ and the morphisms of $D(X,Y)=\Set(X,Y)$. However, we don't have any $X,Y\in \normalfont\textbf{D}$ such that $\normalfont\textbf{D}(X,Y)$ consists of exactly one morphism.\\\break
+(c): The proof will use the universal property twice. First, if we treat $(Y',\{pr_a'\})$ as the product, then there exists a unique map $f:Y\to Y'$ such that $pr_a=pr_a'\circ f$ for all $a\in A$. If we treat $(Y,\{pr_a\})$ as the product, then similarly we have a unique morphism $g:Y'\to Y$ such that $pr_a'=pr_a\circ g$ for all $a\in A$. Now, we want to show $f\circ g=id_{Y'}$ and $g\circ f=id_{Y}$. Also, we know $id_{Y'}:Y'\to Y'$ is a morphism such that  $pr_a'=pr_a'\circ id_{Y'}$ and $id_Y:Y\to Y$ such that $pr_a=pr_a\circ id_Y$ by the definition of category. By the uniqueness, we just need to show $f\circ g$ and $g\circ f$ commutes the diagram.\\ 
+For any $a\in A$, we have 
+\[pr_a'\circ (f\circ g)=(pr_a'\circ f)\circ g=pr_a\circ g=pr_a'\] 
+\[pr_a\circ (g\circ f)=(pr_a\circ g)\circ f=pr_a'\circ f=pr_a\]
+Hence, we have $f$ is an isomorphism.\\
+(d): For the product, if $Z$ is an object of $ \normalfont\textbf{R}$ and there exists a morphism $f_a:Z\to X_a$ for all $a\in A$, then $Z\leq X_a$ for all $a\in A$. If $\{X_a\}_{a\in A}$ has no lower bound, then there isn't any object $Y,Z$ such that $Y,Z$ has morphisms to all of $\{X_a\}_{a\in A}$. So the product doesn't exist.\\
+If $\{X_a\}_{a\in A}$ is bounded below, then we claim the product is $Y=inf\{X_a\}_{a\in A}$. By the definition of infimum, we have $Z\leq Y$ and $Y\leq X_a$ for all $a\in A$. Hence, we have a morphism $f:Z\to Y$ and $pr_a:Y\to X_a$. And we have $f_a=pr_a\circ f$ for all $a\in A$ because $pr_a\circ f\in \normalfont\textbf{R}(Z,X_a)$ and $\normalfont\textbf{R}(Z,X_a)$ consists of exactly one morphism, which we denoted as $f_a$.\\
+For the coproduct, we need $\{X_a\}_{a\in A}$ to be bounded above. Otherwise, there is no object, which has morphisms from all $X_a$ to it. If $\{X_a\}_{a\in A}$ is bounded above, then we have $Y=sup\{X_a\}_{a\in A}$. Then for any $Z$ is an upper bound of $\{X_a\}_{a\in A}$, we have $f:Y\to Z$ and $pr_a:X_a\to Y$ for all $a\in A$. And $f\circ pr_a=f_a$ because $ \normalfont\textbf{R}(X_a,Z)$ has exactly one element, which is $f_a:X_a\to Z$.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 6:} The product is constructed by cartesian product of $X_1$ and $X_2$ together with product topology as well. And we define the morphisms $[\pi_i]:X_1\times X_2\to X_i$ to be homotopy class of projection map. Then for any $Z\in \normalfont\textbf{Ho(Top)}$ and $[f_i]:Z\to X_i$, we have $[f]:Z\to X_1\times X_2$ is the map commutes the diagram, where $f(z)=(f_1(z),f_2(z))$. Let's check.\\
+By our construction in \Top \ , we know $\pi_i$ and $f$ are continuous and $f_i=\pi_i\circ f$ for all $i$. Hence, we have 
+$[f_i]=[\pi_i\circ f]=[\pi_i]\circ [f]$. It is unique because if exists some $[f']:Z\to X_1\times X_2$ also commutes the diagram, then we have $[f_i]=[\pi_i]\circ [f']=[\pi_i\circ f']$. Hence, we have $\pi_i\circ f'\simeq \pi_i\circ f$. 
+So we have a family of continuous map $f_{1,t}: Z\to X_1$ such that $f_{1,0}=\pi_1\circ f$ and $f_{1,1}=\pi_1\circ f'$. And a family of continuous map $f_{2,t}:Z\to X_1$ such that $f_{2,0}=\pi_2\circ f$ and $f_{2,1}=\pi_2\circ f'$.
+Now, we can define $F_t(z)=(f_{1,t}(z),f_{2,t}(z))$ such that 
+\[F_0(z)=\big(f_{1,0}(z),f_{2,0}(z)\big)=\big(\pi_1\circ f(z),\pi_2\circ f(z)\big)=f(z)\]
+\[F_1(z)=\big(f_{1,1}(z),f_{2,1}(z)\big)=\big(\pi_1\circ f'(z),\pi_2\circ f'(z)\big)=f'(z)\]
+So $F_t$ is a homotopy from $f$ to $f'$. Hence, $f'\simeq f$. So $[f']=[f]$.\\
+The coproduct is defined as $X_1\sqcup X_2$ and the topology is given by  $U= U_1\sqcup U_2$, where $U_i\subseteq X_i$ is open for any $i$. And the morphisms are $[in_i]:X_i\to X_1\sqcup X_2$, where $in_i$ is the canonical inclusion map, which is continuous. If $Z$ is any object in the homotopy category and $f_i:X_i\to Z$, then we let $[f]:X_1\sqcup X_2\to Z$ and $f(b_i)=f_i(b)$. It is continuous by our construction in $\Top$. It commutes the diagram because $f\circ in_i=f_i$. It is unique because if $[f']$ commutes the diagram, then we have $f'\circ in_i\simeq f_i\simeq f\circ in_i$. Hence, we can define two family of continuous map 
+\[f_{1,t}:X_1\to Z\]
+\[f_{1,0}= f\circ in_1 \text{ and } f_{1,1}=f'\circ in_1\] 
+\[f_{2,t}:X_2\to Z\] 
+\[f_{2,0}= f\circ in_2 \text{ and } f_{2,1}=f'\circ in_2\]
+Then by the pasting lemma, we have a family of continuous map
+\[F_t:X_1\sqcup X_2\to Z\]
+\[F_t(x)=\begin{cases}
+    f_{1,t}(x) &\text{ if }x\in X_1\\
+    f_{2,t}(x) &\text{ if }x\in X_2\\
+\end{cases}\]
+Hence, we have $F_1=f'$ and $F_0=f$. So we have $f'\simeq f$. Hence, $[f']=[f]$.
+\\\phantom{qed}\hfill$\square$\\
+\end{document}

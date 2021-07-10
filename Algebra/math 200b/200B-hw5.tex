@@ -1,0 +1,89 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+
+\begin{document}
+\title{Homework 5 - 200B}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+\textbf{Problem 1:} Since $M$ is finitely generated over a PID, by the classification theorem, we know $M$ is the internal direct sum of its free part and torsion part. So we just need to prove that $M$ has no torsion part. Let's denote the free part as $F\cong R^n$. Suppose $Tors(M)\cong R/(p_1^{\alpha_1})\oplus \cdots R/(p_k^{\alpha_k})$, where $p_i^{\alpha_i}$ are elementary divisors of $M$. So we have $\prod_{i=1}^kp_i^{\alpha_i}\in Ann_R(Tors(M))$. Now, we consider consider $R$ as a left $R$-module acting by left multiplication, then we have an injective $R$-module homomorphism 
+\[f:R\to R\]
+\[r\mapsto (\prod_{i=1}^kp_i^{\alpha_i})r\]
+Then we have 
+\[1_M\otimes f: (F\oplus Tors(M))\otimes_R R\mapsto (F\oplus Tors(M))\otimes_R R \]
+\[(m_1,m_2)\otimes r\mapsto (m_1,m_2)
+\otimes (\prod_{i=1}^kp_i^{\alpha_i})r\]
+Notice this map is not injective since for any $m_1\in F, m_2\in Tors(M)$ and $r\in R$, we have 
+\[(m_1,m_2)
+\otimes (\prod_{i=1}^kp_i^{\alpha_i})r=\big((\prod_{i=1}^kp_i^{\alpha_i})m_1,(\prod_{i=1}^kp_i^{\alpha_i})m_2\big)\otimes r=\big((\prod_{i=1}^kp_i^{\alpha_i})m_1,0\big)\otimes r\]
+is independent of the choice of $m_2$ since $\prod_{i=1}^kp_i^{\alpha_i}$ kills every element in $Tors(M)$.
+So if we pick $m_2'\neq m_2$ in $Tors(M)$, we have 
+\[(1_M\otimes f)\Big((m_1,m_2)\otimes r\Big)=\big((\prod_{i=1}^kp_i^{\alpha_i})m_1,0\big)\otimes r=(1_M\otimes f)\Big((m_1,m_2')\otimes r\Big)\] 
+So if $M$ is flat, then we have $Tors(M)=0$. Hence, $M$ is free.
+\\\qed\\
+\textbf{Problem 2:}\\
+\textbf{(a):} Since $2x^3+2x+5$ has degree 3, so it is irreducible if and only if it has no root in $\Q$. Also, we know the root of $f$ has the form of $\frac{r}{s}$, where $r,s\in\Z$, $\gcd(r,s)=1$, $r\mid 5$ and $s\mid 2$.
+So $r=\pm 5,\pm 1$ and $s=\pm 2,\pm 1$. So all the possibility of $\frac{r}{s}
+$ are $\pm 1,\pm 5,\pm\frac{1}{2},\pm\frac{5}{2}$. Now, let's verify.
+\[2\cdot (1)^3+2\cdot (1)+5=9\neq 0\]
+\[2\cdot (-1)^3+2\cdot (-1)+5=1\neq 0\]
+\[2\cdot (5)^3+2\cdot (5)+5=265\neq 0\]
+\[2\cdot (-5)^3+2\cdot (-5)+5=255\neq 0\]
+\[2\cdot (\frac{1}{2})^3+2\cdot (\frac{1}{2})+5=6+\frac{1}{4}\neq 0\]
+\[2\cdot (-\frac{1}{2})^3+2\cdot (-\frac{1}{2})+5=4-\frac{1}{4}\neq 0\]
+\[2\cdot (\frac{5}{2})^3+2\cdot (\frac{5}{2})+5=10+\frac{125}{4}\neq 0\]
+\[2\cdot (-\frac{5}{2})^3+2\cdot (-\frac{5}{2})+5=\frac{125}{4}\neq 0\]
+So $2x^3+2x+5$ has no root in $\Q$; hence, it is irreducible in $\Q[x]$.\\
+\textbf{(b):} Let's consider the polynomial ring $(\Q[y])[x]=\Q[x,y]$. Then we have $x^2+y^2-1=x^2+(y^2-1)$. We want to use Eisenstein criterion. Since $\Q$ is a field, $\Q[y]$ is a PID, so we can apply the criterion and the content of $x^2+(y^2-1)$ is $1$. Since $y^2-1=(y+1)(y-1)$, so we have $y+1\mid y^2-1$, $y+1\nmid 1$ and $(y+1)^2\nmid y^2-1$. The Eisenstein criterion says $x^2+(y^2-1)$ is irreducible over $\Q(y)$, where $\Q(y)$ is the field of fraction of $\Q[y]$. Hence, it is irreducible over $\Q[y]$ by Gauss's Lemma. Hence, it is irreducible over $\Q[x,y]$.
+\\\qed\\
+\textbf{Problem 3:} We claim that complex roots of a real polynomial shows up in complex conjugacy pairs. Suppose $f=\sum_{i=1}^n a_ix^i\in \R[x]$, and $f(z)=0$ is a root in $\C$. Then we have 
+\begin{align*}
+    f(\bar{z})&=\sum_{i=1}^na_i(\bar{z})^i\\
+    &=\sum_{i=1}^n \overline{a_iz^r}\tag{Since complex conjugation is a field isomorphism over $\C$}\\
+    &=\overline{\sum_{i=1}^na_ix^i}\\
+    &=\overline{f(z)}\\
+    &=\overline{0}\\
+    &=0
+\end{align*}
+So $\bar{z}$ is also a root of $f$ in $\C$.\\
+Next, we want to show $(x-z)(x-\bar{z})\in \R[x]$ for all $z\in \C$. Suppose $z=a+bi$, where $a,b\in \R$. Then we have 
+\[(x-z)(x-\bar{z})=(x-a-bi)(x-a+bi)=(x-a)^2-b^2i^2=(x-a)^2+b^2\in \R[x]\]
+Now, suppose $f\in \R[x]$ is irreducible with degree $n>2$. Since $f$ can be splitted into linear factor in $\C[x]$, we assume that $x_1,x_2,\cdots x_n$ are roots of $f$. If $x_i\in \R$, for some $1\leq i\leq n$, then $x-x_i\in \R[x]$ is a non-unit divisor of $f$. Hence, $f=(x-x_i)f'$ where $f'\in \R[x]$ and $\deg f'=n-1>1$. Then $f$ is not irreducible over $\R[x]$. If none of $x_i$ is real, then they are all complex number with nonzero imaginary part. By the first claim we made, we can assume $x_1=\bar{x_2}$. Now, by the second claim, we know $(x-x_1)(x-x_2)=(x-x_1)(x-\bar{x
+_1})\in \R[x]$. So $(x-x_1)(x-x_2)\mid f$ in $\R[x]$. Hence, $f=(x-x_1)(x-x_2)f'$ for some $f'\in \R[x]$ and $\deg f'=n-2>0$. So $f$ is reducible in $\R[x]$. Hence, any polynomial of $\R[x]$ with degree $n>2$ is reducible. Since $\R$ is a field, all degree 0 polynomials are unit. It is obvious that degree 1 polynomials are irreducible. Also, we have $x^2+1$ is an irreducible polynomial of degree 2 over $\R$ since the roots are $i,-i$. Hence, irreducible polynomials of $\R[x]$ have degree 1 or 2.
+\\\qed\\
+\textbf{Problem 4:}\\
+\textbf{(a):} Since $[K:F]=2$, we know $K\neq F$. Hence, there exists an element $\alpha\in K\setminus F$. Now, we want to show $\{1,\alpha\}$ is a linearly independent set over $F$. If not, then exists $b,c\in F\setminus\{0\}$ such that $b+c\alpha=0$, which implies $\alpha=\frac{-b}{c}\in F$. It contradicts. So it must be linearly independent. Since $\{1,\alpha\}\subseteq K$, so $Span(\{1,\alpha\})$ is a 2-dim vector subspace of $K$ over $F$. Since $dim_F(K)=2$, we have $K=Span(\{1,\alpha\})$ as $F$-vector space by linear algebra. Since $\alpha^2\in K$, we have $\alpha^2=m+n\alpha$ for some $m,n\in F$. So we have 
+\[\alpha^2-n\alpha-m=0\tag{ast}\]
+Since $char(F)\neq 2$, we have $\frac{1}{2}\in F$. Let $\beta=\alpha-\frac{1}{2}n\in K$, then $\beta\notin F$. Otherwise, it contradicts with the fact that $\alpha=\beta+\frac{1}{2}n\notin F$. Also, if we substitute $\alpha=\beta+\frac{1}{2}n$ into $\ast$, then we have
+\[(\beta+\frac{1}{2}n)^2-n(\beta+\frac{1}{2}n)-m=\beta^2+\beta n+\frac{1}{4}n^2-n\beta -\frac{1}{2}n^2-m=\beta^2-\frac{1}{4}n^2-m=0\]
+Notice that $\frac{1}{4}$ make senses in $F$ since the characteristic of a field is a prime and 4 is not a prime. So we have $\beta^2=\frac{1}{4}n^2+m\in F$. Now, consider the field extension $F[x]/(x^2-\beta^2)$. This is a field since $x^2-\beta^2\in F[x]$ and $x^2-\beta^2=(x-\beta)(x+\beta)$ is a degree 2 polynomial with no roots in $F$. Also, we have $\textrm{minipoly}_F(\beta)=x^2-\beta^2$ since the only monic polynomial with degree one that has $\beta$ as a root is $x-\beta\notin F[x]$. So we have $F[x]/(x^2-\beta^2)=F(\beta)\subseteq K$ since $F\subseteq K$ and $\beta\in K$. Also, we know $dim_F(F(\beta))=2$. Hence, $F(\beta)=K$ as $F$-vector space by linear algebra. Now, let $a=\beta^2\in F$ and $\sqrt{a}=\beta$, then we have $K=F(\sqrt{a})$ for some $a\in F$. The proof completes. \\
+\textbf{(b):} Let $F\cong \Z/2\Z$. Then we have an irreducible polynomials $f= x^2+x+1$ in $F[x]$ since $f$ has no root in $\Z/2\Z$. Now, consider the extension $K\cong F[x]/(f)$, we have $[K:F]=2$. Notice that if $K\cong F(\sqrt{a})$ for some $a\in F$, we must have $\sqrt{a}\in K\setminus F$. Otherwise, we will have $F(\sqrt{a})=F$. But we only have two elements in $K\setminus F$, which are $x+(f)$ and $1+x+(f)$. And we the copy of $F$ in $K$ consists of $1+(f)$ and $0+(f)$. 
+\[(x+(f))^2=x^2+(f)=-1-x+(f)=1+x+(f)\notin F\]
+\[(1+x+(f))^2=1+2x+x^2+(f)=1+x^2+(f)=-x+(f)=x+(f)\notin F\]
+So we cannot find an element $a\in F$ such that $F(\sqrt{a})\cong K$.
+\\\qed\\
+\textbf{Problem 5:} Let $\phi_a:R\to R$ be a map given by left multiplication by $a$. If $a\neq 0$, then we have $\phi_a(r)=ar=0$ if and only if $r=0$ since $R$ is an integral domain. So $\phi_a$ is injective.\\
+We claim that $\phi_a$ is also an $F$-module homomorphism. For any $r,s\in R$ and $c\in F$, we have
+\[\phi_a(r+s)=a(r+s)=ar+as=\phi_a(r)+\phi_a(s)\]
+\[\phi_a(c\cdot r)=a(c\cdot r)=c\cdot ar=c\cdot \phi_a(r)\]
+So $\phi_a$ is an $F$-module homomorphism. Since $F$ is a field, so $\phi_a$ is a linear transformation over $F$. By rank-nullity theorem, we have 
+$$dim_F(R)=n=dim_F(\ker(\phi_a))+\dim_F(Im(\phi_a))=\dim_F(Im(\phi_a))$$
+since $\phi_a$ is injective. Hence, we have $Im(\phi_a)=R$ since $Im(\phi_a)$ is an n-dim vector subspace of $R$.
+So $\phi_a$ is surjective. So there exists a unique $b\in R$ such that $\phi_a(b)=ab=1$. So $a$ is a unit in $R$. Notice that the argument works for arbitrary $a\in R\setminus\{0\}$, so $R^\times =R\setminus\{0\}$. Hence, $R$ is a field since it is commutative and it is a division ring.
+\end{document}

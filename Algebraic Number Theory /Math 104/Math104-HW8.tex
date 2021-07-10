@@ -1,0 +1,143 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs,upgreek,tikz-cd}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+\newcommand{\Orbit}{\mathcal{O}}
+\newcommand{\normal}{\triangleleft}
+\newcommand{\ord}{\mathrm{ord}}
+
+\begin{document}
+\title{Homework 8 - 104A}
+\maketitle
+\begin{center}
+    Jiayi Wen\\
+    A15157596
+\end{center}
+Notation: We will use $[a]_n$ to denote the congruence class of $a$ in $\Z/n\Z$. The subscript $n$ is omitted if the ring $\Z/n\Z$ is clear by the context.\\
+\section*{Chapter 5:}
+\noindent \textbf{Problem 23:} Since $p\equiv 1 \pmod 4$, we assume $p=4k+1$. Then we have
+\[(\frac{-1}{p})=(-1)^\frac{p-1}{2}=(-1)^\frac{4k}{2}=(-1)^{2k}=1\]
+So $-1$ is a quadratic residue mod $p$. Hence, there is some $s\in \Z $ such that $s^2+1\equiv 0\pmod p$. Hence, we have $s^2+1=pt $ for some $t\in \Z$.\\
+Now, we prove $p$ is not a prime in $\Z[i]$. Suppose it is a prime, then we have $p\mid s^2+1=(s+i)(s-i)$ implies $p\mid s+i$ or $p\mid s-i$. If so, then there exists some gaussian integer $a+bi$ such that $p(a+bi)=s+i$ or $p(a+bi)=s-i$, where $a,b\in\Z$. But then, we will have $pb=1$ or $pb=-1$, where the second one implies $p(pb^2)=1$. But neither of them is possible since $p>1$ and the only unit in $\Z$ is 1 or -1.\\\qed\\
+\textbf{Problem 24:} By last problem, we know $p$ is not a prime in $\Z[i]$. Since $\Z[i]$ is a UFD, $p$ is not an irreducible as well. Then we can assume $p=\alpha \beta$, where $\alpha=a+bi,\beta=c+di$ are nonunit element in $\Z[i]$ and $a,b,c,d\in\Z$. Define the norm function on $\Z[i]$ as $N(a+bi)=a^2+b^2$. If we take the norm, we have 
+\[p^2=(a^2+b^2)(c^2+d^2)\in \Z\]
+Since an element in $\Z[i]$ is a unit if and only if its norm is 1, we have $a^2+b^2,c^2+d^2\neq 1$. By unique factorization on $\Z$, we have $a^2+b^2=p$ and $c^2+d^2=p$. In particular, we have $p$ is the sum of two squares.\\\qed\\
+\textbf{Problem 25:} Following the hint, then we have 
+\[((x+1)^2+1)((x-1)^2+1)=(x^2-1)^2+(x+1)^2+(x-1)^2+1=x^4-2x^2+1+x^2+2x+1+x^2-2x+1+1=x^4+4\]
+So if $-4$ is a biquadratic residue mod $p$, then there eixsts some $x$ such that $x^4+4\equiv 0\pmod p$. Then we have $p\mid (x+1)^2+1$ or $p\mid (x-1)^2+1$. So $-1$ is a quadratic residue mod $p$. Hence, we have $p\equiv 1\pmod 4$. 
+\\ Conversely, if $p\equiv 1 \pmod 4$, then we suppose $a^2+1\equiv 0\pmod p$. Now, we let $x=a-1$, then we put this back into the the equality we derived above. We have 
+\[x^4+4=((x+1)^2+1)((x-1)^2+1)=(a^2+1)((a-2)^2+1)\equiv 0\pmod p\]
+So $-4$ is a biquadratic residue mod p.
+\\\qed\\
+\textbf{Problem 26:}
+\\\textbf{(a): } Use the Jacobi symbol, then we have 
+\[(\frac{a}{p})=(-1)^{\frac{a-1}{2}\frac{p-1}{2}}(\frac{p}{a})=(\frac{p-a^2}{a}=(\frac{b^2}{a}))=(\frac{b}{a})^2\]
+Notice that $a,b$ are coprime since if $d\mid a$, and $d\mid b$, then $d^2\mid p$, which implies $d=1$.
+So we have $(\frac{a}{p})=(\frac{b}{a})^2=1$.
+\\\textbf{(b):} Since $2p=2a^2+2b^2=(a+b)^2+(a-b)^2$, we have 
+\[(\frac{2p}{a+b})=(\frac{a-b}{a+b})^2\]
+Notice that if $d=\gcd(a+b,a-b)$, then we have $d\mid 2a$ and $d\mid 2b$. Notice that $a,b$ has different pairity since $p=a^2+b^2$ implies $a^2$ and $b^2$ has different pairity. So we have $d$ is odd. So we have $d\mid a $ and $d\mid b$, which implies $d\mid \gcd(a,b)=1$. So we have $d=1$. So we have 
+\[(\frac{2p}{a+b})=(\frac{a-b}{a+b})^2=1\]
+So we have 
+\[1=(\frac{p}{a+b})(\frac{2}{a+b})=(\frac{p}{a+b})(-1)^{\frac{(a+b)^2-1}{8}}\]
+So we have 
+\[(\frac{p}{a+b})=(-1)^{\frac{(a+b)^2-1}{8}}\]
+\textbf{(c):} This follows from direct calculation.
+\[(a+b)^2=a^2+b^2+2ab=p+2ab\equiv 2ab\pmod p\]
+\textbf{(d): } Suppose $p=4k+1$ for some $k\in\Z$, then we have 
+\[(a+b)^\frac{p-1}{2}=(a+b)^{2k}=((a+b)^2)^k\equiv (2ab)^k=(2ab)^\frac{p-1}{4}\pmod p\]
+\qed\\
+\textbf{Problem 32:} Notice that $\sin(2x)=2\sin(x)\cos(x)$, So we have 
+\[\prod_{j=1}^{\frac{p-1}{2}}2\cos(2\pi j/p)\cdot \prod_{j=1}^{\frac{p-1}{2}}\sin(2\pi j/p)=\prod_{j=1}^{\frac{p-1}{2}}\sin(2\pi 2j/p)=\prod_{j=2,\ j \text{ even}}^{p-1}\sin(2\pi j/p)\]
+Notice that $\sin$ is an odd function with period 2$\pi$, so for $j>\frac{p-1}{2}$, we have 
+\[\sin(2\pi j /p)=-\sin(2\pi (-j)/p)=-\sin (2\pi (p-j)/p)\]
+Since $j>\frac{p-1}{2}$, we have $p-j<p-\frac{p-1}{2}=\frac{p+1}{2}$. If $j$ is even, then $p-j$ is odd. Notice that since $p-1$ is even, there are same amount of even numbers and odd numbers between 1 and $p-1$. Also, the number of integers in the intervals $[1,\frac{p-1}{2}]$ and $[\frac{p+1}{2},p-1 $ ] are the same. So we have 2 cases. If there are same amount of even numbers and odd numbers in the interval $[1,\frac{p-1}{2}]$, then so does $[\frac{p+1}{2},p-1]$. Hence, there is a bijection between the set of all odd numbers in $[1,\frac{p-1}{2}]$ and the set of all even numbers in $[\frac{p+1}{2},p-1]$. If there are more odd numbers in $[1,\frac{p-1}{2}]$, namely $\frac{p-1}{2}$ is odd, then there are more even number in $[\frac{p+1}{2},p-1]$ since $\frac{p+1   }{2}$ is even. So we also have a bijection in between.
+\[\prod_{j=2,\ j \text{ even}}^{p-1}\sin(2\pi j/p)=(-1)^{\mu}\prod_{j=1}^\frac{p-1}{2}\sin(2\pi j/p)\]
+where $\mu$ counts the number of even integer $\frac{p-1}{2}<j\leq p-1$. By Gauss's lemma, we have $(\frac{2}{p})=(-1)^\mu$.
+So we have $\prod_{j=1}^{\frac{p-1}{2}}\cos(2\pi j/p)=(-1)^\mu=(\frac{2}{p})$.\\
+Now, we check prop 5.1.3. If $p=8k+1$, then we have $\frac{p-1}{2}=4k$. Then $\mu =2k$ is even.\\
+If $p=8k+3$, then we have $\frac{p-1}{2}$ is odd. So we have $\mu =2k+1$ is odd.\\
+If $p=8k+5$, then we have $\frac{p-1}{2}=4k+2$. So we have $\mu =2k+1$ is odd.\\
+If $p=8k+7$, then we have $\frac{p-1}{2}=4k+3$. So we have $\mu= 2k+2$ is even.\\
+\qed\\
+\textbf{Problem 34:} Consider $f(z)=e^{2\pi i z}-e^{-2\pi i z}=2i\sin(2\pi z)$. Now, we use Prop. 5.3.2 with $a=3$. 
+\begin{align*}
+    \prod_{l=1}^{\frac{p-1}{2}}f(\frac{3l}{p})&=(\frac{3}{p})\prod_{l=1}^{\frac{p-1}{2}}f(\frac{l}{p})\tag{1}\\
+    \prod_{l=1}^{\frac{p-1}{2}}2i\sin(\frac{3(2\pi l)}{p})&=(\frac{3}{p})\prod_{l=1}^{\frac{p-1}{2}}2i\sin(\frac{2\pi l}{p})\\
+    \prod_{l=1}^{\frac{p-1}{2}}\sin(\frac{3(2\pi l)}{p})&=(\frac{3}{p})\prod_{l=1}^{\frac{p-1}{2}}\sin(\frac{2\pi l}{p})
+\end{align*}
+Now, we use the formula $\sin(3\alpha)=3\sin(\alpha)-4\sin^3(\alpha)$.
+\begin{align*}
+    \prod_{l=1}^{\frac{p-1}{2}}(\sin(\frac{2\pi l}{p}))(3-4\sin^2(\frac{2\pi l}{p})) &=(\frac{3}{p})\prod_{l=1}^{\frac{p-1}{2}}\sin(\frac{2\pi l}{p})\\
+    \prod_{l=1}^{\frac{p-1}{2}}\sin(\frac{2\pi l}{p})\prod_{l=1}^{\frac{p-1}{2}}(3-4\sin^2(\frac{2\pi l}{p}) )&=(\frac{3}{p})\prod_{l=1}^{\frac{p-1}{2}}\sin(\frac{2\pi l}{p})\\
+    \prod_{l=1}^{\frac{p-1}{2}}(3-4\sin^2(\frac{2\pi l}{p})) &=(\frac{3}{p})
+\end{align*}
+\qed\\
+\textbf{Problem 35:} We focus on the line (1) from previous problem. Notice that $f$ is a periodic function with period $2\pi$ and we have 
+\[1\leq 3l\leq 3(p-1)/2\]
+So if $1\leq 3l\leq (p-1)/2$ or $p\leq 3l\leq 3(p-1)/2$, then $f(\frac{3l}{p})$ will cancel a term on the right directly. Since $f$ is odd, so if $(p-1)2<3l<p$, then $f(\frac{3l}{p})$ will cancel a term on right but with a negative sign at the same time. Then we can deduce the first line to 
+\[(\frac{3}{p})=(-1)^\mu\]
+where $\mu$ is number of $3l$ that lies in the interval $((p-1)/2,p)$. Actually, this is the same as Gauss's lemma.\\
+Now, notice that if $p$ is an odd prime, then $p$ must congruent to some unit in $\Z/12\Z$. So there are 4 choices of $p$.\\
+If $p=12k+1$, then we have 
+\[6k<3l<12k+1\implies 2k<l<4k+1\]
+So we have $\mu=2k$. So $(\frac{3}{p})=(-1)^2k=1$.
+If $p=12k+5$, then we have 
+\[6k+2<3l<12k+5\implies 2k+\frac{2}{3}<l<4k+1+\frac{2}{3}\]
+So we have $\mu=2k+1$. So $(\frac{3}{p})=(-1)^{2k+1}=-1$.
+If $p=12k+7$, then we have 
+\[6k+3<3l<12k+7\implies 2k+1<l<4k+2+\frac{1}{3}\]
+So we have $\mu=2k+1$. So $(\frac{3}{p})=(-1)^{2k+1}=-1$.
+If $p=12k+11$, then we have 
+\[6k+5<3l<12k+11\implies 2k+1+\frac{2}{3}<l<4k+3+\frac{2}{3}\]
+So we have $\mu=2k+2$. So $(\frac{3}{p})=(-1)^{2k+2}=1$.
+So $3$ is a square mod $p$ if and only if $p\equiv 1,-1\pmod{12}$.\\
+\qed\\
+\section*{Chapter 6:}
+\textbf{Problem 1:} Consider the equation $x^4-10x^2-47=0$. Let's verify $\sqrt{2}+\sqrt{3}$ is a root.
+\[(\sqrt{2}+\sqrt{3})^4-10(\sqrt{2}+\sqrt{3})^2-47=(5+2\sqrt{6})^2-10(5+2\sqrt{6})-47=25+72+20\sqrt{6}-50-20\sqrt{6}-47=0\]\qed\\
+\textbf{Problem 2:} Suppose that $Q(x)=x^n+\frac{a_{n-1}}{b_{n-1}}x^{n-1}+\cdots+ \frac{a_0}{b_0}$, where $a_i,b_i\in\Z$ and $Q(\alpha)=0$. Then let $q=lcm(b_0,b_1,\cdots,b_{n-1})$.
+\[f=q^nQ(\frac{x}{q})\in \Z[x]\]
+Notice that $f$ is monic by our construction. Now, we take $n=q$. Then we have 
+\[f(n\alpha)=f(q\alpha)=q^nQ(\frac{q\alpha}{q})=q^nQ(\alpha)=0\]\qed\\
+So $n\alpha$ is an algebraic integer.\\\qed\\
+\textbf{Problem 3:} Since both $\alpha$ and $\beta$ are algebraic integer, we can assume that the minimal polynomial of $\alpha$ over $\Z $ has degree $n$ and the minimal polynomial of $\beta$ over $\Z $ has degree $m$. Let $\gamma$ be a root of $x^2+\alpha x+\beta=0$. Now, consider the $\Z$-module $A$ generated by $\{\alpha^i\beta^j\gamma^k\mid 0\leq i \leq n,\ 0\leq j\leq m,\ k=0,1\}$. Now, we consider the mapping 
+\[f:A\to \C\]
+\[x\mapsto x\gamma\]
+Notice that $f$ is a $\Z$-module homomorphism (abelian group homomorphism) since $x,y\in\A$, we have 
+\[f(x+y)=(x+y)\gamma=x\gamma+y\gamma\]
+Then we know the image of $A$ is determined by the imaged of the generating set. Now, for any $0\leq i \leq n,\ 0\leq j\leq m,\ k=0,1$, we have 
+\[f(\alpha^i\beta^j\gamma^k)=\alpha^i\beta^j\gamma^{k+1}=\begin{cases}
+    \alpha^i\beta^j\gamma &\text{ if }k=0\\
+    \alpha^i\beta^j(-\alpha\gamma-\beta) &\text{ if }k=0\\
+\end{cases}\]
+So we have $f(\alpha^i\beta^j\gamma^k)\in A$. Also if $c\in \Z$, then we have $f(c)=c\gamma\in A$. So we have $f(A)\subseteq A$. So $\gamma $ is an algebraic integer by prop. 6.1.4.\\
+\qed\\
+\textbf{Problem 4:} We define the content of a polynomial to be the gcd of all of the coefficients and we denote the content by $c(f)$. Suppose $f,g\in \Z[x]$ is primitive and $f=\sum_{i=1}^na_ix^i$ and $g=\sum_{i=1}^mb_ix^i$. Then we have 
+\[fg=\sum_{i=1}^{mn}(\sum_{j+k=i}a_jb_k)x^i\]
+If $c(fg)=d$, then for any $p\mid d$, we can consider $[f]_p,[g]_p,[fg]_p$ with coefficients in the field $\Z/p\Z$. Then we know $\Z/p\Z[x]$ is a PID. Since $p\mid c(fg)$, we have $[fg]_p=0$. But we have $[f]_p,[g]_p\neq 0$ since $p\nmid c(f),c(g)$. But this is a contradiction since $[fg]_p=[f]_p[g]_p=0$ and $\Z/p\Z[x]$ is an integral domain. So no prime $p$ divides $d$, which implies $d=1$. So $fg$ is primitive.\\ \qed\\
+\textbf{Problem 5:} Notice that $f$ is irreducible since if $f=gh$, then we will have 
+\[f(\alpha)=g(\alpha)h(\alpha)=0\implies g(\alpha)=0 \lor h(\alpha)=0 \]
+Since $\deg (g),\deg (h)\leq \deg (f)$, we have either $g$ or $h$ is constant since $f$ has minimal degree. So $f$ is irreducible. So $f$ is the minimal polynomial of $\alpha$ over $\Q$. Now, we suppose $F(\alpha)=0$ for some $F\in \Z[x]$. Then we have $fG=F$ for some $G\in \Q[x]$. If $f$ is not in $\Z[x]$, then there is some prime $p$ that dividies every denominators of the coefficients of $f$. Assume $k>0$ and $p^k$ is the highest power of $p$ that dividies every denominators of the coefficients of $f$. Similarly, we can assume $p^l$ is the highest power of $p$ that divides every denominators of $G$, where $l\geq 0$. Then we can consider in $\Z/p\Z[x]$ since none of the denominators of coefficients in $f$ or $G$ are 0 mod $p$, which means they are unit.
+\[(p^kf) (p^lG)\equiv p^{k+l}F\equiv 0\pmod p\]
+So we have either $p^kf=0$ or $p^lG=0$. But since $k,l$ are minimal, so there is at least one coefficients in $f$ and $G$ are nonzero. This is a contradiction. So we must have $f\in\Z[x]$.\\ 
+\qed\\
+\textbf{Problem 6:} Since $x^2+mx+n$ is irreducible in $\Z[x]$ implies it is irreducible in $\Q[x]$, so the polynomial has no rational roots. Then we have $\alpha\notin\Q$. This implies $m^2-4n$ is not a square. Now, we prove $\Q[\alpha]$ is a ring. It is obvious that it closed under addition since it is a $\Q$-vector space. For any $r_1,r_2,s_1,s_2\in \Q$, we have 
+\[(r_1+s_1\alpha)(r_2+s_2\alpha)=r_1r_2+(r_1s_2+s_1r_2)\alpha+s_1s_2\alpha^2=r_1r_2+(r_1s_2+s_1r_2)\alpha+s_1s_2(-m\alpha-n)\in \Q[\alpha]\] 
+So $\Q[\alpha]$ is closed under multiplication as well. Hence, it is a ring. Now, we prove $\Q[\alpha]=\Q[\sqrt{D}]$. It is obvious that $\Q[\alpha]\subseteq \Q[\sqrt{D}]$ since $\alpha\in\{\frac{-b\pm D_0\sqrt{D}}{2}\}$.\\
+Conversely, if $\alpha=\frac{-b+ D_0\sqrt{D}}{2}$. Then we have 
+\[\sqrt{D}=\frac{b+2\alpha}{D_0}\in \Q[\alpha]\]
+If $\alpha=\frac{-b- D_0\sqrt{D}}{2}$, then we have
+\[\sqrt{D}=-\frac{b+2\alpha}{D_0}\in \Q[\alpha]\]
+So we have $\Q[\sqrt{D}]\subseteq \Q[\alpha]$. Hence, we have $\Q[\alpha]=\Q[\sqrt{D}]$.\\ \qed\\
+\end{document}

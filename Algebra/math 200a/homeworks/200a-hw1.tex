@@ -1,0 +1,87 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,epsfig,fancyhdr,amssymb,subfigure,setspace,fullpage,mathrsfs}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathcal{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sd}{{\Sigma\Delta}}
+
+\begin{document}
+    \title{Homework1 - 200A}
+    \maketitle
+    \begin{center}
+        Jiayi Wen\\
+        A15157596
+    \end{center}
+    \indent For the notation of function composition, we follow with the one in the text book. For example, $f \circ g$ means do $f$ first then do $g$.\\
+ \textbf{Problem 1.2:} Let's show $R$ and $L$ are permuatation groups first. For any $r_x\in R$ and any $g,h\in G$, if $r_x(g)=r_x(h)$, then 
+ $$gx=r_x(g)=r_x(h)=hx$$
+ \[gxx^{-1}=hxx^{-1}\]
+ \[g=h\]
+ Hence, $r_x$ is injective for any $r_x\in R$. Also, for any $g\in G$, we have $g=g(x^{-1}x)=(gx^{-1})x=r_x(gx^{-1})$. Hence, $r_x$ is surjective. Hence, $R\subset Sym(G)$. For any $r_x,r_y\in R$, and for any $g\in G$, the composition is given by 
+ \[r_x\circ r_y(g)=r_y(r_x(g))=r_y(gx)=gxy=r_{xy}(g)\]
+ Therefore, $r_{xy}\in R$ and $R$ is closed under function composition. Hence, $R$ is indeed a permuatation group.  
+ The proof is similar for $L$. For any $l_x\in L$ and any $g,h\in G$, if $l_x(g)=l_x(h)$, then 
+ $$xg=l_x(g)=l_x(h)=xh$$
+ \[xx^{-1}g=xx^{-1}h\]
+ \[g=h\]
+ Hence, $l_x$ is injective for any $l_x\in L$. Also, for any $g\in G$, we have $g=(xx^{-1})g=x(x^{-1}g)=l_x(x^{-1}g)$. Hence, $l_x$ is surjective. Hence, $L\subset Sym(G)$. For any $l_x,l_y\in L$, and for any $g\in G$, the composition is given by 
+ \[l_x\circ l_y(g)=l_y(l_x(g))=l_y(xg)=yxg=l_{yx}(g)\]
+ Therefore, $l_{yx}\in L$ and $L$ is closed under function composition. Hence, $L$ is a permuatation group.\\
+ Since permutation groups are group with respect to function operations, it makes sense to discuss group morphisms between any two of $R,G,L$. Next, we want to show $R$ and $G$ and $L$ are isomorphic to each other.\\
+ Consider the mapping $\phi:R \rightarrow G$ defined by $\phi(r_x)=x$. For any $r_x,r_y\in R$,
+ \[\phi(r_x\circ r_y)=\phi(r_{xy})=xy=\phi(r_x)\phi(r_y)\]
+ So $\phi$ is a group homomorphism. Also, if $r_x\in Ker(\phi)$, then $x=\phi(r_x)=e$. So $\phi$ is injective since $\phi$ has trivial kernel. For any $g\in G$, we have $\phi(r_g)=g$. So $\phi$ is surjective. Hence, $\phi$ is an isomorphism from $R$ to $G$.\\
+ Consider $\varphi:L\rightarrow G$ defined by $\varphi(l_x)=x^{-1}$. For any $l_x,l_y\in L$,
+ \[\varphi(l_x\circ l_y)=\varphi(l_{yx})=(yx)^{-1}=x^{-1}y^{-1}=\varphi(l_x)\varphi(l_y)\]
+ So $\varphi$ is a group homomorphism. Also, if $l_x\in Ker(\varphi)$, then $x^{-1}=\varphi(l_x)=e$, which implies $x=e$. So $\varphi$ is injective since $\varphi$ has trivial kernel. For any $g\in G$, we have $\varphi(l_{g^{-1}})=g$. So $\varphi$ is surjective. Hence, $\varphi$ is an isomorphism from $L$ to $G$.\\
+Combine these two argument, we have $R\cong G$ and $L\cong G$. Since isomorphism is a equivalence relation, $R\cong G \cong L$ by transitivity.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 1.3:} For any $l_x\in L$ and for any $r_y\in R$, any $g\in G$, it follows 
+\[l_x\circ r_y(g)=r_y(xg)=xgy=l_x(gy)=r_y\circ l_x(g)\]
+Hence, $l_x \in \{f\in Sym(G)|fr=rf \text{ for any }r\in R\}$. So \[L\subset \{f\in Sym(G)|fr=rf \text{ for any }r\in R\}\tag{1}\]
+Conversely, for any $f\in Sym(G)$ such that $fr=rf$ for any $r\in R$, denote $f(e)=g$ for some $g\in G$. Then for any $h\in G$, we have 
+\[f(h)=f(eh)=r_hf(e)=fr_h(e)=r_h(f(e))=f(e)h=gh\tag{$\ast$}\]
+Since ($\ast$) is true for any $h\in G$, it defines the mapping $f$. Notice that it is the same as the definition of maps in $L$. Hence $f\in L$. Hence, \[\{f\in Sym(G)|fr=rf \text{ for any }r\in R\}\subset L\tag{2}\]
+Together (1) and (2), we proved the statement.
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 1.4:}\\
+For the part a, I didn't follow the notations used in the problem, but in part b, I was consistent with the problem's notation.\\
+\textbf{(a)} We construct an example that is similar to Problem 1.2. Let $G$ be a nontrivial group and let $X=G \times G$ be the cartesian product of two copies of $G$, which is also a group. Then we can consider mappings from $X$ to $X$ such that the first coordinate is given by a right multiplication and the second coordinate is a constant map. And we claim the set consists of all such mappings is a nontrivial group respect to function composition. 
+\[H:=\{f_x\in H| f_x:X\rightarrow X, f_x(g_1,g_2)=(g_1x,e) \text{ for some } x\in G\}\]
+First, we show $H$ is closed under function composition. Given any $f_x,f_y\in H$ and any $(g_1,g_2)\in X$, then 
+\[f_x\circ f_y(g_1,g_2)=f_y(g_1x,e)=(g_1xy,e)=f_{xy}(g_1,g_2)\]
+The operation is associative in $X$. For any $f_x,f_y,f_z\in H$, 
+\[f_x\circ (f_y\circ f_z)=f_x\circ f_{yz}=f_{xyz}=f_{xy}\circ f_z=(f_x\circ f_y)\circ f_z\]
+The mapping $f_e$ is the identity element of $H$. Given any $f_x\in H$, then 
+\[f_e\circ f_x=f_{ex}=f_{x}=f_{xe}=f_x\circ f_e\]
+The inverse of any $f_x\in H$ is given by $f_{x^{-1}}$.
+\[f_x\circ f_{x^{-1}}=f_{xx^{-1}}=f_e=f_{x^{-1}x}=f_{x^{-1}}\circ f_x\]
+So $H$ is a group. Also, notice that none of the element in $H$ is bijection because $G$ is nontrivial. So if given $(e,g_1)\neq (e,g_2)$ are elements in $X$, we have $f_x(e,g_1)=(e,e)=f_x(e,g_2)$ for any $f_x\in H$. So all mappings in $H$ is not injective, hence not bijective. Therefore, $H\nsubseteq Sym(X)$. Also, $H\cong G$ by the projection of the first coordinate and the result we proved in Problem 1.2 that $R\cong G$. So $|H|=|G|\geq 2$ by the assumption $G$ is nontrivial.
+\phantom{qed}\hfill$\square$\\
+\textbf{(b)} Assume $g\in G$ is an injective function, then we show $e$ is an injective function. Assume $e(x)=e(y)$ towards contradiction, where $x,y\in X$ and $x\neq y$. Then we have 
+$$g(x)=e\circ g(x)=g(e(x))=g(e(y))=e\circ g(y)=g(y)$$
+It contradicts with the assumption $g$ is injective. Hence, $e$ must be an injective function. Then we show every function in $G$ is injective. Since $G$ is a group, then given any $h\in G$, there exists a function $h^{-1}\in G$ such that $h\circ h^{-1}=e$. Similarly, we assume $h(x)=h(y)$ for some $x\neq y$. Then 
+\[e(x)=h\circ h^{-1}(x)=h^{-1}(h(x))=h^{-1}(h(y))=h\circ h^{-1}(y)=e(y)\]
+It contradicts with $e$ is injective. So every function in $G$ must be injective.\\
+Next, we show $e$ is surjective and then every function in $G$ is surjective. Assume $e$ is not surjective towards contradiction, then there exists some $x\in X$ such that $x\notin e(X)$. Since $e$ is a well-defined function on $X$, then $e(x)=y$ for some some $y\in X$. Since $e$ is the identity element in $G$, then 
+\[e(y)=e(e(x))=e\circ e(x)=e(x)\]
+Because $e$ is injective, we have $x=y$, which leads to a contradiction since $$x=y=e(x)\in e(X)$$
+Furthermore, the proof here implies that $e$ is the identity map $i_X$ on $X$. For any $h\in G$, the statement $h^{-1}\circ h=e=i_X$ is equivalent to $h$ is a surjective map (Lemma 1.1). So every element in $G$ is bijection. Therefore, $G\subset Sym(X)$. 
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 1.7} Since every element in the general linear group is an invertible matrix, the problem is the same as how many ways to construct a basis for $F^n$ ($n$ linearly independent vectors in).\\
+For the first vector, we can choose any nonzero vector in $F^n$, which has $|F^n|-1=q^n-1$ ways. For the second vector, we can choose any vector that is not a scalar multiplication of the first vector (not in the subspace $V_1$ spanned by the first vector, which has $q$ elements). Hence, there are $|F^n|-|V_1|=q^n-q$. If we denote $V_k\cong F^k$ be the space spanned by the first $k$ chosen vectors, $|V_k|=|F^k|=q^k$. Hence, there are $|F^n|-|V_k|=q^n-q^k$ to choose the $k+1$ vector.
+\[GL_n(F)=(q^n-1)(q^n-q)\dots(q^n-q^{n-1})\]
+\\\phantom{qed}\hfill$\square$\\
+\textbf{Problem 1.8} For any $g,h\in G$, we show $gh=hg$. Since every nonidentity element of $G$ is an involution, $k^2=e$ for any $k\in G$ (we don't care whether $k=e$ or not since the statement is obviously true for $k=e$). This means that $k^{-1}=k$ by definition. So if we can show $hg=(gh)^{-1}$, then we are done by the uniqueness of inverse of a group.
+\[(gh)(hg)=ghhg=g(hh)g=geg=gg=e\]
+So $hg=(gh)^{-1}=gh$. Hence $G$ is an abelian group.
+\\\phantom{qed}\hfill$\square$\\
+
+\end{document}
